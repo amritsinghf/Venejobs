@@ -1,0 +1,105 @@
+.freelancer-layout {
+    max-width: 1010px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .main-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 50px rgba(0, 0, 0, 0.05);
+    flex: 3;
+  }
+  
+  .freelancer-sidebar {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 50px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    align-self: start;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-name-role {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .profile-stats {
+    text-align: right;
+    font-size: 0.9rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .review {
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-name {
+    font-weight: 500;
+  }
+  
+  .review-date {
+    font-size: 0.85rem;
+    color: #888;
+  }
+  
+  .tags span {
+    background: #f1f1f1;
+    padding: 6px 12px;
+    border-radius: 30px;
+    margin: 5px 5px 0 0;
+    display: inline-block;
+    font-size: 0.85rem;
+  }
+  
+  .profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .hire-btn {
+    background: #01237C;
+    color: white;
+    padding: 1rem 2rem;
+    border: 1px solid #FAFAFA;
+    width: 177px;
+    height: 60px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  
+  .message-btn {
+    background: #F3F3F3;
+    padding: 1rem 2rem;
+    width: 177px;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #FAFAFA;
+    font-weight: 500;
+  }
+  

@@ -1,0 +1,204 @@
+/* Ensure clean white background */
+body {
+    background-color: #ffffff;
+  }
+  
+  /* Wrapper and container setup */
+  .postad-wrapper {
+    padding: 4rem 2rem 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    min-height: 60vh;
+  }
+  
+  .postad-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .postad-left {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .postad-right {
+    flex: 1;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Step number bubbles */
+  .postad-step-numbers {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .step-number {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 0.5rem 0.9rem;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  
+  .step-number.active-step {
+    background-color: #5BBB7B;
+    color: white;
+  }
+  
+  /* Titles */
+  .postad-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  
+  .postad-subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    max-width: 400px;
+  }
+  
+  /* Form Labels */
+  .input-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  /* Language Input Section */
+  .language-section {
+    margin-top: 2rem;
+    display: flex;
+    gap: 35px;
+    flex-wrap: nowrap;
+    max-width: 620px;
+  }
+  
+  .language-group {
+    display: flex;
+    flex-direction: column;
+    width: 296px;
+  }
+  
+  /* Styled Select Dropdown */
+  .select-input {
+    width: 100%;
+    height: 60px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+  }
+  
+  .select-input:focus {
+    outline: none;
+    border-color: #5BBB7B;
+  }
+  
+  /* Generic text input (for hourly rate + you'll get) */
+  .text-input {
+    height: 60px;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  }
+  
+  /* Navigation Buttons */
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 80px;
+  }
+  
+  .back-button {
+    background: white;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 20px;
+    height: 50px;
+    min-width: 150px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .next-button {
+    background-color: #5BBB7B;
+    color: white;
+    border: 1px solid #FAFAFA;
+    padding: 8px 20px;
+    height: 50px;
+    min-width: 150px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+  
+  .next-button:hover {
+    background-color: #4aa76c;
+  }
+  
+  /* ✅ Rate Section Styles */
+  .rate-section {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .rate-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    max-width: 620px;
+    width: 100%;
+  }
+  
+  .rate-group {
+    flex: 1;
+    min-width: 240px;
+  }
+  
+
+  .rate-note {
+    font-size: 0.85rem;
+    color: #555;
+    max-width: 620px;
+    line-height: 1.4;
+  }
+  

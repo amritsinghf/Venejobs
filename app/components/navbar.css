@@ -1,0 +1,82 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #01237C;
+    padding: 8px 32px;
+    color: white;
+    font-family: "DM Sans", sans-serif;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .brand-name {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .navbar-links li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+  
+  .navbar-links li a:hover::after {
+    width: 100%;
+  }
+  
+  .navbar-links li a:hover {
+    color: #fff;
+  }
+  
+  .navbar-auth {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .login {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .signup {
+    background-color: white;
+    color: #01237C;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  

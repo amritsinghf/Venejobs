@@ -1,0 +1,229 @@
+.dashboard-wrapper {
+    background-color: #fff;
+    min-height: 100vh;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+  
+  .dashboard-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 32px;
+  }
+  
+  .dashboard-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .dashboard-buttons {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .top-button {
+    background-color: #01237C;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .top-button.light {
+    background-color: white;
+    color: #01237C;
+    border: 1px solid #01237C;
+  }
+  
+  .dashboard-title {
+    font-size: 44px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 18px;
+    color: #666666;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 80px; /* ✅ Add this */
+  }
+  
+  .dashboard-section-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+  
+  .dashboard-section-title.small {
+    font-size: 26px;
+  }
+  
+  .dashboard-tabs {
+    margin-bottom: 32px;
+  }
+  
+  .dashboard-tab-buttons {
+    display: flex;
+    gap: 32px;
+    margin-top: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .tab-button {
+    background: none;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab-button.active {
+    color: #01237C;
+    border-color: #01237C;
+  }
+  
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .job-card {
+    border: 1px solid #FAFAFA;
+    border-radius: 20px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+  }
+  
+  .job-info {
+    max-width: 350px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  
+  .job-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 6px;
+  }
+  
+  .job-title.small {
+    font-size: 19px;
+  }
+  
+  .job-meta {
+    font-size: 14px;
+    color: #666666;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .job-meta-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .job-stats {
+    font-size: 14px;
+    color: #333;
+    flex: 1;
+    padding-left: 0; /* ✅ Remove extra offset */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ✅ Center it horizontally */
+  }
+  
+  .job-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    min-width: 180px;
+  }
+  
+  .view-details-button {
+    background-color: #01237C;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .more-icon {
+    font-size: 20px;
+    color: #666;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .page-btn {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #01237C;
+  }
+  
+  .page-btn.active {
+    background-color: #01237C;
+    color: white;
+  }
+  
+  .price-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .price-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  .contract-badge {
+    background-color: #5BBB7B;
+    color: white;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    line-height: 1;
+  }
