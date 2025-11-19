@@ -1,0 +1,12 @@
+export { Edit } from "./Edit";
+export {Brifcase} from "./Brifcase"
+export {Cv} from "./Cv"
+export {Honesty} from "./Honesty"
+export {Footerlogo} from "./Footerlogo"
+export {Facebook_logo} from "./Facebook_logo"
+export {Twitter} from "./Twitter"
+export {Instagram} from "./Instagram"
+export {Linkedin} from "./Linkedin"
+export {Checkmark} from "./Checkmark"
+export {Businessman} from "./Businessman"
+export {Teleworking} from "./Teleworking"
