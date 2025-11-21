@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full  flex  gap-8 mt-20">
+        <div className="w-full flex gap-8 mt-20">
           <h2 className="font-semibold text-[#333333] text-3xl">
             Your Job Posts & Active Contracts
           </h2>
@@ -64,20 +64,25 @@ export default function Home() {
         <div className="w-full  flex  gap-8 mt-10">
           <button
             onClick={() => setshowData(true)}
-            className="text-[#01237C] font-bold"
+            // className="bg-[#01237C] text-white font-bold border p-2 rounded"
+            className={`font-bold border p-2 rounded ${
+              showData ? "bg-[#01237C] text-white" : "bg-white text-black"
+            }`}
           >
             All job posts
           </button>
           <button
             onClick={() => setshowData(false)}
-            className="text-[#01237C] font-bold"
+            className={`font-bold border p-2 rounded ${
+              !showData ? "bg-[#01237C] text-white" : "bg-white text-black"
+            }`}
           >
             Your Active Contracts
           </button>
         </div>
 
         {showData && (
-          <div>
+          <div className="mt-2 rounded">
             <Jobs />
           </div>
         )}

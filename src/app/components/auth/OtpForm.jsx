@@ -7,6 +7,9 @@ import {
   verify_reset_code,
 } from "@/app/lib/auth/auth.api";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import toastStore from "@/app/store/toastStore";
+import Image from "next/image";
 
 export default function OtpForm({
   email,
@@ -17,11 +20,11 @@ export default function OtpForm({
   const router = useRouter();
   const [otp, setotp] = useState(new Array(6).fill(""));
   const [finalotp, setfinalotp] = useState(0);
-  const [seconds, setSeconds] = useState(10 * 0);
+  const [seconds, setSeconds] = useState(10 * 60);
   const [canResend, setCanResend] = useState(false);
-  const [showError, setshowError] = useState("");
   const inputrefs = useRef([]);
-  // console.log(email,"email");
+  const showToast = toastStore.getState().showToast;
+
   useEffect(() => {
     if (seconds <= 0) {
       setCanResend(true);
@@ -34,17 +37,6 @@ export default function OtpForm({
 
     return () => clearInterval(interval);
   }, [seconds]);
-
-  const handleResend = async () => {
-    const res = await resend_verification_code({ email });
-
-    if (!res.data.success) {
-      setshowError(res.message);
-      return;
-    }
-    setSeconds(10 * 60);
-    setCanResend(false);
-  };
 
   const formatTime = (s) => {
     const minutes = Math.floor(s / 60);
@@ -62,17 +54,15 @@ export default function OtpForm({
 
   const handleotpchange = (index, e) => {
     const value = e.target.value;
-    // console.log(value)
-    if (!/^\d*$/.test(value)) return;
+    if (isNaN(value)) return;
 
     const newotp = [...otp];
-    //allow one input
+
     newotp[index] = value.substring(value.length - 1);
     setotp(newotp);
 
-    // submit trigger
     const combinedOtp = newotp.join("");
-    // console.log(newotp, combinedOtp)
+
     if (combinedOtp.length === 6) {
       setfinalotp(combinedOtp);
     }
@@ -103,19 +93,71 @@ export default function OtpForm({
     }
   };
 
+  const handleResend = async () => {
+    try {
+      const res = await resend_verification_code({ email });
+      console.log(res);
+      if (res.success) {
+        showToast(res.message, "success");
+      }
+      setSeconds(10 * 60);
+      setCanResend(false);
+    } catch (error) {
+      if (error.response) {
+        showToast(error.response.data.message, "error");
+        console.log("Resend otp failed:", error.response.data);
+      } else {
+        console.log("Network error:", error.message);
+      }
+    }
+  };
+
   const VerifyAccount = async () => {
     if (setverifyCode === "signup-code") {
-      const res = await verify_account({ email: email, code: finalotp });
-      console.log(res.data);
-      // after if res.success go to home or dashboard with store token
-      router.push("/client");
+      try {
+        const res = await verify_account({ email: email, code: finalotp });
+        const token = res.data.token;
+        console.log(res);
+        if (res.success === true) {
+          showToast(res.message, "success");
+          await axios.post("/api/set-token", { token });
+          localStorage.setItem("token", token);
+
+          if (res.data.user.role_id == 1) {
+            router.push("/freelancer");
+          } else if (res.data.user.role_id == 2) {
+            router.push("/client");
+          } else {
+            router.push("/admin");
+          }
+        } else if (res.success === false) {
+          showToast(res.message, "error");
+        }
+      } catch (error) {
+        if (error.response) {
+          showToast(error.response.data.message, "error");
+          console.log("Otp verification failed:", error.response.data);
+        } else {
+          console.log("Network error:", error.message);
+        }
+      }
     } else {
-      const res = await verify_reset_code({ email: email, code: finalotp });
-      console.log(res.data);
-      // after if res.success go to the reset password form
-      if (res.data.success) {
-        setUserEmail(email);
-        setActiveModal("new_password");
+      try {
+        const res = await verify_reset_code({ email: email, code: finalotp });
+        console.log(res.data);
+        // after if res.success go to the reset password form
+        if (res.success) {
+          showToast(res.message, "success");
+          setUserEmail(email);
+          setActiveModal("new_password");
+        }
+      } catch (error) {
+        if (error.response) {
+          showToast(error.response.data.message, "error");
+          console.log("Resend otp failed:", error.response.data);
+        } else {
+          console.log("Network error:", error.message);
+        }
       }
     }
   };
@@ -131,16 +173,28 @@ export default function OtpForm({
       >
         <div class="w-full max-w-3xl max-h-full">
           <div class=" bg-white rounded-lg shadow-sm ">
-            <div class="text-center  h-[424px] ">
-              <div className=" flex flex-col gap-2">
+            <div class="text-center  h-[424px] p-5">
+              <div className="flex flex-col gap-2">
+                <div class=" flex items-center justify-start border-b border-default pb-1">
+                  <Image
+                    src="/logo.png"
+                    alt="logo image"
+                    height={30}
+                    width={50}
+                    style={{ width: "40px", height: "40px" }}
+                  />
+                  <h3 class="text-2xl font-bold text-[#666666] text-heading px-2">
+                    Venejobs
+                  </h3>
+                </div>
                 <h2 className="font-extrabold text-[32px] ">
                   Verify your email
                 </h2>
                 <p className="text-[#718096] text-sm">
                   We have sent code to your email
                 </p>
-                <p>{email}</p>
-                <div className="flex justify-center items-center mt-8">
+                <p className="font-medium "> {email}</p>
+                <div className="flex justify-center items-center mt-4">
                   {otp.map((value, index) => (
                     <input
                       key={index}
@@ -164,20 +218,25 @@ export default function OtpForm({
                 Verify Account
               </button>
 
-              <div>
+              <div className="flex flex-col items-center mt-2 justify-center">
                 {canResend ? (
-                  <button className="text-[16px] " onClick={handleResend}>
+                  <button
+                    className="text-[16px] cursor-pointer"
+                    onClick={handleResend}
+                  >
                     Resend Code
                   </button>
                 ) : (
                   <>
                     <span className="text-[#718096]"> Resend the code in </span>
                     <strong>{formatTime(seconds)}</strong>
-
-                    {showError && <p className="error">{showError}</p>}
                   </>
                 )}
               </div>
+            </div>
+            <div className="flex justify-between px-5 py-4">
+              <p className="text-[#666666] text-sm">Privacy Policy</p>
+              <p className="text-[#666666] text-sm">Copyright</p>
             </div>
           </div>
         </div>

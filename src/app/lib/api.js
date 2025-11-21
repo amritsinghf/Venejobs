@@ -1,20 +1,3 @@
-// const BASE_URL = "http://localhost:3000/";
-// export async function apiFetch(endpoint, options = {}) {
-//     const res = await fetch(`${BASE_URL}${endpoint}`, {
-//         method: options.method || "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//             ...(options.headers || {}),
-//         },
-//         body: options.body,
-//     });
-//     if (!res.ok) {
-//         throw new Error(`API error: ${res.status}`);
-//     }
-//     return res.json();
-// }
-
-// lib/api.js
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3000/";
@@ -33,7 +16,7 @@ api.interceptors.request.use(
     if (typeof window === "undefined") {
       try {
         const { cookies } = await import("next/headers");
-        const cookieStore = await cookies(); // 👈 await here
+        const cookieStore = await cookies(); 
         token = cookieStore.get("token")?.value || "";
       } catch (e) {
         // cookies() may fail in some contexts
@@ -54,7 +37,7 @@ api.interceptors.response.use(
   (response) => response.data,
   (error) => {
     console.error("API error:", error.response?.status);
-    return Promise.reject(error.response?.statusText);
+    return Promise.reject(error);
   }
 );
 

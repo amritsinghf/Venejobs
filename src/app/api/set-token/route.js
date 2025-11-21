@@ -16,6 +16,3 @@ export async function POST(req) {
   return res;
 }
 
-export async function GET(params) {
-  
-}

@@ -81,7 +81,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               <div className="flex flex-col gap-5 mt-4  p-1">
                 {projectSize.map((item) => (
                   <>
-                    <div class="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
+                    <div
+                      class="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2"
+                      key={item.id}
+                    >
                       <input
                         id="bordered-checkbox-3"
                         type="radio"

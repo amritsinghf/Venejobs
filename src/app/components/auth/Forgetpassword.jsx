@@ -2,11 +2,11 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { forget_password } from "@/app/lib/auth/auth.api";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import toastStore from "@/app/store/toastStore";
 
 export default function Forgetpassword({ setActiveModal, setUserEmail }) {
-  const [message, setMessage] = useState({ text: "", type: "" });
-
+  const showToast = toastStore.getState().showToast;
   const {
     register,
     handleSubmit,
@@ -17,18 +17,19 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
   const onSubmit = async (data) => {
     try {
       const res = await forget_password(data);
-      console.log(res);
-      if (res.data.success === true) {
+      console.log(res.data);
+      if (res.success === true) {
+        showToast(res.message, "success");
         setActiveModal("check_mail_screen");
         setUserEmail(data.email);
-      } else {
-        setMessage({ text: "User not found", type: "error" });
       }
     } catch (error) {
-      setMessage({
-        text: "User not found" || "Server error",
-        type: "error",
-      });
+      if (error.response) {
+        showToast(error.response.data.message, "error");
+        console.log("Forget password failed:", error.response.data);
+      } else {
+        console.log("Network error:", error.message);
+      }
     }
   };
 
@@ -42,7 +43,7 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
     <>
       <div className="overflow-y-auto bg-black/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full flex">
         <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
-          <div className="relative bg-white rounded-lg shadow-sm">
+          <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
             <div className="p-4 md:p-5 h-[680] " ref={forgetpassRef}>
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image
@@ -56,10 +57,10 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
                   Venejobs
                 </h1>
               </div>
-              <h2 className="text-center text-[#333333] font-semibold text-3xl  mb-3">
+              <h2 className="text-center text-[#333333] font-extrabold text-4xl  mb-3">
                 Forgot password?
               </h2>
-              <p className="text-[#666666] text-center text-[16px]">
+              <p className="text-[#666666]  text-center text-sm">
                 No worries, we’ll send you reset instructions.
               </p>
 
@@ -109,21 +110,11 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
                   />
                 </div>
               </form>
-              {message.text && (
-                <div
-                  className={`mt-2 p-2 font-bold  ${
-                    message.type === "error"
-                      ? "text-red-700 bg-red-100 border-red-700"
-                      : ""
-                  }`}
-                >
-                  {message.text}
-                </div>
-              )}
+
               <div className="flex justify-end m-5">
                 <button
                   type="button"
-                  className="text-[#858585] text-[16px] text-center"
+                  className="text-[#858585] text-[16px] text-center cursor-pointer font-semibold"
                   onClick={() => setActiveModal("signin")}
                 >
                   ← Back to Login

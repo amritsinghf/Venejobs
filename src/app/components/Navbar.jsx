@@ -14,7 +14,7 @@ import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [verifyCode, setverifyCode] = useState("")
+  const [verifyCode, setverifyCode] = useState("");
   return (
     <>
       <div className="max-w-[1420px] w-full mx-auto  lg:block hidden">
@@ -25,11 +25,34 @@ export default function Navbar() {
               alt="logo image"
               height={500}
               width={500}
-              style={{ width: 100, height: 30 }}
+              style={{ width: 120, height: 40 }}
             />
-            <select className="text-white bg-blue-900 rounded-2xl">
-              <option value="">Category</option>
-            </select>
+            {/* flowbite dropdown only - not options */}
+            <button
+              id="dropdownDefaultButton"
+              data-dropdown-toggle="dropdown"
+              className="inline-flex items-center justify-center text-white bg-white/10 rounded-2xl bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+              type="button"
+            >
+              Category
+              <svg
+                className="w-4 h-4 ms-1.5 -me-0.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 9-7 7-7-7"
+                />
+              </svg>
+            </button>
           </div>
           <div className="">
             <nav>
@@ -53,7 +76,7 @@ export default function Navbar() {
             </nav>
           </div>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-6 h-10 font-medium ">
             <button
               className="text-white cursor-pointer"
               onClick={() => setActiveModal("signin")}
@@ -62,7 +85,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setActiveModal("signup")}
-              className="w-[70] text-sm p-2 cursor-pointer rounded-4xl text-black bg-white"
+              className="w-[100] text-sm  cursor-pointer rounded-4xl text-black bg-white"
             >
               Signup
             </button>
@@ -83,11 +106,19 @@ export default function Navbar() {
       )}
 
       {activeModal === "forget_password" && (
-        <Forgetpassword setActiveModal={setActiveModal} setUserEmail={setUserEmail}/>
+        <Forgetpassword
+          setActiveModal={setActiveModal}
+          setUserEmail={setUserEmail}
+        />
       )}
 
       {activeModal === "otp_verify" && (
-        <OtpForm setActiveModal={setActiveModal} email={userEmail} setUserEmail={setUserEmail} setverifyCode={verifyCode}/>
+        <OtpForm
+          setActiveModal={setActiveModal}
+          email={userEmail}
+          setUserEmail={setUserEmail}
+          setverifyCode={verifyCode}
+        />
       )}
 
       {activeModal === "new_password" && (

@@ -10,8 +10,6 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     watch,
   } = useFormContext();
 
-  const selectedCategory = watch("category");
-
   const [categories, setcategories] = useState([]);
   const [skills, setSkills] = useState([]);
   const [categoryName, setcategoryName] = useState("");
@@ -20,14 +18,11 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
 
-    setSelectedItems((prev) => {
-      if (checked) {
-        if (!prev.includes(value)) return [...prev, value];
-        return prev;
-      } else {
-        return prev.filter((item) => item !== value);
-      }
-    });
+    setSelectedItems((prev) =>
+      checked
+        ? [...prev, value].filter((v, i, arr) => arr.indexOf(v) === i) // ensure no duplicates
+        : prev.filter((item) => item !== value)
+    );
   };
 
   const getallcategories = async () => {
@@ -165,29 +160,33 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                   {categoryName && `Popular skills for ${categoryName}`}
                 </h2>
                 <div className="flex flex-wrap mt-5 gap-4">
-                  {skills.map((item) => (
-                    <div>
-                      <input
-                        type="checkbox"
-                        id="role-design"
-                        className="sr-only peer"
-                        onChange={(e) => handleCheckboxChange(e)}
-                        checked={selectedItems.includes(item)}
-                        name="role"
-                        value={item}
-                      />
-                      <label
-                        htmlFor="role-design"
-                        className="border flex h-[45] items-center justify-center p-5 rounded-lg 
-                              cursor-pointer text-gray-900 bg-white 
-                              
-                              hover:bg-gray-100 hover:text-gray-600
-                              transition-all"
-                      >
-                        <span className="text-base leading-none">{item}</span>
-                      </label>
-                    </div>
-                  ))}
+                  {skills.map((item) => {
+                    const checkboxId = `skill-${item.id}`;
+                    return (
+                      <div key={item.id}>
+                        <input
+                          type="checkbox"
+                          id={checkboxId}
+                          className="sr-only peer"
+                          onChange={handleCheckboxChange}
+                          checked={selectedItems.includes(item.name)}
+                          name="skills"
+                          value={item.name}
+                        />
+                        <label
+                          htmlFor={checkboxId}
+                          className="border flex h-[45px] items-center justify-center p-5 rounded-lg 
+                cursor-pointer text-gray-900 bg-white 
+                hover:bg-gray-100 hover:text-gray-600
+                transition-all"
+                        >
+                          <span className="text-base leading-none">
+                            {item.name}
+                          </span>
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

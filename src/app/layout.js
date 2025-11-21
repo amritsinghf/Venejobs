@@ -1,4 +1,5 @@
-import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
+import { Geist, DM_Sans } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
 import "./globals.css";
 import "flowbite";
 
@@ -9,7 +10,7 @@ const geistSans = Geist({
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // You can customize these
+  weight: ["400", "500", "700"],
 });
 
 export const metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${dmSans.className}  antialiased`}
       >
         {children}
+        <ToastContainer />
       </body>
     </html>
   );

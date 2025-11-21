@@ -5,28 +5,34 @@ import { signupapi } from "@/app/lib/auth/auth.api";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import Teleworking from "@/svgIcons/Teleworking";
-import Businessman from "@/svgIcons/Businessman";
 import SvgIcon from "../SvgIcon";
+import toastStore from "@/app/store/toastStore";
 
 export default function Signupform({
   setActiveModal,
   setUserEmail,
   setverifyCode,
 }) {
-  const [formData, setformData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
   const router = useRouter();
+  const showToast = toastStore.getState().showToast;
 
   const onSubmit = async (data) => {
-    const res = await signupapi(data);
-    if (res.data.success) {
-      setUserEmail(data.email);
-      setActiveModal("otp_verify");
-      setverifyCode("signup-code");
+    try {
+      const res = await signupapi(data);
+
+      if (res.success) {
+        showToast(res.message, "success");
+        setUserEmail(data.email);
+        setActiveModal("otp_verify");
+        setverifyCode("signup-code");
+      }
+    } catch (error) {
+      if (error.response) {
+        showToast(error.response.data.message, "error");
+        console.log("Signup failed:", error.response.data);
+      } else {
+        console.log("Network error:", error.message);
+      }
     }
   };
 
@@ -37,9 +43,9 @@ export default function Signupform({
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setformData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const signupRef = useRef(null);
 
@@ -51,9 +57,9 @@ export default function Signupform({
     <>
       <div className="overflow-y-auto bg-black/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full flex">
         <div className="relative p-4 w-full max-w-md max-h-full">
-          <div className="relative bg-white rounded-lg shadow-sm">
-            <div className="p-3 md:p-4 h-[780px]" ref={signupRef}>
-              <div className="flex items-center justify-center gap-3 mt-[20px] mb-5">
+          <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
+            <div className="p-3 md:p-4  h-[780px]" ref={signupRef}>
+              <div className="flex items-center  justify-center gap-3 mt-[20px] mb-5">
                 <Image
                   src="/logo.png"
                   alt="logo image"
@@ -65,25 +71,24 @@ export default function Signupform({
                   Venejobs
                 </h1>
               </div>
-              <h2 className="text-center text-[22px] mt-[30] font-extrabold mb-3">
+              <h2 className="text-center text-[44px] mt-[30] font-extrabold mb-3">
                 Sign Up
               </h2>
               <div className="text-sm text-center text-zinc-800">
                 Already Have An Account?{" "}
                 <button
                   onClick={() => setActiveModal("signin")}
-                  className="text-black font-semibold"
+                  className="text-black font-semibold cursor-pointer"
                 >
                   Sign In
                 </button>
               </div>
               <form
-                className="space-y-4 mt-1 p-5 gap-2 flex flex-col"
+                className="space-y-1 mt-1 p-5 gap-4 flex flex-col"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <ul className="grid w-full gap-1 md:grid-cols-2">
-                  {/* Freelancer Option */}
                   <li>
                     <input
                       type="radio"
@@ -91,7 +96,6 @@ export default function Signupform({
                       name="role"
                       className="hidden peer"
                       value="freelancer"
-                      // onChange={handleChange}
                       {...register("role", {
                         validate: (value) =>
                           !!value || "Please select at least one option",
@@ -103,7 +107,7 @@ export default function Signupform({
                     />
                     <label
                       htmlFor="hosting-small"
-                      className="flex flex-col h-[45] items-center justify-center w-full p-5 rounded-lg 
+                      className="flex flex-col h-[45] items-center justify-center w-full p-7 rounded-lg 
                                         cursor-pointer text-gray-900 bg-white 
                                         peer-checked:bg-blue-900 peer-checked:text-white
                                         hover:bg-gray-100 hover:text-gray-600
@@ -112,9 +116,7 @@ export default function Signupform({
                                         transition-all"
                     >
                       <div className="flex items-center justify-center space-x-2">
-                        {/* Freelancer SVG (laptop icon) */}
                         <SvgIcon name="Teleworking" />
-
                         <span className="text-base font-sm leading-none">
                           I&apos;m a Freelancer
                         </span>
@@ -141,7 +143,7 @@ export default function Signupform({
                     />
                     <label
                       htmlFor="hosting-big"
-                      className="flex flex-col h-[45] items-center justify-center w-full p-5 rounded-lg  
+                      className="flex flex-col h-[45] items-center justify-center w-full p-7 rounded-lg  
                                         cursor-pointer text-gray-900 bg-white 
                                         peer-checked:bg-blue-900 peer-checked:text-white 
                                         hover:bg-gray-100 hover:text-gray-600 
@@ -150,10 +152,7 @@ export default function Signupform({
                                         transition-all"
                     >
                       <div className="flex items-center justify-center space-x-2">
-                        {/* Client SVG (briefcase icon) */}
-
                         <SvgIcon name="Businessman" />
-
                         <span className="text-base font-medium leading-none">
                           I&apos;m a Client
                         </span>
@@ -268,21 +267,30 @@ export default function Signupform({
                     </span>
                   )}
                 </div>
-                <div className="flex justify-between ">
+                <div className="flex ">
                   <div className="flex items-center h-5">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="remember" />
                   </div>
-                  <label className="ms-2 text-sm">
+                  <label className="ms-2 text-sm" htmlFor="remember">
                     I Agree With <b> Privacy Policy</b> and <b> Terms of use</b>
                   </label>
                 </div>
-                <div className="flex justify-end">
-                  <input
+                <div className="flex justify-end ">
+                  {/* <input
                     type="submit"
-                    className="text-white justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5  text-center"
+                    className="text-white w-[150px] rounded  justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5  text-center cursor-pointer"
                     value={isSubmitting ? "Submitting" : "Sign Up"}
                     disabled={isSubmitting}
-                  />
+
+                  /> */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="text-white w-40  rounded  bg-blue-900 hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-1"
+                  >
+                    {isSubmitting ? "Signing Up" : "Sign Up"}
+                    <SvgIcon name="RightArrWhite" />
+                  </button>
                 </div>
               </form>
             </div>

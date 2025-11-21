@@ -9,9 +9,11 @@ import DescriptionPage from "./DescriptionPage";
 import ReviewJob from "./ReviewJob";
 import { create_job_post } from "@/app/lib/jobs/index.js";
 import SuccessJobCreate from "./SuccessJobCreate";
+import toastStore from "@/app/store/toastStore";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
+  const showToast = toastStore.getState().showToast;
 
   const methods = useForm({ mode: "onBlur" });
   const { handleSubmit } = methods;
@@ -27,26 +29,36 @@ const MultiStepForm = () => {
   };
 
   const onSubmit = async (data) => {
-    const skillsArray = data.skills
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean);
+    try {
+      const skillsArray = data.skills
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
 
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("description", data.description);
-    formData.append("category", data.category);
-    formData.append("skills[]", skillsArray);
-    formData.append("project_size", data.project_size);
-    formData.append("duration", data.duration);
-    formData.append("experience_level", data.experience_level);
-    formData.append("budget_type", data.budget_type);
-    formData.append("budget_amount", data.budget_amount);
-    formData.append("attachment", data.attachment[0]);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("category", data.category);
+      formData.append("skills[]", skillsArray);
+      formData.append("project_size", data.project_size);
+      formData.append("duration", data.duration);
+      formData.append("experience_level", data.experience_level);
+      formData.append("budget_type", data.budget_type);
+      formData.append("budget_amount", data.budget_amount);
+      formData.append("attachment", data.attachment[0]);
 
-    const res = await create_job_post(formData);
-    if (res.success) {
-      setshowConfirmMessage(true);
+      const res = await create_job_post(formData);
+      if (res.success) {
+        setshowConfirmMessage(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        showToast(error.response.data.message, "error");
+
+        console.log("Job post failed:", error.response.data);
+      } else {
+        console.log("Network error:", error.message);
+      }
     }
   };
 

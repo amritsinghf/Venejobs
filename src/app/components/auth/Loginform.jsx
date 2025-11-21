@@ -6,11 +6,13 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import toastStore from "@/app/store/toastStore";
+import Spinner from "../Spinner";
+import SvgIcon from "../SvgIcon";
+
 export default function Loginform({ setActiveModal }) {
-  
+  const showToast = toastStore.getState().showToast;
   const router = useRouter();
-  const [formData, setformData] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState({ text: "", type: "" });
 
   const loginRef = useRef(null);
 
@@ -22,28 +24,35 @@ export default function Loginform({ setActiveModal }) {
     try {
       const res = await login(data);
       const token = res.data.token;
+      console.log(res);
       if (res.success === true) {
-        setMessage({ text: "Success", type: "success" });
+        showToast(res.message, "success");
         await axios.post("/api/set-token", { token });
         localStorage.setItem("token", token);
-        router.push("/client");
-      } else {
-        setMessage({
-          text: res.data.message || "Something went wrong",
-          type: "error",
-        });
+
+        if (res.data.user.role_id == 1) {
+          router.push("/freelancer");
+        } else if (res.data.user.role_id == 2) {
+          router.push("/client");
+        } else {
+          router.push("/admin");
+        }
+      } else if (res.success === false) {
+        showToast(res.message, "error");
       }
     } catch (error) {
-      setMessage({
-        text: error.response?.data?.message || "Server error",
-        type: "error",
-      });
+      if (error.response) {
+        showToast(error.response.data.message, "error");
+        console.log("Login failed:", error.response.data);
+      } else {
+        console.log("Network error:", error.message);
+      }
     }
   };
 
-  const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setformData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const {
     register,
@@ -56,7 +65,7 @@ export default function Loginform({ setActiveModal }) {
     <>
       <div className="overflow-y-auto bg-black/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full flex">
         <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
-          <div className="relative bg-white rounded-lg shadow-sm">
+          <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
             <div className="p-4 md:p-5 h-[780]" ref={loginRef}>
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image
@@ -66,25 +75,25 @@ export default function Loginform({ setActiveModal }) {
                   width={50}
                   style={{ width: "40px", height: "40px" }}
                 />
-                <h1 className="font-semibold text-[23px] font-sans text-gray-500">
+                <h1 className="font-semibold text-[23px] font-sans text-[#666666]">
                   Venejobs
                 </h1>
               </div>
-              <h2 className="text-center text-2xl font-semibold mb-3">
+              <h2 className="text-center text-[44px] font-semibold mb-3">
                 Sign In
               </h2>
-              <div className="text-sm text-center ">
+              <div className="text-sm text-[#333333] text-center ">
                 Do you have an account yet?{" "}
                 <button
                   onClick={() => setActiveModal("signup")}
-                  className="text-black font-semibold"
+                  className="text-black font-semibold cursor-pointer"
                 >
                   Sign Up
                 </button>
               </div>
               <form
                 onSubmit={handleSubmit(handleClick)}
-                className="space-y-4 mt-5 p-6"
+                className="space-y-10 mt-5 p-6"
                 method="post"
               >
                 <div>
@@ -144,35 +153,36 @@ export default function Loginform({ setActiveModal }) {
                         className="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 "
                       />
                     </div>
-                    <label className="ms-2 text-sm ">Remember Me</label>
+                    <label
+                      className="ms-2 text-sm cursor-pointer text-[#666666]"
+                      htmlFor="terms"
+                    >
+                      Remember Me
+                    </label>
                   </div>
 
                   <button
                     onClick={() => setActiveModal("forget_password")}
-                    className="text-[#333333] text-[14px] font-semibold"
+                    className="text-[#333333] text-[14px] font-semibold cursor-pointer"
                   >
-                    Forget password
+                    Forget password?
                   </button>
                 </div>
-                {message.text && (
-                  <div
-                    className={`mt-2 p-2 font-bold  ${
-                      message.type === "success"
-                        ? "text-green-700 bg-green-100 border-green-700"
-                        : "text-red-700 bg-red-100 border-red-700"
-                    }`}
-                  >
-                    {message.text}
-                  </div>
-                )}
-
                 <div className="flex justify-end">
-                  <input
+                  {/* <input
                     type="submit"
-                    className="text-white justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center"
-                    value={isSubmitting ? "Logging" : "Sign In"}
+                    className="text-white justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center cursor-pointer"
+                    value={isSubmitting ? <Spinner/> : "Sign In"}
                     disabled={isSubmitting}
-                  />
+                  /> */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="text-white w-40 rounded  bg-blue-900 hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? <Spinner /> : "Sign In"}
+                    <SvgIcon name="RightArrWhite" />
+                  </button>
                 </div>
               </form>
             </div>
