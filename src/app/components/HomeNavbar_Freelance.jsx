@@ -3,18 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import "flowbite";
 import ProfileDropdown from "./ProfileDropdown";
-import { Routes } from "../routes";
 
-export default function HomeNavbar() {
+export default function HomeNavbarFreelance() {
   return (
     <>
       <div className="w-full  xl:w-[600px]  relative">
         <div className="max-w-[1420px] w-full mx-auto  lg:block hidden">
           <div className="flex justify-between items-center py-5 ">
             <div className="flex justify-evenly gap-1  items-center">
-              <Link href={Routes.client}>
+              <Link href={""}>
                 <Image
-                  src="/home/logo-home.png"
+                  src="/logo_green.png"
                   alt="logo image"
                   height={500}
                   width={500}
@@ -23,23 +22,20 @@ export default function HomeNavbar() {
                 />
               </Link>
               <h2 className="text-[#666666] font-bold cursor-pointer">
-                <Link href={Routes.client}>Venejobs</Link>
+                <Link href={""}>Venejobs</Link>
               </h2>
             </div>
             <div className="">
               <nav>
                 <ul className="flex justify-around  items-center w-[500]">
                   <li className="text-[#666666]">
-                    <Link href="">Find Talent</Link>
+                    <Link href="">Find Work</Link>
                   </li>
                   <li className="text-[#666666]">
-                    <Link href={Routes.job_post.form}>Post a Job</Link>
+                    <Link href="">Deliver Work</Link>
                   </li>
                   <li className="text-[#666666]">
-                    <Link href="">Manage Work</Link>
-                  </li>
-                  <li className="text-[#666666]">
-                    <Link href="">Reports</Link>
+                    <Link href="">Manage Finances</Link>
                   </li>
                   <li className="text-[#666666]">
                     <Link href="">Messge</Link>

@@ -1,7 +1,7 @@
 import Footer from "@/app/components/Footer";
 import HomeNavbar from "@/app/components/HomeNavbar";
 import Link from "next/link";
-import { ROUTES } from "@/app/routes.js";
+import { Routes } from "@/app/routes.js";
 import { get_client_profile } from "@/app/lib/auth/auth.api";
 
 export default async function Jobpost() {
@@ -27,7 +27,7 @@ export default async function Jobpost() {
           </div>
           <div className="flex">
             <Link
-              href={ROUTES.JOB_POST.Form}
+              href={Routes.job_post.form}
               className="border bg-blue-900 text-white rounded p-4 w-[200px]"
             >
               Post a Job

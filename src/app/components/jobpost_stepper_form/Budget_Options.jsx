@@ -20,7 +20,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
 
   const get_budgetTypes = async () => {
     const res = await get_budget_data();
-    console.log(res.data);
+    console.log(res);
     setbudgetOption(res.budgetTypes);
   };
 
@@ -72,7 +72,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
               </p>
               <div className="grid  grid-cols-2 gap-5 mt-4  p-1">
                 {budgetOption.map((item) => (
-                  <div>
+                  <div key={item.id}>
                     <div class="flex  space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
                       <div className="flex flex-col ">
                         <svg

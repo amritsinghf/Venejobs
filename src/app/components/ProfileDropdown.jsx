@@ -8,7 +8,7 @@ export default function ProfileDropdown() {
   const router = useRouter();
   const { data, loading, error, fetchData } = userApiStore();
   const showToast = toastStore.getState().showToast;
-  console.log(data.user.name);
+
   useEffect(() => {
     if (data.length === 0) fetchData();
   }, [data, fetchData]);
@@ -87,12 +87,12 @@ export default function ProfileDropdown() {
               </a>
             </li>
 
-            <li class="flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded mb-1.5">
+            <li className="flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded mb-1.5">
               <a href="#" className="inline-flex items-center">
                 <SvgIcon name="Darkmode" />
                 Dark mode
               </a>
-              <label class="inline-flex items-center cursor-pointer ms-auto">
+              <label className="inline-flex items-center cursor-pointer ms-auto">
                 <input type="checkbox" value="" className="sr-only peer" />
                 <div className="relative w-9 h-5 bg-black peer-focus:outline-none  peer-focus:ring-brand-soft dark:peer-focus:ring-brand-soft rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand"></div>
                 <span className="ms-3 text-sm font-medium text-heading sr-only">
@@ -101,7 +101,7 @@ export default function ProfileDropdown() {
               </label>
             </li>
 
-            <li class="border-t border-default-medium pt-1.5">
+            <li className="border-t border-default-medium pt-1.5">
               <button
                 href="#"
                 className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"

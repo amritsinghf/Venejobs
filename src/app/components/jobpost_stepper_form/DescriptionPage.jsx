@@ -94,16 +94,19 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                         message: "Please select image",
                       },
                       validate: {
-                        isJpg: (files) => {
+                        isImage: (files) => {
                           if (files && files.length > 0) {
+                            const type = files[0].type;
                             return (
-                              files[0].type === "image/png" ||
-                              "Only PNG files are allowed."
+                              ["image/jpeg", "image/jpg", "image/png"].includes(
+                                type
+                              ) || "Only JPG or PNG files are allowed."
                             );
                           }
                           return true;
                         },
                       },
+
                       maxSize: (files) => {
                         if (!files || files.length === 0) return true;
                         return (

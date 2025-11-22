@@ -1,6 +1,6 @@
 "use client";
 
-import { ROUTES } from "@/app/routes.JS";
+import { ROUTES } from "@/app/routes.js";
 import Link from "next/link";
 import { useState } from "react";
 import { signupapi } from "../../lib/auth.api";

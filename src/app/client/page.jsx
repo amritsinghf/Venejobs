@@ -3,7 +3,7 @@ import Link from "next/link";
 import HomeNavbar from "@/app/components/HomeNavbar";
 import Footer from "@/app/components/Footer";
 import { get_client_profile } from "../lib/auth/auth.api";
-import { ROUTES } from "@/app/routes.js";
+import { Routes } from "@/app/routes.js";
 import { useEffect, useState } from "react";
 import Jobs from "@/app/components/Home_Data/Jobs";
 import Active_Contracts from "@/app/components/Home_Data/Active_Contracts";
@@ -26,7 +26,7 @@ export default function Home() {
       <HomeNavbar />
 
       <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto ">
-        <div className="w-full flex flex-col gap-8">
+        <div className="w-full flex flex-col">
           <div className="flex flex-row justify-between items-center">
             <h2 className="text-[#333333] font-semibold text-[44px]">
               Welcome back,{userData.name}
@@ -34,14 +34,14 @@ export default function Home() {
 
             <div className="flex justify-center gap-4 px-29 py-5">
               <Link
-                href={ROUTES.JOB_POST.HOME}
-                className="bg-blue-900 text-[#FAFAFA] text-center p-4 rounded w-[150px]"
+                href={Routes.job_post.home}
+                className="bg-[#01237C] text-[#FAFAFA] text-center p-3 px-4 h-[50px] rounded w-[150px]"
               >
                 Post a Job
               </Link>
               <Link
                 href={""}
-                className="bg-white text-[#666666] text-center p-4 rounded border w-[150px]"
+                className="bg-white text-[#666666] text-center p-3 px-4 h-[50px] rounded border w-[150px]"
               >
                 Find Talent
               </Link>
@@ -61,25 +61,37 @@ export default function Home() {
             Your Job Posts & Active Contracts
           </h2>
         </div>
-        <div className="w-full  flex  gap-8 mt-10">
+        <div className="w-full  flex  gap-4 mt-10">
           <button
             onClick={() => setshowData(true)}
-            // className="bg-[#01237C] text-white font-bold border p-2 rounded"
-            className={`font-bold border p-2 rounded ${
-              showData ? "bg-[#01237C] text-white" : "bg-white text-black"
-            }`}
+            className={`font-medium  p-2  `}
           >
-            All job posts
+            <p
+              className={`${
+                showData
+                  ? "text-blue-900 font-semibold"
+                  : "bg-white text-[#666666]"
+              }`}
+            >
+              All job posts
+            </p>
           </button>
           <button
             onClick={() => setshowData(false)}
-            className={`font-bold border p-2 rounded ${
-              !showData ? "bg-[#01237C] text-white" : "bg-white text-black"
-            }`}
+            className={`font-medium  p-2  `}
           >
-            Your Active Contracts
+            <p
+              className={`${
+                !showData
+                  ? "text-blue-900 font-semibold"
+                  : "bg-white text-[#666666]"
+              }`}
+            >
+              Your Active Contracts
+            </p>
           </button>
         </div>
+        <hr />
 
         {showData && (
           <div className="mt-2 rounded">

@@ -33,6 +33,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     setprojectSize(project_size.projectSizes);
     setDuration(project_duration.durations);
     setExperienceLevels(project_experienceLevel.experienceLevels);
+    console.log(project_duration)
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     <div className="w-full h-[1200]  max-w-[1420px]  mb-20 mt-30 mx-auto ">
       <div className="flex  justify-evenly max-w-[250px]">
         {[...Array(5)].map((_, i) => (
-          <div className="flex text-center">
+          <div className="flex text-center" key={i}>
             <span
               key={i}
               className={`${
@@ -80,9 +81,9 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               </h2>
               <div className="flex flex-col gap-5 mt-4  p-1">
                 {projectSize.map((item) => (
-                  <>
+                  
                     <div
-                      class="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2"
+                      className="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2"
                       key={item.id}
                     >
                       <input
@@ -93,21 +94,21 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                           required: "Please select at least one option",
                         })}
                         name="project_size"
-                        class="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                        className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
                       />
-                      <label htmlFor="bordered-checkbox-3" class="py-4 pe-4">
-                        <p class="select-none w-full text-sm  text-heading font-semibold">
+                      <label htmlFor="bordered-checkbox-3" className="py-4 pe-4">
+                        <p className="select-none w-full text-sm  text-heading font-semibold">
                           {item.title}
                         </p>
                         <p
                           id="helper-checkbox-bordered-1"
-                          class="select-none text-sm text-[#666666] text-body"
+                          className="select-none text-sm text-[#666666] text-body"
                         >
                           {item.description}
                         </p>
                       </label>
                     </div>
-                  </>
+                  
                 ))}
 
                 {errors.project_size && (
@@ -124,8 +125,8 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               </h2>
               <div className="mt-5 flex flex-wrap  gap-5  justify-between ">
                 {duration.map((item) => (
-                  <>
-                    <div class="flex items-center px-2 border border-default bg-neutral-primary-soft rounded-2xl">
+                  
+                    <div className="flex items-center px-2 border border-default bg-neutral-primary-soft rounded-2xl" key={item.id}>
                       <input
                         id="bordered-radio-2"
                         {...register("duration", {
@@ -143,7 +144,6 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                         {item.label}
                       </label>
                     </div>
-                  </>
                 ))}
               </div>
             </div>
@@ -160,24 +160,24 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
               {experienceLevels.map((item) => (
                 <>
-                  <div class="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
+                  <div className="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
                     <input
-                      id="bordered-checkbox-3"
+                      id="bordered-checkbox-2"
                       type="radio"
                       value="Entry"
                       {...register("experience_level", {
                         required: "Please select at least one option",
                       })}
                       name="experience_level"
-                      class="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                      className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
                     />
-                    <label for="bordered-checkbox-3" class="py-4 pe-4">
-                      <p class="select-none w-full text-sm  text-heading font-semibold">
+                    <label for="bordered-checkbox-2" className="py-4 pe-4">
+                      <p className="select-none w-full text-sm  text-heading font-semibold">
                         {item.title}
                       </p>
                       <p
                         id="helper-checkbox-bordered-1"
-                        class="select-none text-sm text-[#666666] text-body"
+                        className="select-none text-sm text-[#666666] text-body"
                       >
                         Looking for someone relatively new to this field
                       </p>

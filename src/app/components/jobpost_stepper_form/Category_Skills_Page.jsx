@@ -107,10 +107,10 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                       <label
                         htmlFor={item.code}
                         className="flex flex-col h-[45] items-center justify-center w-full p-5 rounded-lg 
-                                        cursor-pointer text-gray-900 bg-white 
+                                        cursor-pointer text-gray-900 bg-white/20 
                                         peer-checked:bg-gray-400 peer-checked:text-black
                                         hover:bg-gray-100 hover:text-gray-600
-                                        dark:text-gray-400 dark:bg-white dark:border-gray-700 
+                                        dark:text-gray-400 dark:bg-gray-100 dark:border-gray-700 
                                         dark:hover:text-gray-300 dark:peer-checked:bg-gray-500 dark:peer-checked:text-white
                                         transition-all"
                       >
