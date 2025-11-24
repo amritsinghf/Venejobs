@@ -62,7 +62,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
           </div>
         ))}
       </div>
-      <div className=" flex gap-9">
+      <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
           <h2 className="text-[#333333] font-semibold text-[44px]">
             Next, Define the Scope of Your Project

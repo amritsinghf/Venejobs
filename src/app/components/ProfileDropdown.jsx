@@ -1,8 +1,10 @@
+"use client"
 import { useEffect, useState } from "react";
-import SvgIcon from "./SvgIcon";
 import { useRouter } from "next/navigation";
 import userApiStore from "../store/userStore";
 import toastStore from "../store/toastStore";
+import { Routes } from "../routes";
+import SvgIcon from "./SvgIcon";
 
 export default function ProfileDropdown() {
   const router = useRouter();
@@ -13,107 +15,104 @@ export default function ProfileDropdown() {
     if (data.length === 0) fetchData();
   }, [data, fetchData]);
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.removeItem("token");
+
+    router.push(Routes.home);
     //currenly just removing from localstorage but still in cookie
     showToast("Logged Out Successfully!", "success");
-    router.push("/");
   };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <>
-      <div className="flex justify-center gap-1">
+    <div className="sm:block hidden">
+      <div className="flex items-center gap-1 ">
+        <div className="flex items-center gap-6">
+          <div className="relative ">
+             <span className="absolute inset-y-0 px-2   flex items-center  ">
+              <SvgIcon name="Search_Icon" />
+            </span>
+            <input
+              type="search"
+              id="search"
+              className="block w-[280px] px-8 rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
+              placeholder="Search"
+              required
+            />
+           
+          </div>
+
+          <SvgIcon name="Question" />
+        </div>
+
         <button
-          id="dropdownInformationButton"
-          data-dropdown-toggle="dropdownInformation"
-          className="inline-flex items-center justify-center  bg-brand  border border-transparent hover:bg-brand-strong  focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
           type="button"
+          className="relative rounded-full p-1 text-[#666666] focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
         >
-          {data.user.name}
-          <SvgIcon name="DownArrow" />
+          <span className="absolute -inset-1.5"></span>
+          <span className="sr-only">View notifications</span>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            data-slot="icon"
+            aria-hidden="true"
+            className="size-6"
+          >
+            <path
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
 
-        <div
-          id="dropdownInformation"
-          className="z-10  hidden bg-gray-50 border border-default-medium rounded shadow-lg w-72"
-        >
-          <div className="">
-            <div className="flex items-center px-2.5 p-2 space-x-1.5 text-sm  bg-neutral-secondary-strong rounded">
-              {/* <img
-                class="w-8 h-8 rounded-full"
-                src="/docs/images/people/profile-picture-5.jpg"
-                alt="Rounded avatar"
-              /> */}
-              {/* USER IMAGE WILL DISPLAY HERE */}
-              <div className="text-sm">
-                {/* <div className="font-medium text-heading">{data.user.name}</div> */}
-                {/* <div className="truncate text-body">{data.user.email}</div> */}
-              </div>
-            </div>
-          </div>
-          <ul
-            className="px-2 pb-2 text-sm text-body font-medium"
-            aria-labelledby="dropdownInformationButton"
+        <el-dropdown className="relative ml-3">
+          <button className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+            <span className="absolute -inset-1.5"></span>
+            <span className="sr-only">Open user menu</span>
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt=""
+              className="size-10  rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
+            />
+          </button>
+
+          <el-menu
+            anchor="bottom end"
+            popover
+            className=" w-48  origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
           >
-            <li>
-              <a
-                href="#"
-                className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-              >
-                <SvgIcon name="Account" />
-                Account
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-              >
-                <SvgIcon name="Settings" />
-                Settings
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-              >
-                <SvgIcon name="Notification" />
-                Notifications
-              </a>
-            </li>
-
-            <li className="flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded mb-1.5">
-              <a href="#" className="inline-flex items-center">
-                <SvgIcon name="Darkmode" />
-                Dark mode
-              </a>
-              <label className="inline-flex items-center cursor-pointer ms-auto">
-                <input type="checkbox" value="" className="sr-only peer" />
-                <div className="relative w-9 h-5 bg-black peer-focus:outline-none  peer-focus:ring-brand-soft dark:peer-focus:ring-brand-soft rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand"></div>
-                <span className="ms-3 text-sm font-medium text-heading sr-only">
-                  Toggle me
-                </span>
-              </label>
-            </li>
-
-            <li className="border-t border-default-medium pt-1.5">
-              <button
-                href="#"
-                className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-                onClick={() => logout()}
-              >
-                <SvgIcon name="Signout" />
-                Sign Out
-              </button>
-            </li>
-          </ul>
-        </div>
+            <a
+              href="#"
+              className="block w-full px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden"
+            >
+              Your profile
+            </a>
+            <a
+              href="#"
+              className="block w-full px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden"
+            >
+              Settings
+            </a>
+            <button
+              onClick={() => logout()}
+              href="#"
+              className="block w-full text-start px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden cursor-pointer"
+            >
+              Sign out
+            </button>
+          </el-menu>
+        </el-dropdown>
       </div>
-    </>
+
+      <script
+        src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+        type="module"
+      ></script>
+    </div>
   );
 }

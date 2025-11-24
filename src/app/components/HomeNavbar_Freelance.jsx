@@ -8,7 +8,7 @@ export default function HomeNavbarFreelance() {
   return (
     <>
       <div className="w-full  xl:w-[600px]  relative">
-        <div className="max-w-[1420px] w-full mx-auto  lg:block hidden">
+        <div className="max-w-[1420px] w-full mx-auto ">
           <div className="flex justify-between items-center py-5 ">
             <div className="flex justify-evenly gap-1  items-center">
               <Link href={""}>
@@ -25,7 +25,7 @@ export default function HomeNavbarFreelance() {
                 <Link href={""}>Venejobs</Link>
               </h2>
             </div>
-            <div className="">
+            <div className="lg:block hidden">
               <nav>
                 <ul className="flex justify-around  items-center w-[500]">
                   <li className="text-[#666666]">

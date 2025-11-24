@@ -25,30 +25,31 @@ export default function Home() {
     <>
       <HomeNavbar />
 
-      <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto ">
-        <div className="w-full flex flex-col">
-          <div className="flex flex-row justify-between items-center">
+      <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto lg:px-3 md:px-3 sm:px-3 ">
+        <div className="w-full flex flex-col  ">
+
+          <div className="flex flex-row justify-between items-center ">
             <h2 className="text-[#333333] font-semibold text-[44px]">
               Welcome back,{userData.name}
             </h2>
 
-            <div className="flex justify-center gap-4 px-29 py-5">
+            <div className="flex justify-end gap-4 px-3 py-5">
               <Link
                 href={Routes.job_post.home}
-                className="bg-[#01237C] text-[#FAFAFA] text-center p-3 px-4 h-[50px] rounded w-[150px]"
+                className="bg-[#01237C] text-[#FAFAFA] text-center py-3 px-4 h-[50px] rounded w-[150px]"
               >
                 Post a Job
               </Link>
               <Link
                 href={""}
-                className="bg-white text-[#666666] text-center p-3 px-4 h-[50px] rounded border w-[150px]"
+                className="bg-white text-[#666666] text-center py-3 px-4 h-[50px] font-semibold rounded border w-[150px]"
               >
                 Find Talent
               </Link>
             </div>
           </div>
 
-          <div>
+          <div className="">
             <p className="text-[#666666] text-[18px]">
               Here's what's happening with your projects today. Ready to find
               top talent?
@@ -56,7 +57,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex gap-8 mt-20">
+        <div className="w-full flex gap-8 mt-20 ">
           <h2 className="font-semibold text-[#333333] text-3xl">
             Your Job Posts & Active Contracts
           </h2>
@@ -94,7 +95,7 @@ export default function Home() {
         <hr />
 
         {showData && (
-          <div className="mt-2 rounded">
+          <div className="mt-2 rounded ">
             <Jobs />
           </div>
         )}

@@ -9,13 +9,13 @@ export default function Home() {
   return (
     <>
       <div
-        className="h-screen w-full  xl:w-[600px]  bg-blue-900 relative"
-        style={{ backgroundImage: "url('/bg-image.png')" }}
+        className="h-screen w-full   bg-blue-900 relative  xl:w-[800px] "
+        style={{ backgroundImage: "url('/bg-image.png')" }} 
       >
         <Navbar />
 
         <div className="w-full lg:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-w-[1420px] flex items-center justify-center flex-col lg:flex-row">
-          <div className="flex-[10] flex flex-col gap-8 ">
+          <div className="flex-10 flex flex-col mt-20 gap-8 ">
             <h1 className="text-white text-6xl font-bold  ">
               Effortless hiring, inspired work with Venejobs.
             </h1>
@@ -23,18 +23,20 @@ export default function Home() {
               Work with talented people at the most affordable price to get the
               most out of your time and cost
             </p>
-            <div className="flex gap-8  ">
-              <button className="rounded px-3 py-3 w-[180px] h-[60px] font-semibold text-[16px] text-white bg-black">
+
+            <div className="flex gap-8">
+              <button className="rounded px-12 py-5  h-[60px] font-semibold text-[16px] text-white bg-black">
                 Find Freelancer
               </button>
-              <button className="rounded px-5 py-5 text-[16px] w-[180px] h-[60px] font-semibold text-[#777777] bg-white">
+              <button className="rounded px-12 py-5 text-[16px]  h-[60px] font-semibold text-[#777777] bg-white">
                 Find Work
               </button>
             </div>
           </div>
-          <div className="flex-[8]">
-            <div className="h-[505px] w-full">
-              <div className="flex gap-4 items-end">
+          <div className="flex-8  mt-40">
+            <div className="h-[505px] w-full ">
+              <div className="flex  h-[393px]  items-end ">
+                {/* <Image src="/home/Group_home.png"  height={"505"} width={"550"} alt="working man" style={{height:500,width:700}} /> */}
                 <div className="h-[393px] w-[250px] xl:w-[290px] relative ">
                   <Image src="/home/man-with-work.png" alt="working man" fill />
                 </div>
@@ -43,7 +45,7 @@ export default function Home() {
                     src="/home/women-hand-shake.png"
                     alt="working man"
                     fill
-                  />
+                  />  
                 </div>
               </div>
             </div>
@@ -52,6 +54,7 @@ export default function Home() {
       </div>
 
       <div className="w-full max-w-[1420px] mx-auto py-28">
+
         <div className="w-full flex flex-col gap-8">
           <div className="text-center flex flex-col gap-4">
             <div className="flex flex-col gap-3 font-bold">
@@ -119,15 +122,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px]">
+        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px] ">
           <div className="">
-            <div className=" p-1 flex justify-between items-center">
+            <div className=" p-1 flex justify-between items-center lg:flex-wrap ">
               <h2 className="text-[44px] text-[#222222] font-bold">
                 Browse talent by category
               </h2>
               <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-blue-900 font-bold">
                 All category
-                <SvgIcon name="RightOne"/>
+                <SvgIcon name="RightOne" />
               </button>
             </div>
             <p className="text-zinc-500 text-[18px]">
@@ -179,8 +182,8 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex-1 w-full ">
-            <div className="flex flex-col m-12 h-[575px] gap-4">
+          <div className="flex-1  w-full ">
+            <div className="flex flex-col m-12 h-[575px] gap-4 ">
               <p className="text-[#01237C] text-lg font-bold">
                 #Great Freelance Marketplace
               </p>
@@ -235,25 +238,24 @@ export default function Home() {
                 </div>
                 <button className="border h-[60px] flex items-center justify-center gap-3 mt-10 w-[180px] bg-blue-900 rounded text-white text-[16px] font-semibold">
                   Find Work
-                  <SvgIcon name="RightArrWhite"/>
+                  <SvgIcon name="RightArrWhite" />
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px]">
-          <div className="">
-            <div className=" p-1 flex justify-between items-center">
+        <div className="w-full  justify-center flex flex-col gap-8 max-w-[1420px] mx-auto  mt-[195px]">
+          <div className="px-3">
+            <div className=" flex justify-between items-center">
               <h2 className="text-[44px] text-[#222222] font-bold">
                 Most Popular
               </h2>
-              
+
               <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-blue-900 font-bold">
                 All category
-                <SvgIcon name="RightOne"/>
+                <SvgIcon name="RightOne" />
               </button>
-              
             </div>
             <p className="text-zinc-500 text-[18px]">
               See how you can up your career status
@@ -261,17 +263,16 @@ export default function Home() {
           </div>
 
           <div className="flex items-center justify-around ">
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[440px]  shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
                 width={328}
                 alt="categroy images"
                 style={{ width: 327, height: 249 }}
-
               />
 
-              <div className="flex flex-col mt-8 gap-4">
+              <div className="flex flex-col px-4 mt-5 gap-4">
                 <p className="text-[#666666] text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
@@ -284,17 +285,16 @@ export default function Home() {
               </div>
             </div>
 
-           <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[440px]  shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
                 width={328}
                 alt="categroy images"
                 style={{ width: 327, height: 249 }}
-
               />
 
-              <div className="flex flex-col mt-8 gap-4">
+              <div className="flex flex-col px-4 mt-5 gap-4">
                 <p className="text-[#666666] text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
@@ -307,17 +307,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[440px]  shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
                 width={328}
                 alt="categroy images"
                 style={{ width: 327, height: 249 }}
-
               />
 
-              <div className="flex flex-col mt-8 gap-4">
+              <div className="flex flex-col px-4 mt-5 gap-4">
                 <p className="text-[#666666] text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
@@ -329,17 +328,16 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[440px]  shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
                 width={328}
                 alt="categroy images"
                 style={{ width: 327, height: 249 }}
-
               />
 
-              <div className="flex flex-col mt-8 gap-4">
+              <div className="flex flex-col px-4 mt-5 gap-4">
                 <p className="text-[#666666] text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">

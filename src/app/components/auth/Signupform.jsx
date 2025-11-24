@@ -15,6 +15,11 @@ export default function Signupform({
 }) {
   const router = useRouter();
   const showToast = toastStore.getState().showToast;
+  const [isVisible, setIsVisible] = useState(false);
+
+   const toggleVisibility = () => {
+    setIsVisible((v) => !v);
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -84,7 +89,7 @@ export default function Signupform({
                 </button>
               </div>
               <form
-                className="space-y-1 mt-1 p-5 gap-4 flex flex-col"
+                className="space-y-1 mt-1 p-5 gap-3 flex flex-col"
                 method="post"
                 onSubmit={handleSubmit(onSubmit)}
               >
@@ -234,9 +239,9 @@ export default function Signupform({
                     </span>
                   )}
                 </div>
-                <div>
+                <div className="relative">
                   <input
-                    type="password"
+                    type={isVisible ? "text" : "password"}
                     name="password"
                     {...register("password", {
                       required: {
@@ -261,6 +266,7 @@ export default function Signupform({
                     placeholder="Password"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   />
+                  <button onClick={toggleVisibility}  className="absolute inset-y-0  right-0 flex items-center mb-1"> <SvgIcon name="Eye"  /></button>
                   {errors.password && (
                     <span className="text-red-500 font-semibold text-[12px] h-4">
                       {errors.password.message}

@@ -44,7 +44,7 @@ export default function Jobs() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="rounded-2xl mt-10 border border-gray-300">
+    <div className="rounded-2xl mt-10 border border-gray-300 ">
       {data.map((item) => (
         <div
           className="border-b border-gray-300 rounded py-2 px-3"
@@ -64,7 +64,7 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex justify-around  w-[700px] items-center mx-5">
+            <div className="flex justify-around  w-[700px] items-center mx-5 md:flex-wrap sm:flex-wrap">
               <button className="text-[#666666] font-medium border p-4 border-gray-100">
                 Proposals (2)
               </button>

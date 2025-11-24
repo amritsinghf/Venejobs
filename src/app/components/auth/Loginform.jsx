@@ -14,7 +14,12 @@ export default function Loginform({ setActiveModal }) {
   const showToast = toastStore.getState().showToast;
   const router = useRouter();
 
+  const [isVisible, setIsVisible] = useState(false);
   const loginRef = useRef(null);
+
+  const toggleVisibility = () => {
+    setIsVisible((v) => !v);
+  };
 
   useClickOutside(loginRef, () => {
     setActiveModal("");
@@ -112,7 +117,7 @@ export default function Loginform({ setActiveModal }) {
                         message: "Please enter valid email address",
                       },
                     })}
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block py-2.5 px-1  w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder="Email Address"
                   />
                   {errors.email && (
@@ -121,13 +126,11 @@ export default function Loginform({ setActiveModal }) {
                     </span>
                   )}
                 </div>
-                <div>
+                <div className="relative">
                   <input
-                    type="password"
+                    type={isVisible ? "text" : "password"}
                     name="password"
                     id="password"
-                    // value={formData.password}
-                    // onChange={handleChange}
                     {...register("password", {
                       required: {
                         value: true,
@@ -135,8 +138,9 @@ export default function Loginform({ setActiveModal }) {
                       },
                     })}
                     placeholder="Password"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block py-2.5 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   />
+                  <button type="button" onClick={toggleVisibility}  className="absolute inset-y-0  right-0 flex items-center mb-1"> <SvgIcon name="Eye"  /></button>
                   {errors.password && (
                     <span className="text-red-500 font-bold mb-2 text-sm">
                       {errors.password.message}

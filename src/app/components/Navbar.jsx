@@ -11,13 +11,14 @@ import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 
+
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [verifyCode, setverifyCode] = useState("");
   return (
     <>
-      <div className="max-w-[1420px] w-full mx-auto  lg:block hidden">
+      <div className="max-w-[1420px] w-full mx-auto  ">
         <div className="flex justify-between items-center py-5 ">
           <div className="flex justify-evenly w-[300]  items-center">
             <Image
@@ -56,11 +57,11 @@ export default function Navbar() {
           </div>
           <div className="">
             <nav>
-              <ul className="flex justify-around  items-center w-[500]">
+              <ul className="flex justify-around  items-center w-[500] lg:hidden">
                 <li className="text-white">
                   <Link href="">Find Talent</Link>
                 </li>
-                <li className="text-white">
+                <li className="text-white ">
                   <Link href="">Post a Job</Link>
                 </li>
                 <li className="text-white">

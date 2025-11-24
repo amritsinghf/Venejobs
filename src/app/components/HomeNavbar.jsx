@@ -9,9 +9,9 @@ export default function HomeNavbar() {
   return (
     <>
       <div className="w-full  xl:w-[600px]  relative">
-        <div className="max-w-[1420px] w-full mx-auto  lg:block hidden">
-          <div className="flex justify-between items-center py-5 ">
-            <div className="flex justify-evenly gap-1  items-center">
+        <div className="max-w-[1420px] w-full mx-auto   ">
+          <div className="flex justify-between items-center py-5 md:px-5 sm:px-5 lg:px-5 ">
+            <div className="flex justify-evenly gap-1  items-center ">
               <Link href={Routes.client}>
                 <Image
                   src="/home/logo-home.png"
@@ -26,9 +26,9 @@ export default function HomeNavbar() {
                 <Link href={Routes.client}>Venejobs</Link>
               </h2>
             </div>
-            <div className="">
+            <div className=" lg:block  hidden ">
               <nav>
-                <ul className="flex justify-around  items-center w-[500]">
+                <ul className="flex justify-around  items-center w-[500] ">
                   <li className="text-[#666666]">
                     <Link href="">Find Talent</Link>
                   </li>

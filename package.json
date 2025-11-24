@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tailwindplus/elements": "^1.0.19",
     "axios": "^1.13.2",
     "flowbite": "^3.1.2",
     "next": "16.0.1",

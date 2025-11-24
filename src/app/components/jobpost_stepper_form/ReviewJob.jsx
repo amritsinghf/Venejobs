@@ -11,7 +11,6 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
 
   const { getValues } = useFormContext();
   const data = getValues();
-  
 
   const deadline = data.duration;
   const parts = deadline.split("_");
@@ -26,7 +25,7 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
   };
 
   return (
-    <div className=" w-full h-auto  max-w-[1420px]  mb-20 mt-30 mx-auto">
+    <div className="w-full h-auto  max-w-[1420px]  mb-20 mt-30 mx-auto lg:px-3 md:px-3 sm:px-3">
       <div className="mt-20  flex flex-col gap-5  w-full ">
         <h2 className="text-[#333333] font-semibold text-[44px]">
           Review your Job details
@@ -37,7 +36,6 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
         </p>
 
         <div className="h-auto px-7 py-5 flex flex-col gap-10 hover:bg-neutral-secondary-medium bg-neutral-primary-soft border-default rounded-base shadow-xs">
-         
           {/* title */}
           <div className="flex justify-between border-b border-gray-300 pb-4">
             <div className="flex flex-col gap-3">
@@ -138,8 +136,6 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
               value={"Post Job"}
             />
           </div>
-
-          
         </div>
       </div>
     </div>

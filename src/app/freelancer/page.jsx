@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <HomeNavbarFreelance />
-      <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto ">
+      <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto lg:px-3 md:px-3 sm:px-3">
         <div className=" flex justify-items-start flex-col gap-8 py-36 px-10 ">
           <div className="flex flex-col justify-items-start w-[700px] ">
             <h2 className="text-[#333333] font-semibold text-[44px]">
