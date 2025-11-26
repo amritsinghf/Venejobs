@@ -2,3 +2,12 @@
 @import "flowbite";
 
 @import "flowbite/src/themes/default";
+
+@theme{
+    --color-primary: #1e3a8a;
+    --color-secondary: #5BBB7B;
+    --color-heading:#333333;
+    --color-paragraph:#666666;
+    --color-footerclient:#111111;
+    --color-footerfreelance:#1A463A
+}

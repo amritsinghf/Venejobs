@@ -9,9 +9,9 @@ export default function Footer_Freelance() {
 
   return (
     <>
-      <footer className="bg-[#1A463A]">
+      <footer className="bg-footerfreelance">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-[#1A463A] md:flex md:items-center md:justify-between">
+          <div className="px-4 py-6 bg-footerfreelance md:flex md:items-center md:justify-between">
             <div className="flex items-center justify-start gap-2  ">
               <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
                 <SvgIcon name="Footerlogo_green" />
@@ -173,7 +173,7 @@ export default function Footer_Freelance() {
 
                   <button
                     type="submit"
-                    className="text-[#1A463A] text-[16px] font-medium absolute end-2.5 bottom-2.5 rounded-lg text-sm px-4 py-2 "
+                    className="text-footerfreelance text-[16px] font-medium absolute end-2.5 bottom-2.5 rounded-lg text-sm px-4 py-2 "
                   >
                     Send
                   </button>
@@ -181,7 +181,7 @@ export default function Footer_Freelance() {
               </form>
             </div>
           </div>
-          <div className="px-4 py-6 bg-[#1A463A] md:flex md:items-center md:justify-between">
+          <div className="px-4 py-6 bg-footerfreelance md:flex md:items-center md:justify-between">
             <span className="text-[16px] text-gray-500 dark:text-gray-300 sm:text-center">
               Copyright <b> Venejobs.</b> 2024 All Rights Reserved.
             </span>

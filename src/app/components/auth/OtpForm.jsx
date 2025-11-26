@@ -183,7 +183,7 @@ export default function OtpForm({
                     width={50}
                     style={{ width: "40px", height: "40px" }}
                   />
-                  <h3 class="text-2xl font-bold text-[#666666] text-heading px-2">
+                  <h3 class="text-2xl font-bold  text-heading px-2">
                     Venejobs
                   </h3>
                 </div>
@@ -213,7 +213,7 @@ export default function OtpForm({
               <button
                 type="submit"
                 onClick={VerifyAccount}
-                className="bg-blue-900 text-white  p-4 w-[200] mt-5 rounded-2xl hover:bg-blue-600"
+                className="bg-primary text-white  p-4 w-[200] mt-5 rounded-2xl hover:bg-blue-600"
               >
                 Verify Account
               </button>
@@ -235,8 +235,8 @@ export default function OtpForm({
               </div>
             </div>
             <div className="flex justify-between px-5 py-4">
-              <p className="text-[#666666] text-sm">Privacy Policy</p>
-              <p className="text-[#666666] text-sm">Copyright</p>
+              <p className="text-paragraph text-sm">Privacy Policy</p>
+              <p className="text-paragraph text-sm">Copyright</p>
             </div>
           </div>
         </div>

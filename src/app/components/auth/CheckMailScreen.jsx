@@ -20,10 +20,10 @@ export default function CheckMailScreen({ setActiveModal }) {
                 </h1>
               </div>
               <div className="mt-20">
-                <h2 className="text-center text-[#333333] font-semibold text-[42px]  mb-3">
+                <h2 className="text-center text-heading font-semibold text-[42px]  mb-3">
                   Check your email
                 </h2>
-                <p className="text-[#666666] text-center text-[16px] cursor-pointer">
+                <p className="text-paragraph text-center text-[16px] cursor-pointer">
                   Didn’t receive the email? <b>Click to resend</b>
                 </p>
               </div>

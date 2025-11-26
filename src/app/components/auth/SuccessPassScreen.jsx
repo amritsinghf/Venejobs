@@ -20,10 +20,10 @@ export default function SuccessPassScreen({ setActiveModal }) {
                 </h1>
               </div>
               <div className="mt-20">
-                <h2 className="text-center text-[#333333] font-semibold text-[42px]  mb-3">
+                <h2 className="text-center text-heading font-semibold text-[42px]  mb-3">
                   Password Reset
                 </h2>
-                <p className="text-[#666666] text-center text-[16px] ">
+                <p className="text-paragraph text-center text-[16px] ">
                   Your password has been successfully reset. Click below to log
                   in magically.
                 </p>

@@ -42,10 +42,10 @@ export default function Newpassword({ email, setActiveModal }) {
                 </h1>
               </div>
               <div className="mt-20">
-                <h2 className="text-center text-[#333333] font-semibold text-[42px]  mb-3">
+                <h2 className="text-center text-heading font-semibold text-[42px]  mb-3">
                   Set new password
                 </h2>
-                <p className="text-[#666666] text-center text-[16px] ">
+                <p className="text-paragraph text-center text-[16px] ">
                   Don’t have Your new password must be different to previously
                   used passwords. an account yet?
                 </p>
@@ -115,7 +115,7 @@ export default function Newpassword({ email, setActiveModal }) {
                   </button> */}
                   <input
                     type="submit"
-                    className="text-white justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center"
+                    className="text-white justify-end bg-primary hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center"
                     value={isSubmitting ? "Resetting" : "Reset Password"}
                     disabled={isSubmitting}
                   />

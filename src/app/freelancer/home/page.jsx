@@ -2,50 +2,58 @@
 import Footer_Freelance from "@/app/components/Footer_Freelance";
 import HomeNavbarFreelance from "@/app/components/HomeNavbar_Freelance";
 import SvgIcon from "@/app/components/SvgIcon";
+import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
-  // const [jobsData, setjobsData] = useState([])
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 10;
 
-  // const get_jobsdata = async () => {
-  //   const res = await
-  // }
+  const { jobs, pagenum, totalpagenum, loading, error, fetchAllJob } = jobApiStore();
 
-  // useEffect(() => {
+  useEffect(() => {
+    fetchAllJob(page, limit);
+  }, [page]);
 
-  // }, [])
+  useEffect(() => {
+  setTotalPages(totalpagenum);
+}, [totalpagenum]);
 
   const selectPage = (selectedPage) => {
     if (
       selectedPage >= 1 &&
-      selectedPage <= totalPage &&
+      selectedPage <= totalPages &&
       selectedPage !== page
     ) {
       setPage(selectedPage);
     }
   };
 
-  useEffect(() => {}, [page]);
+  const formatDuration = (duration) => {
+    if (duration === "ongoing") return "ongoing";
+    const [start, end, unit] = duration.split("_");
+    return `${start} to ${end} ${unit}`;
+  };
+
   return (
     <>
       <HomeNavbarFreelance />
       <div className="w-full   max-w-[1420px]  mb-20 mt-30 mx-auto ">
         <div className="w-full bg-gray-100 rounded-2xl p-12 flex flex-col gap-4  ">
           <div className="flex flex-row justify-between items-center ">
-            <h2 className="text-[#333333] font-semibold text-[44px]">
+            <h2 className="text-heading font-semibold text-[44px]">
               Find Projects That Match Your Passion With Venejobs
             </h2>
           </div>
 
           <div className="">
-            <p className="text-[#666666] text-[18px]">
+            <p className="text-paragraph text-[18px]">
               Explore hand-picked freelance jobs tailored to your skills. Start
               earning on your own terms with Venejobs.
             </p>
-            <button className="bg-[#5BBB7B] py-4 px-8 rounded text-white mt-5 flex items-center gap-1">
+            <button className="bg-secondary py-4 px-8 rounded text-white mt-5 flex items-center gap-1">
               Learn More <SvgIcon name="NextArrow" />
             </button>
           </div>
@@ -74,267 +82,106 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col  h-auto  mb-50 ">
-            <h3 className="text-[#5BBB7B] px-5">My feed</h3>
-
+            <h3 className="text-secondary px-5">My feed</h3>
             {/* main container for jobs */}
-            <div className="flex flex-col p-5 m-5 border rounded border-gray-200 gap-4  ">
-              {/* title and image */}
-              <div className="flex items-center gap-2">
-                <Image
-                  src={"/logo.png"}
-                  height={"32"}
-                  width={"38"}
-                  alt="Logo of company"
-                />
-                <h2 className="text-lg text-[#3B3A40]">Adobe</h2>
-              </div>
-
-              {/* job title and time ago */}
-              <div className="flex flex-col gap-3">
-                <div className="flex justify-between items-center ">
-                  <h2 className="font-medium text-2xl max-w-[700px]">
-                    Sales Engineer, Application Modernization, Healthcare,
-                    Google Cloud
-                  </h2>
-                  <p className="text-[#666666] text-sm text-nowrap">
-                    3 days ago
-                  </p>
+            {jobs?.map((item) => (
+              <div
+                className="flex flex-col p-5 m-5 border rounded border-gray-200 gap-4"
+                key={item.id}
+              >
+                {/* title and image */}
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={"/logo.png"}
+                    height={"32"}
+                    width={"38"}
+                    alt="Logo of company"
+                  />
+                  <h2 className="text-lg text-[#3B3A40]">Adobe</h2>
                 </div>
 
-                {/* budget and industry */}
-                <div className="flex items-center justify-between">
-                  <p className="font-medium">
-                    Fixed-price - Expert - Est. Budget:{" "}
-                    <span className="text-[#666666]"> 70K - 90K</span>
-                  </p>
-
-                  <div className="flex items-center gap-8">
-                    <p className="text-[#666666] text-sm">
-                      Internet & Technology
+                {/* job title and time ago */}
+                <div className="flex flex-col gap-3">
+                  <div className="flex justify-between items-center ">
+                    <h2 className="font-medium text-2xl max-w-[700px]">
+                      {item.title}
+                    </h2>
+                    <p className="text-paragraph text-sm text-nowrap">
+                      {formatDuration(item.duration)}
                     </p>
-                    <p className="text-[#666666] text-sm">Fulltime</p>
+                  </div>
+
+                  {/* budget and industry */}
+                  <div className="flex items-center justify-between">
+                    <p className="font-medium">
+                      {item.budget_type} - {item.experience_level} - Est.
+                      Budget:{" "}
+                      <span className="text-paragraph">
+                        {" "}
+                        {item.budget_amount}
+                      </span>
+                    </p>
+
+                    <div className="flex items-center gap-8">
+                      <p className="text-paragraph text-sm">{item.category}</p>
+                      <p className="text-paragraph text-sm">
+                        {item.project_size}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr />
+                <hr />
 
-              {/* job desc */}
-              <div className="flex flex-col gap-3 mt-4">
-                <h3 className="font-medium text-lg">Qualifications :</h3>
-                <p className="text-[#666666]">
-                  We are seeking a talented and experienced UI/UX Designer to
-                  join our team and help us create a visually stunning and
-                  user-friendly mobile app. The ideal candidate will have a
-                  strong portfolio showcasing their ability to design intuitive,
-                  modern, and engaging interfaces for mobile applications. This
-                  project involves designing the entire user experience and
-                  interface for a mobile...More...
-                </p>
-              </div>
-
-              {/*category or skills */}
-              <div className="flex items-center gap-3 sm:flex-wrap">
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Landing Page
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  User Flow
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Prototype
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  UXUI Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col p-5 m-5 border rounded border-gray-200 gap-4 xl:h-[420px] md:h-[500px] sm:h-[520px] ">
-              {/* title and image */}
-              <div className="flex items-center gap-2">
-                <Image
-                  src={"/logo.png"}
-                  height={"32"}
-                  width={"38"}
-                  alt="Logo of company"
-                />
-                <h2 className="text-lg text-[#3B3A40]">Adobe</h2>
-              </div>
-
-              {/* job title and time ago */}
-              <div className="flex flex-col gap-3">
-                <div className="flex justify-between items-center ">
-                  <h2 className="font-medium text-2xl max-w-[700px]">
-                    Sales Engineer, Application Modernization, Healthcare,
-                    Google Cloud
-                  </h2>
-                  <p className="text-[#666666] text-sm">3 days ago</p>
+                {/* job desc */}
+                <div className="flex flex-col gap-3 mt-4">
+                  <h3 className="font-medium text-lg">Qualifications :</h3>
+                  <p className="text-paragraph">{item.description}</p>
                 </div>
 
-                {/* budget and industry */}
-                <div className="flex items-center justify-between">
-                  <p className="font-medium">
-                    Fixed-price - Expert - Est. Budget:{" "}
-                    <span className="text-[#666666]"> 70K - 90K</span>
-                  </p>
-
-                  <div className="flex items-center gap-8">
-                    <p className="text-[#666666] text-sm">
-                      Internet & Technology
+                {/*category or skills */}
+                <div className="flex items-center gap-3 sm:flex-wrap">
+                  {item.skills.map((item) => (
+                    <p
+                      className="bg-[#FAFAFA] p-3 font-medium text-paragraph rounded-2xl"
+                      key={item}
+                    >
+                      {item}
                     </p>
-                    <p className="text-[#666666] text-sm">Fulltime</p>
-                  </div>
+                  ))}
                 </div>
               </div>
-              <hr />
-
-              {/* job desc */}
-              <div className="flex flex-col gap-3 mt-4">
-                <h3 className="font-medium text-lg">Qualifications :</h3>
-                <p className="text-[#666666]">
-                  We are seeking a talented and experienced UI/UX Designer to
-                  join our team and help us create a visually stunning and
-                  user-friendly mobile app. The ideal candidate will have a
-                  strong portfolio showcasing their ability to design intuitive,
-                  modern, and engaging interfaces for mobile applications. This
-                  project involves designing the entire user experience and
-                  interface for a mobile...More...
-                </p>
-              </div>
-
-              {/*category or skills */}
-              <div className="flex items-center gap-3 sm:flex-wrap">
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Landing Page
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  User Flow
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Prototype
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  UXUI Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col p-5 m-5 border rounded border-gray-200 gap-4 xl:h-[420px] md:h-[500px] sm:h-[520px] ">
-              {/* title and image */}
-              <div className="flex items-center gap-2">
-                <Image
-                  src={"/logo.png"}
-                  height={"32"}
-                  width={"38"}
-                  alt="Logo of company"
-                />
-                <h2 className="text-lg text-[#3B3A40]">Adobe</h2>
-              </div>
-
-              {/* job title and time ago */}
-              <div className="flex flex-col gap-3">
-                <div className="flex justify-between items-center ">
-                  <h2 className="font-medium text-2xl max-w-[700px]">
-                    Sales Engineer, Application Modernization, Healthcare,
-                    Google Cloud
-                  </h2>
-                  <p className="text-[#666666] text-sm">3 days ago</p>
-                </div>
-
-                {/* budget and industry */}
-                <div className="flex items-center justify-between">
-                  <p className="font-medium">
-                    Fixed-price - Expert - Est. Budget:{" "}
-                    <span className="text-[#666666]"> 70K - 90K</span>
-                  </p>
-
-                  <div className="flex items-center gap-8">
-                    <p className="text-[#666666] text-sm">
-                      Internet & Technology
-                    </p>
-                    <p className="text-[#666666] text-sm">Fulltime</p>
-                  </div>
-                </div>
-              </div>
-              <hr />
-
-              {/* job desc */}
-              <div className="flex flex-col gap-3 mt-4">
-                <h3 className="font-medium text-lg">Qualifications :</h3>
-                <p className="text-[#666666]">
-                  We are seeking a talented and experienced UI/UX Designer to
-                  join our team and help us create a visually stunning and
-                  user-friendly mobile app. The ideal candidate will have a
-                  strong portfolio showcasing their ability to design intuitive,
-                  modern, and engaging interfaces for mobile applications. This
-                  project involves designing the entire user experience and
-                  interface for a mobile...More...
-                </p>
-              </div>
-
-              {/*category or skills */}
-              <div className="flex items-center gap-3 sm:flex-wrap">
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Landing Page
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  User Flow
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Prototype
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  UXUI Design
-                </p>
-                <p className="bg-[#FAFAFA] p-3 font-medium text-[#666666] rounded-2xl">
-                  Web Design
-                </p>
-              </div>
-            </div>
+            ))}
 
             {/* pagiantion */}
             <div className="flex justify-start px-4 gap-5 items-center">
               <button
                 disabled={page === 1}
                 onClick={() => selectPage(page - 1)}
-                className="cursor-pointer"
+                className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
               >
                 <SvgIcon name="Control_prev" />
               </button>
 
-              {[...Array(5)].map((_, i) => (
+              {[...Array(totalPages)].map((_, i) => (
                 <span
                   key={i}
                   onClick={() => selectPage(i + 1)}
-                  className={`${
+                  className={`cursor-pointer px-3 py-1 border rounded-full ${
                     page === i + 1
-                      ? "bg-[#5BBB7B] text-white border rounded-full "
-                      : "bg-white text-[#666666] border rounded-full font-medium px-2 py-1"
-                  }px-3 py-1  cursor-pointer`}
+                      ? "bg-secondary text-white"
+                      : "bg-white text-paragraph font-medium"
+                  }`}
                 >
                   {i + 1}
                 </span>
               ))}
 
               <button
-                disabled={page === totalPage}
+                disabled={page === totalPages}
                 onClick={() => selectPage(page + 1)}
-                className="cursor-pointer"
+                className={`cursor-pointer ${
+                  page === totalPages ? "opacity-40" : ""
+                }`}
               >
                 <SvgIcon name="Control_next" />
               </button>

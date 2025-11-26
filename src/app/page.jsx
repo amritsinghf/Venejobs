@@ -9,65 +9,77 @@ export default function Home() {
   return (
     <>
       <div
-        className="h-screen w-full   bg-blue-900 relative  xl:w-[800px] "
-        style={{ backgroundImage: "url('/bg-image.png')" }} 
+        className="h-screen w-full   bg-primary relative  xl:w-[800px] "
+        style={{ backgroundImage: "url('/bg-image.png')" }}
       >
         <Navbar />
 
-        <div className="w-full lg:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-w-[1420px] flex items-center justify-center flex-col lg:flex-row">
-          <div className="flex-10 flex flex-col mt-20 gap-8 ">
-            <h1 className="text-white text-6xl font-bold  ">
+        <div className="w-full lg:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-w-[1420px] flex items-center justify-center flex-col gap-6 lg:gap-2 lg:flex-row p-4 xl:p-0 mt-10 lg:mt-0">
+          <div className="flex-1 lg:flex-3 xl:flex-10  flex flex-col lg:mt-20 gap-8 ">
+            <h1 className="text-white text-[32px] md:text-4xl xl:text-6xl lg:text-5xl font-bold  ">
               Effortless hiring, inspired work with Venejobs.
             </h1>
-            <p className="text-white w-xl">
+            <p className="text-white">
               Work with talented people at the most affordable price to get the
               most out of your time and cost
             </p>
 
             <div className="flex gap-8">
-              <button className="rounded px-12 py-5  h-[60px] font-semibold text-[16px] text-white bg-black">
+              <button className="rounded p-3 px-6 lg:px-12 lg:py-5  lg:h-[60px] font-semibold text-[16px] text-white bg-black">
                 Find Freelancer
               </button>
-              <button className="rounded px-12 py-5 text-[16px]  h-[60px] font-semibold text-[#777777] bg-white">
+              <button className="rounded p-3 px-6 lg:px-12 lg:py-5 text-[16px]  lg:h-[60px] font-semibold text-[#777777] bg-white">
                 Find Work
               </button>
             </div>
           </div>
-          <div className="flex-8  mt-40">
-            <div className="h-[505px] w-full ">
-              <div className="flex  h-[393px]  items-end ">
-                {/* <Image src="/home/Group_home.png"  height={"505"} width={"550"} alt="working man" style={{height:500,width:700}} /> */}
-                <div className="h-[393px] w-[250px] xl:w-[290px] relative ">
+          <div className="flex-1 lg:flex-4 xl:flex-8 ">
+            <Image
+              src="/Group1.png"
+              height={"505"}
+              width={"550"}
+              alt="working man"
+              className="xl:h-[505] xl:w-[900] lg:h-[380] w-[600] lg:block hidden"
+            />
+            <Image
+              src="/Frame3.png"
+              height={"505"}
+              width={"550"}
+              alt="working man"
+              className="md:h-96 w-[500px] block lg:hidden"
+            />
+            {/* <div className="h-[505px] w-full">
+              <div className="flex items-end">
+                <div className="h-[249.21px] w-[170px] lg:h-[314.4px] lg:w-[232px] xl:w-[250px] relative ">
                   <Image src="/home/man-with-work.png" alt="working man" fill />
                 </div>
-                <div className="h-[505px] w-[338px] relative">
+                <div className="h-80 lg:h-[404px] w-[200px] lg:w-[270.4px]  relative">
                   <Image
                     src="/home/women-hand-shake.png"
                     alt="working man"
                     fill
-                  />  
+                  />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
       <div className="w-full max-w-[1420px] mx-auto py-28">
-
-        <div className="w-full flex flex-col gap-8">
+        <div className="w-full flex flex-col gap-8 ">
           <div className="text-center flex flex-col gap-4">
             <div className="flex flex-col gap-3 font-bold">
               <p className="text-[#01237C] text-lg">For Clients</p>
               <h2 className="text-[44px]">How it Works</h2>
             </div>
-            <p className="text-lg text-[#666666]">
+            <p className="text-lg text-paragraph">
               Find the perfect talent to bring your projects to life with a
               streamlined process designed for your success.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:px-3">
             <div className="flex flex-col gap-8 text-center">
               <div className="flex items-center justify-center">
                 <div className="w-20 h-20 flex items-center justify-center bg-white shadow shadow-black/10 rounded-full">
@@ -76,10 +88,10 @@ export default function Home() {
               </div>
 
               <div>
-                <h3 className="text-[#333333] text-2xl font-semibold">
+                <h3 className="text-heading text-2xl font-semibold">
                   Post a Job
                 </h3>
-                <p className="text-[#666666] text-[16px]">
+                <p className="text-paragraph text-[16px]">
                   Share your requirements, set your budget, and define the
                   timeline for your project.
                 </p>
@@ -93,10 +105,10 @@ export default function Home() {
               </div>
 
               <div>
-                <h3 className="text-[#333333] text-2xl font-semibold">
+                <h3 className="text-heading text-2xl font-semibold">
                   Review Applications
                 </h3>
-                <p className="text-[#666666] text-[16px]">
+                <p className="text-paragraph text-[16px]">
                   Browse through proposals, compare budgets, and evaluate
                   freelancer profiles to find the best fit.
                 </p>
@@ -110,10 +122,10 @@ export default function Home() {
               </div>
 
               <div>
-                <h3 className="text-[#333333] text-2xl font-semibold">
+                <h3 className="text-heading text-2xl font-semibold">
                   Start Collaborating
                 </h3>
-                <p className="text-[#666666] text-[16px]">
+                <p className="text-paragraph text-[16px]">
                   Work with skilled freelancers and track the progress of your
                   project through our secure platform.
                 </p>
@@ -122,13 +134,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px] ">
+        {/* responsive pending */}
+        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px] hidden">
           <div className="">
             <div className=" p-1 flex justify-between items-center lg:flex-wrap ">
               <h2 className="text-[44px] text-[#222222] font-bold">
                 Browse talent by category
               </h2>
-              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-blue-900 font-bold">
+              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-primary font-bold">
                 All category
                 <SvgIcon name="RightOne" />
               </button>
@@ -172,19 +185,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex flex-1 gap-4 max-w-[1420px] mt-[195px] ">
+        <div className="w-full flex flex-col lg:flex-row flex-1 gap-4 max-w-[1420px] mt-[195px] px-3">
           <div>
             <Image
               src="/home/manwithphone.jpg"
               alt="man on phone"
               height={692}
               width={644}
+              className="w-[644px]"
             />
           </div>
 
           <div className="flex-1  w-full ">
             <div className="flex flex-col m-12 h-[575px] gap-4 ">
-              <p className="text-[#01237C] text-lg font-bold">
+              <p className="text-primary text-lg font-bold">
                 #Great Freelance Marketplace
               </p>
               <h2 className="text-[44px] font-bold">
@@ -236,7 +250,7 @@ export default function Home() {
                     </span>
                   </p>
                 </div>
-                <button className="border h-[60px] flex items-center justify-center gap-3 mt-10 w-[180px] bg-blue-900 rounded text-white text-[16px] font-semibold">
+                <button className="border h-[60px] flex items-center justify-center gap-3 mt-10 w-[180px] bg-primary rounded text-white text-[16px] font-semibold">
                   Find Work
                   <SvgIcon name="RightArrWhite" />
                 </button>
@@ -245,14 +259,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full  justify-center flex flex-col gap-8 max-w-[1420px] mx-auto  mt-[195px]">
-          <div className="px-3">
-            <div className=" flex justify-between items-center">
+        <div className="w-full  justify-center flex flex-col gap-8 max-w-[1420px] mx-auto  mt-[195px] ">
+          <div className="px-3 ">
+            <div className=" flex justify-between items-center ">
               <h2 className="text-[44px] text-[#222222] font-bold">
                 Most Popular
               </h2>
 
-              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-blue-900 font-bold">
+              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-primary font-bold">
                 All category
                 <SvgIcon name="RightOne" />
               </button>
@@ -262,7 +276,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex items-center justify-around ">
+          <div className="flex items-center justify-around lg:px-3 lg:gap-3 md:px-2 md:flex-col sm:flex-col">
             <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
               <Image
                 src="/pop1.png"
@@ -273,13 +287,13 @@ export default function Home() {
               />
 
               <div className="flex flex-col px-4 mt-5 gap-4">
-                <p className="text-[#666666] text-[16px]">November 7, 2022</p>
+                <p className="text-paragraph text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-[#666666]">
+                <p className="text-[14px] text-paragraph">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
@@ -295,13 +309,13 @@ export default function Home() {
               />
 
               <div className="flex flex-col px-4 mt-5 gap-4">
-                <p className="text-[#666666] text-[16px]">November 7, 2022</p>
+                <p className="text-paragraph text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-[#666666]">
+                <p className="text-[14px] text-paragraph">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
@@ -317,13 +331,13 @@ export default function Home() {
               />
 
               <div className="flex flex-col px-4 mt-5 gap-4">
-                <p className="text-[#666666] text-[16px]">November 7, 2022</p>
+                <p className="text-paragraph text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-[#666666]">
+                <p className="text-[14px] text-paragraph">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
@@ -338,13 +352,13 @@ export default function Home() {
               />
 
               <div className="flex flex-col px-4 mt-5 gap-4">
-                <p className="text-[#666666] text-[16px]">November 7, 2022</p>
+                <p className="text-paragraph text-[16px]">November 7, 2022</p>
                 <a href="#">
                   <h5 className="font-semibold text-lg">
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-[#666666]">
+                <p className="text-[14px] text-paragraph">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>

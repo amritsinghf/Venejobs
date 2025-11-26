@@ -64,7 +64,7 @@ export default function Signupform({
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
             <div className="p-3 md:p-4  h-[780px]" ref={signupRef}>
-              <div className="flex items-center  justify-center gap-3 mt-[20px] mb-5">
+              <div className="flex items-center  justify-center gap-3 mt-5 mb-5">
                 <Image
                   src="/logo.png"
                   alt="logo image"
@@ -114,10 +114,10 @@ export default function Signupform({
                       htmlFor="hosting-small"
                       className="flex flex-col h-[45] items-center justify-center w-full p-7 rounded-lg 
                                         cursor-pointer text-gray-900 bg-white 
-                                        peer-checked:bg-blue-900 peer-checked:text-white
+                                        peer-checked:bg-primary peer-checked:text-white
                                         hover:bg-gray-100 hover:text-gray-600
                                         dark:text-gray-400 dark:bg-white dark:border-gray-700 
-                                        dark:hover:text-gray-300 dark:peer-checked:bg-blue-900 dark:peer-checked:text-white
+                                        dark:hover:text-gray-300 dark:peer-checked:bg-primary dark:peer-checked:text-white
                                         transition-all"
                     >
                       <div className="flex items-center justify-center space-x-2">
@@ -150,10 +150,10 @@ export default function Signupform({
                       htmlFor="hosting-big"
                       className="flex flex-col h-[45] items-center justify-center w-full p-7 rounded-lg  
                                         cursor-pointer text-gray-900 bg-white 
-                                        peer-checked:bg-blue-900 peer-checked:text-white 
+                                        peer-checked:bg-primary peer-checked:text-white 
                                         hover:bg-gray-100 hover:text-gray-600 
                                         dark:text-gray-400 dark:bg-white dark:border-gray-700 
-                                        dark:hover:text-gray-300 dark:peer-checked:bg-blue-900 dark:peer-checked:text-white
+                                        dark:hover:text-gray-300 dark:peer-checked:bg-primary dark:peer-checked:text-white
                                         transition-all"
                     >
                       <div className="flex items-center justify-center space-x-2">
@@ -292,7 +292,7 @@ export default function Signupform({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="text-white w-40  rounded  bg-blue-900 hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-1"
+                    className="text-white w-40  rounded  bg-primary hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-1"
                   >
                     {isSubmitting ? "Signing Up" : "Sign Up"}
                     <SvgIcon name="RightArrWhite" />

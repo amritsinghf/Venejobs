@@ -22,26 +22,26 @@ export default function HomeNavbar() {
                   className="cursor-pointer"
                 />
               </Link>
-              <h2 className="text-[#666666] font-bold cursor-pointer">
+              <h2 className="text-paragraph font-bold cursor-pointer">
                 <Link href={Routes.client}>Venejobs</Link>
               </h2>
             </div>
             <div className=" lg:block  hidden ">
               <nav>
                 <ul className="flex justify-around  items-center w-[500] ">
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Find Talent</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href={Routes.job_post.form}>Post a Job</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Manage Work</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Reports</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Messge</Link>
                   </li>
                 </ul>

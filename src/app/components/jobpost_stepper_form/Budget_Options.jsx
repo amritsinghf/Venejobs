@@ -40,7 +40,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
             <span
               className={`${
                 i + 1 <= currstep
-                  ? "bg-blue-900 text-white"
+                  ? "bg-primary text-white"
                   : "bg-white text-black"
               } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
             >
@@ -51,10 +51,10 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
       </div>
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-[#333333] font-semibold text-[44px]">
+          <h2 className="text-heading font-semibold text-[44px]">
             Set Your Budget with Confidence
           </h2>
-          <p className="text-[#666666] text-[18px]">
+          <p className="text-paragraph text-[18px]">
             Provide a budget range that aligns with your project goals. This
             helps attract the right talent while ensuring your expectations are
             clear
@@ -64,10 +64,10 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
         <div className="flex flex-col h-[1100] w-[700px] mt-20 ">
           <div className="flex flex-col gap-5 w-full px-15 ">
             <div className="">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 Tell us about your budget.
               </h2>
-              <p className="text-[#666666] text-[18px]">
+              <p className="text-paragraph text-[18px]">
                 This will help us match you to talent within your range.
               </p>
               <div className="grid  grid-cols-2 gap-5 mt-4  p-1">
@@ -82,7 +82,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <g clip-path="url(#clip0_1_3603)">
+                          <g clipPath="url(#clip0_1_3603)">
                             <path
                               d="M11.927 24.0486L15.9028 20.0728L13.2524 17.4221L14.5776 16.0969L17.228 18.7473L18.5535 17.4221L17.228 16.0969L18.5535 14.7717L17.228 13.4463L15.9028 14.7717L14.5776 13.4463L10.6018 17.4221L13.2524 20.0728L11.927 21.3979L9.27661 18.7473L7.95117 20.0728L9.27661 21.3979L7.95117 22.7231L9.27661 24.0483L10.6018 22.7231L11.927 24.0486Z"
                               fill="#333333"
@@ -132,10 +132,10 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col   p-1">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 What’s the Ideal Budget for Your Project?
               </h2>
-              <p className="text-[#666666] text-[18px]">
+              <p className="text-paragraph text-[18px]">
                 You can talk about the cost with your freelancer and set
                 milestones to make the project progress smoothly.
               </p>
@@ -188,7 +188,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-900 text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border "
                 >
                   Next
                 </button>

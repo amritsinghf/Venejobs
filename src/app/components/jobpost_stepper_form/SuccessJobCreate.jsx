@@ -16,17 +16,17 @@ export default function SuccessJobCreate() {
                   width={150}
                 />
               </div>
-              <h2 className="text-center text-[#333333] font-semibold text-2xl  mb-3">
+              <h2 className="text-center text-heading font-semibold text-2xl  mb-3">
                 Congrats! Your Job Post is Now Live!
               </h2>
-              <p className="text-[#666666] text-center text-[18px] ">
+              <p className="text-paragraph text-center text-[18px] ">
                 You’ll start receiving proposals soon. You can also browse
                 profiles to invite the perfect match.
               </p>
               <div className="flex justify-center  ">
                 <Link
                   href={"/client/"}
-                  className="bg-blue-900 p-4 rounded text-white"
+                  className="bg-primary p-4 rounded text-white"
                 >
                   Continue
                 </Link>

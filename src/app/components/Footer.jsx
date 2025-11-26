@@ -9,9 +9,9 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-neutral-900">
+      <footer className="bg-footerclient">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-neutral-900 md:flex md:items-center md:justify-between">
+          <div className="px-4 py-6 bg-footerclient md:flex md:items-center md:justify-between">
             <div className="flex items-center justify-start gap-2  ">
               <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
                 <SvgIcon name="Footerlogo" />
@@ -174,7 +174,7 @@ export default function Footer() {
 
                   <button
                     type="submit"
-                    className="text-[#01237C] text-[16px] font-medium absolute end-2.5 bottom-2.5 rounded-lg text-sm px-4 py-2 "
+                    className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 rounded-lg text-sm px-4 py-2 "
                   >
                     Send
                   </button>

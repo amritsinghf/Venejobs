@@ -20,7 +20,7 @@ const TitlePage = ({ nextStep, currstep }) => {
             <span
               className={`${
                 i + 1 <= currstep
-                  ? "bg-blue-900 text-white"
+                  ? "bg-primary text-white"
                   : "bg-white text-black"
               } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
             >
@@ -32,10 +32,10 @@ const TitlePage = ({ nextStep, currstep }) => {
 
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20 flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-[#333333] font-semibold text-[44px]">
+          <h2 className="text-heading font-semibold text-[44px]">
             Let's start with a strong title.
           </h2>
-          <p className="text-[#666666] text-[18px]">
+          <p className="text-paragraph text-[18px]">
             This helps your job post stand out to the right candidates. It’s the
             first thing they’ll see, so make it count!
           </p>
@@ -43,7 +43,7 @@ const TitlePage = ({ nextStep, currstep }) => {
 
         <div className="flex flex-col h-[525px] w-[700px] mt-20 ">
           <div className="flex flex-col gap-5 w-full px-15 ">
-            <h2 className="font-semibold text-[#333333] text-2xl ">
+            <h2 className="font-semibold text-heading text-2xl ">
               Write a title for your job post
             </h2>
 
@@ -67,7 +67,7 @@ const TitlePage = ({ nextStep, currstep }) => {
             )}
             <div className="flex flex-col gap-5 py-3">
               <h3 className="text-[18px] ">Example titles</h3>
-              <ul className="text-[16px] flex flex-col gap-5 text-[#666666] list-disc px-3 ">
+              <ul className="text-[16px] flex flex-col gap-5 text-paragraph list-disc px-3 ">
                 <li>
                   UX/UI designer to bring website mockup and prototype to life
                 </li>
@@ -82,7 +82,7 @@ const TitlePage = ({ nextStep, currstep }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-900 text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border "
                 >
                   Next
                 </button>

@@ -57,10 +57,10 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
                   Venejobs
                 </h1>
               </div>
-              <h2 className="text-center text-[#333333] font-extrabold text-4xl  mb-3">
+              <h2 className="text-center text-heading font-extrabold text-4xl  mb-3">
                 Forgot password?
               </h2>
-              <p className="text-[#666666]  text-center text-sm">
+              <p className="text-paragraph  text-center text-sm">
                 No worries, we’ll send you reset instructions.
               </p>
 
@@ -104,7 +104,7 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
                   </button> */}
                   <input
                     type="submit"
-                    className="text-[#F8F8F8] justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center"
+                    className="text-[#F8F8F8] justify-end bg-primary hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center"
                     value={isSubmitting ? "Resetting" : "Reset Password"}
                     disabled={isSubmitting}
                   />

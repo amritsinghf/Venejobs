@@ -80,14 +80,14 @@ export default function Loginform({ setActiveModal }) {
                   width={50}
                   style={{ width: "40px", height: "40px" }}
                 />
-                <h1 className="font-semibold text-[23px] font-sans text-[#666666]">
+                <h1 className="font-semibold text-[23px] font-sans text-paragraph">
                   Venejobs
                 </h1>
               </div>
               <h2 className="text-center text-[44px] font-semibold mb-3">
                 Sign In
               </h2>
-              <div className="text-sm text-[#333333] text-center ">
+              <div className="text-sm text-heading text-center ">
                 Do you have an account yet?{" "}
                 <button
                   onClick={() => setActiveModal("signup")}
@@ -158,7 +158,7 @@ export default function Loginform({ setActiveModal }) {
                       />
                     </div>
                     <label
-                      className="ms-2 text-sm cursor-pointer text-[#666666]"
+                      className="ms-2 text-sm cursor-pointer text-paragraph"
                       htmlFor="terms"
                     >
                       Remember Me
@@ -167,7 +167,7 @@ export default function Loginform({ setActiveModal }) {
 
                   <button
                     onClick={() => setActiveModal("forget_password")}
-                    className="text-[#333333] text-[14px] font-semibold cursor-pointer"
+                    className="text-heading text-[14px] font-semibold cursor-pointer"
                   >
                     Forget password?
                   </button>
@@ -182,7 +182,7 @@ export default function Loginform({ setActiveModal }) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="text-white w-40 rounded  bg-blue-900 hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-2"
+                    className="text-white w-40 rounded  bg-primary hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? <Spinner /> : "Sign In"}
                     <SvgIcon name="RightArrWhite" />

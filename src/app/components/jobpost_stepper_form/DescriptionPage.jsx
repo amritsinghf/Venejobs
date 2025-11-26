@@ -21,11 +21,11 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
     <div className="w-full h-[1200]  max-w-[1420px]  mb-20 mt-30 mx-auto ">
       <div className="flex  justify-evenly max-w-[250px]">
         {[...Array(5)].map((_, i) => (
-          <div className="flex   text-center">
+          <div className="flex   text-center" key={i}>
             <span
               className={`${
                 i + 1 <= currstep
-                  ? "bg-blue-900 text-white"
+                  ? "bg-primary text-white"
                   : "bg-white text-black"
               } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
             >
@@ -36,10 +36,10 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
       </div>
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-[#333333] font-semibold text-[44px]">
+          <h2 className="text-heading font-semibold text-[44px]">
             Share the Details of Your Project
           </h2>
-          <p className="text-[#666666] text-[18px]">
+          <p className="text-paragraph text-[18px]">
             Provide a clear overview of your project, including your goals,
             requirements, and expectations, to attract the right talent.
           </p>
@@ -48,7 +48,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
         <div className="flex flex-col h-[1100] w-[700px] mt-20 ">
           <div className="flex flex-col gap-5 w-full px-15 ">
             <div className="">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 Describe the job or project
               </h2>
 
@@ -81,7 +81,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col gap-1">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 Upload Your File
               </h2>
               <div className="mt-5 flex flex-col  gap-5 justify-between">
@@ -121,7 +121,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                   />
                 </div>
               </div>
-              <p className="text-[#666666] text-[16px]">Max file size: 100MB</p>
+              <p className="text-paragraph text-[16px]">Max file size: 100MB</p>
               {errors.attachment && (
                 <span className="text-red-500 font-bold">
                   {errors.attachment.message}
@@ -141,7 +141,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-900 text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border "
                 >
                   Review Job Post
                 </button>

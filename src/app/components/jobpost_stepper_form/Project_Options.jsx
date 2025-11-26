@@ -53,7 +53,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               key={i}
               className={`${
                 i + 1 <= currstep
-                  ? "bg-blue-900 text-white"
+                  ? "bg-primary text-white"
                   : "bg-white text-black"
               } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
             >
@@ -64,10 +64,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
       </div>
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-[#333333] font-semibold text-[44px]">
+          <h2 className="text-heading font-semibold text-[44px]">
             Next, Define the Scope of Your Project
           </h2>
-          <p className="text-[#666666] text-[18px]">
+          <p className="text-paragraph text-[18px]">
             Think about the scale of your project, the tasks involved, and the
             estimated time required to bring it to completion.{" "}
           </p>
@@ -76,7 +76,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
         <div className="flex flex-col h-[1100] w-[700px] mt-20">
           <div className="flex flex-col gap-5 w-full px-15 ">
             <div className="">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 Project size
               </h2>
               <div className="flex flex-col gap-5 mt-4  p-1">
@@ -102,7 +102,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                         </p>
                         <p
                           id="helper-checkbox-bordered-1"
-                          className="select-none text-sm text-[#666666] text-body"
+                          className="select-none text-sm text-paragraph text-body"
                         >
                           {item.description}
                         </p>
@@ -120,7 +120,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col   p-1">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 Duration
               </h2>
               <div className="mt-5 flex flex-wrap  gap-5  justify-between ">
@@ -135,7 +135,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                         type="radio"
                         value={item.code}
                         name="duration"
-                        class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none"
+                        className="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none"
                       />
                       <label
                         htmlFor="bordered-radio-2"
@@ -154,7 +154,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
             )}
 
             <div className="flex flex-col gap-5 mt-4  p-1">
-              <h2 className="font-semibold text-[#333333] text-2xl ">
+              <h2 className="font-semibold text-heading text-2xl ">
                 What level of experience will it need?
               </h2>
 
@@ -177,7 +177,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                       </p>
                       <p
                         id="helper-checkbox-bordered-1"
-                        className="select-none text-sm text-[#666666] text-body"
+                        className="select-none text-sm text-paragraph text-body"
                       >
                         Looking for someone relatively new to this field
                       </p>
@@ -203,7 +203,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-900 text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border "
                 >
                   Next
                 </button>

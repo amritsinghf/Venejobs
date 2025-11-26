@@ -11,16 +11,15 @@ import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 
-
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [verifyCode, setverifyCode] = useState("");
   return (
     <>
-      <div className="max-w-[1420px] w-full mx-auto  ">
+      <div className="max-w-[1420px] w-full mx-auto  px-6">
         <div className="flex justify-between items-center py-5 ">
-          <div className="flex justify-evenly w-[300]  items-center">
+          <div className="flex justify-evenly  items-center">
             <Image
               src="/home/new-logo.png"
               alt="logo image"
@@ -32,7 +31,7 @@ export default function Navbar() {
             <button
               id="dropdownDefaultButton"
               data-dropdown-toggle="dropdown"
-              className="inline-flex items-center justify-center text-white bg-white/10 rounded-2xl bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+              className="hidden lg:inline-flex items-center justify-center text-white bg-white/10 rounded-2xl bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
               type="button"
             >
               Category
@@ -57,7 +56,7 @@ export default function Navbar() {
           </div>
           <div className="">
             <nav>
-              <ul className="flex justify-around  items-center w-[500] lg:hidden">
+              <ul className="lg:flex justify-around  items-center w-[500] hidden">
                 <li className="text-white">
                   <Link href="">Find Talent</Link>
                 </li>

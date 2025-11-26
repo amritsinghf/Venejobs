@@ -13,7 +13,7 @@ export default function HomeNavbarFreelance() {
             <div className="flex justify-evenly gap-1  items-center">
               <Link href={""}>
                 <Image
-                  src="/logo_green.png"
+                  src="/logo_freelance.png"
                   alt="logo image"
                   height={500}
                   width={500}
@@ -21,23 +21,23 @@ export default function HomeNavbarFreelance() {
                   className="cursor-pointer"
                 />
               </Link>
-              <h2 className="text-[#666666] font-bold cursor-pointer">
+              <h2 className="text-paragraph font-bold cursor-pointer">
                 <Link href={""}>Venejobs</Link>
               </h2>
             </div>
             <div className="lg:block hidden">
               <nav>
                 <ul className="flex justify-around  items-center w-[500]">
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Find Work</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Deliver Work</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Manage Finances</Link>
                   </li>
-                  <li className="text-[#666666]">
+                  <li className="text-paragraph">
                     <Link href="">Messge</Link>
                   </li>
                 </ul>

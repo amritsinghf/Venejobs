@@ -36,10 +36,13 @@ const MultiStepForm = () => {
         .filter(Boolean);
 
       const formData = new FormData();
+      skillsArray.forEach((skill) => {
+        formData.append("skills[]", skill);
+      });
       formData.append("title", data.title);
       formData.append("description", data.description);
       formData.append("category", data.category);
-      formData.append("skills[]", skillsArray);
+
       formData.append("project_size", data.project_size);
       formData.append("duration", data.duration);
       formData.append("experience_level", data.experience_level);

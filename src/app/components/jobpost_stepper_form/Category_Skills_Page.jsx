@@ -14,15 +14,32 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const [skills, setSkills] = useState([]);
   const [categoryName, setcategoryName] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
+    let updatedItems = [...selectedItems];
 
-    setSelectedItems((prev) =>
-      checked
-        ? [...prev, value].filter((v, i, arr) => arr.indexOf(v) === i) // ensure no duplicates
-        : prev.filter((item) => item !== value)
-    );
+    if (checked) {
+      if (!updatedItems.includes(value)) updatedItems.push(value);
+    } else {
+      updatedItems = updatedItems.filter((item) => item !== value);
+    }
+
+    setSelectedItems(updatedItems);
+    setInputValue(updatedItems.join(", "));
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+
+    const updatedItems = value
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    setSelectedItems(updatedItems);
   };
 
   const getallcategories = async () => {
@@ -53,14 +70,14 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   };
 
   return (
-    <div className="w-full h-screen max-w-[1420px]  mb-20 mt-30 mx-auto ">
+    <div className="w-full h-screen max-w-[1420px]  mb-20 mt-30 mx-auto">
       <div className="flex  justify-evenly max-w-[250px]">
         {[...Array(5)].map((_, i) => (
           <div className="flex   text-center" key={i}>
             <span
               className={`${
                 i + 1 <= currstep
-                  ? "bg-blue-900 text-white"
+                  ? "bg-primary text-white"
                   : "bg-white text-black"
               } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
             >
@@ -71,10 +88,10 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
       </div>
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-3 flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-[#333333] font-semibold text-[44px]">
+          <h2 className="text-heading font-semibold text-[44px]">
             Let’s find the perfect freelancer for your project
           </h2>
-          <p className="text-[#666666] text-[18px]">
+          <p className="text-paragraph text-[18px]">
             This helps your job post stand out to the right candidates. It’s the
             first thing they’ll see, so make it count!
           </p>
@@ -82,7 +99,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
 
         <div className="flex flex-col h-[525px] w-[700px] mt-3 ">
           <div className="flex flex-col gap-5 w-full px-15 ">
-            <h2 className="font-semibold text-[#333333] text-2xl">
+            <h2 className="font-semibold text-heading text-2xl">
               Select Category
             </h2>
 
@@ -132,21 +149,17 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             )}
 
             <div className="flex flex-col mt-10  gap-2  h-[300] ">
-              <h2 className="text-[#333333] text-2xl font-semibold">
+              <h2 className="text-heading text-2xl font-semibold">
                 Search skills or add your own
               </h2>
 
               <input
                 type="text"
-                className="rounded p-4"
-                value={selectedItems.join(", ")}
-                {...register("skills", {
-                  required: {
-                    value: true,
-                    message: "Please add skills",
-                  },
-                })}
                 placeholder="For the best results, add 3-5 skills"
+                value={inputValue}
+                onChange={handleInputChange}
+                {...register("skills", { required: true })}
+                className="rounded p-4 w-full"
               />
 
               {errors.skills && (
@@ -167,18 +180,17 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                         <input
                           type="checkbox"
                           id={checkboxId}
-                          className="sr-only peer"
                           onChange={handleCheckboxChange}
                           checked={selectedItems.includes(item.name)}
-                          name="skills"
                           value={item.name}
+                          className="sr-only peer"
                         />
                         <label
                           htmlFor={checkboxId}
                           className="border flex h-[45px] items-center justify-center p-5 rounded-lg 
-                cursor-pointer text-gray-900 bg-white 
-                hover:bg-gray-100 hover:text-gray-600
-                transition-all"
+                          cursor-pointer text-gray-900 bg-white 
+                          hover:bg-gray-100 hover:text-gray-600
+                          transition-all"
                         >
                           <span className="text-base leading-none">
                             {item.name}
@@ -203,7 +215,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="bg-blue-900 text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border "
                 >
                   Next
                 </button>

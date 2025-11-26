@@ -32,19 +32,19 @@ export default function Active_Contracts() {
             />
             <div className="flex flex-col p-2 gap-3 ">
               <div className="flex gap-8 items-center">
-                <h3 className="text-[#333333] font-medium text-2xl">Harnish</h3>
-                <p className="bg-[#5BBB7B] text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
+                <h3 className="text-heading font-medium text-2xl">Harnish</h3>
+                <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
                 </p>
               </div>
               <div className="flex flex-col">
 
-              <p className="text-[#666666] text-[16px]">Can u design ui</p>
+              <p className="text-paragraph text-[16px]">Can u design ui</p>
                 <div className="flex flex-row items-center">
-                <p className="text-[#333333] font-medium">
+                <p className="text-heading font-medium">
                   Started Date: &nbsp;
                 </p>
-                <p className="text-[#666666] text-sm">11-01-0001</p>
+                <p className="text-paragraph text-sm">11-01-0001</p>
               </div>
               </div>
               
@@ -53,16 +53,16 @@ export default function Active_Contracts() {
 
           <div className="flex  items-center mx-5 gap-1 ">
             <div className="flex flex-col justify-center items-center">
-              <h3 className="text-[#666666] p-2  font-semibold text-lg">
+              <h3 className="text-paragraph p-2  font-semibold text-lg">
                 Contract Amount :
               </h3>
-              <p className="text-[#666666] font-medium text-sm">$1000.00</p>
+              <p className="text-paragraph font-medium text-sm">$1000.00</p>
             </div>
             <div className="flex flex-col justify-center items-center ">
-              <h3 className="text-[#666666] p-2 font-semibold text-lg">
+              <h3 className="text-paragraph p-2 font-semibold text-lg">
                 Paid Amount :
               </h3>
-              <p className="text-[#666666] font-medium text-sm">$500.00</p>
+              <p className="text-paragraph font-medium text-sm">$500.00</p>
             </div>
           </div>
           <div className="flex items-center ">
@@ -86,19 +86,19 @@ export default function Active_Contracts() {
             />
             <div className="flex flex-col p-2 gap-3">
               <div className="flex gap-8 items-center">
-                <h3 className="text-[#333333] font-medium text-2xl">Harnish</h3>
-                <p className="bg-[#5BBB7B] text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
+                <h3 className="text-heading font-medium text-2xl">Harnish</h3>
+                <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
                 </p>
               </div>
               <div className="flex flex-col">
 
-              <p className="text-[#666666] text-[16px]">Can u design ui</p>
+              <p className="text-paragraph text-[16px]">Can u design ui</p>
                 <div className="flex flex-row items-center">
-                <p className="text-[#333333] font-medium">
+                <p className="text-heading font-medium">
                   Started Date: &nbsp;
                 </p>
-                <p className="text-[#666666] text-sm">11-01-0001</p>
+                <p className="text-paragraph text-sm">11-01-0001</p>
               </div>
               </div>
               
@@ -107,16 +107,16 @@ export default function Active_Contracts() {
 
           <div className="flex  items-center mx-5 gap-1">
             <div className="flex flex-col justify-center items-center">
-              <h3 className="text-[#666666] p-2  font-semibold text-lg">
+              <h3 className="text-paragraph p-2  font-semibold text-lg">
                 Contract Amount :
               </h3>
-              <p className="text-[#666666] font-medium text-sm">$1000.00</p>
+              <p className="text-paragraph font-medium text-sm">$1000.00</p>
             </div>
             <div className="flex flex-col justify-center items-center ">
-              <h3 className="text-[#666666] p-2 font-semibold text-lg">
+              <h3 className="text-paragraph p-2 font-semibold text-lg">
                 Paid Amount :
               </h3>
-              <p className="text-[#666666] font-medium text-sm">$500.00</p>
+              <p className="text-paragraph font-medium text-sm">$500.00</p>
             </div>
           </div>
           <div className="flex items-center ">
@@ -143,8 +143,8 @@ export default function Active_Contracts() {
               onClick={() => selectPage(i + 1)}
               className={`${
                 page === i + 1
-                  ? "bg-blue-900 text-white border rounded-full "
-                  : "bg-white text-[#666666] border rounded-full font-medium px-2 py-1"
+                  ? "bg-primary text-white border rounded-full "
+                  : "bg-white text-paragraph border rounded-full font-medium px-2 py-1"
               }px-3 py-1  cursor-pointer`}
             >
               {i + 1}

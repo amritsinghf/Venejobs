@@ -28,6 +28,10 @@ export async function get_budget_data() {
     return api.get("api/lookup/budget-types");
 }
 
-export async function get_jobByUser() {
-    return api.get("api/jobs/my-jobs");
+export async function get_jobByClient(page, limit) {
+    return api.get(`api/jobs/my-jobs?limit=${limit}&page=${page}`);
+}
+
+export async function get_all_jobs(page, limit) {
+  return api.get(`api/jobs?limit=${limit}&page=${page}`);
 }
