@@ -18,9 +18,9 @@ export default function Active_Contracts() {
   useEffect(() => {}, [page]);
   return (
     
-    <div className="rounded-2xl mt-10 border border-gray-300 ">
+    <div className="rounded-2xl mt-10 border border-gray-300 mx-6 w-full sm:mx-0">
       <div className="border-b border-gray-300 rounded py-2 px-3 ">
-        <div className="w-full flex items-center  rounded p-2 justify-between md:flex-wrap sm:flex-wrap ">
+        <div className="w-full flex items-center  rounded p-2 justify-between flex-wrap ">
           <div className="flex gap-6 ">
             <Image
               src={"/freelancer.jpg"}
@@ -51,7 +51,7 @@ export default function Active_Contracts() {
             </div>
           </div>
 
-          <div className="flex  items-center mx-5 gap-1 ">
+          <div className="flex  items-center mx-5 gap-2 ">
             <div className="flex flex-col justify-center items-center">
               <h3 className="text-paragraph p-2  font-semibold text-lg">
                 Contract Amount :
@@ -66,16 +66,16 @@ export default function Active_Contracts() {
             </div>
           </div>
           <div className="flex items-center ">
-            <button className="bg-[#01237C] text-white border h-12 py-2 px-8  rounded cursor-pointer">
+            <button className="bg-[#01237C] text-white border mx-5 py-2 px-8  rounded cursor-pointer">
               View contract
             </button>
           </div>
         </div>
       </div>
 
-      <div className="border-b border-gray-300 rounded py-2 px-3">
-        <div className="w-full flex items-center  rounded p-2 justify-between md:flex-wrap sm:flex-wrap">
-          <div className="flex gap-6">
+      <div className="border-b border-gray-300 rounded py-2 px-3 ">
+        <div className="w-full flex items-center  rounded p-2 justify-between flex-wrap ">
+          <div className="flex gap-6 ">
             <Image
               src={"/freelancer.jpg"}
               height={80}
@@ -84,7 +84,7 @@ export default function Active_Contracts() {
               alt="Freelancer image"
               style={{height:80,width:80}}
             />
-            <div className="flex flex-col p-2 gap-3">
+            <div className="flex flex-col p-2 gap-3 ">
               <div className="flex gap-8 items-center">
                 <h3 className="text-heading font-medium text-2xl">Harnish</h3>
                 <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
@@ -105,7 +105,7 @@ export default function Active_Contracts() {
             </div>
           </div>
 
-          <div className="flex  items-center mx-5 gap-1">
+          <div className="flex  items-center mx-5 gap-2 ">
             <div className="flex flex-col justify-center items-center">
               <h3 className="text-paragraph p-2  font-semibold text-lg">
                 Contract Amount :
@@ -120,7 +120,7 @@ export default function Active_Contracts() {
             </div>
           </div>
           <div className="flex items-center ">
-            <button className="bg-[#01237C] text-white border h-12 py-2 px-8  rounded cursor-pointer">
+            <button className="bg-[#01237C] text-white border mx-5 py-2 px-8  rounded cursor-pointer">
               View contract
             </button>
           </div>

@@ -9,16 +9,16 @@ export default function Footer_Freelance() {
 
   return (
     <>
-      <footer className="bg-footerfreelance">
+      <footer className="bg-footerfreelance w-full ">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-footerfreelance md:flex md:items-center md:justify-between">
-            <div className="flex items-center justify-start gap-2  ">
-              <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
+          <div className="px-4 py-6 bg-footerfreelance  flex justify-between ">
+            <div className="flex items-center justify-start gap-2 flex-wrap ">
+              <span className="text-sm text-gray-500 dark:text-gray-300">
                 <SvgIcon name="Footerlogo_green" />
               </span>
               <h2 className="text-white font-extrabold text-lg">Venejobs</h2>
             </div>
-            <div className="flex items-center mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
+            <div className="flex items-center mt-4  space-x-5 rtl:space-x-reverse">
               <p className="text-white font-medium text-[16px]">Follow Us</p>
               <a
                 href="#"
@@ -51,7 +51,7 @@ export default function Footer_Freelance() {
         </div>
 
         <hr className="text-white" />
-        <div className="mx-auto w-full max-w-screen-xl">
+        <div className="mx-auto w-full max-w-full ">
           <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">

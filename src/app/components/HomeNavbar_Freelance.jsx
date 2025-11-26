@@ -3,15 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import "flowbite";
 import ProfileDropdown from "./ProfileDropdown";
+import { Routes } from "../routes";
 
 export default function HomeNavbarFreelance() {
   return (
     <>
-      <div className="w-full  xl:w-[600px]  relative">
+      <div className="w-full relative ">
         <div className="max-w-[1420px] w-full mx-auto ">
           <div className="flex justify-between items-center py-5 ">
-            <div className="flex justify-evenly gap-1  items-center">
-              <Link href={""}>
+            <div className="flex justify-evenly gap-1  items-center px-2">
+              <Link href={Routes.freelancer.get_started}>
                 <Image
                   src="/logo_freelance.png"
                   alt="logo image"
@@ -22,7 +23,7 @@ export default function HomeNavbarFreelance() {
                 />
               </Link>
               <h2 className="text-paragraph font-bold cursor-pointer">
-                <Link href={""}>Venejobs</Link>
+                <Link href={Routes.freelancer.get_started}>Venejobs</Link>
               </h2>
             </div>
             <div className="lg:block hidden">

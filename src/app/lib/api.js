@@ -16,7 +16,7 @@ api.interceptors.request.use(
     if (typeof window === "undefined") {
       try {
         const { cookies } = await import("next/headers");
-        const cookieStore = await cookies(); 
+        const cookieStore = await cookies();
         token = cookieStore.get("token")?.value || "";
       } catch (e) {
         // cookies() may fail in some contexts

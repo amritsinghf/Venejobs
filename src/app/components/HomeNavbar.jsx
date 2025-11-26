@@ -11,7 +11,7 @@ export default function HomeNavbar() {
       <div className="w-full  xl:w-[600px]  relative">
         <div className="max-w-[1420px] w-full mx-auto   ">
           <div className="flex justify-between items-center py-5 md:px-5 sm:px-5 lg:px-5 ">
-            <div className="flex justify-evenly gap-1  items-center ">
+            <div className="flex justify-evenly gap-1  items-center px-3">
               <Link href={Routes.client}>
                 <Image
                   src="/home/logo-home.png"

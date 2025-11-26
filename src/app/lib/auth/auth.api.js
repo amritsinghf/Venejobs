@@ -35,5 +35,6 @@ export async function reset_password(data) {
 }
 
 export async function get_client_profile() {
+  console.log("get_client_profile");
   return api.get("api/auth/profile");
 }

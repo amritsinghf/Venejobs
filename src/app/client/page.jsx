@@ -16,14 +16,20 @@ export default function Home() {
   return (
     <>
       <HomeNavbar />
-      <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto lg:px-3 md:px-3 sm:px-3 ">
-        <div className="w-full flex flex-col  ">
-          <div className="flex flex-row justify-between items-center ">
-            <h2 className="text-heading font-semibold text-[44px]">
-              Welcome back,{user?.name}
-            </h2>
+      <div className="w-[550px] sm:w-full  max-w-[1420px]  mb-20 mt-7 mx-auto ">
+        <div className="w-full flex flex-col  mx-5 sm:mx-0">
+          <div className="flex flex-col sm:flex-row justify-between items-center ">
+            <div className="flex flex-col">
+              <h2 className="text-heading font-semibold text-[32px] sm:text-[44px] mx-30 sm:mx-1">
+                Welcome back,{user?.name}
+              </h2>
+              <p className="text-paragraph text-sm sm:text-lg sm:mx-1">
+                Here's what's happening with your projects today. Ready to find
+                top talent?
+              </p>
+            </div>
 
-            <div className="flex justify-end gap-4 px-3 py-5">
+            <div className="flex justify-end gap-4 px-4 py-5 ">
               <Link
                 href={Routes.job_post.home}
                 className="bg-[#01237C] text-[#FAFAFA] text-center py-3 px-4 h-[50px] rounded w-[150px]"
@@ -39,20 +45,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="">
-            <p className="text-paragraph text-[18px]">
-              Here's what's happening with your projects today. Ready to find
-              top talent?
-            </p>
-          </div>
+          
         </div>
 
-        <div className="w-full flex gap-8 mt-20 ">
+        <div className="w-full flex gap-4  mt-9 mx-10 sm:mx-0 ">
           <h2 className="font-semibold text-heading text-3xl">
             Your Job Posts & Active Contracts
           </h2>
         </div>
-        <div className="w-full  flex  gap-4 mt-10">
+        <div className="w-full  flex  gap-4 mt-10 mx-10 sm:mx-0">
           <button
             onClick={() => setshowData(true)}
             className={`font-medium  p-2  `}
@@ -82,10 +83,10 @@ export default function Home() {
             </p>
           </button>
         </div>
-        <hr />
+        <hr className="mx-10 sm:mx-0"/>
 
         {showData && (
-          <div className="mt-2 rounded ">
+          <div className="mt-2 rounded px-2 ">
             <Jobs />
           </div>
         )}

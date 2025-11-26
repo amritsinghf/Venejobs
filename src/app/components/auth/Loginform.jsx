@@ -9,6 +9,7 @@ import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import Spinner from "../Spinner";
 import SvgIcon from "../SvgIcon";
+import userApiStore from "@/app/store/userStore";
 
 export default function Loginform({ setActiveModal }) {
   const showToast = toastStore.getState().showToast;
@@ -34,6 +35,8 @@ export default function Loginform({ setActiveModal }) {
         showToast(res.message, "success");
         await axios.post("/api/set-token", { token });
         localStorage.setItem("token", token);
+
+        userApiStore.getState().fetchData();
 
         if (res.data.user.role_id == 1) {
           router.push("/freelancer");
@@ -69,8 +72,8 @@ export default function Loginform({ setActiveModal }) {
   return (
     <>
       <div className="overflow-y-auto bg-black/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full flex">
-        <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
-          <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
+        <div className="relative p-1  w-full max-w-md max-h-full mx-auto ">
+          <div className="relative bg-white w-[440px] rounded-lg shadow-sm ">
             <div className="p-4 md:p-5 h-[780]" ref={loginRef}>
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image
@@ -140,7 +143,14 @@ export default function Loginform({ setActiveModal }) {
                     placeholder="Password"
                     className="block py-2.5 px-1 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   />
-                  <button type="button" onClick={toggleVisibility}  className="absolute inset-y-0  right-0 flex items-center mb-1"> <SvgIcon name="Eye"  /></button>
+                  <button
+                    type="button"
+                    onClick={toggleVisibility}
+                    className="absolute inset-y-0  right-0 flex items-center mb-1"
+                  >
+                    {" "}
+                    <SvgIcon name="Eye" />
+                  </button>
                   {errors.password && (
                     <span className="text-red-500 font-bold mb-2 text-sm">
                       {errors.password.message}

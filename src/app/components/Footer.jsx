@@ -9,11 +9,11 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-footerclient">
+      <footer className="bg-footerclient w-[600px] sm:w-full ">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-footerclient md:flex md:items-center md:justify-between">
+          <div className="px-4 py-6 bg-footerclient  flex justify-between ">
             <div className="flex items-center justify-start gap-2  ">
-              <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
+              <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center ">
                 <SvgIcon name="Footerlogo" />
               </span>
               <h2 className="text-white font-extrabold text-lg">Venejobs</h2>
@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         <hr className="text-white" />
-        <div className="mx-auto w-full max-w-screen-xl">
+        <div className="mx-auto w-7xl max-w-full ">
           <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">

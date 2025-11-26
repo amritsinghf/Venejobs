@@ -171,7 +171,7 @@ export default function OtpForm({
         aria-hidden="true"
         className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
-        <div class="w-full max-w-3xl max-h-full">
+        <div class="w-full max-w-3xl max-h-full px-3">
           <div class=" bg-white rounded-lg shadow-sm ">
             <div class="text-center  h-[424px] p-5">
               <div className="flex flex-col gap-2">
@@ -194,7 +194,7 @@ export default function OtpForm({
                   We have sent code to your email
                 </p>
                 <p className="font-medium "> {email}</p>
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex justify-center items-center mt-4 gap-4">
                   {otp.map((value, index) => (
                     <input
                       key={index}
@@ -205,7 +205,7 @@ export default function OtpForm({
                       }}
                       onClick={() => handleOtpClick(index)}
                       onKeyDown={(e) => handleKeyDown(index, e)}
-                      className="w-15 h-15 bg-white m-4  rounded-2xl text-black text-center "
+                      className="w-15 h-15 bg-white   rounded-2xl text-black text-center "
                     />
                   ))}
                 </div>

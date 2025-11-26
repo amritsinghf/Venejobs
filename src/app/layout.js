@@ -2,7 +2,6 @@ import { Geist, DM_Sans } from "next/font/google";
 import { ToastContainer } from 'react-toastify';
 import "./globals.css";
 import "flowbite";
-import UserInit from "@/app/components/UserInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +26,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${dmSans.className}  antialiased`}
       >
-         <UserInit />
+         
         {children}
         <ToastContainer />
       </body>

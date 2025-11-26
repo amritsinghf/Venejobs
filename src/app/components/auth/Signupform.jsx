@@ -61,7 +61,7 @@ export default function Signupform({
   return (
     <>
       <div className="overflow-y-auto bg-black/50 overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full flex">
-        <div className="relative p-4 w-full max-w-md max-h-full">
+        <div className="relative p-1 w-full max-w-md max-h-full">
           <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
             <div className="p-3 md:p-4  h-[780px]" ref={signupRef}>
               <div className="flex items-center  justify-center gap-3 mt-5 mb-5">

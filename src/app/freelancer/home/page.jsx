@@ -40,22 +40,22 @@ export default function Home() {
   return (
     <>
       <HomeNavbarFreelance />
-      <div className="w-full   max-w-[1420px]  mb-20 mt-30 mx-auto ">
-        <div className="w-full bg-gray-100 rounded-2xl p-12 flex flex-col gap-4  ">
+      <div className="w-full   max-w-[1420px]  mb-20 mt-30 mx-auto  px-1">
+        <div className="w-full bg-gray-100 rounded-2xl px-12 py-5  flex flex-col gap-4  ">
           <div className="flex flex-row justify-between items-center ">
-            <h2 className="text-heading font-semibold text-[44px]">
+            <h2 className="text-heading font-semibold text-[24px] sm:text-[44px]">
               Find Projects That Match Your Passion With Venejobs
             </h2>
           </div>
 
           <div className="">
-            <p className="text-paragraph text-[18px]">
+            <p className="text-paragraph text-sm sm:text-lg">
               Explore hand-picked freelance jobs tailored to your skills. Start
               earning on your own terms with Venejobs.
             </p>
-            <button className="bg-secondary py-4 px-8 rounded text-white mt-5 flex items-center gap-1">
+            <button className="bg-secondary p-2 sm:p-7 rounded text-white mt-5 flex items-center gap-1">
               Learn More <SvgIcon name="NextArrow" />
-            </button>
+            </button> 
           </div>
         </div>
 
@@ -101,8 +101,8 @@ export default function Home() {
                 </div>
 
                 {/* job title and time ago */}
-                <div className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center ">
+                <div className="flex flex-col gap-3 ">
+                  <div className="flex justify-between items-center gap-2">
                     <h2 className="font-medium text-2xl max-w-[700px]">
                       {item.title}
                     </h2>
@@ -112,7 +112,7 @@ export default function Home() {
                   </div>
 
                   {/* budget and industry */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between flex-wrap sm:flex-row">
                     <p className="font-medium">
                       {item.budget_type} - {item.experience_level} - Est.
                       Budget:{" "}
@@ -139,7 +139,7 @@ export default function Home() {
                 </div>
 
                 {/*category or skills */}
-                <div className="flex items-center gap-3 sm:flex-wrap">
+                <div className="flex items-center gap-3 flex-wrap">
                   {item.skills.map((item) => (
                     <p
                       className="bg-[#FAFAFA] p-3 font-medium text-paragraph rounded-2xl"

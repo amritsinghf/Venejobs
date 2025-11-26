@@ -1,19 +1,18 @@
-"use client"
+"use client";
 import Footer from "@/app/components/Footer";
 import HomeNavbar from "@/app/components/HomeNavbar";
 import Link from "next/link";
 import { Routes } from "@/app/routes.js";
 import userApiStore from "@/app/store/userStore";
 
-export default  function Jobpost() {
-  
+export default function Jobpost() {
   const { user, loading, error, fetchData } = userApiStore();
   return (
     <>
       <HomeNavbar />
       <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto ">
         <div className=" flex justify-items-start flex-col gap-8 py-36 px-10 ">
-          <div className="flex flex-col justify-items-start w-[700px] ">
+          <div className="flex flex-col justify-items-start max-w-[700px] w-full">
             <h2 className="text-heading font-semibold text-[44px]">
               Welcome back, {user?.name}!
             </h2>

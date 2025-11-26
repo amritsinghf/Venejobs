@@ -7,14 +7,14 @@ import SvgIcon from "./components/SvgIcon";
 
 export default function Home() {
   return (
-    <>
+    <div className="border w-[600px] sm:w-full">
       <div
-        className="h-screen w-full   bg-primary relative  xl:w-[800px] "
+        className="h-screen w-full  bg-primary relative "
         style={{ backgroundImage: "url('/bg-image.png')" }}
       >
         <Navbar />
 
-        <div className="w-full lg:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-w-[1420px] flex items-center justify-center flex-col gap-6 lg:gap-2 lg:flex-row p-4 xl:p-0 mt-10 lg:mt-0">
+        <div className="w-full  lg:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-1/2 lg:-translate-y-1/2 max-w-[1420px] flex items-center justify-center flex-col gap-6 lg:gap-2 lg:flex-row p-4 xl:p-0 mt-10 lg:mt-0">
           <div className="flex-1 lg:flex-3 xl:flex-10  flex flex-col lg:mt-20 gap-8 ">
             <h1 className="text-white text-[32px] md:text-4xl xl:text-6xl lg:text-5xl font-bold  ">
               Effortless hiring, inspired work with Venejobs.
@@ -66,9 +66,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full max-w-[1420px] mx-auto py-28">
-        <div className="w-full flex flex-col gap-8 ">
-          <div className="text-center flex flex-col gap-4">
+      <div className="w-full max-w-[1420px] mx-auto   py-28 ">
+        <div className="w-full flex flex-col  gap-8  ">
+          <div className="text-center flex flex-col gap-4 ">
             <div className="flex flex-col gap-3 font-bold">
               <p className="text-[#01237C] text-lg">For Clients</p>
               <h2 className="text-[44px]">How it Works</h2>
@@ -185,23 +185,23 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col lg:flex-row flex-1 gap-4 max-w-[1420px] mt-[195px] px-3">
-          <div>
+        <div className="w-full  flex flex-col  lg:flex-row flex-1  gap-[60px] max-w-[1420px] mt-[195px]  px-3">
+          <div className="">
             <Image
               src="/home/manwithphone.jpg"
               alt="man on phone"
               height={692}
               width={644}
-              className="w-[644px]"
+              style={{height:692,width:944}}
             />
           </div>
 
-          <div className="flex-1  w-full ">
-            <div className="flex flex-col m-12 h-[575px] gap-4 ">
-              <p className="text-primary text-lg font-bold">
+          <div className="flex w-full ">
+            <div className="flex flex-col   h-[575px] gap-4">
+              <p className="text-primary text-[16px] xl:text-[44px] font-bold">
                 #Great Freelance Marketplace
               </p>
-              <h2 className="text-[44px] font-bold">
+              <h2 className="xl:text-[44px] text-[32px] font-bold ">
                 Empowering Freelancers to Achieve Their Career Goals
               </h2>
               <p className="text-lg text-[#6B7177]">
@@ -210,14 +210,14 @@ export default function Home() {
                 your freelance career.
               </p>
 
-              <div className="flex flex-col gap-5">
-                <div className="flex mt-2">
+              <div className="flex flex-col lg:gap-5 gap-4">
+                <div className="flex gap-1">
                   <div className="">
                     <SvgIcon name="Checkmark" />
                   </div>
                   <p className="text-lg">
                     <b>Kickstart Your Freelance Journey:</b>
-                    <span className="text-[#6B7177] ">
+                    <span className="text-[#6B7177]">
                       {" "}
                       Discover a variety of opportunities designed for beginners
                       and seasoned professionals alike.
@@ -225,7 +225,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex mt-2">
+                <div className="flex  ">
                   <div className="m-1">
                     <SvgIcon name="Checkmark" />
                   </div>
@@ -238,19 +238,19 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="flex mt-2">
+                <div className="flex ">
                   <div className="m-1">
                     <SvgIcon name="Checkmark" />
                   </div>
                   <p className="text-lg">
                     <b>Grow Your Career with Confidence:</b>
-                    <span className="text-[#6B7177] ">
+                    <span className="text-[#6B7177]">
                       Access projects that match your expertise and take your
                       freelancing career to the next level.
                     </span>
                   </p>
                 </div>
-                <button className="border h-[60px] flex items-center justify-center gap-3 mt-10 w-[180px] bg-primary rounded text-white text-[16px] font-semibold">
+                <button className="border p-5 lg:p-10 flex items-center justify-center gap-3 mt-10 w-[180px] bg-primary rounded text-white text-[16px] font-semibold">
                   Find Work
                   <SvgIcon name="RightArrWhite" />
                 </button>
@@ -259,25 +259,27 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full  justify-center flex flex-col gap-8 max-w-[1420px] mx-auto  mt-[195px] ">
-          <div className="px-3 ">
-            <div className=" flex justify-between items-center ">
-              <h2 className="text-[44px] text-[#222222] font-bold">
+        <div className="w-full  justify-center flex flex-col  sm:mx-0 gap-8 max-w-[1420px] mt-30 md:mt-40">
+          <div className=" ">
+            <div className=" flex flex-col gap-3 md:flex-row justify-between items-center">
+              <div className="flex flex-col ">
+              <h2 className="text-[32px] mx-15 sm:mx-0 lg:text-[44px] text-[#222222] font-bold ">
                 Most Popular
               </h2>
-
-              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-primary font-bold">
+                <p className="text-zinc-500 text-[18px]">
+              See how you can up your career status
+            </p>
+            </div>
+              <button className="flex  items-center justify-center gap-2  p-2 md:p-6 bg-[#5BBB7B1A] text-primary font-bold">
                 All category
                 <SvgIcon name="RightOne" />
               </button>
             </div>
-            <p className="text-zinc-500 text-[18px]">
-              See how you can up your career status
-            </p>
+            
           </div>
 
-          <div className="flex items-center justify-around lg:px-3 lg:gap-3 md:px-2 md:flex-col sm:flex-col">
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
+          <div className="items-center justify-around flex flex-col md:flex-row px-1 gap-6">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
@@ -293,13 +295,13 @@ export default function Home() {
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-paragraph">
+                <p className="text-[14px] text-paragraph mb-2">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
             </div>
 
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]  shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
@@ -315,13 +317,13 @@ export default function Home() {
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-paragraph">
+                <p className="text-[14px] text-paragraph mb-2">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
             </div>
 
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
+           <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
@@ -337,12 +339,12 @@ export default function Home() {
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-paragraph">
+                <p className="text-[14px] text-paragraph mb-2">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
             </div>
-            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] h-[420px]  shadow-xs">
+           <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]   shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
@@ -358,7 +360,7 @@ export default function Home() {
                     Exploring Some of the Cities and Home Services
                   </h5>
                 </a>
-                <p className="text-[14px] text-paragraph">
+                <p className="text-[14px] text-paragraph mb-2">
                   Bringing the culture of sharing to everyone
                 </p>
               </div>
@@ -368,6 +370,6 @@ export default function Home() {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }

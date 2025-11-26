@@ -33,13 +33,13 @@ export default function Jobs() {
   };
 
   return (
-    <div className="rounded-2xl mt-10 border border-gray-300 ">
+    <div className="rounded-2xl mt-10 border border-gray-300 w-full mx-5 sm:mx-0">
       {jobsData.map((item) => (
         <div
           className="border-b border-gray-300 rounded py-2 px-3"
           key={item.id}
         >
-          <div className="w-full flex  rounded p-2 justify-between ">
+          <div className="w-full flex  rounded p-2 justify-between flex-wrap">
             <div className="flex flex-col p-2 gap-2">
               <h3 className="text-heading font-medium text-2xl">
                 {item.title}
@@ -53,17 +53,17 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex justify-around  w-[700px] items-center mx-5 md:flex-wrap sm:flex-wrap">
-              <button className="text-paragraph font-medium border p-4 border-gray-100">
+            <div className="flex justify-around items-center mx-5 gap-2 flex-wrap  sm:flex-wrap">
+              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Proposals (2)
               </button>
-              <button className="text-paragraph font-medium border p-4 border-gray-100">
+              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Message (1)
               </button>
-              <button className="text-paragraph font-medium border p-4 border-gray-100">
+              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Shortlist (2)
               </button>
-              <button className="bg-[#01237C] text-white border h-12 py-2 px-8  rounded cursor-pointer">
+              <button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
                 View details
               </button>
             </div>

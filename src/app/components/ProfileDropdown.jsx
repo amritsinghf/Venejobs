@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import userApiStore from "../store/userStore";
 import toastStore from "../store/toastStore";
 import { Routes } from "../routes";
 import SvgIcon from "./SvgIcon";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 export default function ProfileDropdown() {
   const router = useRouter();
@@ -19,6 +20,12 @@ export default function ProfileDropdown() {
     //currenly just removing from localstorage but still in cookie
     showToast("Logged Out Successfully!", "success");
   };
+
+  const dropdownRef = useRef(null);
+  
+    useClickOutside(dropdownRef, () => {
+      setshowDropdown(false);
+    });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -66,7 +73,7 @@ export default function ProfileDropdown() {
           </svg>
         </button>
 
-        <div className="relative inline-block text-left">
+        <div className="relative inline-block text-left" ref={dropdownRef}>
           <button
             className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             onClick={() => setshowDropdown((prev) => !prev)}
