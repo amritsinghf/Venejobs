@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon";
+import Button from "../ui/Button";
 
 export default function Active_Contracts() {
   const [page, setPage] = useState(1);
@@ -17,8 +18,7 @@ export default function Active_Contracts() {
 
   useEffect(() => {}, [page]);
   return (
-    
-    <div className="rounded-2xl mt-10 border border-gray-300 mx-6 w-full sm:mx-0">
+    <div className="rounded-2xl mt-10 border border-gray-300 mx-6 w-full sm:mx-0 ">
       <div className="border-b border-gray-300 rounded py-2 px-3 ">
         <div className="w-full flex items-center  rounded p-2 justify-between flex-wrap ">
           <div className="flex gap-6 ">
@@ -28,26 +28,24 @@ export default function Active_Contracts() {
               width={100}
               className=" rounded-full "
               alt="Freelancer image"
-              style={{height:80,width:80}}
+              style={{ height: 80, width: 80 }}
             />
             <div className="flex flex-col p-2 gap-3 ">
-              <div className="flex gap-8 items-center">
+              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px]">
                 <h3 className="text-heading font-medium text-2xl">Harnish</h3>
                 <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
                 </p>
               </div>
               <div className="flex flex-col">
-
-              <p className="text-paragraph text-[16px]">Can u design ui</p>
+                <p className="text-paragraph text-[16px]">Can u design ui</p>
                 <div className="flex flex-row items-center">
-                <p className="text-heading font-medium">
-                  Started Date: &nbsp;
-                </p>
-                <p className="text-paragraph text-sm">11-01-0001</p>
+                  <p className="text-heading font-medium">
+                    Started Date: &nbsp;
+                  </p>
+                  <p className="text-paragraph text-sm">11-01-0001</p>
+                </div>
               </div>
-              </div>
-              
             </div>
           </div>
 
@@ -66,9 +64,9 @@ export default function Active_Contracts() {
             </div>
           </div>
           <div className="flex items-center ">
-            <button className="bg-[#01237C] text-white border mx-5 py-2 px-8  rounded cursor-pointer">
+            <Button className="bg-[#01237C] text-white border mx-5 py-2 px-8 mt-5 sm:mt-0 mb-4 rounded cursor-pointer">
               View contract
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -82,26 +80,24 @@ export default function Active_Contracts() {
               width={100}
               className=" rounded-full "
               alt="Freelancer image"
-              style={{height:80,width:80}}
+              style={{ height: 80, width: 80 }}
             />
             <div className="flex flex-col p-2 gap-3 ">
-              <div className="flex gap-8 items-center">
+              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px]">
                 <h3 className="text-heading font-medium text-2xl">Harnish</h3>
                 <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
                 </p>
               </div>
               <div className="flex flex-col">
-
-              <p className="text-paragraph text-[16px]">Can u design ui</p>
+                <p className="text-paragraph text-[16px]">Can u design ui</p>
                 <div className="flex flex-row items-center">
-                <p className="text-heading font-medium">
-                  Started Date: &nbsp;
-                </p>
-                <p className="text-paragraph text-sm">11-01-0001</p>
+                  <p className="text-heading font-medium">
+                    Started Date: &nbsp;
+                  </p>
+                  <p className="text-paragraph text-sm">11-01-0001</p>
+                </div>
               </div>
-              </div>
-              
             </div>
           </div>
 
@@ -120,9 +116,9 @@ export default function Active_Contracts() {
             </div>
           </div>
           <div className="flex items-center ">
-            <button className="bg-[#01237C] text-white border mx-5 py-2 px-8  rounded cursor-pointer">
+            <Button className="bg-[#01237C] text-white border mx-5 py-2 px-8 mt-5 sm:mt-0 mb-4 rounded cursor-pointer">
               View contract
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -151,13 +147,13 @@ export default function Active_Contracts() {
             </span>
           ))}
 
-          <button
+          <Button
             disabled={page === totalPage}
             onClick={() => selectPage(page + 1)}
             className="cursor-pointer"
           >
             <SvgIcon name="Control_next" />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import SvgIcon from "../SvgIcon";
 import toastStore from "@/app/store/toastStore";
+import Button from "../ui/Button";
 
 export default function Signupform({
   setActiveModal,
@@ -81,12 +82,13 @@ export default function Signupform({
               </h2>
               <div className="text-sm text-center text-zinc-800">
                 Already Have An Account?{" "}
-                <button
+                <Button
+                type="button"
                   onClick={() => setActiveModal("signin")}
                   className="text-black font-semibold cursor-pointer"
                 >
                   Sign In
-                </button>
+                </Button>
               </div>
               <form
                 className="space-y-1 mt-1 p-5 gap-3 flex flex-col"
@@ -266,7 +268,7 @@ export default function Signupform({
                     placeholder="Password"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   />
-                  <button onClick={toggleVisibility}  className="absolute inset-y-0  right-0 flex items-center mb-1"> <SvgIcon name="Eye"  /></button>
+                  <Button onClick={toggleVisibility}  className="absolute inset-y-0  right-0 flex items-center mb-1"> <SvgIcon name="Eye"  /></Button>
                   {errors.password && (
                     <span className="text-red-500 font-semibold text-[12px] h-4">
                       {errors.password.message}
@@ -289,14 +291,14 @@ export default function Signupform({
                     disabled={isSubmitting}
 
                   /> */}
-                  <button
+                  <Button
                     type="submit"
                     disabled={isSubmitting}
                     className="text-white w-40  rounded  bg-primary hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-1"
                   >
                     {isSubmitting ? "Signing Up" : "Sign Up"}
                     <SvgIcon name="RightArrWhite" />
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

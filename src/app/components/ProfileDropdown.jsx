@@ -6,6 +6,7 @@ import toastStore from "../store/toastStore";
 import { Routes } from "../routes";
 import SvgIcon from "./SvgIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import Button from "./ui/Button";
 
 export default function ProfileDropdown() {
   const router = useRouter();
@@ -31,17 +32,17 @@ export default function ProfileDropdown() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="sm:block hidden ">
+    <div className="hidden sm:hidden lg:block ">
       <div className="flex items-center gap-1 ">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center  gap-6">
           <div className="relative ">
-            <span className="absolute inset-y-0 px-2   flex items-center  ">
+            <span className="absolute inset-y-0 px-2  flex items-center ">
               <SvgIcon name="Search_Icon" />
             </span>
             <input
               type="search"
               id="search"
-              className="block w-[280px] px-8 rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
+              className="block sm:w-[200px] px-8  rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
               placeholder="Search"
               required
             />
@@ -50,7 +51,7 @@ export default function ProfileDropdown() {
           <SvgIcon name="Question" />
         </div>
 
-        <button
+        <Button
           type="button"
           className="relative rounded-full p-1 text-paragraph focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
         >
@@ -71,10 +72,10 @@ export default function ProfileDropdown() {
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </Button>
 
-        <div className="relative inline-block text-left" ref={dropdownRef}>
-          <button
+        <div className="relative inline-block text-left  px-3" ref={dropdownRef}>
+          <Button
             className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             onClick={() => setshowDropdown((prev) => !prev)}
           >
@@ -85,7 +86,7 @@ export default function ProfileDropdown() {
               alt=""
               className="size-10 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
             />
-          </button>
+          </Button>
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
@@ -101,12 +102,12 @@ export default function ProfileDropdown() {
               >
                 Settings
               </a>
-              <button
+              <Button
                 onClick={() => logout()}
                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
               >
                 Sign out
-              </button>
+              </Button>
             </div>
           )}
         </div>

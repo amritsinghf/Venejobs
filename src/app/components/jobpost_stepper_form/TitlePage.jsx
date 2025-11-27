@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import Button from "../ui/Button";
 
 const TitlePage = ({ nextStep, currstep }) => {
   const {
@@ -79,13 +80,13 @@ const TitlePage = ({ nextStep, currstep }) => {
                 </li>
               </ul>
               <div className="flex justify-end mt-5">
-                <button
+                <Button
                   type="button"
                   onClick={handleNext}
                   className="bg-primary text-white w-[150] p-3 border "
                 >
                   Next
-                </button>
+                </Button>
               </div>
             </div>
           </div>

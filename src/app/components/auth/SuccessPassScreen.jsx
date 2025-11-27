@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from "../ui/Button";
 
 export default function SuccessPassScreen({ setActiveModal }) {
   return (
@@ -30,13 +31,12 @@ export default function SuccessPassScreen({ setActiveModal }) {
               </div>
 
               <div className="flex flex-col items-center gap-4 justify-end m-5">
-                {/* <button className="bg-[#01237C] h-[60px] w-1/2 text-[#FAFAFA] rounded">Continue</button> */}
-                <button
+                <Button
                   onClick={() => setActiveModal("signin")}
                   className="text-[#858585] text-[16px] font-semibold"
                 >
                   Back to Login
-                </button>
+                </Button>
               </div>
             </div>
           </div>

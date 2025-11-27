@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useFormContext } from "react-hook-form";
+import Button from "../ui/Button";
 
 const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -131,20 +132,20 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
 
             <div className="flex flex-col gap-5 py-3">
               <div className="flex justify-end mt-5">
-                <button
+                <Button
                   type="button"
                   onClick={handlePrev}
                   className="bg-white text-gray-800 w-[150] p-3  "
                 >
                   Back
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={handleNext}
                   className="bg-primary text-white w-[150] p-3 border "
                 >
                   Review Job Post
-                </button>
+                </Button>
                 {/* <input type="submit" className="bg-blue-900 text-white w-[150] p-3 border" value={"Review Job Post"}/> */}
               </div>
             </div>

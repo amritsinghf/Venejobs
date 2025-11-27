@@ -1,10 +1,11 @@
 "use client";
 
-import { ROUTES } from "@/app/routes.js";
+// import { ROUTES } from "@/app/routes.js";
 import Link from "next/link";
 import { useState } from "react";
-import { signupapi } from "../../lib/auth.api";
 import Image from "next/image";
+import { signupapi } from "@/app/lib/auth/auth.api";
+import Button from "@/app/components/ui/Button";
 
 export default function signup() {
   const [formData, setformData] = useState({
@@ -55,7 +56,7 @@ export default function signup() {
             <p className="font-normal text-sm">send,spent and save smarter</p>
 
             <div className="flex justify-evenly mt-5 ">
-              <button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/google.png"
                   alt="google image"
@@ -63,8 +64,8 @@ export default function signup() {
                   height={22}
                 />
                 Sign in with Google
-              </button>
-              <button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              </Button>
+              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/apple.png"
                   alt="google image"
@@ -72,7 +73,7 @@ export default function signup() {
                   height={22}
                 />
                 Sign in with Apple
-              </button>
+              </Button>
             </div>
 
             <div className="flex flex-col  m-4 h-[220] ">
@@ -119,18 +120,18 @@ export default function signup() {
                   <b> Privacy Policy </b> , and{" "}
                   <b> Electronic Commnucation Policy</b>
                 </span>
-                <button
+                <Button
                   className="text-white bg-blue-600 border-2 rounded-2xl w-80 m-auto h-10 cursor-pointer"
                   onClick={handleSubmit}
                 >
                   Sign Up
-                </button>
+                </Button>
               </form>
 
               {/* <p className="mt-5">Already have an account? <Link href={"../auth/signin"}><b> Sign in</b></Link></p> */}
               <p className="mt-5">
                 Already have an account?{" "}
-                <Link href={ROUTES.SIGNIN}>
+                <Link href={""}>
                   <b> Sign in</b>
                 </Link>
               </p>

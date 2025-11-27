@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { login } from "@/app/lib/auth.api";
+
 import Image from "next/image";
+import { login } from "@/app/lib/auth/auth.api";
+import Button from "@/app/components/ui/Button";
 
 export default function signin() {
   const [formData, setformData] = useState({ email: "", password: "" });
@@ -50,7 +52,7 @@ export default function signin() {
             </p>
 
             <div className="flex justify-evenly items-center mt-5">
-              <button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/google.png"
                   alt="google image"
@@ -58,8 +60,8 @@ export default function signin() {
                   height={22}
                 />
                 Sign in with Google
-              </button>
-              <button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              </Button>
+              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/apple.png"
                   alt="google image"
@@ -67,7 +69,7 @@ export default function signin() {
                   height={22}
                 />
                 Sign in with Apple
-              </button>
+              </Button>
             </div>
 
             <div className="flex flex-col  m-4  h-[200] ">
@@ -89,13 +91,13 @@ export default function signin() {
                   placeholder="Password"
                   className="bg-gray-50 border border-gray-300  text-black text-sm rounded-lg   block w-full p-2.5 focus:border-gray-300 focus:ring-1 focus:outline-none"
                 />
-                <button
+                <Button
                   className="bg-blue-700 text-white h-8 rounded"
                   type="submit"
                   onClick={handleClick}
                 >
                   Sign In
-                </button>
+                </Button>
               </form>
 
               <p className="mt-5">

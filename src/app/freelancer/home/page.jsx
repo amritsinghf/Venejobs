@@ -2,6 +2,7 @@
 import Footer_Freelance from "@/app/components/Footer_Freelance";
 import HomeNavbarFreelance from "@/app/components/HomeNavbar_Freelance";
 import SvgIcon from "@/app/components/SvgIcon";
+import Button from "@/app/components/ui/Button";
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -53,9 +54,9 @@ export default function Home() {
               Explore hand-picked freelance jobs tailored to your skills. Start
               earning on your own terms with Venejobs.
             </p>
-            <button className="bg-secondary p-2 sm:p-7 rounded text-white mt-5 flex items-center gap-1">
+            <Button className="bg-secondary p-2 sm:p-7 rounded text-white mt-5 flex items-center gap-1">
               Learn More <SvgIcon name="NextArrow" />
-            </button> 
+            </Button> 
           </div>
         </div>
 
@@ -154,13 +155,13 @@ export default function Home() {
 
             {/* pagiantion */}
             <div className="flex justify-start px-4 gap-5 items-center">
-              <button
+              <Button
                 disabled={page === 1}
                 onClick={() => selectPage(page - 1)}
                 className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
               >
                 <SvgIcon name="Control_prev" />
-              </button>
+              </Button>
 
               {[...Array(totalPages)].map((_, i) => (
                 <span
@@ -176,7 +177,7 @@ export default function Home() {
                 </span>
               ))}
 
-              <button
+              <Button
                 disabled={page === totalPages}
                 onClick={() => selectPage(page + 1)}
                 className={`cursor-pointer ${
@@ -184,7 +185,7 @@ export default function Home() {
                 }`}
               >
                 <SvgIcon name="Control_next" />
-              </button>
+              </Button>
             </div>
           </div>
         </div>

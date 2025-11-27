@@ -1,3 +1,5 @@
+import Button from "./ui/Button";
+
 export default function Footerdropdown() {
   const items = ["Hindi", "Gujarati", "German", "Spanish"];
 
@@ -5,9 +7,9 @@ export default function Footerdropdown() {
     <ul className="py-2 text-sm text-gray-200">
       {items.map((item) => (
         <li key={item}>
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white">
+          <Button className="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white">
             {item}
-          </button>
+          </Button>
         </li>
       ))}
     </ul>

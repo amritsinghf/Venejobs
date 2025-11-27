@@ -10,6 +10,7 @@ import OtpForm from "@/app/components/auth/OtpForm";
 import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
+import Button from "./ui/Button";
 
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState("");
@@ -17,21 +18,22 @@ export default function Navbar() {
   const [verifyCode, setverifyCode] = useState("");
   return (
     <>
-      <div className="max-w-[1420px] w-full mx-auto  px-6">
+      <div className="max-w-[1420px] w-full mx-auto  px-6 bg-[#FFFFFF]  sm:bg-primary">
         <div className="flex justify-between items-center py-5 ">
-          <div className="flex justify-evenly  items-center">
-            <Image
-              src="/home/new-logo.png"
-              alt="logo image"
-              height={500}
-              width={500}
-              style={{ width: 120, height: 40 }}
-            />
-            {/* flowbite dropdown only - not options */}
-            <button
-              id="dropdownDefaultButton"
-              data-dropdown-toggle="dropdown"
-              className="hidden lg:inline-flex items-center justify-center text-white bg-white/10 rounded-2xl bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+          <div className="flex justify-evenly  items-center gap-[60px]">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="logo image"
+                height={500}
+                width={500}
+                style={{ width: 40, height: 40 }}
+              />
+              <h3 className="text-[22px] sm:text-[28px] font-extrabold  sm:text-white text-heading">Venejobs</h3>
+            </div>
+
+            <Button
+              className="hidden  sm:flex lg:inline-flex items-center justify-center text-white bg-white/10 rounded-2xl  box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
               type="button"
             >
               Category
@@ -52,7 +54,7 @@ export default function Navbar() {
                   d="m19 9-7 7-7-7"
                 />
               </svg>
-            </button>
+            </Button>
           </div>
           <div className="">
             <nav>
@@ -77,18 +79,18 @@ export default function Navbar() {
           </div>
 
           <div className="flex justify-center gap-6 h-10 font-medium ">
-            <button
-              className="text-white cursor-pointer"
+            <Button
+              className="sm:text-white cursor-pointer text-black "
               onClick={() => setActiveModal("signin")}
             >
               Login
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveModal("signup")}
               className="w-[100] text-sm  cursor-pointer rounded-4xl text-black bg-white"
             >
               Signup
-            </button>
+            </Button>
           </div>
         </div>
       </div>

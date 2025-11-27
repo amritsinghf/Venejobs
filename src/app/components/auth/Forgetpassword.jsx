@@ -4,6 +4,7 @@ import { forget_password } from "@/app/lib/auth/auth.api";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRef } from "react";
 import toastStore from "@/app/store/toastStore";
+import Button from "../ui/Button";
 
 export default function Forgetpassword({ setActiveModal, setUserEmail }) {
   const showToast = toastStore.getState().showToast;
@@ -112,13 +113,13 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
               </form>
 
               <div className="flex justify-end m-5">
-                <button
+                <Button
                   type="button"
                   className="text-[#858585] text-[16px] text-center cursor-pointer font-semibold"
                   onClick={() => setActiveModal("signin")}
                 >
                   ← Back to Login
-                </button>
+                </Button>
               </div>
             </div>
           </div>

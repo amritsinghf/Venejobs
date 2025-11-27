@@ -1,6 +1,7 @@
 "use client";
 import { useFormContext } from "react-hook-form";
 import SvgIcon from "../SvgIcon";
+import Button from "../ui/Button";
 
 const ReviewJob = ({ nextStep, prevStep, setStep }) => {
   const {
@@ -118,13 +119,13 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
           </div>
 
           <div className="flex justify-end">
-            <button
+            <Button
               type="button"
               onClick={handlePrev}
               className="bg-white text-gray-800 w-[150] p-3"
             >
               Back
-            </button>
+            </Button>
             <input
               type="submit"
               className="bg-primary text-white w-[150] p-3 border"

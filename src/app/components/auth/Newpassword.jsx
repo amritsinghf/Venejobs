@@ -121,15 +121,6 @@ export default function Newpassword({ email, setActiveModal }) {
                   />
                 </div>
               </form>
-
-              {/* <div className="flex justify-end m-5">
-                <Link
-                  href={""}
-                  className="text-[#858585] text-[16px] font-semibold"
-                >
-                  Back to Login
-                </Link>
-              </div> */}
             </div>
           </div>
         </div>

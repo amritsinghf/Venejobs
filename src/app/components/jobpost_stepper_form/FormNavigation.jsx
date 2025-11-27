@@ -1,17 +1,19 @@
+import Button from "../ui/Button";
+
 const FormNavigation = ({ step, totalSteps, nextStep, prevStep }) => {
   return (
     <div style={{ marginTop: "1rem" }}>
       {step > 1 && (
-        <button type="button" onClick={prevStep}>
+        <Button type="button" onClick={prevStep}>
           Back
-        </button>
+        </Button>
       )}
       {step < totalSteps ? (
-        <button type="button" onClick={nextStep}>
+        <Button type="button" onClick={nextStep}>
           Next
-        </button>
+        </Button>
       ) : (
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       )}
     </div>
   );

@@ -4,10 +4,29 @@ import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import SvgIcon from "./components/SvgIcon";
+import { useState } from "react";
+import Button from "./components/ui/Button";
 
 export default function Home() {
+  const items = [
+    { src: "/home/cat1.jpg", label: "UI-UX Design" },
+    { src: "/home/cat1.jpg", label: "Title 3" },
+    { src: "/home/cat1.jpg", label: "Title 2" },
+    { src: "/home/cat1.jpg", label: "Title 4" },
+    { src: "/home/cat1.jpg", label: "Title 5" },
+  ];
+  const [index, setIndex] = useState(0);
+
+  const visibleCount = 3;
+  const itemWidth = 150;
+  const gap = 12;
+
+  const maxIndex = Math.max(0, items.length - visibleCount);
+
+  const next = () => setIndex((prev) => (prev < maxIndex ? prev + 1 : prev));
+  const prev = () => setIndex((prev) => (prev > 0 ? prev - 1 : prev));
   return (
-    <div className="border w-[600px] sm:w-full">
+    <div className="w-[600px] sm:w-full">
       <div
         className="h-screen w-full  bg-primary relative "
         style={{ backgroundImage: "url('/bg-image.png')" }}
@@ -25,12 +44,12 @@ export default function Home() {
             </p>
 
             <div className="flex gap-8">
-              <button className="rounded p-3 px-6 lg:px-12 lg:py-5  lg:h-[60px] font-semibold text-[16px] text-white bg-black">
+              <Button className="rounded p-3 px-6 lg:px-12 lg:py-5  lg:h-[60px] font-semibold text-[16px] text-white bg-black">
                 Find Freelancer
-              </button>
-              <button className="rounded p-3 px-6 lg:px-12 lg:py-5 text-[16px]  lg:h-[60px] font-semibold text-[#777777] bg-white">
+              </Button>
+              <Button className="rounded p-3 px-6 lg:px-12 lg:py-5 text-[16px]  lg:h-[60px] font-semibold text-[#777777] bg-white">
                 Find Work
-              </button>
+              </Button>
             </div>
           </div>
           <div className="flex-1 lg:flex-4 xl:flex-8 ">
@@ -73,25 +92,25 @@ export default function Home() {
               <p className="text-[#01237C] text-lg">For Clients</p>
               <h2 className="text-[44px]">How it Works</h2>
             </div>
-            <p className="text-lg text-paragraph">
+            <p className="text-lg text-paragraph mx-20 w-[440px] sm:w-auto  sm:mx-0">
               Find the perfect talent to bring your projects to life with a
               streamlined process designed for your success.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:px-3">
-            <div className="flex flex-col gap-8 text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:px-3 ">
+            <div className="flex flex-col gap-8 text-center ">
               <div className="flex items-center justify-center">
                 <div className="w-20 h-20 flex items-center justify-center bg-white shadow shadow-black/10 rounded-full">
                   <SvgIcon name={"Brifcase"} />
                 </div>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-4">
                 <h3 className="text-heading text-2xl font-semibold">
                   Post a Job
                 </h3>
-                <p className="text-paragraph text-[16px]">
+                <p className="text-paragraph text-[16px] mx-20 w-[440px] sm:w-auto  sm:mx-0">
                   Share your requirements, set your budget, and define the
                   timeline for your project.
                 </p>
@@ -104,11 +123,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-4">
                 <h3 className="text-heading text-2xl font-semibold">
                   Review Applications
                 </h3>
-                <p className="text-paragraph text-[16px]">
+                <p className="text-paragraph text-[16px] mx-20 w-[440px] sm:w-auto  sm:mx-0">
                   Browse through proposals, compare budgets, and evaluate
                   freelancer profiles to find the best fit.
                 </p>
@@ -121,11 +140,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-4">
                 <h3 className="text-heading text-2xl font-semibold">
                   Start Collaborating
                 </h3>
-                <p className="text-paragraph text-[16px]">
+                <p className="text-paragraph text-[16px] mx-20 w-[440px] sm:w-full sm:mx-0 ">
                   Work with skilled freelancers and track the progress of your
                   project through our secure platform.
                 </p>
@@ -134,69 +153,109 @@ export default function Home() {
           </div>
         </div>
 
-        {/* responsive pending */}
-        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px] hidden">
+        <div className="w-full flex flex-col gap-8 max-w-[1420px] mx-auto p-3 mt-[195px] ">
           <div className="">
-            <div className=" p-1 flex justify-between items-center lg:flex-wrap ">
-              <h2 className="text-[44px] text-[#222222] font-bold">
-                Browse talent by category
-              </h2>
-              <button className="w-[200px] flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-primary font-bold">
+            <div className="flex flex-col gap-4 sm:flex-row justify-between items-start  lg:flex-wrap">
+              <div className="flex flex-col gap-4 ">
+                <h2 className="text-[32px] sm:text-[44px] text-[#222222] font-bold">
+                  Browse talent by category
+                </h2>
+                <p className="text-zinc-500 text-[16px] sm:text-lg ">
+                  Get some Inspirations from 1800+ skills
+                </p>
+              </div>
+
+              <Button className="px-4 flex items-center justify-center gap-2  h-[60px] bg-[#5BBB7B1A] text-primary font-bold">
                 All category
                 <SvgIcon name="RightOne" />
-              </button>
+              </Button>
             </div>
-            <p className="text-zinc-500 text-[18px]">
-              Get some Inspirations from 1800+ skills
-            </p>
           </div>
 
-          <div className="h-[300px]  flex items-center justify-around">
-            <Image
-              src="/home/cat1.jpg"
-              height={298}
-              width={258}
-              alt="categroy images"
-            />
-            <Image
-              src="/home/cat1.jpg"
-              height={298}
-              width={258}
-              alt="categroy images"
-            />
-            <Image
-              src="/home/cat1.jpg"
-              height={298}
-              width={258}
-              alt="categroy images"
-            />
-            <Image
-              src="/home/cat1.jpg"
-              height={298}
-              width={258}
-              alt="categroy images"
-            />
-            <Image
-              src="/home/cat1.jpg"
-              height={298}
-              width={258}
-              alt="categroy images"
-            />
+          <div className="w-full overflow-hidden relative ">
+            <div
+              className="flex transition-transform duration-300"
+              style={{
+                gap: `${gap}px`,
+                transform: `translateX(-${index * (itemWidth + gap)}px)`,
+              }}
+            >
+              {items.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex-shrink-0 rounded-lg overflow-hidden relative bg-gray-200 w-[150px] lg:w-[260px]  mx-1"
+                >
+                  <div className="absolute top-2 left-2 bg-black/60 text-white px-2 py-1 rounded-md text-xs z-20">
+                    {item.label}
+                  </div>
+
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover "
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* DESKTOP BUTTONS (left + right) */}
+            <Button
+              onClick={prev}
+              disabled={index === 0}
+              className={`
+              hidden lg:flex items-center justify-center
+              absolute top-1/2 -translate-y-1/2 
+              w-10 h-10 rounded-full text-heading bg-white
+            `}
+            >
+              ❮
+            </Button>
+
+            <Button
+              onClick={next}
+              disabled={index === maxIndex}
+              className={`
+                hidden lg:flex items-center justify-center
+                absolute top-1/2 -translate-y-1/2 right-0
+                w-10 h-10 rounded-full text-heading bg-white
+              `}
+            >
+              ❯
+            </Button>
+
+            {/* MOBILE BUTTONS (below) */}
+            <div className="mt-3 flex justify-center gap-5 lg:hidden">
+              <Button
+                onClick={prev}
+                disabled={index === 0}
+                className={`px-4 py-2 rounded-md text-white `}
+              >
+                <SvgIcon name={"Control_prev"} />
+              </Button>
+
+              <Button
+                onClick={next}
+                disabled={index === maxIndex}
+                className={`px-4 py-2 rounded-md text-white`}
+              >
+                <SvgIcon name={"Control_next"} />
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="w-full  flex flex-col  lg:flex-row flex-1  gap-[60px] max-w-[1420px] mt-[195px]  px-3">
-          <div className="">
+        <div className="w-full  flex flex-col items-center lg:flex-row flex-1  gap-[60px] max-w-[1420px] mt-[195px]  px-3">
+          <div className="w-[508px] sm:w-[600px] md:w-[500px] lg:w-[950px]">
             <Image
               src="/home/manwithphone.jpg"
               alt="man on phone"
               height={692}
               width={644}
-              style={{height:692,width:944}}
+              className=""
             />
           </div>
 
-          <div className="flex w-full ">
+          <div className="flex w-full justify-center px-5">
             <div className="flex flex-col   h-[575px] gap-4">
               <p className="text-primary text-[16px] xl:text-[44px] font-bold">
                 #Great Freelance Marketplace
@@ -250,35 +309,34 @@ export default function Home() {
                     </span>
                   </p>
                 </div>
-                <button className="border p-5 lg:p-10 flex items-center justify-center gap-3 mt-10 w-[180px] bg-primary rounded text-white text-[16px] font-semibold">
+                <Button className="border p-5 lg:p-10 flex items-center justify-center gap-3 mt-10 w-[180px] bg-primary rounded text-white text-[16px] font-semibold">
                   Find Work
                   <SvgIcon name="RightArrWhite" />
-                </button>
+                </Button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full  justify-center flex flex-col  sm:mx-0 gap-8 max-w-[1420px] mt-30 md:mt-40">
-          <div className=" ">
+        <div className="w-full  justify-center flex flex-col px-1 sm:mx-0 gap-8 max-w-[1420px] mt-40 md:mt-40">
+          <div className="sm:px-3">
             <div className=" flex flex-col gap-3 md:flex-row justify-between items-center">
               <div className="flex flex-col ">
-              <h2 className="text-[32px] mx-15 sm:mx-0 lg:text-[44px] text-[#222222] font-bold ">
-                Most Popular
-              </h2>
+                <h2 className="text-[32px] mx-15 sm:mx-0 lg:text-[44px] text-[#222222] font-bold ">
+                  Most Popular
+                </h2>
                 <p className="text-zinc-500 text-[18px]">
-              See how you can up your career status
-            </p>
-            </div>
-              <button className="flex  items-center justify-center gap-2  p-2 md:p-6 bg-[#5BBB7B1A] text-primary font-bold">
+                  See how you can up your career status
+                </p>
+              </div>
+              <Button className="flex  items-center justify-center gap-2  p-2 md:p-6 bg-[#5BBB7B1A] text-primary font-bold">
                 All category
                 <SvgIcon name="RightOne" />
-              </button>
+              </Button>
             </div>
-            
           </div>
 
-          <div className="items-center justify-around flex flex-col md:flex-row px-1 gap-6">
+          <div className="items-center justify-around flex flex-col md:flex-row  gap-6 sm:px-2">
             <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]  shadow-xs">
               <Image
                 src="/pop1.png"
@@ -323,7 +381,7 @@ export default function Home() {
               </div>
             </div>
 
-           <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px] shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}
@@ -344,7 +402,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-           <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]   shadow-xs">
+            <div className="bg-neutral-primary-soft block max-w-sm  overflow-hidden rounded-md w-[328px]   shadow-xs">
               <Image
                 src="/pop1.png"
                 height={249}

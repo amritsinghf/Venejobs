@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from "../ui/Button";
 
 export default function CheckMailScreen({ setActiveModal }) {
   return (
@@ -29,12 +30,12 @@ export default function CheckMailScreen({ setActiveModal }) {
               </div>
 
               <div className="flex justify-center m-5">
-                <button
+                <Button
                   onClick={() => setActiveModal("otp_verify")}
                   className="text-[#858585] text-[16px] font-semibold cursor-pointer"
                 >
                   Verify Your OTP
-                </button>
+                </Button>
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import Image from "next/image";
+import Button from "../ui/Button";
 
 export default function OtpForm({
   email,
@@ -210,22 +211,22 @@ export default function OtpForm({
                   ))}
                 </div>
               </div>
-              <button
+              <Button
                 type="submit"
                 onClick={VerifyAccount}
                 className="bg-primary text-white  p-4 w-[200] mt-5 rounded-2xl hover:bg-blue-600"
               >
                 Verify Account
-              </button>
+              </Button>
 
               <div className="flex flex-col items-center mt-2 justify-center">
                 {canResend ? (
-                  <button
+                  <Button
                     className="text-[16px] cursor-pointer"
                     onClick={handleResend}
                   >
                     Resend Code
-                  </button>
+                  </Button>
                 ) : (
                   <>
                     <span className="text-[#718096]"> Resend the code in </span>

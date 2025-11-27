@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Footerdropdown from "./FooterDropdown";
 import SvgIcon from "./SvgIcon";
+import Button from "./ui/Button";
 
 export default function Footer_Freelance() {
   const [open, setOpen] = useState(false);
@@ -158,27 +159,26 @@ export default function Footer_Freelance() {
               <h2 className="mb-6 font-medium text-gray-900 text-lg dark:text-white">
                 Subscribe
               </h2>
-              <form>
+
+              
                 <div className="relative">
                   <input
                     type="search"
                     id="search"
-                    className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 
-                                            focus:ring-blue-500 focus:border-blue-500 
+                    className="block w-full p-6 sm:p-4 text-sm text-black border border-gray-300 rounded-lg  bg-gray-50
                                             dark:bg-[#666666] dark:border-gray-600 dark:placeholder-gray-400 
-                                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                     placeholder="Your Email Address"
                     required
                   />
 
-                  <button
+                  <Button
                     type="submit"
-                    className="text-footerfreelance text-[16px] font-medium absolute end-2.5 bottom-2.5 rounded-lg text-sm px-4 py-2 "
+                    className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-0.9"
                   >
                     Send
-                  </button>
+                  </Button>
                 </div>
-              </form>
             </div>
           </div>
           <div className="px-4 py-6 bg-footerfreelance md:flex md:items-center md:justify-between">
@@ -199,7 +199,7 @@ export default function Footer_Freelance() {
                 Privacy Policy
               </a>
 
-              <button
+              <Button
                 onClick={() => setOpen((prev) => !prev)}
                 className="me-3 mb-3 md:mb-0 text-white bg-white/5 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
               >
@@ -211,7 +211,7 @@ export default function Footer_Freelance() {
                     d="M9 5 5 1 1 5"
                   />
                 </svg>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

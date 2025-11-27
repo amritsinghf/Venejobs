@@ -4,19 +4,20 @@ import jobApiStore from "@/app/store/jobStore";
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon";
 import { get_jobByClient } from "@/app/lib/jobs";
+import Button from "../ui/Button";
 
 export default function Jobs() {
-  const [jobsData, setjobsData] = useState([])
-   const [page, setPage] = useState(1);
+  const [jobsData, setjobsData] = useState([]);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
 
-  const get_users_job = async()=>{
-    const res = await get_jobByClient(page,limit);
-    setjobsData(res.jobs)
+  const get_users_job = async () => {
+    const res = await get_jobByClient(page, limit);
+    setjobsData(res.jobs);
     setPage(res.page);
-    setTotalPages(res.totalPages)
-  }
+    setTotalPages(res.totalPages);
+  };
 
   useEffect(() => {
     get_users_job();
@@ -53,61 +54,65 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex justify-around items-center mx-5 gap-2 flex-wrap  sm:flex-wrap">
-              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+            <div className="flex justify-start items-center  gap-4 flex-wrap  sm:flex-wrap">
+              <div className="flex items-center gap-8 flex-wrap">
+              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Proposals (2)
-              </button>
-              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+              </Button>
+              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Message (1)
-              </button>
-              <button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+              </Button>
+              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
                 Shortlist (2)
-              </button>
-              <button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
+              </Button>
+            </div>
+            <div className="flex justify-between gap-6">
+              <Button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
                 View details
-              </button>
+              </Button>
+              <Button className="flex flex-col items-center text-paragraph text-[14px]">
+                  <SvgIcon name="More"/> More 
+              </Button>
+            </div>
             </div>
           </div>
         </div>
       ))}
       <div className="flex justify-end py-6 px-6">
         <div className="flex justify-center gap-5 items-center">
-          <button
-                disabled={page === 1}
-                onClick={() => selectPage(page - 1)}
-                className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
-              >
-                <SvgIcon name="Control_prev" />
-              </button>
+          <Button
+            disabled={page === 1}
+            onClick={() => selectPage(page - 1)}
+            className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
+          >
+            <SvgIcon name="Control_prev" />
+          </Button>
 
-              
-              {[...Array(totalPages)].map((_, i) => (
-                <span
-                  key={i}
-                  onClick={() => selectPage(i + 1)}
-                  className={`cursor-pointer px-3 py-1 border rounded-full ${
-                    page === i + 1
-                      ? "bg-primary text-white"
-                      : "bg-white text-paragraph font-medium"
-                  }`}
-                >
-                  {i + 1}
-                </span>
-              ))}
+          {[...Array(totalPages)].map((_, i) => (
+            <span
+              key={i}
+              onClick={() => selectPage(i + 1)}
+              className={`cursor-pointer px-3 py-1 border rounded-full ${
+                page === i + 1
+                  ? "bg-primary text-white"
+                  : "bg-white text-paragraph font-medium"
+              }`}
+            >
+              {i + 1}
+            </span>
+          ))}
 
-              
-              <button
-                disabled={page === totalPages}
-                onClick={() => selectPage(page + 1)}
-                className={`cursor-pointer ${
-                  page === totalPages ? "opacity-40" : ""
-                }`}
-              >
-                <SvgIcon name="Control_next" />
-              </button>
+          <Button
+            disabled={page === totalPages}
+            onClick={() => selectPage(page + 1)}
+            className={`cursor-pointer ${
+              page === totalPages ? "opacity-40" : ""
+            }`}
+          >
+            <SvgIcon name="Control_next" />
+          </Button>
         </div>
       </div>
-      
     </div>
   );
 }

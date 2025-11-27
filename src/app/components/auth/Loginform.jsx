@@ -7,9 +7,9 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toastStore from "@/app/store/toastStore";
-import Spinner from "../Spinner";
 import SvgIcon from "../SvgIcon";
 import userApiStore from "@/app/store/userStore";
+import Button from "../ui/Button";
 
 export default function Loginform({ setActiveModal }) {
   const showToast = toastStore.getState().showToast;
@@ -174,29 +174,17 @@ export default function Loginform({ setActiveModal }) {
                       Remember Me
                     </label>
                   </div>
-
-                  <button
-                    onClick={() => setActiveModal("forget_password")}
-                    className="text-heading text-[14px] font-semibold cursor-pointer"
-                  >
-                    Forget password?
-                  </button>
+                  <Button type={"button"} onClick={() => setActiveModal("forget_password")} className="text-heading text-[14px] font-semibold cursor-pointer">Forget password?</Button>
                 </div>
                 <div className="flex justify-end">
-                  {/* <input
-                    type="submit"
-                    className="text-white justify-end bg-blue-900 hover:bg-blue-800  font-medium  text-sm px-5 py-2.5 text-center cursor-pointer"
-                    value={isSubmitting ? <Spinner/> : "Sign In"}
-                    disabled={isSubmitting}
-                  /> */}
-                  <button
+                  <Button
                     type="submit"
                     disabled={isSubmitting}
                     className="text-white w-40 rounded  bg-primary hover:bg-blue-800 font-medium text-sm px-10 py-3 text-center cursor-pointer flex items-center justify-center gap-2"
                   >
-                    {isSubmitting ? <Spinner /> : "Sign In"}
+                    {isSubmitting ? "Logging in" : "Sign In"}
                     <SvgIcon name="RightArrWhite" />
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
