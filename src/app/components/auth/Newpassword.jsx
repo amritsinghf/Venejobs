@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { set, useForm } from "react-hook-form";
-import { reset_password } from "@/app/lib/auth/auth.api";
+import userApiStore from "@/app/store/userStore";
 
 export default function Newpassword({ email, setActiveModal }) {
   const {
@@ -10,14 +10,17 @@ export default function Newpassword({ email, setActiveModal }) {
     formState: { errors, isSubmitting },
   } = useForm();
 
+
+  const resetPassword = userApiStore((s) => s.resetPassword);
+  const loading = userApiStore((s) => s.loading);
+  const error = userApiStore((s) => s.error);
   const password = watch("password");
 
   const onSubmit = async (data) => {
-    const res = await reset_password({
+    const res = await resetPassword({
       email: email,
       newPassword: data.password,
     });
-    // console.log(res);
     if (res.success) {
       setActiveModal("success_pass_reset");
     }

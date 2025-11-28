@@ -10,7 +10,7 @@ export default function Footer_Freelance() {
 
   return (
     <>
-      <footer className="bg-footerfreelance w-full ">
+      <footer className="bg-footerfreelance w-full 2xl:mt-130">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="px-4 py-6 bg-footerfreelance  flex justify-between ">
             <div className="flex items-center justify-start gap-2 flex-wrap ">
@@ -51,9 +51,9 @@ export default function Footer_Freelance() {
           </div>
         </div>
 
-        <hr className="text-white" />
-        <div className="mx-auto w-full max-w-full ">
-          <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+        <hr className="text-white "/>
+        <div className="mx-auto w-7xl max-w-full ">
+          <div className="grid grid-cols-2 gap-8 px-4  py-6 lg:py-8 md:grid-cols-4">
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">
                 About

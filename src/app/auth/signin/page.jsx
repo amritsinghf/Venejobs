@@ -14,8 +14,6 @@ export default function signin() {
     e.preventDefault();
     try {
       const res = await login(formData);
-
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

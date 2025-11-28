@@ -5,8 +5,12 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRef } from "react";
 import toastStore from "@/app/store/toastStore";
 import Button from "../ui/Button";
+import userApiStore from "@/app/store/userStore";
 
 export default function Forgetpassword({ setActiveModal, setUserEmail }) {
+  const forgetPassword = userApiStore((s) => s.forgetPassword);
+  const loading = userApiStore((s) => s.loading);
+  const error = userApiStore((s) => s.error);
   const showToast = toastStore.getState().showToast;
   const {
     register,
@@ -17,8 +21,8 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
 
   const onSubmit = async (data) => {
     try {
-      const res = await forget_password(data);
-      console.log(res.data);
+      const res = await forgetPassword(data);
+
       if (res.success === true) {
         showToast(res.message, "success");
         setActiveModal("check_mail_screen");
@@ -27,9 +31,7 @@ export default function Forgetpassword({ setActiveModal, setUserEmail }) {
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-        console.log("Forget password failed:", error.response.data);
       } else {
-        console.log("Network error:", error.message);
       }
     }
   };

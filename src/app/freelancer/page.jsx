@@ -9,10 +9,10 @@ import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    fetchData();
+    fetchProfile();
   }, []);
 
-  const { user, loading, error, fetchData } = userApiStore();
+  const { user, loading, error, fetchProfile } = userApiStore();
 
   return (
     <>

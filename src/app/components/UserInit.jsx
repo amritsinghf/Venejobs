@@ -1,10 +1,13 @@
 "use client";
 import { useEffect } from "react";
-import userApiStore from "../store/userStore";
+import userApiStore from "@/stores/userApiStore";
 
-export default function UserInit() {
+export default function UserFetcher() {
+  const fetchProfile = userApiStore((s) => s.fetchProfile);
+
+
   useEffect(() => {
-    userApiStore.getState().fetchData();
+    fetchProfile();
   }, []);
 
   return null;

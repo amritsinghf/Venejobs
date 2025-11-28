@@ -1,10 +1,9 @@
-import { get_budget_data } from "@/app/lib/jobs";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import Button from "../ui/Button";
+import jobApiStore from "@/app/store/jobStore";
 
 const Budget_Options = ({ nextStep, prevStep, currstep }) => {
-  const [budgetOption, setbudgetOption] = useState([]);
   const {
     register,
     formState: { errors },
@@ -19,14 +18,10 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
     if (valid) nextStep();
   };
 
-  const get_budgetTypes = async () => {
-    const res = await get_budget_data();
-    console.log(res);
-    setbudgetOption(res.budgetTypes);
-  };
+  const {budget_data,loading,getBudgetData} = jobApiStore();
 
   useEffect(() => {
-    get_budgetTypes();
+    getBudgetData();
   }, []);
 
   const handlePrev = async () => {
@@ -72,7 +67,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                 This will help us match you to talent within your range.
               </p>
               <div className="grid  grid-cols-2 gap-5 mt-4  p-1">
-                {budgetOption.map((item) => (
+                {budget_data?.map((item) => (
                   <div key={item.id}>
                     <div class="flex  space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
                       <div className="flex flex-col ">
@@ -101,7 +96,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                         </svg>
                         <label
                           for="bordered-checkbox-3"
-                          class=" py-4 pe-4 h-[100px]"
+                          className=" py-4 pe-4 h-[100px]"
                         >
                           <p class="select-none w-full  text-sm  text-heading font-semibold">
                             {item.label}
@@ -141,7 +136,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                 milestones to make the project progress smoothly.
               </p>
               <div className="mt-5 flex flex-wrap  gap-5   justify-between ">
-                <div class="flex items-center px-2 bo bg-neutral-primary-soft rounded-2xl">
+                <div className="flex items-center px-2 bo bg-neutral-primary-soft rounded-2xl">
                   <input
                     id="bordered-radio-2"
                     {...register("budget_amount", {

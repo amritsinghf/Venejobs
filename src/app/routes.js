@@ -9,4 +9,5 @@ export const Routes = {
     get_started: "/freelancer",
     page: "/freelancer/home",
   },
+  profile:"/profile"
 };

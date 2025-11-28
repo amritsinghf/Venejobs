@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useState } from "react";
-import { login } from "@/app/lib/auth/auth.api";
 import Image from "next/image";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useForm } from "react-hook-form";
@@ -8,8 +7,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import SvgIcon from "../SvgIcon";
-import userApiStore from "@/app/store/userStore";
 import Button from "../ui/Button";
+import userApiStore from "@/app/store/userStore";
 
 export default function Loginform({ setActiveModal }) {
   const showToast = toastStore.getState().showToast;
@@ -25,18 +24,19 @@ export default function Loginform({ setActiveModal }) {
   useClickOutside(loginRef, () => {
     setActiveModal("");
   });
+  const login = userApiStore((s) => s.login);
+  const loading = userApiStore((s) => s.loading);
+  const error = userApiStore((s) => s.error);
 
   const handleClick = async (data) => {
     try {
       const res = await login(data);
       const token = res.data.token;
-      console.log(res);
+
       if (res.success === true) {
         showToast(res.message, "success");
         await axios.post("/api/set-token", { token });
         localStorage.setItem("token", token);
-
-        userApiStore.getState().fetchData();
 
         if (res.data.user.role_id == 1) {
           router.push("/freelancer");
@@ -51,9 +51,7 @@ export default function Loginform({ setActiveModal }) {
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-        console.log("Login failed:", error.response.data);
       } else {
-        console.log("Network error:", error.message);
       }
     }
   };
@@ -174,7 +172,13 @@ export default function Loginform({ setActiveModal }) {
                       Remember Me
                     </label>
                   </div>
-                  <Button type={"button"} onClick={() => setActiveModal("forget_password")} className="text-heading text-[14px] font-semibold cursor-pointer">Forget password?</Button>
+                  <Button
+                    type={"button"}
+                    onClick={() => setActiveModal("forget_password")}
+                    className="text-heading text-[14px] font-semibold cursor-pointer"
+                  >
+                    Forget password?
+                  </Button>
                 </div>
                 <div className="flex justify-end">
                   <Button

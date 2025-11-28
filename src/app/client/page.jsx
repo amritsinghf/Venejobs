@@ -12,8 +12,12 @@ import Button from "../components/ui/Button";
 export default function Home() {
   const [showData, setshowData] = useState(true);
 
-  const { user, loading, error, fetchData } = userApiStore();
+  const { user, loading, error, fetchProfile } = userApiStore();
+  const name = userApiStore((s) => s.user?.name || "");
 
+  useEffect(() => {
+    fetchProfile();
+  }, []);
   return (
     <>
       <HomeNavbar />
@@ -22,7 +26,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-between items-start px-1">
             <div className="flex flex-col gap-4">
               <h2 className="text-heading font-semibold  text-[32px] sm:text-[44px]  sm:mx-3 mx-0">
-                Welcome back,{user?.name}
+                Welcome back,{name}
               </h2>
               <p className="text-paragraph text-sm sm:text-lg sm:mx-3 mx-0">
                 Here's what's happening with your projects today. Ready to find
@@ -45,8 +49,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
-          
         </div>
 
         <div className="w-full flex gap-4  mt-9  ">
@@ -84,7 +86,7 @@ export default function Home() {
             </p>
           </Button>
         </div>
-        <hr className="mt-4 mx-5 border-gray-300 "/>
+        <hr className="mt-4 mx-5 border-gray-300 " />
 
         {showData && (
           <div className="mt-2 rounded px-2 ">
@@ -93,7 +95,7 @@ export default function Home() {
         )}
 
         {!showData && (
-          <div>
+          <div className="px-2">
             <Active_Contracts />
           </div>
         )}

@@ -11,6 +11,7 @@ import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import Image from "next/image";
 import Button from "../ui/Button";
+import userApiStore from "@/app/store/userStore";
 
 export default function OtpForm({
   email,
@@ -18,9 +19,15 @@ export default function OtpForm({
   setActiveModal,
   setUserEmail,
 }) {
+  const verifyOtpAndSetToken = userApiStore((s) => s.verifyOtpAndSetToken);
+  const verify_resetCode = userApiStore((s) => s.verify_resetCode);
+  const resendOtp = userApiStore((s) => s.resendOtp);
+  const loading = userApiStore((s) => s.loading);
+  const error = userApiStore((s) => s.error);
   const router = useRouter();
-  const [otp, setotp] = useState(new Array(6).fill(""));
-  const [finalotp, setfinalotp] = useState(0);
+  const [otp, setOtp] = useState(Array(6).fill(""));
+  const [finalOtp, setFinalOtp] = useState("");
+
   const [seconds, setSeconds] = useState(10 * 60);
   const [canResend, setCanResend] = useState(false);
   const inputrefs = useRef([]);
@@ -53,51 +60,52 @@ export default function OtpForm({
     }
   }, []);
 
-  const handleotpchange = (index, e) => {
+  const handleOtpChange = (index, e) => {
     const value = e.target.value;
-    if (isNaN(value)) return;
 
-    const newotp = [...otp];
+    // allow only digits
+    if (!/^\d*$/.test(value)) return;
 
-    newotp[index] = value.substring(value.length - 1);
-    setotp(newotp);
+    const newOtp = [...otp];
+    newOtp[index] = value.slice(-1);
+    setOtp(newOtp);
 
-    const combinedOtp = newotp.join("");
-
-    if (combinedOtp.length === 6) {
-      setfinalotp(combinedOtp);
+    
+    if (value && index < 5) {
+      inputrefs.current[index + 1].focus();
     }
 
-    if (value && index < 6 - 1 && inputrefs.current[index + 1]) {
-      inputrefs.current[index + 1].focus();
+    
+    const combined = newOtp.join("");
+    if (combined.length === 6) {
+      setFinalOtp(combined);
     }
   };
 
   const handleOtpClick = (index) => {
-    inputrefs.current[index].setSelectionRange(1, 1);
-
-    // optional
-    if (index > 0 && !otp[index - 1]) {
-      inputrefs.current[otp.indexOf("")].focus();
+    
+    const input = inputrefs.current[index];
+    if (input) {
+      input.setSelectionRange(1, 1);
     }
   };
 
   const handleKeyDown = (index, e) => {
-    if (
-      e.key === "Backspace" &&
-      !otp[index] &&
-      index > 0 &&
-      inputrefs.current[index - 1]
-    ) {
-      // Move focus to the previous input field on backspace
-      inputrefs.current[index - 1].focus();
+    if (e.key === "Backspace") {
+      if (otp[index]) {
+        const newOtp = [...otp];
+        newOtp[index] = "";
+        setOtp(newOtp);
+      } else if (index > 0) {
+        inputrefs.current[index - 1].focus();
+      }
     }
   };
 
   const handleResend = async () => {
     try {
-      const res = await resend_verification_code({ email });
-      console.log(res);
+      const res = await resendOtp({ email });
+
       if (res.success) {
         showToast(res.message, "success");
       }
@@ -106,9 +114,7 @@ export default function OtpForm({
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-        console.log("Resend otp failed:", error.response.data);
       } else {
-        console.log("Network error:", error.message);
       }
     }
   };
@@ -116,9 +122,12 @@ export default function OtpForm({
   const VerifyAccount = async () => {
     if (setverifyCode === "signup-code") {
       try {
-        const res = await verify_account({ email: email, code: finalotp });
+        const res = await verifyOtpAndSetToken({
+          email: email,
+          code: finalotp,
+        });
         const token = res.data.token;
-        console.log(res);
+
         if (res.success === true) {
           showToast(res.message, "success");
           await axios.post("/api/set-token", { token });
@@ -137,16 +146,13 @@ export default function OtpForm({
       } catch (error) {
         if (error.response) {
           showToast(error.response.data.message, "error");
-          console.log("Otp verification failed:", error.response.data);
         } else {
-          console.log("Network error:", error.message);
         }
       }
     } else {
       try {
-        const res = await verify_reset_code({ email: email, code: finalotp });
-        console.log(res.data);
-        // after if res.success go to the reset password form
+        // this is for reset code
+        const res = await verify_resetCode({ email: email, code: finalotp });
         if (res.success) {
           showToast(res.message, "success");
           setUserEmail(email);
@@ -155,9 +161,7 @@ export default function OtpForm({
       } catch (error) {
         if (error.response) {
           showToast(error.response.data.message, "error");
-          console.log("Resend otp failed:", error.response.data);
         } else {
-          console.log("Network error:", error.message);
         }
       }
     }
@@ -184,7 +188,7 @@ export default function OtpForm({
                     width={50}
                     style={{ width: "40px", height: "40px" }}
                   />
-                  <h3 class="text-2xl font-bold  text-heading px-2">
+                  <h3 className="text-2xl font-bold  text-heading px-2">
                     Venejobs
                   </h3>
                 </div>
@@ -200,13 +204,13 @@ export default function OtpForm({
                     <input
                       key={index}
                       type="text"
-                      ref={(input) => (inputrefs.current[index] = input)}
-                      onChange={(e) => {
-                        handleotpchange(index, e);
-                      }}
+                      maxLength={1}
+                      value={value}
+                      ref={(el) => (inputrefs.current[index] = el)}
+                      onChange={(e) => handleOtpChange(index, e)}
                       onClick={() => handleOtpClick(index)}
                       onKeyDown={(e) => handleKeyDown(index, e)}
-                      className="w-15 h-15 bg-white   rounded-2xl text-black text-center "
+                      className="w-15 h-15 bg-white rounded-2xl text-black text-center"
                     />
                   ))}
                 </div>

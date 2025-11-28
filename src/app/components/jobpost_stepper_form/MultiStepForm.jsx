@@ -7,9 +7,9 @@ import Project_Options from "./Project_Options";
 import Budget_Options from "./Budget_Options";
 import DescriptionPage from "./DescriptionPage";
 import ReviewJob from "./ReviewJob";
-import { create_job_post } from "@/app/lib/jobs/index.js";
 import SuccessJobCreate from "./SuccessJobCreate";
 import toastStore from "@/app/store/toastStore";
+import jobApiStore from "@/app/store/jobStore";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -27,6 +27,7 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
+  const {create_job,loading} = jobApiStore();
 
   const onSubmit = async (data) => {
     try {
@@ -42,7 +43,6 @@ const MultiStepForm = () => {
       formData.append("title", data.title);
       formData.append("description", data.description);
       formData.append("category", data.category);
-
       formData.append("project_size", data.project_size);
       formData.append("duration", data.duration);
       formData.append("experience_level", data.experience_level);
@@ -50,17 +50,17 @@ const MultiStepForm = () => {
       formData.append("budget_amount", data.budget_amount);
       formData.append("attachment", data.attachment[0]);
 
-      const res = await create_job_post(formData);
+      const res = await create_job(formData);
+
       if (res.success) {
         setshowConfirmMessage(true);
       }
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-
-        console.log("Job post failed:", error.response.data);
+        
       } else {
-        console.log("Network error:", error.message);
+        
       }
     }
   };

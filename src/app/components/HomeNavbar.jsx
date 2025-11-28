@@ -125,7 +125,8 @@ export default function HomeNavbar() {
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
                     >
                       <div className="mr-4 grid place-items-center"></div>
-                      Post a job
+                      <Link href={Routes.job_post.form} >Post a job</Link>
+                      
                     </div>
                     <div
                       role="button"
@@ -157,7 +158,7 @@ export default function HomeNavbar() {
                       <Button
                         type="button"
                         onClick={() => logout()}
-                        className="block w-full text-left flex items-center gap-1 px-4 py-2 text-sm text-red-600 cursor-pointer"
+                        className="w-full text-left flex items-center gap-1 px-4 py-2 text-sm text-red-600 cursor-pointer"
                       >
                         <SvgIcon name="Signout" /> Sign out
                       </Button>

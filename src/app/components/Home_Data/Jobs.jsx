@@ -1,27 +1,26 @@
 "use client";
 
-import jobApiStore from "@/app/store/jobStore";
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon";
 import { get_jobByClient } from "@/app/lib/jobs";
 import Button from "../ui/Button";
+import jobApiStore from "@/app/store/jobStore";
 
 export default function Jobs() {
-  const [jobsData, setjobsData] = useState([]);
+  const { jobs, pagenum, totalpagenum, loading, error, fetchJobsByUser } =
+    jobApiStore();
+
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
 
-  const get_users_job = async () => {
-    const res = await get_jobByClient(page, limit);
-    setjobsData(res.jobs);
-    setPage(res.page);
-    setTotalPages(res.totalPages);
-  };
+  useEffect(() => {
+    fetchJobsByUser(page, limit);
+  }, [page]);
 
   useEffect(() => {
-    get_users_job();
-  }, [page]);
+    setTotalPages(totalpagenum);
+  }, [totalpagenum]);
 
   const selectPage = (selectedPage) => {
     if (
@@ -35,7 +34,7 @@ export default function Jobs() {
 
   return (
     <div className="rounded-2xl mt-10 border border-gray-300 w-full mx-5 sm:mx-0">
-      {jobsData.map((item) => (
+      {jobs?.map((item) => (
         <div
           className="border-b border-gray-300 rounded py-2 px-3"
           key={item.id}
@@ -54,26 +53,26 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex justify-start items-center  gap-4 flex-wrap  sm:flex-wrap">
-              <div className="flex items-center gap-8 flex-wrap">
-              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
-                Proposals (2)
-              </Button>
-              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
-                Message (1)
-              </Button>
-              <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
-                Shortlist (2)
-              </Button>
-            </div>
-            <div className="flex justify-between gap-6">
-              <Button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
-                View details
-              </Button>
-              <Button className="flex flex-col items-center text-paragraph text-[14px]">
-                  <SvgIcon name="More"/> More 
-              </Button>
-            </div>
+            <div className="flex justify-start items-center  gap-4 sm:gap-10 ">
+              <div className="flex items-center gap-8 flex-wrap ">
+                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+                  Proposals (2)
+                </Button>
+                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+                  Message (1)
+                </Button>
+                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+                  Shortlist (2)
+                </Button>
+              </div>
+              <div className="flex justify-between gap-6">
+                <Button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
+                  View details
+                </Button>
+                <Button className="flex flex-col items-center justify-center text-paragraph text-[14px]">
+                  <SvgIcon name="More" /> More
+                </Button>
+              </div>
             </div>
           </div>
         </div>

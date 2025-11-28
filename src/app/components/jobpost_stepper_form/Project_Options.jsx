@@ -1,16 +1,11 @@
-import {
-  get_project_duration,
-  get_project_experienceLevel,
-  get_project_size,
-} from "@/app/lib/jobs";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import Button from "../ui/Button";
+import jobApiStore from "@/app/store/jobStore";
 
 const Project_Options = ({ nextStep, prevStep, currstep }) => {
-  const [projectSize, setprojectSize] = useState([]);
-  const [duration, setDuration] = useState([]);
-  const [experienceLevels, setExperienceLevels] = useState([]);
+
+  const {projectSizes,projectDuration,experienceLevels,loading,getProjectSize,getProjectDuration,getExperienceLevels} = jobApiStore();
 
   const {
     register,
@@ -27,18 +22,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     if (valid) nextStep();
   };
 
-  const getproject_option = async () => {
-    const project_size = await get_project_size();
-    const project_duration = await get_project_duration();
-    const project_experienceLevel = await get_project_experienceLevel();
-    setprojectSize(project_size.projectSizes);
-    setDuration(project_duration.durations);
-    setExperienceLevels(project_experienceLevel.experienceLevels);
-    console.log(project_duration)
-  };
-
   useEffect(() => {
-    getproject_option();
+    getProjectSize();
+    getProjectDuration();
+    getExperienceLevels();
   }, []);
 
   const handlePrev = async () => {
@@ -81,7 +68,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                 Project size
               </h2>
               <div className="flex flex-col gap-5 mt-4  p-1">
-                {projectSize.map((item) => (
+                {projectSizes?.map((item) => (
                   
                     <div
                       className="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2"
@@ -125,7 +112,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                 Duration
               </h2>
               <div className="mt-5 flex flex-wrap  gap-5  justify-between ">
-                {duration.map((item) => (
+                {projectDuration?.map((item) => (
                   
                     <div className="flex items-center px-2 border border-default bg-neutral-primary-soft rounded-2xl" key={item.id}>
                       <input
@@ -159,20 +146,20 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                 What level of experience will it need?
               </h2>
 
-              {experienceLevels.map((item) => (
-                <>
+              {experienceLevels?.map((item) => (
+                <div key={item.id}>
                   <div className="flex space-x-2.5 bg-neutral-primary-soft border border-default rounded p-2">
                     <input
                       id="bordered-checkbox-2"
                       type="radio"
-                      value="Entry"
+                      value={item.title}
                       {...register("experience_level", {
                         required: "Please select at least one option",
                       })}
                       name="experience_level"
                       className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
                     />
-                    <label for="bordered-checkbox-2" className="py-4 pe-4">
+                    <label htmlFor="bordered-checkbox-2" className="py-4 pe-4">
                       <p className="select-none w-full text-sm  text-heading font-semibold">
                         {item.title}
                       </p>
@@ -184,7 +171,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                       </p>
                     </label>
                   </div>
-                </>
+                </div>
               ))}
               {errors.experience_level && (
                 <span className="text-red-500 font-bold">

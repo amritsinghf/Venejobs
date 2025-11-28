@@ -4,28 +4,33 @@ import { useRef, useState } from "react";
 import { signupapi } from "@/app/lib/auth/auth.api";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import SvgIcon from "../SvgIcon";
 import toastStore from "@/app/store/toastStore";
 import Button from "../ui/Button";
+import userApiStore from "@/app/store/userStore";
 
 export default function Signupform({
   setActiveModal,
   setUserEmail,
   setverifyCode,
 }) {
-  const router = useRouter();
+  
   const showToast = toastStore.getState().showToast;
   const [isVisible, setIsVisible] = useState(false);
+
 
    const toggleVisibility = () => {
     setIsVisible((v) => !v);
   };
 
+  const signup = userApiStore((s) => s.signup);
+  const loading = userApiStore((s) => s.loading);
+  const error = userApiStore((s) => s.error);
+
   const onSubmit = async (data) => {
     try {
-      const res = await signupapi(data);
-
+      const res = await signup(data);
+      
       if (res.success) {
         showToast(res.message, "success");
         setUserEmail(data.email);
@@ -35,9 +40,9 @@ export default function Signupform({
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-        console.log("Signup failed:", error.response.data);
+        
       } else {
-        console.log("Network error:", error.message);
+        
       }
     }
   };
@@ -48,10 +53,6 @@ export default function Signupform({
     watch,
     formState: { errors, isSubmitting },
   } = useForm();
-
-  // const handleChange = (e) => {
-  //   setformData({ ...formData, [e.target.name]: e.target.value });
-  // };
 
   const signupRef = useRef(null);
 

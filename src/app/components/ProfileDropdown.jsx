@@ -7,14 +7,17 @@ import { Routes } from "../routes";
 import SvgIcon from "./SvgIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import Button from "./ui/Button";
+import Link from "next/link";
 
 export default function ProfileDropdown() {
   const router = useRouter();
   const [showDropdown, setshowDropdown] = useState(false);
-  const { user, loading, error, fetchData } = userApiStore();
+  const { user, loading, error, fetchProfile } = userApiStore();
+  const user_logout = userApiStore((s) => s.logout);
   const showToast = toastStore.getState().showToast;
 
   const logout = () => {
+    user_logout();
     localStorage.removeItem("token");
 
     router.push(Routes.home);
@@ -90,12 +93,18 @@ export default function ProfileDropdown() {
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
-              <a
-                href="#"
+              <Link
+                href={Routes.profile}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
                 {user?.name}
-              </a>
+              </Link>
+              <Link
+                href={Routes.profile}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                Profile
+              </Link>
               <a
                 href="#"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

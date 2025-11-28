@@ -1,7 +1,7 @@
-import { get_categories, getskills_by_category } from "@/app/lib/jobs";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import Button from "../ui/Button";
+import jobApiStore from "@/app/store/jobStore";
 
 const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -11,7 +11,6 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     watch,
   } = useFormContext();
 
-  const [categories, setcategories] = useState([]);
   const [skills, setSkills] = useState([]);
   const [categoryName, setcategoryName] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
@@ -43,23 +42,16 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     setSelectedItems(updatedItems);
   };
 
-  const getallcategories = async () => {
-    const res = await get_categories();
-    console.log(res);
-    if (res.success === true) {
-      setcategories(res.data);
-    }
-  };
+  const { category_data, skills_data,loading, getCategories,getSkillsByCategory } = jobApiStore();
 
   const getskillsbycategory = async (selectedCategory, categoryName) => {
     setcategoryName(categoryName);
-    const res = await getskills_by_category(selectedCategory);
-    console.log(res.data);
-    setSkills(res.data);
+    
+    await getSkillsByCategory(selectedCategory);
   };
 
   useEffect(() => {
-    getallcategories();
+    getCategories();
   }, []);
 
   const handleNext = async () => {
@@ -106,7 +98,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
 
             <div className="flex flex-wrap gap-4 ">
               <ul className="grid  gap-1 md:grid-cols-3 ">
-                {categories.map((item) => (
+                {category_data?.map((item) => (
                   <div key={item.code}>
                     <li className="text-center">
                       <input
@@ -174,7 +166,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                   {categoryName && `Popular skills for ${categoryName}`}
                 </h2>
                 <div className="flex flex-wrap mt-5 gap-4">
-                  {skills.map((item) => {
+                  {skills_data?.map((item) => {
                     const checkboxId = `skill-${item.id}`;
                     return (
                       <div key={item.id}>

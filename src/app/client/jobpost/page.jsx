@@ -6,7 +6,7 @@ import { Routes } from "@/app/routes.js";
 import userApiStore from "@/app/store/userStore";
 
 export default function Jobpost() {
-  const { user, loading, error, fetchData } = userApiStore();
+  const { user, loading, error, fetchProfile } = userApiStore();
   return (
     <>
       <HomeNavbar />

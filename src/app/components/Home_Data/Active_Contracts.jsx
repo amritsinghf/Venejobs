@@ -18,9 +18,9 @@ export default function Active_Contracts() {
 
   useEffect(() => {}, [page]);
   return (
-    <div className="rounded-2xl mt-10 border border-gray-300 mx-6 w-full sm:mx-0 ">
-      <div className="border-b border-gray-300 rounded py-2 px-3 ">
-        <div className="w-full flex items-center  rounded p-2 justify-between flex-wrap ">
+    <div className="rounded-2xl mt-10 border border-gray-300 mx-6 w-full sm:mx-0">
+      <div className="border-b border-gray-300 rounded py-2 px-3">
+        <div className="w-full flex items-center rounded p-2 justify-between flex-wrap">
           <div className="flex gap-6 ">
             <Image
               src={"/freelancer.jpg"}
@@ -31,7 +31,7 @@ export default function Active_Contracts() {
               style={{ height: 80, width: 80 }}
             />
             <div className="flex flex-col p-2 gap-3 ">
-              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px]">
+              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px]  px-2">
                 <h3 className="text-heading font-medium text-2xl">Harnish</h3>
                 <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
@@ -83,7 +83,7 @@ export default function Active_Contracts() {
               style={{ height: 80, width: 80 }}
             />
             <div className="flex flex-col p-2 gap-3 ">
-              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px]">
+              <div className="flex gap-8 items-center justify-between sm:w-full  w-[400px] px-2">
                 <h3 className="text-heading font-medium text-2xl">Harnish</h3>
                 <p className="bg-secondary text-white rounded-2xl px-2 py-1 font-medium text-[12px]">
                   Active Contract
