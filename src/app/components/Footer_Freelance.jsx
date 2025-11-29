@@ -10,7 +10,7 @@ export default function Footer_Freelance() {
 
   return (
     <>
-      <footer className="bg-footerfreelance w-full 2xl:mt-130">
+      <footer className="bg-footerfreelance w-[600px] sm:w-full 2xl:mt-54">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="px-4 py-6 bg-footerfreelance  flex justify-between ">
             <div className="flex items-center justify-start gap-2 flex-wrap ">
@@ -51,7 +51,7 @@ export default function Footer_Freelance() {
           </div>
         </div>
 
-        <hr className="text-white "/>
+        <hr className="text-white " />
         <div className="mx-auto w-7xl max-w-full ">
           <div className="grid grid-cols-2 gap-8 px-4  py-6 lg:py-8 md:grid-cols-4">
             <div>
@@ -160,25 +160,24 @@ export default function Footer_Freelance() {
                 Subscribe
               </h2>
 
-              
-                <div className="relative">
-                  <input
-                    type="search"
-                    id="search"
-                    className="block w-full p-6 sm:p-4 text-sm text-black border border-gray-300 rounded-lg  bg-gray-50
+              <div className="relative">
+                <input
+                  type="search"
+                  id="search"
+                  className="block w-full p-6 sm:p-4 text-sm text-black border border-gray-300 rounded-lg  bg-gray-50
                                             dark:bg-[#666666] dark:border-gray-600 dark:placeholder-gray-400 
                                             dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
-                    placeholder="Your Email Address"
-                    required
-                  />
+                  placeholder="Your Email Address"
+                  required
+                />
 
-                  <Button
-                    type="submit"
-                    className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-0.9"
-                  >
-                    Send
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-0.9"
+                >
+                  Send
+                </Button>
+              </div>
             </div>
           </div>
           <div className="px-4 py-6 bg-footerfreelance md:flex md:items-center md:justify-between">

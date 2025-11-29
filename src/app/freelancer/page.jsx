@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <>
       <HomeNavbarFreelance />
-      <div className="w-full  max-w-[1420px]  mb-55 mt-20 sm:mt-[120px]  mx-auto sm:px-3">
+      <div className="w-full max-w-[1420px]  mb-55 mt-20 sm:mt-[120px]  mx-auto sm:px-3">
         <div className="flex justify-items-start flex-col gap-10  px-2 sm:px-0">
           <div className="flex flex-col justify-items-start max-w-4xl w-full ">
             <h2 className="text-heading font-semibold text-[24px] sm:text-[64px]">

@@ -9,19 +9,22 @@ import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
 import toastStore from "../store/toastStore";
 import Button from "./ui/Button";
+import userApiStore from "../store/userStore";
 
 export default function HomeNavbar() {
-
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const showToast = toastStore.getState().showToast;
-    const logout = () => {
-      localStorage.removeItem("token");
-  
-      router.push(Routes.home);
-      //currenly just removing from localstorage but still in cookie
-      showToast("Logged Out Successfully!", "success");
-    };
+
+  const { user, loading, error, fetchProfile } = userApiStore();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+
+    router.push(Routes.home);
+    //currenly just removing from localstorage but still in cookie
+    showToast("Logged Out Successfully!", "success");
+  };
   return (
     <>
       <div className="sm:w-full w-[600px] relative ">
@@ -86,18 +89,18 @@ export default function HomeNavbar() {
                 ></div>
 
                 <div
-                  className={`fixed top-0 right-0 lg:hidden h-full w-54  bg-white shadow-xl z-50 p-4 flex flex-col gap-5 transform transition-transform duration-300 ${
+                  className={`fixed top-0 right-0 lg:hidden h-full w-74 bg-white shadow-xl z-50 p-4 flex flex-col gap-8 transform transition-transform duration-300 ${
                     menuOpen ? "translate-x-0" : "translate-x-full"
                   }`}
                 >
-                  <div className="flex justify-between items-center mb-4 ">
+                  <div className="flex justify-between items-center mb-4 mt-10">
                     <div className="flex items-center gap-2">
                       <Image
                         src="/home/logo-home.png"
                         alt="logo image"
                         height={500}
                         width={500}
-                        style={{ width: 40, height: 40 }}
+                        style={{ width: 50, height: 50 }}
                         className="cursor-pointer"
                       />
                       <h5 className="text-xl font-semibold text-blue-gray-900">
@@ -112,53 +115,80 @@ export default function HomeNavbar() {
                     </Button>
                   </div>
                   <hr />
-                  <nav className="flex flex-col items-start gap-1">
+
+                  <nav className="flex flex-col items-start gap-3 ">
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg "
                     >
                       <div className="mr-4 grid place-items-center"></div>
-                      Find Talent
+                      <Link
+                        href={
+                          user?.role_id === 2
+                            ? Routes.profile.client
+                            : Routes.profile.freelancer
+                        }
+                        className="md:text-2xl"
+                      >
+                        Profile
+                      </Link>
                     </div>
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
                       <div className="mr-4 grid place-items-center"></div>
-                      <Link href={Routes.job_post.form} >Post a job</Link>
-                      
-                    </div>
-                    <div
-                      role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
-                    >
-                      <div className="mr-4 grid place-items-center"></div>
-                      Manage Work
-                    </div>
-                    <div
-                      role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
-                    >
-                      <div className="mr-4 grid place-items-center"></div>
-                      Reports
+                      <Link href={""} className="md:text-2xl">
+                        Find Talent
+                      </Link>
                     </div>
 
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
                       <div className="mr-4 grid place-items-center"></div>
-                      Message
+                      <Link href={Routes.job_post.form} className="md:text-2xl">
+                        Post a job
+                      </Link>
+                    </div>
+                    <div
+                      role="button"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+                    >
+                      <div className="mr-4 grid place-items-center"></div>
+                      <Link href={""} className="md:text-2xl">
+                        Manage Work
+                      </Link>
+                    </div>
+                    <div
+                      role="button"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+                    >
+                      <div className="mr-4 grid place-items-center"></div>
+                      <Link href={""} className="md:text-2xl">
+                        Reports
+                      </Link>
                     </div>
 
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+                    >
+                      <div className="mr-4 grid place-items-center"></div>
+                      <Link href={""} className="md:text-2xl">
+                        Message
+                      </Link>
+                    </div>
+
+                    <div
+                      role="button"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-2xl"
                     >
                       <Button
                         type="button"
                         onClick={() => logout()}
-                        className="w-full text-left flex items-center gap-1 px-4 py-2 text-sm text-red-600 cursor-pointer"
+                        className="w-full text-left flex items-center gap-1 px-4 py-2 text-lg text-red-600 cursor-pointer"
                       >
                         <SvgIcon name="Signout" /> Sign out
                       </Button>

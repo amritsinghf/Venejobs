@@ -11,11 +11,13 @@ import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 import Button from "./ui/Button";
+import SvgIcon from "./SvgIcon";
 
 export default function Navbar() {
   const [activeModal, setActiveModal] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [verifyCode, setverifyCode] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <div className="max-w-[1420px] w-full mx-auto  px-6 bg-[#FFFFFF]  sm:bg-primary">
@@ -29,7 +31,9 @@ export default function Navbar() {
                 width={500}
                 style={{ width: 40, height: 40 }}
               />
-              <h3 className="text-[22px] sm:text-[28px] font-extrabold  sm:text-white text-heading">Venejobs</h3>
+              <h3 className="text-[22px] sm:text-[28px] font-extrabold  sm:text-white text-heading">
+                Venejobs
+              </h3>
             </div>
 
             <Button
@@ -78,7 +82,7 @@ export default function Navbar() {
             </nav>
           </div>
 
-          <div className="flex justify-center gap-6 h-10 font-medium ">
+          <div className="flex justify-center items-center   gap-6 h-10 font-medium ">
             <Button
               className="sm:text-white cursor-pointer text-black "
               onClick={() => setActiveModal("signin")}
@@ -87,13 +91,111 @@ export default function Navbar() {
             </Button>
             <Button
               onClick={() => setActiveModal("signup")}
-              className="w-[100] text-sm  cursor-pointer rounded-4xl text-black bg-white"
+              className="w-[100] text-sm p-3 cursor-pointer rounded-4xl text-black bg-white"
             >
               Signup
             </Button>
+            <div className="text-center">
+              <Button
+                className="text-black lg:hidden hover:bg-brand-strong  font-medium leading-5 rounded-base text-sm px-4 py-2.5 "
+                type="button"
+                aria-controls="drawer-navigation"
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen(true)}
+              >
+                <SvgIcon name="ToggleMenu" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+
+      {menuOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={() => setMenuOpen(false)}
+          ></div>
+
+          <div
+            className={`fixed top-0 right-0 lg:hidden h-full w-74 bg-white shadow-xl z-50 p-4 flex flex-col gap-8 transform transition-transform duration-300 ${
+              menuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="flex justify-between items-center mb-4 mt-10">
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/home/logo-home.png"
+                  alt="logo image"
+                  height={500}
+                  width={500}
+                  style={{ width: 50, height: 50 }}
+                  className="cursor-pointer"
+                />
+                <h5 className="text-xl font-semibold text-blue-gray-900">
+                  Venejobs
+                </h5>
+              </div>
+              <Button
+                className="text-gray-500 hover:text-gray-700"
+                onClick={() => setMenuOpen(false)}
+              >
+                ×
+              </Button>
+            </div>
+            <hr />
+
+            <nav className="flex flex-col items-start gap-3 ">
+              <div
+                role="button"
+                className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+              >
+                <div className="mr-4 grid place-items-center"></div>
+                <Link href={""} className="md:text-2xl">
+                  Find Talent
+                </Link>
+              </div>
+
+              <div
+                role="button"
+                className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+              >
+                <div className="mr-4 grid place-items-center"></div>
+                <Link href={""} className="md:text-2xl">
+                  Post a job
+                </Link>
+              </div>
+              <div
+                role="button"
+                className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+              >
+                <div className="mr-4 grid place-items-center"></div>
+                <Link href={""} className="md:text-2xl">
+                  Find Work
+                </Link>
+              </div>
+              <div
+                role="button"
+                className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+              >
+                <div className="mr-4 grid place-items-center"></div>
+                <Link href={""} className="md:text-2xl">
+                  About us
+                </Link>
+              </div>
+              <div
+                role="button"
+                className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
+              >
+                <div className="mr-4 grid place-items-center"></div>
+                <Link href={""} className="md:text-2xl">
+                  Contact us
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </>
+      )}
 
       {activeModal === "signin" && (
         <Loginform setActiveModal={setActiveModal} />

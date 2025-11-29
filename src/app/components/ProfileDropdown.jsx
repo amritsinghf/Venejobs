@@ -26,10 +26,10 @@ export default function ProfileDropdown() {
   };
 
   const dropdownRef = useRef(null);
-  
-    useClickOutside(dropdownRef, () => {
-      setshowDropdown(false);
-    });
+
+  useClickOutside(dropdownRef, () => {
+    setshowDropdown(false);
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -77,7 +77,10 @@ export default function ProfileDropdown() {
           </svg>
         </Button>
 
-        <div className="relative inline-block text-left  px-3" ref={dropdownRef}>
+        <div
+          className="relative inline-block text-left  px-3"
+          ref={dropdownRef}
+        >
           <Button
             className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             onClick={() => setshowDropdown((prev) => !prev)}
@@ -100,7 +103,11 @@ export default function ProfileDropdown() {
                 {user?.name}
               </Link>
               <Link
-                href={Routes.profile}
+                href={
+                  user?.role_id === 2
+                    ? Routes.profile.client
+                    : Routes.profile.freelancer
+                }
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
                 Profile

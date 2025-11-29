@@ -9,12 +9,14 @@ import SvgIcon from "./SvgIcon";
 import { useRouter } from "next/navigation";
 import toastStore from "../store/toastStore";
 import Button from "./ui/Button";
+import userApiStore from "../store/userStore";
 
 
 export default function HomeNavbarFreelance() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const showToast = toastStore.getState().showToast;
+  const { user, loading, error, fetchProfile } = userApiStore();
   const logout = () => {
     localStorage.removeItem("token");
 
@@ -24,7 +26,7 @@ export default function HomeNavbarFreelance() {
   };
   return (
     <>
-      <div className="w-full relative">
+      <div className="sm:w-full w-[600px] relative ">
         <div className="max-w-[1420px] w-full mx-auto ">
           <div className="flex justify-between items-center py-5 ">
             <div className="flex justify-evenly gap-1  items-center px-2">
@@ -83,7 +85,7 @@ export default function HomeNavbarFreelance() {
                 ></div>
 
                 <div
-                  className={`fixed top-0 right-0 lg:hidden h-full w-54  bg-white shadow-xl z-50 p-4 flex flex-col gap-5 transform transition-transform duration-300 ${
+                  className={`fixed top-0 right-0 lg:hidden h-full w-74 bg-white shadow-xl z-50 p-4 flex flex-col gap-8 transform transition-transform duration-300 ${
                     menuOpen ? "translate-x-0" : "translate-x-full"
                   }`}
                 >
@@ -115,18 +117,34 @@ export default function HomeNavbarFreelance() {
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
                     >
                       <div className="mr-4 grid place-items-center"></div>
+                    <Link
+                        href={
+                          user?.role_id === 2
+                            ? Routes.profile.client
+                            : Routes.profile.freelancer
+                        }
+                        className="md:text-2xl"
+                      >
+                        Profile
+                      </Link>
+                      </div>
+                    <div
+                      role="button"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 md:text-2xl"
+                    >
+                      <div className="mr-4 grid place-items-center"></div>
                       Find Work
                     </div>
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 md:text-2xl"
                     >
                       <div className="mr-4 grid place-items-center"></div>
                       Deliver Work
                     </div>
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 md:text-2xl"
                     >
                       <div className="mr-4 grid place-items-center"></div>
                       Manage Finances
@@ -134,7 +152,7 @@ export default function HomeNavbarFreelance() {
 
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 md:text-2xl"
                     >
                       <div className="mr-4 grid place-items-center"></div>
                       Message
@@ -142,12 +160,12 @@ export default function HomeNavbarFreelance() {
 
                     <div
                       role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50"
+                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 md:text-2xl"
                     >
                       <Button
                         type="button"
                         onClick={() => logout()}
-                        className="block w-full text-left flex items-center gap-1 px-4 py-2 text-sm text-red-600 cursor-pointer"
+                        className="block w-full text-left flex  items-center gap-1 px-4 py-2 text-lg   text-red-600 cursor-pointer"
                       >
                         <SvgIcon name="Signout" /> Sign out
                       </Button>

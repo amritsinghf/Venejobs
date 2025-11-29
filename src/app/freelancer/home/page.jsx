@@ -41,8 +41,8 @@ export default function Home() {
   return (
     <>
       <HomeNavbarFreelance />
-      <div className="w-full   max-w-[1420px]  mb-20 mt-30 mx-auto  px-1">
-        <div className="w-full bg-gray-100 rounded-2xl px-12 py-5  flex flex-col gap-4  ">
+      <div className="w-[580] sm:w-full   max-w-[1420px]  mb-20 mt-30 mx-2 sm:mx-auto  px-1  ">
+        <div className="w-full bg-gray-100 rounded-2xl px-12  py-5  flex flex-col gap-4  ">
           <div className="flex flex-row justify-between items-center ">
             <h2 className="text-heading font-semibold text-[24px] sm:text-[44px]">
               Find Projects That Match Your Passion With Venejobs

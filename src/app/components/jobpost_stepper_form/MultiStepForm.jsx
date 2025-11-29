@@ -27,7 +27,7 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
-  const {create_job,loading} = jobApiStore();
+  const { create_job, loading } = jobApiStore();
 
   const onSubmit = async (data) => {
     try {
@@ -58,9 +58,7 @@ const MultiStepForm = () => {
     } catch (error) {
       if (error.response) {
         showToast(error.response.data.message, "error");
-        
       } else {
-        
       }
     }
   };
