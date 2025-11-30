@@ -6,45 +6,57 @@ export default function MostPopular() {
     const cards = [1, 2, 3, 4];
 
     return (
-        <div className="w-full flex flex-col px-1 gap-8 max-w-[1420px] mt-40">
-            <div className="flex flex-col gap-3 md:flex-row justify-between items-center sm:px-3">
-                <div>
-                    <h2 className="text-[32px] lg:text-[44px] font-bold">Most Popular</h2>
-                    <p className="text-zinc-500 text-[18px]">See how you can up your career status</p>
+        <div className="w-full flex flex-col gap-8">
+
+            <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center text-left">
+                <div className="flex flex-col gap-4">
+                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight w-full text-start">
+                        Most Popular
+                    </h2>
+
+                    <p className="text-gray-500 text-sm md:text-lg text-start tracking-wide font-medium">
+                        See how you can up your career status
+                    </p>
                 </div>
 
-                <Button className="flex gap-2 p-2 md:p-6 bg-[#5BBB7B1A] text-primary font-bold">
-                    All category <SvgIcon name="RightOne" />
+                <Button className="flex items-center justify-center md:justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base w-fit">
+                    All category
+                    <SvgIcon name="RightOne" />
                 </Button>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-6 justify-around items-center">
+            <div className="w-full flex flex-wrap justify-start gap-6 lg:justify-between">
                 {cards.map((c, i) => (
                     <div
                         key={i}
-                        className="bg-neutral-primary-soft max-w-sm rounded-md w-[328px] shadow-xs"
+                        className="bg-white rounded-lg w-full md:w-[328px] shadow-[0_6px_15px_rgba(64,79,104,0.05)] overflow-hidden border border-[#E5E7EB]"
                     >
                         <Image
                             src="/pop1.png"
-                            alt="category"
+                            alt="popular"
                             width={328}
                             height={249}
-                            className="w-full"
+                            className="w-full h-[249px] object-cover"
                         />
-                        <div className="flex flex-col px-4 mt-5 gap-4">
-                            <p className="text-paragraph text-[16px]">November 7, 2022</p>
 
-                            <h5 className="font-semibold text-lg">
+                        <div className="px-4 py-6 flex flex-col gap-4">
+                            <p className="text-gray-500 font-medium text-sm">
+                                November 7, 2022
+                            </p>
+
+                            <h5 className="font-semibold text-lg leading-7 text-heading">
                                 Exploring Some of the Cities and Home Services
                             </h5>
 
-                            <p className="text-[14px] text-paragraph">
+                            <p className="text-gray-500 font-medium text-sm leading-snug">
                                 Bringing the culture of sharing to everyone
                             </p>
                         </div>
                     </div>
                 ))}
             </div>
+
         </div>
+
     );
 }

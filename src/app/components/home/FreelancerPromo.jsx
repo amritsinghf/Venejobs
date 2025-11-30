@@ -4,59 +4,60 @@ import Button from "../button/Button";
 
 export default function FreelancerPromo() {
     return (
-        <div className="w-full flex flex-col items-center lg:flex-row gap-[60px] max-w-[1420px] mt-[195px] px-3">
-            <div className="w-[508px] sm:w-[600px] md:w-[500px] lg:w-[950px]">
+        <div className="pt-20 lg:pt-30 w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
+            <div className="lg:w-5/6">
                 <Image
                     src="/home/manwithphone.jpg"
                     alt="man on phone"
-                    width={644}
-                    height={692}
+                    width={700}
+                    height={700}
                 />
             </div>
 
-            <div className="flex w-full justify-center px-5">
-                <div className="flex flex-col h-[575px] gap-4">
+            <div className="flex w-full justify-start md:justify-center">
+                <div className="flex flex-col gap-5 text-left md:text-center lg:text-left">
 
-                    <p className="text-primary text-[16px] xl:text-[44px] font-bold">
+                    <p className="text-primary text-base font-bold tracking-wide">
                         #Great Freelance Marketplace
                     </p>
 
-                    <h2 className="xl:text-[44px] text-[32px] font-bold">
+                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight">
                         Empowering Freelancers to Achieve Their Career Goals
                     </h2>
 
-                    <p className="text-lg text-[#6B7177]">
-                        Meet clients you're excited to work with and take your career to new heights.
+                    <p className="text-gray-500 text-sm md:text-lg text-start tracking-wide font-medium leading-6 lg:leading-8">
+                        Meet clients you’re excited to work with and takeyour career or business to new heights. Find opportunities for every stage of your freelance career.
                     </p>
 
                     {/* Points List */}
                     {[
                         {
                             bold: "Kickstart Your Freelance Journey:",
-                            text: " Discover opportunities for beginners and pros.",
+                            text: "Discover a variety of opportunities designed for beginners and seasoned professionals alike.",
                         },
                         {
                             bold: "Build Meaningful Connections:",
-                            text: " Work with clients who value your skills.",
+                            text: "Collaborate with clients who value your skills and are eager to work with you.",
                         },
                         {
                             bold: "Grow Your Career with Confidence:",
-                            text: " Access projects that match your expertise.",
+                            text: "Access projects that match your expertise and take your freelancing career to the next level.",
                         },
                     ].map((item, i) => (
-                        <div key={i} className="flex gap-1">
+                        <div key={i} className="flex gap-3">
                             <SvgIcon name="Checkmark" />
                             <p className="text-lg">
-                                <b>{item.bold}</b>
-                                <span className="text-[#6B7177]">{item.text}</span>
+                                <b className="text-heading">{item.bold} </b>
+                                <span className="text-gray-500 text-sm lg:text-base font-medium tracking-wide">{item.text}</span>
                             </p>
                         </div>
                     ))}
 
-                    <Button className="border p-5 lg:p-10 gap-3 mt-10 w-[180px] bg-primary text-white rounded font-semibold">
+                    <Button className="flex items-center gap-3 border px-6 py-3 lg:px-10 lg:py-4 bg-primary text-white rounded-md font-semibold w-fit cursor-pointer">
                         Find Work
                         <SvgIcon name="RightArrWhite" />
                     </Button>
+
 
                 </div>
             </div>

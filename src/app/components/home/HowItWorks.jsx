@@ -2,7 +2,7 @@ import SvgIcon from "../SvgIcon";
 
 export default function HowItWorks() {
     return (
-        <div className="pt-20 lg:pt-30 w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
+        <div className="w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
             <div className="flex flex-col gap-12">
 
                 {/* Heading */}
@@ -15,7 +15,7 @@ export default function HowItWorks() {
                         How it Works
                     </h2>
 
-                    <p className="text-sm lg:text-lg text-gray-500 mx-auto tracking-wide">
+                    <p className="text-sm lg:text-lg text-gray-500 mx-auto tracking-wide font-medium">
                         Find the perfect talent to bring your projects to life with a streamlined process designed for your success.
                     </p>
                 </div>
@@ -53,7 +53,7 @@ export default function HowItWorks() {
                                 <h3 className="text-xl lg:text-2xl text-heading font-semibold">
                                     {item.title}
                                 </h3>
-                                <p className="text-sm lg:text-base text-gray-500 mx-auto max-w-5/6 leading-7 tracking-wide">
+                                <p className="text-sm lg:text-base text-gray-500 mx-auto max-w-5/6 leading-7 tracking-wide font-medium">
                                     {item.desc}
                                 </p>
                             </div>
