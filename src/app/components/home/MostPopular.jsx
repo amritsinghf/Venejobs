@@ -26,7 +26,7 @@ export default function MostPopular() {
 
                 {/* Center on mobile */}
                 <div className="flex justify-center md:justify-end w-full md:w-auto">
-                    <Button className="flex items-center justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base px-5 py-2 rounded-md">
+                    <Button className="flex items-center justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base rounded-md">
                         All category
                         <SvgIcon name="RightOne" />
                     </Button>

@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import SvgIcon from "../components/SvgIcon";
 import HomeNavbarFreelance from "../components/HomeNavbar_Freelance";
 import Footer_Freelance from "../components/Footer_Freelance";
 import { Routes } from "../routes";
 import userApiStore from "@/app/store/userStore";
 import { useEffect } from "react";
+import SvgIcon from "../components/SvgIcon";
 
 export default function Page() {
   useEffect(() => {

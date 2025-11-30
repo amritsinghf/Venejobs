@@ -1,10 +1,10 @@
 import Loginform from "@/app/components/auth/Loginform";
-import Signupform from "@/app/components/auth/Signupform";
 import Forgetpassword from "@/app/components/auth/Forgetpassword";
 import OtpForm from "@/app/components/auth/OtpForm";
 import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
+import SignupForm from "../auth/signup/SignupForm";
 
 export default function Modals({
   activeModal,
@@ -20,7 +20,7 @@ export default function Modals({
 
     case "signup":
       return (
-        <Signupform
+        <SignupForm
           setActiveModal={setActiveModal}
           setUserEmail={setUserEmail}
           setverifyCode={setverifyCode}

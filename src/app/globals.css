@@ -7,3 +7,20 @@
     --color-footerclient:#111111;
     --color-footerfreelance:#1A463A
 }
+
+@keyframes fadeInPremium {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-fadeInPremium {
+  animation: fadeInPremium 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
