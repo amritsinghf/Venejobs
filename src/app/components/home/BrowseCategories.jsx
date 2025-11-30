@@ -1,26 +1,31 @@
-import SvgIcon from "../SvgIcon";
+import CategorySlider from "../BrowseCategories/CategorySlider";
+import { categories } from "../BrowseCategories/data";
 import Button from "../button/Button";
+import SvgIcon from "../SvgIcon";
 
 export default function BrowseCategories() {
     return (
-        <div className="w-full mx-auto">
-            <div className="flex flex-col gap-4 sm:flex-row justify-between items-start md:items-center lg:flex-wrap">
+        <section className="w-full">
+            {/* HEADER */}
+            <div className="flex flex-col gap-4 sm:flex-row justify-between items-start md:items-center mb-8">
                 <div className="flex flex-col gap-4">
-                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight w-full text-start lg:text-start">
+                    <h2 className="text-3xl lg:text-5xl font-bold text-heading">
                         Browse talent by category
                     </h2>
-                    <p className="text-gray-500 text-sm md:text-lg text-start tracking-wide font-medium">
-                        Get some inspirations from 1800+ skills
+
+                    <p className="text-gray-500 text-sm md:text-lg">
+                        Get some Inspirations from 1800+ skills
                     </p>
                 </div>
 
-                <Button className="flex items-center justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base">
-                    All category
+                <Button className="flex items-center gap-2 bg-[#5BBB7B1A] text-primary font-semibold rounded-md">
+                    All Category
                     <SvgIcon name="RightOne" />
                 </Button>
             </div>
 
-            {/* SLIDER CODE WILL GO HERE */}
-        </div>
+            {/* SLIDER */}
+            <CategorySlider items={categories} />
+        </section>
     );
 }

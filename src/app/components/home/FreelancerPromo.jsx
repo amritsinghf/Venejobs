@@ -4,7 +4,7 @@ import Button from "../button/Button";
 
 export default function FreelancerPromo() {
     return (
-        <div className="pt-20 lg:pt-30 w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
+        <div className="w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
             <div className="lg:w-5/6">
                 <Image
                     src="/home/manwithphone.jpg"
