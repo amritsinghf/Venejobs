@@ -1,10 +1,10 @@
 import Loginform from "@/app/components/auth/Loginform";
-import Forgetpassword from "@/app/components/auth/Forgetpassword";
 import OtpForm from "@/app/components/auth/OtpForm";
 import Newpassword from "@/app/components/auth/Newpassword";
 import CheckMailScreen from "@/app/components/auth/CheckMailScreen";
 import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 import SignupForm from "../auth/signup/SignupForm";
+import ForgetPasswordWrapper from "../auth/forget-password/ForgetPasswordWrapper";
 
 export default function Modals({
   activeModal,
@@ -28,7 +28,7 @@ export default function Modals({
       );
 
     case "forget_password":
-      return <Forgetpassword setActiveModal={setActiveModal} setUserEmail={setUserEmail} />;
+      return <ForgetPasswordWrapper setActiveModal={setActiveModal} setUserEmail={setUserEmail} />;
 
     case "otp_verify":
       return (

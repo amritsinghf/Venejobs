@@ -16,7 +16,7 @@ export default function LoginActions({ setActiveModal, isSubmitting }) {
                 <Button
                     type="button"
                     onClick={() => setActiveModal("forget_password")}
-                    className="flex items-center text-sm font-semibold text-heading"
+                    className="flex items-center text-sm font-semibold text-heading cursor-pointer"
                 >
                     Forget password?
                 </Button>
