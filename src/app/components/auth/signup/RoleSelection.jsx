@@ -27,8 +27,10 @@ export default function RoleSelection({ register, errors }) {
                 peer-checked:border-primary
             "
                     >
-                        <SvgIcon name="Teleworking" className="w-5 h-5" />
-                        <span className="text-sm md:text-base font-medium">
+                        <SvgIcon
+                            name="Teleworking"
+                            className="w-5 h-5 text-gray-500 peer-checked:text-white"
+                        />                        <span className="text-sm md:text-base font-medium">
                             I'm a freelancer
                         </span>
                     </label>
@@ -56,7 +58,10 @@ export default function RoleSelection({ register, errors }) {
                 peer-checked:border-primary
             "
                     >
-                        <SvgIcon name="Businessman" className="w-5 h-5" />
+                        <SvgIcon
+                            name="Businessman"
+                            className="w-5 h-5 text-gray-500 peer-checked:text-white"
+                        />
                         <span className="text-sm md:text-base font-medium">
                             I'm a Client
                         </span>
