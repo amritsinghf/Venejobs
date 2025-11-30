@@ -38,7 +38,7 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
 
   return (
     <SignupModalWrapper setActiveModal={setActiveModal}>
-      <SignupHeader />
+      <SignupHeader setActiveModal={setActiveModal} />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 p-4 md:p-6">
         <SignupFormFields

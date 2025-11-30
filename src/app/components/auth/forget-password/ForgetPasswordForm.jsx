@@ -7,7 +7,7 @@ import Button from "../../button/Button";
 export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
     const forgetPassword = userApiStore((s) => s.forgetPassword);
     const loading = userApiStore((s) => s.loading);
-    const showToast = toastStore.getState().showToast;
+    const { showSuccess, showError } = toastStore.getState();
 
     const {
         register,
@@ -20,13 +20,13 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
             const res = await forgetPassword(data);
 
             if (res.success) {
-                showToast(res.message, "success");
+                showSuccess("Success", res.message);
                 setUserEmail(data.email);
                 setActiveModal("check_mail_screen");
             }
         } catch (error) {
             if (error.response) {
-                showToast(error.response.data.message, "error");
+                showError("Error", error.response.data.message);
             }
         }
     };
@@ -73,7 +73,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                 </div>
 
                 {/* Button Right Aligned */}
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-5">
                     <Button
                         type="submit"
                         disabled={loading}

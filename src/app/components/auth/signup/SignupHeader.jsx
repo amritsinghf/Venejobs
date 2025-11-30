@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Button from "../../button/Button";
 
-export default function SignupHeader() {
+export default function SignupHeader({ setActiveModal }) {
   return (
     <>
       <div className="flex items-center justify-center gap-3 mt-5 mb-5">
@@ -16,7 +16,9 @@ export default function SignupHeader() {
         <Button
           type="button"
           onClick={() => setActiveModal("signin")}
-          className="text-black font-semibold tracking-wide"
+          className="text-black font-semibold tracking-wide cursor-pointer"
+          style={{ color: "var(--color-primary)" }}
+
         >
           Sign In
         </Button>

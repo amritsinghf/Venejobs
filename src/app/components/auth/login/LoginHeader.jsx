@@ -16,7 +16,8 @@ export default function LoginHeader({ setActiveModal }) {
                 Do you have an account yet?{" "}
                 <button
                     onClick={() => setActiveModal("signup")}
-                    className="font-semibold text-heading tracking-wide cursor-pointer"
+                    className="font-semibold text-heading tracking-wide cursor-pointer "
+                    style={{ color: "var(--color-primary)"}}
                 >
                     Sign Up
                 </button>

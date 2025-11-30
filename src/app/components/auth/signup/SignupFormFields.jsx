@@ -1,4 +1,4 @@
-import PasswordInput from "../../login/PasswordInput";
+import PasswordInput from "../login/PasswordInput";
 import RoleSelection from "./RoleSelection";
 
 export default function SignupFormFields({

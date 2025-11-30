@@ -1,4 +1,4 @@
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../../SvgIcon";
 
 export default function PasswordInput({ register, errors, isVisible, toggleVisibility }) {
     return (
