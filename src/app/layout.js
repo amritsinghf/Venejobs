@@ -1,7 +1,6 @@
 import { Geist, DM_Sans } from "next/font/google";
 import { ToastContainer } from 'react-toastify';
 import "./globals.css";
-import "flowbite";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

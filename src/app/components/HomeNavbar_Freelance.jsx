@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import "flowbite";
 import ProfileDropdown from "./ProfileDropdown";
 import { Routes } from "../routes";
 import { useState } from "react";

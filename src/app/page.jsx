@@ -22,6 +22,16 @@ export default function Home() {
           <HeroSection />
         </div>
       </div>
+
+      {/* FIXED layout: proper wrapper */}
+      <main className="w-full lg:max-w-3/5 mx-auto max-w-[90%] flex flex-col gap-20 lg:gap-30">
+        <HowItWorks />
+
+        <BrowseCategories />
+
+        {/* <FreelancerPromo />
+        <MostPopular /> */}
+      </main>
     </>
   );
 }

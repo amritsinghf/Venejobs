@@ -1,5 +1,4 @@
 "use client";
-import "flowbite";
 import { useEffect, useRef, useState } from "react";
 import {
   resend_verification_code,
@@ -70,12 +69,12 @@ export default function OtpForm({
     newOtp[index] = value.slice(-1);
     setOtp(newOtp);
 
-    
+
     if (value && index < 5) {
       inputrefs.current[index + 1].focus();
     }
 
-    
+
     const combined = newOtp.join("");
     if (combined.length === 6) {
       setFinalOtp(combined);
@@ -83,7 +82,7 @@ export default function OtpForm({
   };
 
   const handleOtpClick = (index) => {
-    
+
     const input = inputrefs.current[index];
     if (input) {
       input.setSelectionRange(1, 1);
