@@ -6,8 +6,16 @@ import SvgIcon from "../SvgIcon";
 export default function BrowseCategories() {
     return (
         <section className="w-full">
+
             {/* HEADER */}
-            <div className="flex flex-col gap-4 sm:flex-row justify-between items-start md:items-center mb-8">
+            <div className="
+                flex flex-col gap-4 
+                sm:flex-row 
+                justify-between 
+                items-center sm:items-start 
+                text-center sm:text-left 
+                mb-8
+            ">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-3xl lg:text-5xl font-bold text-heading">
                         Browse talent by category
@@ -18,14 +26,20 @@ export default function BrowseCategories() {
                     </p>
                 </div>
 
-                <Button className="flex items-center gap-2 bg-[#5BBB7B1A] text-primary font-semibold rounded-md">
-                    All Category
-                    <SvgIcon name="RightOne" />
-                </Button>
+                {/* CENTER BUTTON ON MOBILE */}
+                <div className="flex justify-center sm:justify-end w-full sm:w-auto">
+                    <Button className="flex items-center gap-2 bg-[#5BBB7B1A] text-primary font-semibold rounded-md px-5 py-2">
+                        All Category
+                        <SvgIcon name="RightOne" />
+                    </Button>
+                </div>
             </div>
 
             {/* SLIDER */}
-            <CategorySlider items={categories} />
+            <div className="flex justify-center sm:justify-start">
+                <CategorySlider items={categories} />
+            </div>
+
         </section>
     );
 }

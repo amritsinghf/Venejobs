@@ -8,28 +8,49 @@ export default function MostPopular() {
     return (
         <div className="w-full flex flex-col gap-8">
 
-            <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center text-left">
-                <div className="flex flex-col gap-4">
-                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight w-full text-start">
+            {/* HEADER */}
+            <div className="
+                flex flex-col gap-3 
+                md:flex-row md:justify-between md:items-center 
+                text-center md:text-left
+            ">
+                <div className="flex flex-col gap-4 w-full md:w-auto">
+                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight">
                         Most Popular
                     </h2>
 
-                    <p className="text-gray-500 text-sm md:text-lg text-start tracking-wide font-medium">
+                    <p className="text-gray-500 text-sm md:text-lg tracking-wide font-medium">
                         See how you can up your career status
                     </p>
                 </div>
 
-                <Button className="flex items-center justify-center md:justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base w-fit">
-                    All category
-                    <SvgIcon name="RightOne" />
-                </Button>
+                {/* Center on mobile */}
+                <div className="flex justify-center md:justify-end w-full md:w-auto">
+                    <Button className="flex items-center justify-center gap-2 bg-[#5BBB7B1A] text-primary font-bold text-base px-5 py-2 rounded-md">
+                        All category
+                        <SvgIcon name="RightOne" />
+                    </Button>
+                </div>
             </div>
 
-            <div className="w-full flex flex-wrap justify-start gap-6 lg:justify-between">
+            {/* CARDS */}
+            <div className="
+                w-full 
+                flex flex-wrap 
+                justify-center md:justify-start lg:justify-between 
+                gap-6
+            ">
                 {cards.map((c, i) => (
                     <div
                         key={i}
-                        className="bg-white rounded-lg w-full md:w-[328px] shadow-[0_6px_15px_rgba(64,79,104,0.05)] overflow-hidden border border-[#E5E7EB]"
+                        className="
+                            bg-white 
+                            rounded-lg 
+                            w-full sm:w-[90%] md:w-[328px] 
+                            shadow-[0_6px_15px_rgba(64,79,104,0.05)] 
+                            overflow-hidden 
+                            border border-[#E5E7EB]
+                        "
                     >
                         <Image
                             src="/pop1.png"
@@ -57,6 +78,5 @@ export default function MostPopular() {
             </div>
 
         </div>
-
     );
 }
