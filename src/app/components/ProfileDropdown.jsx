@@ -6,7 +6,7 @@ import toastStore from "../store/toastStore";
 import { Routes } from "../routes";
 import SvgIcon from "./SvgIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import Button from "./ui/Button";
+import Button from "./button/Button";
 import Link from "next/link";
 
 export default function ProfileDropdown() {

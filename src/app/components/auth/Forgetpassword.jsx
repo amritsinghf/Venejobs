@@ -4,7 +4,7 @@ import { forget_password } from "@/app/lib/auth/auth.api";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRef } from "react";
 import toastStore from "@/app/store/toastStore";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 import userApiStore from "@/app/store/userStore";
 
 export default function Forgetpassword({ setActiveModal, setUserEmail }) {

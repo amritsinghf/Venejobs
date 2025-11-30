@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import Image from "next/image";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 import userApiStore from "@/app/store/userStore";
 
 export default function OtpForm({

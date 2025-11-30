@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
 import toastStore from "../store/toastStore";
-import Button from "./ui/Button";
+import Button from "./button/Button";
 import userApiStore from "../store/userStore";
 
 export default function HomeNavbar() {

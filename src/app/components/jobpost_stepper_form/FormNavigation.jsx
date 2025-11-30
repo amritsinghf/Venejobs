@@ -1,4 +1,4 @@
-import Button from "../ui/Button";
+import Button from "../button/Button";
 
 const FormNavigation = ({ step, totalSteps, nextStep, prevStep }) => {
   return (

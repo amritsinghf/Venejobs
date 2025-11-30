@@ -2,7 +2,7 @@
 import Footer_Freelance from "@/app/components/Footer_Freelance";
 import HomeNavbarFreelance from "@/app/components/HomeNavbar_Freelance";
 import SvgIcon from "@/app/components/SvgIcon";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/button/Button";
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";

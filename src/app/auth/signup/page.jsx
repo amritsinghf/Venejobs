@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { signupapi } from "@/app/lib/auth/auth.api";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/button/Button";
 
 export default function signup() {
   const [formData, setformData] = useState({

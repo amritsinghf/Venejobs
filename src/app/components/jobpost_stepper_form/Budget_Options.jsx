@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
 
 const Budget_Options = ({ nextStep, prevStep, currstep }) => {

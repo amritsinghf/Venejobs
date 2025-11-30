@@ -14,7 +14,7 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="max-w-[1420px] w-full mx-auto px-6 bg-white lg:bg-transparent">
+            <div className="w-full lg:max-w-3/5 mx-auto max-w-[90%]">
                 <div className="flex justify-between items-center py-5">
 
                     <LogoSection />

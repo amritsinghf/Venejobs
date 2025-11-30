@@ -1,4 +1,4 @@
-import Button from "./ui/Button";
+import Button from "./button/Button";
 
 export default function Footerdropdown() {
   const items = ["Hindi", "Gujarati", "German", "Spanish"];

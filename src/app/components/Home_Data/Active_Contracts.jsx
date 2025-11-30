@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 
 export default function Active_Contracts() {
   const [page, setPage] = useState(1);

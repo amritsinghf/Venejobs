@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import SvgIcon from "../SvgIcon";
 import { get_jobByClient } from "@/app/lib/jobs";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
 
 export default function Jobs() {

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Footerdropdown from "./FooterDropdown";
 import SvgIcon from "./SvgIcon";
-import Button from "./ui/Button";
+import Button from "./button/Button";
 
 export default function Footer() {
   const [open, setOpen] = useState(false);

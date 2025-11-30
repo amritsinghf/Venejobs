@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useFormContext } from "react-hook-form";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 
 const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   const {

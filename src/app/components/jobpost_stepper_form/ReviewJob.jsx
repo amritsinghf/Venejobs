@@ -1,7 +1,7 @@
 "use client";
 import { useFormContext } from "react-hook-form";
 import SvgIcon from "../SvgIcon";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 
 const ReviewJob = ({ nextStep, prevStep, setStep }) => {
   const {

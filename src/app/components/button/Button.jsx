@@ -7,10 +7,9 @@ export default function Button({
   disabled = false,
   className = "",
   icon,
-  variant = "", // default variant
+  variant = "",
   ...props
 }) {
-  // Basic variants
   const variantClasses = {
     primary: "text-white w-40 rounded bg-primary hover:bg-blue-800",
     secondary: "bg-gray-200 text-black hover:bg-gray-300",

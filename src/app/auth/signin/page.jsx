@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import Image from "next/image";
 import { login } from "@/app/lib/auth/auth.api";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/button/Button";
 
 export default function signin() {
   const [formData, setformData] = useState({ email: "", password: "" });

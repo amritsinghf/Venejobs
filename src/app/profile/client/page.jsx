@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import HomeNavbar from "@/app/components/HomeNavbar";
 import SvgIcon from "@/app/components/SvgIcon";
-import Button from "@/app/components/ui/Button";
+import Button from "@/app/components/button/Button";
 import toastStore from "@/app/store/toastStore";
 import userApiStore from "@/app/store/userStore";
 import { Routes } from "@/app/routes";

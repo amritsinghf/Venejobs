@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 
 const TitlePage = ({ nextStep, currstep }) => {
   const {

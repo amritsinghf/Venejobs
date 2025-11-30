@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Jobs from "@/app/components/Home_Data/Jobs";
 import Active_Contracts from "@/app/components/Home_Data/Active_Contracts";
 import userApiStore from "../store/userStore";
-import Button from "../components/ui/Button";
+import Button from "../components/button/Button";
 
 export default function Home() {
   const [showData, setshowData] = useState(true);

@@ -6,7 +6,7 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { useForm } from "react-hook-form";
 import SvgIcon from "../SvgIcon";
 import toastStore from "@/app/store/toastStore";
-import Button from "../ui/Button";
+import Button from "../button/Button";
 import userApiStore from "@/app/store/userStore";
 
 export default function Signupform({
