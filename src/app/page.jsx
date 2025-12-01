@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="w-full min-h-[70vh] md:min-h-[90vh] lg:min-h-[80vh] bg-primary relative flex flex-col"
+        className="w-full min-h-[70vh] md:min-h-[90vh] lg:min-h-[90vh] bg-primary relative flex flex-col"
         style={{ backgroundImage: "url('/bg-image.png')" }}
       >
         <div className="bg-white  lg:bg-transparent">
@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       {/* FIXED layout: proper wrapper */}
-      <main className="w-full lg:max-w-3/5 mx-auto max-w-[90%] flex flex-col gap-20 lg:gap-30 my-20 lg:my-30">
+      <main className="w-full lg:max-w-[80%] mx-auto max-w-[90%] flex flex-col gap-20 lg:gap-30 my-20 lg:my-30">
         <HowItWorks />
 
         <BrowseCategories />
