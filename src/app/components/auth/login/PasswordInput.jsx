@@ -1,4 +1,4 @@
-import SvgIcon from "../../SvgIcon";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function PasswordInput({ register, errors, isVisible, toggleVisibility }) {
     return (
@@ -6,22 +6,22 @@ export default function PasswordInput({ register, errors, isVisible, toggleVisib
             <input
                 type={isVisible ? "text" : "password"}
                 placeholder="Password"
-                {...register("password", {
-                    required: "Password is required",
-                })}
-                className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                {...register("password", { required: "Password is required" })}
+                className="block py-2.5 pr-10 px-1 w-full text-base border-b border-neutral-300
+                focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide
+                placeholder:text-sm"
             />
 
             <button
                 type="button"
                 onClick={toggleVisibility}
-                className="absolute inset-y-0 right-0 flex items-center"
+                className="absolute right-0 top-1/2 -translate-y-1/2 p-2 flex items-center"
             >
-                <SvgIcon name="Eye" />
+                {isVisible ? <VisibilityOff /> : <Visibility />}
             </button>
 
             {errors.password && (
-                <span className="text-red-500 text-sm">
+                <span className="text-red-500 text-sm block mt-1">
                     {errors.password.message}
                 </span>
             )}
