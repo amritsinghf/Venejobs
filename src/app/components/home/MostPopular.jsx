@@ -18,7 +18,6 @@ export default function MostPopular() {
                     <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight">
                         Most Popular
                     </h2>
-
                     <p className="text-gray-500 text-sm md:text-lg tracking-wide font-medium">
                         See how you can up your career status
                     </p>
