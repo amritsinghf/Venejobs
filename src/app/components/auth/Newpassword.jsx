@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { set, useForm } from "react-hook-form";
 import userApiStore from "@/app/store/userStore";
+import SvgIcon from "../SvgIcon";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
 
 export default function Newpassword({ email, setActiveModal }) {
   const {
@@ -10,7 +13,12 @@ export default function Newpassword({ email, setActiveModal }) {
     formState: { errors, isSubmitting },
   } = useForm();
 
-
+  const toggle = (field) =>
+  setVisible(v => ({ ...v, [field]: !v[field] }));
+  const [visible, setVisible] = useState({
+    password1: false,
+    password2: false,
+  });
   const resetPassword = userApiStore((s) => s.resetPassword);
   const loading = userApiStore((s) => s.loading);
   const error = userApiStore((s) => s.error);
@@ -31,6 +39,15 @@ export default function Newpassword({ email, setActiveModal }) {
       <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
           <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
+            <div className="flex justify-end px-2">
+              <button
+                type="button"
+                onClick={() => setActiveModal("")}
+                className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+              >
+                <SvgIcon name="CrossButton" />
+              </button>
+            </div>
             <div className="p-4 md:p-5 h-[680]">
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image
@@ -58,9 +75,9 @@ export default function Newpassword({ email, setActiveModal }) {
                 className="space-y-4 mt-5 p-6"
                 method="post"
               >
-                <div>
+                <div className="flex">
                   <input
-                    type="password"
+                    type={visible.password1 ? "text" : "password"}
                     name="password"
                     id="password"
                     placeholder="New Password"
@@ -82,6 +99,13 @@ export default function Newpassword({ email, setActiveModal }) {
                       },
                     })}
                   />
+                  <button
+                    type="button"
+                    onClick={() => toggle("password1")}
+                    className="flex items-center"
+                  >
+                    {visible.password1 ? <VisibilityOff /> : <Visibility />}
+                  </button>
                   {errors.password && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.password.message}
@@ -90,9 +114,9 @@ export default function Newpassword({ email, setActiveModal }) {
                 </div>
 
                 {/* Confirm Password */}
-                <div>
+                <div className="flex">
                   <input
-                    type="password"
+                    type={visible.password2 ? "text" : "password"}
                     name="confirmPassword"
                     id="confirmPassword"
                     placeholder="Confirm Password"
@@ -103,6 +127,13 @@ export default function Newpassword({ email, setActiveModal }) {
                         value === password || "Passwords do not match",
                     })}
                   />
+                  <button
+                    type="button"
+                    onClick={() => toggle("password1")}
+                    className="flex items-center"
+                  >
+                    {visible.password2 ? <VisibilityOff /> : <Visibility />}
+                  </button>
                   {errors.confirmPassword && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.confirmPassword.message}

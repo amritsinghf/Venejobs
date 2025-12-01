@@ -14,15 +14,20 @@ export default function ProfileDropdown() {
   const [showDropdown, setshowDropdown] = useState(false);
   const { user, loading, error, fetchProfile } = userApiStore();
   const user_logout = userApiStore((s) => s.logout);
-  const showToast = toastStore.getState().showToast;
+  const showSuccess = toastStore.getState().showSuccess;
+  const showError = toastStore.getState().showError;
 
   const logout = () => {
-    user_logout();
-    localStorage.removeItem("token");
+    try {
+      user_logout();
+      localStorage.removeItem("token");
 
-    router.push(Routes.home);
-    //currenly just removing from localstorage but still in cookie
-    showToast("Logged Out Successfully!", "success");
+      router.push(Routes.home);
+      //currenly just removing from localstorage but still in cookie
+      showSuccess("Logged Out Successfully!", "success");
+    } catch (error) {
+      showError(error, "error");
+    }
   };
 
   const dropdownRef = useRef(null);
@@ -45,7 +50,7 @@ export default function ProfileDropdown() {
             <input
               type="search"
               id="search"
-              className="block sm:w-[200px] px-8  rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
+              className="block sm:w-[200px] px-8 py-3 rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
               placeholder="Search"
               required
             />
@@ -105,8 +110,8 @@ export default function ProfileDropdown() {
               <Link
                 href={
                   user?.role_id === 2
-                    ? Routes.profile.client
-                    : Routes.profile.freelancer
+                    ? Routes.profile.client.info
+                    : Routes.profile.freelancer.info 
                 }
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >

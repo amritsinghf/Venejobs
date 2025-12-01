@@ -18,7 +18,8 @@ export default function Loginform({ setActiveModal }) {
   const toggleVisibility = () => setIsVisible((v) => !v);
 
   const login = userApiStore((s) => s.login);
-  const showToast = toastStore.getState().showToast;
+  const showSuccess = toastStore.getState().showSuccess;
+  const showError  = toastStore.getState().showError;
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
@@ -28,7 +29,7 @@ export default function Loginform({ setActiveModal }) {
       const token = res.data.token;
 
       if (res.success) {
-        showToast(res.message, "success");
+        showSuccess(res.message, "success");
 
         await axios.post("/api/set-token", { token });
         localStorage.setItem("token", token);
@@ -37,10 +38,10 @@ export default function Loginform({ setActiveModal }) {
         else if (res.data.user.role_id === 2) router.push("/client");
         else router.push("/admin");
       } else {
-        showToast(res.message, "error");
+        showError(res.message, "error");
       }
     } catch (error) {
-      showToast(error?.response?.data?.message || "Login failed", "error");
+      showError(error?.response?.data?.message || "Login failed", "error");
     }
   };
 

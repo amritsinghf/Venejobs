@@ -1,16 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import {
-  resend_verification_code,
-  verify_account,
-  verify_reset_code,
-} from "@/app/lib/auth/auth.api";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toastStore from "@/app/store/toastStore";
 import Image from "next/image";
 import Button from "../button/Button";
 import userApiStore from "@/app/store/userStore";
+import SvgIcon from "../SvgIcon";
 
 export default function OtpForm({
   email,
@@ -30,7 +26,8 @@ export default function OtpForm({
   const [seconds, setSeconds] = useState(10 * 60);
   const [canResend, setCanResend] = useState(false);
   const inputrefs = useRef([]);
-  const showToast = toastStore.getState().showToast;
+  const showSuccess = toastStore.getState().showSuccess;
+  const showError  = toastStore.getState().showError;
 
   useEffect(() => {
     if (seconds <= 0) {
@@ -106,13 +103,13 @@ export default function OtpForm({
       const res = await resendOtp({ email });
 
       if (res.success) {
-        showToast(res.message, "success");
+        showSuccess(res.message, "success");
       }
       setSeconds(10 * 60);
       setCanResend(false);
     } catch (error) {
       if (error.response) {
-        showToast(error.response.data.message, "error");
+        showError(error.response.data.message, "error");
       } else {
       }
     }
@@ -123,12 +120,12 @@ export default function OtpForm({
       try {
         const res = await verifyOtpAndSetToken({
           email: email,
-          code: finalotp,
+          code: finalOtp,
         });
         const token = res.data.token;
 
         if (res.success === true) {
-          showToast(res.message, "success");
+          showSuccess(res.message, "success");
           await axios.post("/api/set-token", { token });
           localStorage.setItem("token", token);
 
@@ -140,26 +137,27 @@ export default function OtpForm({
             router.push("/admin");
           }
         } else if (res.success === false) {
-          showToast(res.message, "error");
+          showError(res.message, "error");
         }
       } catch (error) {
         if (error.response) {
-          showToast(error.response.data.message, "error");
+          showError(error.response.data.message, "error");
         } else {
         }
       }
     } else {
       try {
         // this is for reset code
-        const res = await verify_resetCode({ email: email, code: finalotp });
+        const res = await verify_resetCode({ email: email, code: finalOtp });
+        
         if (res.success) {
-          showToast(res.message, "success");
-          setUserEmail(email);
           setActiveModal("new_password");
+          showSuccess(res.message, "success");
+          setUserEmail(email);
         }
       } catch (error) {
         if (error.response) {
-          showToast(error.response.data.message, "error");
+          showError(error.response.data.message, "error");
         } else {
         }
       }
@@ -179,8 +177,10 @@ export default function OtpForm({
           <div class=" bg-white rounded-lg shadow-sm ">
             <div class="text-center  h-[424px] p-5">
               <div className="flex flex-col gap-2">
-                <div class=" flex items-center justify-start border-b border-default pb-1">
-                  <Image
+                <div class="flex items-center justify-start border-b border-default pb-1">
+                  <div className="flex justify-between items-center w-full">
+                    <div className="flex gap-1 items-center">
+                      <Image
                     src="/logo.png"
                     alt="logo image"
                     height={30}
@@ -190,6 +190,19 @@ export default function OtpForm({
                   <h3 className="text-2xl font-bold  text-heading px-2">
                     Venejobs
                   </h3>
+                    </div>
+                      
+                  <div className="flex justify-end px-2">
+              <button
+                type="button"
+                onClick={() => setActiveModal("")}
+                className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+              >
+                <SvgIcon name="CrossButton" />
+              </button>
+            </div>
+                  </div>
+                  
                 </div>
                 <h2 className="font-extrabold text-[32px] ">
                   Verify your email

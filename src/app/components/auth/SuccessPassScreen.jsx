@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "../button/Button";
+import SvgIcon from "../SvgIcon";
 
 export default function SuccessPassScreen({ setActiveModal }) {
   return (
@@ -7,6 +8,15 @@ export default function SuccessPassScreen({ setActiveModal }) {
       <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
           <div className="relative bg-white rounded-lg shadow-sm">
+            <div className="flex justify-end px-2">
+              <button
+                type="button"
+                onClick={() => setActiveModal("")}
+                className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+              >
+                <SvgIcon name="CrossButton" />
+              </button>
+            </div>
             <div className="p-4 md:p-5 h-[680]">
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image

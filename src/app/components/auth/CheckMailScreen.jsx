@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Button from "../button/Button";
+import SvgIcon from "../SvgIcon";
 
 export default function CheckMailScreen({ setActiveModal }) {
 
@@ -20,6 +21,15 @@ export default function CheckMailScreen({ setActiveModal }) {
       <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
           <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
+            <div className="flex justify-end px-2">
+            <button
+              type="button"
+              onClick={() => setActiveModal("")}
+              className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+            >
+              <SvgIcon name="CrossButton" />
+            </button>
+          </div>
             <div className="p-4 pt-15 pb-40 md:pt-15">
               <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
                 <Image

@@ -9,9 +9,16 @@ export const Routes = {
     get_started: "/freelancer",
     page: "/freelancer/home",
   },
-  profileCommon:"/profile",
-  profile:{
-    client:"/profile/client",
-    freelancer:"/profile/freelancer"
-  }
+  profile: {
+    client:{
+      home: "/profile/client",
+      info: "/profile/client/Info",
+      bill: "/profile/client/Bill",
+    },
+    freelancer: {
+      home: "/profile/freelancer",
+      info: "/profile/freelancer/Info",
+      billing: "/profile/freelancer/BillingPage",
+    },
+  },
 };

@@ -14,7 +14,8 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
   const toggleVisibility = () => setIsVisible((v) => !v);
 
   const signup = userApiStore((s) => s.signup);
-  const showToast = toastStore.getState().showToast;
+   const showSuccess = toastStore.getState().showSuccess;
+  const showError  = toastStore.getState().showError;
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
@@ -23,16 +24,16 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
       const res = await signup(data);
 
       if (res.success) {
-        showToast(res.message, "success");
+        showSuccess(res.message, "success");
 
         setUserEmail(data.email);
         setActiveModal("otp_verify");
         setverifyCode("signup-code");
       } else {
-        showToast(res.message, "error");
+        showError(res.message, "error");
       }
     } catch (error) {
-      showToast(error.response?.data?.message || "Signup failed", "error");
+      showError(error.response?.data?.message || "Signup failed", "error");
     }
   };
 

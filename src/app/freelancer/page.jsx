@@ -1,22 +1,19 @@
 "use client";
 import Link from "next/link";
-import HomeNavbarFreelance from "../components/HomeNavbar_Freelance";
-import Footer_Freelance from "../components/Footer_Freelance";
 import { Routes } from "../routes";
 import userApiStore from "@/app/store/userStore";
 import { useEffect } from "react";
 import SvgIcon from "../components/SvgIcon";
+import FreelancerLayout from "../layout/FreelancerLayout";
 
 export default function Page() {
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+  
 
   const { user, loading, error, fetchProfile } = userApiStore();
 
   return (
     <>
-      <HomeNavbarFreelance />
+      <FreelancerLayout>
       <div className="w-full max-w-[1420px]  mb-55 mt-20 sm:mt-[120px]  mx-auto sm:px-3">
         <div className="flex justify-items-start flex-col gap-10  px-2 sm:px-0">
           <div className="flex flex-col justify-items-start max-w-4xl w-full ">
@@ -42,7 +39,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Footer_Freelance />
+      </FreelancerLayout>
     </>
   );
 }

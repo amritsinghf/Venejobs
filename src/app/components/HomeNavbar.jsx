@@ -9,20 +9,26 @@ import SvgIcon from "./SvgIcon";
 import toastStore from "../store/toastStore";
 import Button from "./button/Button";
 import userApiStore from "../store/userStore";
+import ClearIcon from '@mui/icons-material/Clear';
 
 export default function HomeNavbar() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const showToast = toastStore.getState().showToast;
+  const showSuccess = toastStore.getState().showSuccess;
+  const showError = toastStore.getState().showError;
 
   const { user, loading, error, fetchProfile } = userApiStore();
 
   const logout = () => {
-    localStorage.removeItem("token");
-
+    try {
+      localStorage.removeItem("token");
     router.push(Routes.home);
     //currenly just removing from localstorage but still in cookie
-    showToast("Logged Out Successfully!", "success");
+    showSuccess("Logged Out Successfully!", "success");
+    } catch (error) {
+      showError(error,"error")
+    }
+    
   };
   return (
     <>
@@ -83,16 +89,16 @@ export default function HomeNavbar() {
             {menuOpen && (
               <>
                 <div
-                  className="fixed inset-0 bg-black/50 z-40"
+                  className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 `}
                   onClick={() => setMenuOpen(false)}
                 ></div>
 
                 <div
-                  className={`fixed top-0 right-0 lg:hidden h-full w-74 bg-white shadow-xl z-50 p-4 flex flex-col gap-8 transform transition-transform duration-300 ${
+                  className={`fixed top-0 right-0 lg:hidden h-full w-110 bg-white shadow-xl z-50 p-4 flex flex-col gap-8 transform transition-transform duration-300 ease-in-out ${
                     menuOpen ? "translate-x-0" : "translate-x-full"
                   }`}
                 >
-                  <div className="flex justify-between items-center mb-4 mt-10">
+                  <div className="flex justify-between items-center  mt-10">
                     <div className="flex items-center gap-2">
                       <Image
                         src="/home/logo-home.png"
@@ -102,32 +108,33 @@ export default function HomeNavbar() {
                         style={{ width: 50, height: 50 }}
                         className="cursor-pointer"
                       />
-                      <h5 className="text-xl font-semibold text-blue-gray-900">
+                      <h5 className="text-4xl sm:text-2xl font-semibold text-gray-900">
                         Venejobs
                       </h5>
                     </div>
                     <Button
-                      className="text-gray-500 hover:text-gray-700"
+                      className="text-gray-500 hover:text-gray-700 "
                       onClick={() => setMenuOpen(false)}
                     >
-                      ×
+                      <ClearIcon fontSize="large"/>
                     </Button>
                   </div>
-                  <hr />
+                    <hr />
+                  
 
-                  <nav className="flex flex-col items-start gap-3 ">
+                  <nav className="flex flex-col items-start gap-8 sm:gap-3 ">
                     <div
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg "
                     >
-                      <div className="mr-4 grid place-items-center"></div>
+                      
                       <Link
                         href={
                           user?.role_id === 2
-                            ? Routes.profile.client
-                            : Routes.profile.freelancer
+                            ? Routes.profile.client.home
+                            : Routes.profile.freelancer.home
                         }
-                        className="md:text-2xl"
+                        className="text-3xl sm:text-2xl text-paragraph px-4 font-medium"
                       >
                         Profile
                       </Link>
@@ -136,8 +143,8 @@ export default function HomeNavbar() {
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
-                      <div className="mr-4 grid place-items-center"></div>
-                      <Link href={""} className="md:text-2xl">
+                      
+                      <Link href={""} className="text-3xl sm:text-2xl text-paragraph px-4 font-medium">
                         Find Talent
                       </Link>
                     </div>
@@ -146,8 +153,8 @@ export default function HomeNavbar() {
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
-                      <div className="mr-4 grid place-items-center"></div>
-                      <Link href={Routes.job_post.form} className="md:text-2xl">
+                      
+                      <Link href={Routes.job_post.form} className="text-3xl sm:text- px-4 font-medium text-paragraph">
                         Post a job
                       </Link>
                     </div>
@@ -155,8 +162,8 @@ export default function HomeNavbar() {
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
-                      <div className="mr-4 grid place-items-center"></div>
-                      <Link href={""} className="md:text-2xl">
+                      
+                      <Link href={""} className="text-3xl sm:text-2xl text-paragraph px-4 font-medium">
                         Manage Work
                       </Link>
                     </div>
@@ -164,8 +171,8 @@ export default function HomeNavbar() {
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
-                      <div className="mr-4 grid place-items-center"></div>
-                      <Link href={""} className="md:text-2xl">
+                      
+                      <Link href={""} className="text-3xl sm:text-2xl text-paragraph px-4 font-medium">
                         Reports
                       </Link>
                     </div>
@@ -175,7 +182,7 @@ export default function HomeNavbar() {
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
                     >
                       <div className="mr-4 grid place-items-center"></div>
-                      <Link href={""} className="md:text-2xl">
+                      <Link href={""} className="text-3xl sm:text-2xl text-paragraph font-medium">
                         Message
                       </Link>
                     </div>
@@ -187,7 +194,7 @@ export default function HomeNavbar() {
                       <Button
                         type="button"
                         onClick={() => logout()}
-                        className="w-full text-left flex items-center gap-1 px-4 py-2 text-lg text-red-600 cursor-pointer"
+                        className="w-full text-left flex items-center gap-1 px-4 py-2 text-2xl font-medium text-red-600 cursor-pointer"
                       >
                         <SvgIcon name="Signout" /> Sign out
                       </Button>
