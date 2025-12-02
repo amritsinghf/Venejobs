@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="w-full h-screen md:h-[85vh] lg:h-[90vh] bg-primary relative flex flex-col bg-cover bg-center"
+        className="w-full h-[70vh] md:h-[85vh] lg:h-[90vh] bg-primary relative flex flex-col bg-cover bg-center"
         style={{ backgroundImage: "url('/bg-image.png')" }}
       >
 

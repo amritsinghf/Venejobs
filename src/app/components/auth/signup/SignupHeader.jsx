@@ -10,7 +10,7 @@ export default function SignupHeader({ setActiveModal }) {
       </div>
 
       {/* Title */}
-      <h2 className="mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
+      <h2 className="mt-10 mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
         Sign Up
       </h2>
 

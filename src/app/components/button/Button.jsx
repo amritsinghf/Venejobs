@@ -11,8 +11,18 @@ export default function Button({
   ...props
 }) {
   const variantClasses = {
-    primary: "text-white bg-black hover:bg-neutral-900",
-    secondary: "bg-white text-gray-600 hover:bg-gray-100",
+    primary: `
+      text-white bg-black 
+      hover:bg-[#0057ff] hover:text-white
+      transition-colors duration-300
+    `,
+
+    secondary: `
+      bg-white text-[#0057ff] 
+      hover:bg-[#0057ff] hover:text-white
+      transition-colors duration-300
+    `,
+
     text: "text-heading text-[14px] font-semibold hover:underline",
   };
 
@@ -23,14 +33,14 @@ export default function Button({
       className={`
         ${variantClasses[variant]} 
         ${className}
-        w-[160px] sm:w-[180px] md:w-[208px]
-        h-[48px] sm:h-[52px] md:h-[56px]
+        w-40 sm:w-[180px] md:w-52
+        h-12 sm:h-[52px] md:h-14
         rounded
         font-semibold tracking-wide 
         text-sm sm:text-base
         flex items-center justify-center 
         cursor-pointer
-        transition-all
+        transition-all duration-300
       `}
       {...props}
     >

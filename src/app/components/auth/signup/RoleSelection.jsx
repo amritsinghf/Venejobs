@@ -1,12 +1,14 @@
 import SvgIcon from "../../SvgIcon";
 
+import React from "react";
+
 export default function RoleSelection({ register, errors }) {
     return (
         <>
-            <div className="grid grid-cols-2 gap-1 md:gap-3 mt-5">
+            <div className="grid grid-cols-2 gap-1 md:gap-4">
 
                 {/* Freelancer */}
-                <div>
+                <div className="group">
                     <input
                         type="radio"
                         id="freelancer"
@@ -19,7 +21,7 @@ export default function RoleSelection({ register, errors }) {
                         htmlFor="freelancer"
                         className="
                 flex items-center justify-center gap-3
-                rounded-lg py-4 cursor-pointer
+                rounded-md py-4 cursor-pointer
                 text-gray-500 transition-all
 
                 peer-checked:bg-primary
@@ -29,15 +31,16 @@ export default function RoleSelection({ register, errors }) {
                     >
                         <SvgIcon
                             name="Teleworking"
-                            className="w-5 h-5 text-gray-500 peer-checked:text-white"
-                        />                        <span className="text-sm md:text-base font-medium">
+                            className="w-5 h-5 text-gray-500 group-has-[:checked]:text-white transition-colors"
+                        />
+                        <span className="text-sm md:text-base font-medium">
                             I'm a freelancer
                         </span>
                     </label>
                 </div>
 
                 {/* Client */}
-                <div>
+                <div className="group">
                     <input
                         type="radio"
                         id="client"
@@ -50,7 +53,7 @@ export default function RoleSelection({ register, errors }) {
                         htmlFor="client"
                         className="
                 flex items-center justify-center gap-3
-                rounded-lg py-4 cursor-pointer
+                rounded-md py-4 cursor-pointer
                 text-gray-500 transition-all
 
                 peer-checked:bg-primary
@@ -60,7 +63,7 @@ export default function RoleSelection({ register, errors }) {
                     >
                         <SvgIcon
                             name="Businessman"
-                            className="w-5 h-5 text-gray-500 peer-checked:text-white"
+                            className="w-5 h-5 text-gray-500 group-has-[:checked]:text-white transition-colors"
                         />
                         <span className="text-sm md:text-base font-medium">
                             I'm a Client

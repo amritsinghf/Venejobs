@@ -4,54 +4,58 @@ import SvgIcon from "../SvgIcon";
 
 export default function SuccessPassScreen({ setActiveModal }) {
   return (
-    <>
-      <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
-          <div className="relative bg-white rounded-lg shadow-sm">
-            <div className="flex justify-end px-2">
-              <button
-                type="button"
-                onClick={() => setActiveModal("")}
-                className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-              >
-                <SvgIcon name="CrossButton" />
-              </button>
-            </div>
-            <div className="p-4 md:p-5 h-[680]">
-              <div className="flex items-center justify-center gap-3 mt-[60px] mb-10">
-                <Image
-                  src="/logo.png"
-                  alt="logo image"
-                  height={50}
-                  width={50}
-                  style={{ width: "40px", height: "40px" }}
-                />
-                <h1 className="font-semibold text-[23px] font-sans text-gray-500">
-                  Venejobs
-                </h1>
-              </div>
-              <div className="mt-20">
-                <h2 className="text-center text-heading font-semibold text-[42px]  mb-3">
-                  Password Reset
-                </h2>
-                <p className="text-paragraph text-center text-[16px] ">
-                  Your password has been successfully reset. Click below to log
-                  in magically.
-                </p>
-              </div>
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6">
+      <div
+        className="
+          relative bg-white w-full max-w-[460px] rounded-xl shadow-sm
+        "
+      >
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={() => setActiveModal("")}
+          className="
+            absolute top-4 right-4 w-9 h-9
+            flex items-center justify-center
+            rounded-full hover:bg-gray-100 transition cursor-pointer
+          "
+        >
+          <SvgIcon name="CrossButton" size={18} />
+        </button>
 
-              <div className="flex flex-col items-center gap-4 justify-end m-5">
-                <Button
-                  onClick={() => setActiveModal("signin")}
-                  className="text-[#858585] text-[16px] font-semibold"
-                >
-                  Back to Login
-                </Button>
-              </div>
-            </div>
+        {/* Content */}
+        <div className="pt-20 px-6 md:px-5 md:py-10">
+
+          {/* Logo */}
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <Image src="/logo.png" alt="logo" width={40} height={40} />
+            <h1 className="text-xl font-semibold text-gray-500">Venejobs</h1>
           </div>
+
+          {/* Title */}
+          <h2 className="text-3xl font-extrabold leading-tight text-center text-heading mb-3">
+            Password Reset
+          </h2>
+
+          <p className="text-center text-gray-500 text-sm tracking-wide">
+            Your password has been successfully reset.
+            Click below to log in magically.
+          </p>
+
+          {/* Actions */}
+          <div className="flex justify-center mt-12">
+            <Button
+              onClick={() => setActiveModal("signin")}
+              className="bg-primary text-white border border-[#FAFAFA] gap-2"
+              variant="primary"
+            >
+              Back to Login
+              <SvgIcon name="RightArrWhite" />
+            </Button>
+          </div>
+
         </div>
       </div>
-    </>
+    </div>
   );
 }

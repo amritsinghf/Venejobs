@@ -7,14 +7,30 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
 
       {/* LOGIN BUTTON (mobile + tablet + desktop) */}
 
-      <div className="text-gray-600 lg:!text-white font-medium cursor-pointer tracking-wide" onClick={() => setActiveModal("signin")}>
+      <div
+        className="
+    text-gray-600 lg:text-white 
+    font-medium cursor-pointer tracking-wide 
+    relative
+    after:content-[''] after:absolute after:left-0 after:bottom-0 
+    after:w-0 after:h-0.5 after:bg-white 
+    after:transition-all after:duration-300 
+    hover:after:w-full
+  "
+        onClick={() => setActiveModal('signin')}
+      >
         Login
-
       </div>
+
 
       {/* SIGNUP BUTTON (only on desktop) */}
 
-      <button className="hidden xl:block bg-white font-medium rounded-full px-6 py-2.5 tracking-wide" onClick={() => setActiveModal("signup")}>
+      <button
+        className="hidden xl:block bg-white font-medium rounded-full px-6 py-2.5 tracking-wide cursor-pointer 
+  transition-all duration-300 ease-out 
+  hover:bg-[#0057ff] hover:text-white hover:shadow-lg hover:scale-[1.05]"
+        onClick={() => setActiveModal('signup')}
+      >
         Sign Up
       </button>
 

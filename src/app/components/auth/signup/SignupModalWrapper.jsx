@@ -13,7 +13,7 @@ export default function SignupModalWrapper({ children, setActiveModal }) {
       <div
         ref={modalRef}
         className="
-          relative bg-white w-full max-w-[460px] rounded-lg shadow-sm
+          relative bg-white w-full max-w-[470px] rounded-xl shadow-sm
           min-h-[640px] sm:min-h-[580px] md:min-h-[720px]
         "
       >
@@ -31,7 +31,7 @@ export default function SignupModalWrapper({ children, setActiveModal }) {
         </button>
 
         {/* Content */}
-        <div className="pt-20 p-6 sm:p-8 md:py-10 md:px-5">
+        <div className="pt-20 p-6 md:py-10">
           {children}
         </div>
       </div>

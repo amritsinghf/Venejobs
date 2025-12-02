@@ -3,6 +3,7 @@ import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Button from "../../button/Button";
+import Loader from "../../common/Loader";
 
 export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
     const forgetPassword = userApiStore((s) => s.forgetPassword);
@@ -33,9 +34,11 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
 
     return (
         <>
-            <h2 className="text-3xl text-heading font-extrabold leading-tight text-center mb-3">
+            {/* Title */}
+            <h2 className="mt-10 mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
                 Forgot password?
             </h2>
+
 
             <p className="text-sm text-center text-gray-500 tracking-wide">
                 No worries, we’ll send you reset instructions.
@@ -43,7 +46,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
 
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="space-y-4 mt-6 px-2 md:px-6"
+                className="space-y-4 mt-10 px-2 md:px-6"
             >
                 <div>
                     <input
@@ -54,6 +57,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                             border-b border-neutral-300 
                             focus:border-primary focus:outline-none 
                             placeholder:text-sm
+                           text-heading tracking-wide 
                         "
                         placeholder="Email Address"
                         {...register("email", {
@@ -73,14 +77,15 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                 </div>
 
                 {/* Button Right Aligned */}
-                <div className="flex justify-end mt-5">
+                <div className="flex justify-end mt-10">
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="w-[200px] h-[50px] md:h-[60px] bg-primary text-white border border-[#FAFAFA] rounded-md flex items-center justify-center gap-2 font-semibold tracking-wide text-sm md:text-base cursor-pointer disabled:opacity-70"
+                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70"
+                        variant="primary"
                     >
                         {loading ? (
-                            <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                            <Loader size={22} border={3} color="white" />
                         ) : (
                             "Reset Password"
                         )}
@@ -89,14 +94,14 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
             </form>
 
             <div className="flex justify-end mt-5 px-2 md:px-6 pb-4">
-                <Button
+                <button
                     type="button"
-                    className="text-gray-600 text-sm flex items-center gap-2 cursor-pointer"
+                    className="text-heading hover:text-primary text-normal flex items-center gap-2 cursor-pointer"
                     onClick={() => setActiveModal("signin")}
                 >
                     <ArrowBackIcon className="text-gray-500" style={{ fontSize: "16px" }} />
                     Back to Login
-                </Button>
+                </button>
             </div>
         </>
     );

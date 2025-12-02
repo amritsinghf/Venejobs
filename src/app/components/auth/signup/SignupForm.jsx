@@ -14,8 +14,8 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
   const toggleVisibility = () => setIsVisible((v) => !v);
 
   const signup = userApiStore((s) => s.signup);
-   const showSuccess = toastStore.getState().showSuccess;
-  const showError  = toastStore.getState().showError;
+  const showSuccess = toastStore.getState().showSuccess;
+  const showError = toastStore.getState().showError;
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
@@ -41,7 +41,7 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
     <SignupModalWrapper setActiveModal={setActiveModal}>
       <SignupHeader setActiveModal={setActiveModal} />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-10 px-2 md:px-6 md:py-15">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-10 px-2 md:px-6">
         <SignupFormFields
           register={register}
           errors={errors}

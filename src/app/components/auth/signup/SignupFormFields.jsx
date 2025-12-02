@@ -10,44 +10,79 @@ export default function SignupFormFields({
     return (
         <div className="space-y-5">
 
+            {/* Role Selection */}
             <RoleSelection register={register} errors={errors} />
 
+            {/* Full Name */}
             <div>
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    {...register("name", { required: "Name is required" })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
-                />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
+                <div className="relative h-12">
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        {...register("name", { required: "Name is required" })}
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    />
+                </div>
+
+                <div className="min-h-5">
+                    {errors.name && (
+                        <p className="text-red-500 text-sm mt-2">
+                            {errors.name.message}
+                        </p>
+                    )}
+                </div>
             </div>
 
+            {/* Username */}
             <div>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    {...register("username", { required: "Username is required" })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
-                />
-                {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
+                <div className="relative h-12">
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        {...register("username", { required: "Username is required" })}
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    />
+                </div>
+
+                <div className="min-h-5">
+                    {errors.username && (
+                        <p className="text-red-500 text-sm mt-2">
+                            {errors.username.message}
+                        </p>
+                    )}
+                </div>
             </div>
 
+            {/* Email */}
             <div>
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Invalid email address",
-                        },
-                    })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
-                />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+                <div className="relative h-12">
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Invalid email address",
+                            },
+                        })}
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    />
+                </div>
+
+                <div className="min-h-5">
+                    {errors.email && (
+                        <p className="text-red-500 text-sm mt-2">
+                            {errors.email.message}
+                        </p>
+                    )}
+                </div>
             </div>
 
+            {/* Password */}
             <PasswordInput
                 register={register}
                 errors={errors}
