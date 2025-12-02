@@ -17,7 +17,7 @@ export default function SignupFormFields({
                     type="text"
                     placeholder="Full Name"
                     {...register("name", { required: "Name is required" })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                 />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
             </div>
@@ -27,7 +27,7 @@ export default function SignupFormFields({
                     type="text"
                     placeholder="Username"
                     {...register("username", { required: "Username is required" })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                 />
                 {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
             </div>
@@ -43,7 +43,7 @@ export default function SignupFormFields({
                             message: "Invalid email address",
                         },
                     })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                 />
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>

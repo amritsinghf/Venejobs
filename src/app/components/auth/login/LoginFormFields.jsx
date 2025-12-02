@@ -9,7 +9,7 @@ export default function LoginFormFields({
     return (
         <>
             <div>
-                <div className="relative h-[48px]">
+                <div className="relative h-12">
                     <input
                         type="email"
                         placeholder="Email Address"
@@ -27,7 +27,7 @@ export default function LoginFormFields({
                 </div>
 
                 {/* ERROR WRAPPER WITH FIXED HEIGHT */}
-                <div className="min-h-[20px]">
+                <div className="min-h-5">
                     {errors.email?.message && (
                         <span className="text-sm text-red-500 mt-2 block">
                             {errors.email.message}
