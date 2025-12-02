@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
+import StepperNumber from "./StepperNumber";
 
 const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
@@ -34,22 +35,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
   return (
     <div className="w-full h-[1200]  max-w-[1420px]  mb-20 mt-30 mx-auto ">
-      <div className="flex  justify-evenly max-w-[250px]">
-        {[...Array(5)].map((_, i) => (
-          <div className="flex text-center" key={i}>
-            <span
-              key={i}
-              className={`${
-                i + 1 <= currstep
-                  ? "bg-primary text-white"
-                  : "bg-white text-black"
-              } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
-            >
-              {i + 1}
-            </span>
-          </div>
-        ))}
-      </div>
+      <StepperNumber currstep={currstep}/>
       <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
         <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
           <h2 className="text-heading font-semibold text-[44px]">

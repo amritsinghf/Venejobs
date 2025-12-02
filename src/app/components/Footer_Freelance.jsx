@@ -4,133 +4,104 @@ import { useState } from "react";
 import Footerdropdown from "./FooterDropdown";
 import SvgIcon from "./SvgIcon";
 import Button from "./button/Button";
+import Link from "next/link";
 
 export default function Footer_Freelance() {
   const [open, setOpen] = useState(false);
 
+  const socialLinks = {
+    facebook: "https://facebook.com/",
+    twitter: "https://twitter.com/",
+    instagram: "https://instagram.com/",
+    linkedin: "https://linkedin.com/in/",
+  };
+
+  const aboutLinks = [
+    { label: "About Us", url: "/about" },
+    { label: "Become Seller", url: "/become-seller" },
+    { label: "Jobs", url: "/jobs" },
+    { label: "Pricing", url: "/pricing" },
+    { label: "Services", url: "/services" },
+    { label: "Terms of Services", url: "/terms" },
+  ];
+
+  const categories = [
+    { label: "Design & Creative", url: "/categories/design-creative" },
+    { label: "Development & IT", url: "/categories/development-it" },
+    { label: "Music & Audio", url: "/categories/music-audio" },
+    { label: "Programming & Tech", url: "/categories/programming-tech" },
+    { label: "Digital Marketing", url: "/categories/digital-marketing" },
+    { label: "Finance & Accounting", url: "/categories/finance-accounting" },
+    { label: "Writing & Translation", url: "/categories/writing-translation" },
+  ];
+
+  const helpLinks = [
+    { label: "Help & Support", url: "/help-support" },
+    { label: "FAQ", url: "/faq" },
+    { label: "Contact Us", url: "/contact" },
+  ];
+
   return (
     <>
-      <footer className="bg-footerfreelance w-[600px] sm:w-full 2xl:mt-54">
+      <footer className="bg-footerfreelance w-full 2xl:mt-54">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-footerfreelance  flex justify-between ">
-            <div className="flex items-center justify-start gap-2 flex-wrap ">
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+          <div className="px-4 py-6 bg-footerfreelance flex justify-between flex-wrap">
+            <div className="flex items-center justify-start gap-2">
+              <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center ">
                 <SvgIcon name="Footerlogo_green" />
               </span>
               <h2 className="text-white font-extrabold text-lg">Venejobs</h2>
             </div>
-            <div className="flex items-center mt-4  space-x-5 rtl:space-x-reverse">
+
+            <div className="flex items-center mt-4 space-x-5 rtl:space-x-reverse">
               <p className="text-white font-medium text-[16px]">Follow Us</p>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Facebook_logo" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Twitter" />
-              </a>
 
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Instagram" />
-              </a>
-
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Linkedin" />
-              </a>
+              {Object.entries(socialLinks).map(([key, url]) => (
+                <Link
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                >
+                  <SvgIcon
+                    name={`${key.charAt(0).toUpperCase() + key.slice(1)}`}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
         <hr className="text-white " />
         <div className="mx-auto w-7xl max-w-full ">
-          <div className="grid grid-cols-2 gap-8 px-4  py-6 lg:py-8 md:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-6 lg:py-8 lg:grid-cols-4">
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">
                 About
               </h2>
-              <ul className="text-gray-500 dark:text-white opacity-50 ">
-                <li className="mb-4">
-                  <a href="#" className=" hover:underline">
-                    About Us
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Become Seller
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Jobs
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Pricing
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Services
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Terms of Service
-                  </a>
-                </li>
+              <ul className="text-gray-500 dark:text-white opacity-50">
+                {aboutLinks.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">
                 Categories
               </h2>
-              <ul className="text-gray-500 dark:text-white opacity-50 ">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Design & Creative
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Development & IT
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Music & Audio
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Programming & Tech
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Digital Marketing
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Finance & Accouting
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Writing & Translation
-                  </a>
-                </li>
+              <ul className="text-gray-500 dark:text-white opacity-50">
+                {categories.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -138,21 +109,13 @@ export default function Footer_Freelance() {
                 Support
               </h2>
               <ul className="text-gray-500 dark:text-white opacity-50">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Help & Support
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    FAQ
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Contact Us
-                  </a>
-                </li>
+                {helpLinks.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>

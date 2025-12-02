@@ -20,7 +20,7 @@ export default function Profile() {
   return (
     <>
       <FreelancerLayout>
-        <div className="w-[600px] sm:w-full 2xl:w-[1500px] 2xl:mx-auto   h-screen mt-28 px-4   lg:px-12 ">
+        <div className="w-full 2xl:w-[1500px] 2xl:mx-auto   h-screen lg:mt-28 px-4   lg:px-12 mb-10">
           <div className="flex gap-10 ">
             <MobileView />
             <DesktopLinks />

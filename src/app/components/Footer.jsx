@@ -4,15 +4,48 @@ import { useState } from "react";
 import Footerdropdown from "./FooterDropdown";
 import SvgIcon from "./SvgIcon";
 import Button from "./button/Button";
+import Link from "next/link";
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
 
+  const socialLinks = {
+    facebook: "https://facebook.com/",
+    twitter: "https://twitter.com/",
+    instagram: "https://instagram.com/",
+    linkedin: "https://linkedin.com/in/",
+  };
+
+  const aboutLinks = [
+    { label: "About Us", url: "/about" },
+    { label: "Become Seller", url: "/become-seller" },
+    { label: "Jobs", url: "/jobs" },
+    { label: "Pricing", url: "/pricing" },
+    { label: "Services", url: "/services" },
+    { label: "Terms of Services", url: "/terms" },
+  ];
+
+  const categories = [
+    { label: "Design & Creative", url: "/categories/design-creative" },
+    { label: "Development & IT", url: "/categories/development-it" },
+    { label: "Music & Audio", url: "/categories/music-audio" },
+    { label: "Programming & Tech", url: "/categories/programming-tech" },
+    { label: "Digital Marketing", url: "/categories/digital-marketing" },
+    { label: "Finance & Accounting", url: "/categories/finance-accounting" },
+    { label: "Writing & Translation", url: "/categories/writing-translation" },
+  ];
+
+  const helpLinks = [
+    { label: "Help & Support", url: "/help-support" },
+    { label: "FAQ", url: "/faq" },
+    { label: "Contact Us", url: "/contact" },
+  ];
+
   return (
     <>
-      <footer className="bg-footerclient w-[600px] sm:w-full 2xl:mt-44">
+      <footer className="bg-footerclient sm:w-full 2xl:mt-44">
         <div className="mx-auto w-full max-w-screen-xl">
-          <div className="px-4 py-6 bg-footerclient  flex justify-between ">
+          <div className="px-4 py-6 bg-footerclient  flex justify-between flex-wrap">
             <div className="flex items-center justify-start gap-2  ">
               <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center ">
                 <SvgIcon name="Footerlogo" />
@@ -21,74 +54,38 @@ export default function Footer() {
             </div>
             <div className="flex items-center mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
               <p className="text-white font-medium text-[16px]">Follow Us</p>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Facebook_logo" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Twitter" />
-              </a>
-
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Instagram" />
-              </a>
-
-              <a
-                href="#"
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <SvgIcon name="Linkedin" />
-              </a>
+              {Object.entries(socialLinks).map(([key, url]) => (
+                <Link
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                >
+                  <SvgIcon
+                    name={`${key.charAt(0).toUpperCase() + key.slice(1)}`}
+                  />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
         <hr className="text-white" />
         <div className="mx-auto w-7xl max-w-full">
-          <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 py-6 lg:py-8 lg:grid-cols-4">
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">
                 About
               </h2>
               <ul className="text-gray-500 dark:text-white/70 ">
-                <li className="mb-4">
-                  <a href="#" className=" hover:underline">
-                    About Us
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Become Seller
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Jobs
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Pricing
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Services
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Terms of Service
-                  </a>
-                </li>
+                {aboutLinks.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -96,63 +93,27 @@ export default function Footer() {
                 Categories
               </h2>
               <ul className="text-gray-500 dark:text-white/70 ">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Design & Creative
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Development & IT
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Music & Audio
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Programming & Tech
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Digital Marketing
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Finance & Accouting
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Writing & Translation
-                  </a>
-                </li>
+                {categories.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
               <h2 className="mb-6 text-lg font-medium text-gray-900  dark:text-white">
                 Support
               </h2>
-              <ul className="text-gray-500 dark:text-white/70 ">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Help & Support
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    FAQ
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Contact Us
-                  </a>
-                </li>
+              <ul className="text-gray-500 dark:text-white/70">
+                {helpLinks.map((item) => (
+                  <li key={item.label} className="mb-4">
+                    <Link href={item.url} className="hover:underline">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -160,26 +121,25 @@ export default function Footer() {
                 Subscribe
               </h2>
 
-              
-                <div className="relative">
-                  <input
-                    type="search"
-                    id="search"
-                    className="block w-full p-4 text-sm text-black border border-gray-300 rounded-lg  bg-gray-50
+              <div className="relative">
+                <input
+                  type="search"
+                  id="search"
+                  className="block w-full p-4 text-sm text-black border border-gray-300 rounded-lg  bg-gray-50
                                             
                                             dark:bg-[#666666] dark:border-gray-600 dark:placeholder-gray-400 
                                             dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 "
-                    placeholder="Your Email Address"
-                    required
-                  />
+                  placeholder="Your Email Address"
+                  required
+                />
 
-                  <Button
-                    type="submit"
-                    className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-2"
-                  >
-                    Send
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-2"
+                >
+                  Send
+                </Button>
+              </div>
             </div>
           </div>
           <div className="px-4 py-6 bg-neutral-900 md:flex md:items-center md:justify-between">

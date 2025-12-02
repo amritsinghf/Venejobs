@@ -112,19 +112,21 @@ export default function AllJobs() {
             <SvgIcon name="Control_prev" />
           </Button>
 
-          {[...Array(totalPages)].map((_, i) => (
-            <span
-              key={i}
-              onClick={() => selectPage(i + 1)}
-              className={`cursor-pointer px-3 py-1 border rounded-full ${
-                page === i + 1
-                  ? "bg-secondary text-white"
-                  : "bg-white text-paragraph font-medium"
-              }`}
-            >
-              {i + 1}
-            </span>
-          ))}
+          {[...Array(totalPages)].map((_, i) => {
+            const active = page === i + 1;
+
+            return (
+              <button
+                key={i}
+                onClick={() => selectPage(i + 1)}
+                className={`w-10 h-10 flex items-center justify-center rounded-full 
+    border border-gray-300 leading-none transition font-semibold
+    ${active ? "bg-secondary text-white" : "bg-white text-paragraph"}`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
 
           <Button
             disabled={page === totalPages}

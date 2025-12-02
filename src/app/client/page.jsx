@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <>
       <ClientLayout>
-        <div className="w-[550px] sm:w-full  max-w-[1420px]  mb-20 mt-7 mx-auto ">
-          <div className="w-full flex flex-col  mx-5 sm:mx-0">
+        <div className="w-full  max-w-[1420px]  mb-20 mt-7 mx-auto">
+          <div className="w-full flex flex-col sm:mx-0">
             <div className="flex flex-col sm:flex-row justify-between items-start px-1">
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 px-5 sm:px-0">
                 <h2 className="text-heading font-semibold  text-[32px] sm:text-[44px]  sm:mx-3 mx-0">
                   Welcome back,{name}
                 </h2>
@@ -30,16 +30,17 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex justify-end gap-4  sm:px-4 py-5 ">
+              <div className="flex justify-end gap-4 py-5 px-5">
                 <Link
                   href={Routes.job_post.home}
-                  className="bg-[#01237C] text-[#FAFAFA] text-center py-3 px-4 h-[50px] rounded w-[150px]"
+                  className="bg-primary text-[#FAFAFA] text-center py-2 px-2   lg:py-3 lg:px-8  rounded"
                 >
                   Post a Job
                 </Link>
                 <Link
                   href={""}
-                  className="bg-white text-paragraph text-center py-3 px-4 h-[50px] font-semibold rounded border w-[150px]"
+                  className="bg-white text-paragraph text-center py-2 px-2 lg:py-3 lg:px-8 font-medium rounded"
+                  style={{ boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)" }}
                 >
                   Find Talent
                 </Link>
@@ -48,7 +49,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex gap-4  mt-9  ">
-            <h2 className="font-semibold text-heading text-3xl px-5">
+            <h2 className="font-semibold text-heading text-xl md:text-3xl px-5">
               Your Job Posts & Active Contracts
             </h2>
           </div>
@@ -58,7 +59,7 @@ export default function Home() {
               className={`font-medium  p-2  `}
             >
               <p
-                className={`px-4 sm:px-1 ${
+                className={`px-4 sm:px-1 text-sm md:text-lg ${
                   showData
                     ? "text-blue-900 font-semibold"
                     : "bg-white text-paragraph"
@@ -69,14 +70,14 @@ export default function Home() {
             </Button>
             <Button
               onClick={() => setshowData(false)}
-              className={`font-medium  p-2  `}
+              className={`font-medium  p-2`}
             >
               <p
                 className={`${
                   !showData
                     ? "text-blue-900 font-semibold"
                     : "bg-white text-paragraph"
-                }`}
+                }text-sm md:text-lg`}
               >
                 Your Active Contracts
               </p>

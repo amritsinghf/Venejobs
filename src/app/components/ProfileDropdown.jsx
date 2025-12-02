@@ -42,15 +42,15 @@ export default function ProfileDropdown() {
   return (
     <div className="hidden sm:hidden lg:block ">
       <div className="flex items-center gap-1 ">
-        <div className="flex items-center  gap-6">
+        <div className="flex items-center gap-6 ">
           <div className="relative ">
-            <span className="absolute inset-y-0 px-2  flex items-center ">
+            <span className="absolute inset-y-0 px-4  flex items-center ">
               <SvgIcon name="Search_Icon" />
             </span>
             <input
               type="search"
               id="search"
-              className="block sm:w-[200px] px-8 py-3 rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
+              className="block w-full px-10 py-2 rounded-4xl text-sm text-gray-900 font-medium shadow-sm"
               placeholder="Search"
               required
             />

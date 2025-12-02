@@ -33,7 +33,7 @@ export default function Jobs() {
   };
 
   return (
-    <div className="rounded-2xl mt-10 border border-gray-300 w-full mx-5 sm:mx-0">
+    <div className="rounded-2xl mt-10 border border-gray-300 w-full  mx-auto">
       {jobs?.map((item) => (
         <div
           className="border-b border-gray-300 rounded py-2 px-3"
@@ -53,20 +53,20 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex justify-start items-center  gap-4 sm:gap-10 ">
-              <div className="flex items-center gap-8 flex-wrap ">
-                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+            <div className="flex flex-col md:flex-row justify-start items-center gap-2 sm:gap-10">
+              <div className="flex items-center gap-5 lg:gap-8 flex-wrap">
+                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Proposals (2)
                 </Button>
-                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Message (1)
                 </Button>
-                <Button className="text-paragraph font-medium border px-2 py-1 sm:p-4 border-gray-100">
+                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Shortlist (2)
                 </Button>
               </div>
-              <div className="flex justify-between gap-6">
-                <Button className="bg-[#01237C] text-white border  py-2 px-8 sm:p-4  rounded cursor-pointer">
+              <div className="flex justify-start items-center lg:justify-between  gap-8 mt-2 md:mt-0">
+                <Button className="bg-primary text-white border h-10 md:h-15 px-4  rounded cursor-pointer">
                   View details
                 </Button>
                 <Button className="flex flex-col items-center justify-center text-paragraph text-[14px]">
@@ -78,38 +78,45 @@ export default function Jobs() {
         </div>
       ))}
       <div className="flex justify-end py-6 px-6">
-        <div className="flex justify-center gap-5 items-center">
-          <Button
+        <div className="flex justify-center gap-3 items-center">
+          {/* Prev Button */}
+          <button
             disabled={page === 1}
             onClick={() => selectPage(page - 1)}
-            className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
+            className={`w-10 h-10 flex items-center justify-center rounded-full border 
+        cursor-pointer transition
+        ${page === 1 ? "opacity-40" : "bg-white text-paragraph"}`}
           >
             <SvgIcon name="Control_prev" />
-          </Button>
+          </button>
 
-          {[...Array(totalPages)].map((_, i) => (
-            <span
-              key={i}
-              onClick={() => selectPage(i + 1)}
-              className={`cursor-pointer px-3 py-1 border rounded-full ${
-                page === i + 1
-                  ? "bg-primary text-white"
-                  : "bg-white text-paragraph font-medium"
-              }`}
-            >
-              {i + 1}
-            </span>
-          ))}
+          {/* Page Numbers */}
+          {[...Array(totalPages)].map((_, i) => {
+            const active = page === i + 1;
 
-          <Button
+            return (
+              <button
+                key={i}
+                onClick={() => selectPage(i + 1)}
+                className={`w-10 h-10 flex items-center justify-center rounded-full 
+    border border-gray-300 leading-none transition font-semibold
+    ${active ? "bg-primary text-white" : "bg-white text-paragraph"}`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+
+          {/* Next Button */}
+          <button
             disabled={page === totalPages}
             onClick={() => selectPage(page + 1)}
-            className={`cursor-pointer ${
-              page === totalPages ? "opacity-40" : ""
-            }`}
+            className={`w-10 h-10 flex items-center justify-center rounded-full border 
+        cursor-pointer transition
+        ${page === totalPages ? "opacity-40" : "bg-white text-paragraph"}`}
           >
             <SvgIcon name="Control_next" />
-          </Button>
+          </button>
         </div>
       </div>
     </div>

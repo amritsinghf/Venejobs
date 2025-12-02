@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function PersonalInfoForm() {
   const { user, logout, fetchProfile } = userApiStore();
   return (
-    <div>
+    <div className="px-2">
       <div className="flex flex-col gap-4 mt-5">
         <div className="flex flex-col gap-3 ">
           <h2 className="text-heading text-3xl sm:text-[32px] font-semibold">My Info</h2>
@@ -30,7 +30,7 @@ export default function PersonalInfoForm() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-16 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 mt-8">
         <div className="flex flex-col gap-2 ">
           <h3 className="text-heading">Name : </h3>
           <input

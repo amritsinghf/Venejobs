@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       <FreelancerLayout>
-        <div className="w-[580] sm:w-full   max-w-[1420px]  mb-20 mt-30 mx-2 sm:mx-auto  px-1  ">
-          <div className="w-full bg-gray-100 rounded-2xl px-12  py-5  flex flex-col gap-4  ">
+        <div className="w-full   max-w-[1420px]  mb-20 mt-30  sm:mx-auto">
+          <div className="w-2xs md:w-full  mx-auto bg-gray-100 rounded-2xl px-8   py-5  flex flex-col gap-4 ">
             <div className="flex flex-row justify-between items-center ">
               <h2 className="text-heading font-semibold text-[24px] sm:text-[44px]">
                 Find Projects That Match Your Passion With Venejobs
@@ -27,7 +27,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className=" max-w-[1200px]  h-auto  w-full  flex  mt-10 flex-col">
+          <div className="max-w-[1200px]  h-auto  w-full  flex  mt-10 flex-col">
             <div className="p-5 ">
               <label
                 htmlFor="search"

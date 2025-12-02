@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Facebook_logo = ({ size = 16, color = "currentColor", className = "" }) => {
+export const Facebook = ({ size = 16, color = "currentColor", className = "" }) => {
   return (
     <svg
       width="16"
@@ -24,4 +24,4 @@ export const Facebook_logo = ({ size = 16, color = "currentColor", className = "
   );
 };
 
-export default Facebook_logo;
+export default Facebook;

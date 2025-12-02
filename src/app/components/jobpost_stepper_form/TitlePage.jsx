@@ -1,5 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
+import SvgIcon from "../SvgIcon";
+import StepperNumber from "./StepperNumber";
 
 const TitlePage = ({ nextStep, currstep }) => {
   const {
@@ -14,36 +16,22 @@ const TitlePage = ({ nextStep, currstep }) => {
   };
 
   return (
-    <div className="w-full  max-w-[1420px]  mb-20 mt-30 mx-auto ">
-      <div className="flex  justify-evenly max-w-[250px]">
-        {[...Array(5)].map((_, i) => (
-          <div className="flex   text-center" key={i}>
-            <span
-              className={`${
-                i + 1 <= currstep
-                  ? "bg-primary text-white"
-                  : "bg-white text-black"
-              } rounded-full w-[35px] h-[35px] flex items-center justify-center border border-gray-300`}
-            >
-              {i + 1}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div className="w-full  max-w-[1420px]  mb-20 mt-10 mx-auto ">
+      <StepperNumber currstep={currstep}/>
 
-      <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
-        <div className="mt-20 flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-heading font-semibold text-[44px]">
+      <div className="flex gap-20 sm:px-3  flex-col lg:flex-row">
+        <div className="mt-20 flex flex-col gap-4  w-full px-5 lg:px-0 lg:mt-20">
+          <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
             Let's start with a strong title.
           </h2>
-          <p className="text-paragraph text-[18px]">
+          <p className="text-paragraph  text-sm lg:text-lg">
             This helps your job post stand out to the right candidates. It’s the
             first thing they’ll see, so make it count!
           </p>
         </div>
 
-        <div className="flex flex-col h-[525px] w-[700px] mt-20 ">
-          <div className="flex flex-col gap-5 w-full px-15 ">
+        <div className="flex flex-col  w-full px-5 lg:mt-25">
+          <div className="flex flex-col gap-5 w-full  ">
             <h2 className="font-semibold text-heading text-2xl ">
               Write a title for your job post
             </h2>
@@ -83,9 +71,9 @@ const TitlePage = ({ nextStep, currstep }) => {
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="bg-primary text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150] p-3 border flex items-center gap-2 justify-center"
                 >
-                  Next
+                  Next <SvgIcon name="NextArrow" />
                 </Button>
               </div>
             </div>
