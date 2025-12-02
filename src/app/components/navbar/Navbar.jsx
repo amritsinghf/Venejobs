@@ -14,8 +14,8 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full lg:max-w-[80%] mx-auto">
-        <div className="flex justify-between items-center py-5">
+      <div className="bg-white lg:bg-transparent w-full">
+        <div className="flex justify-between items-center py-5 w-[90%] md:w-full mx-auto">
           <LogoSection />
           <DesktopMenu />
 
@@ -24,18 +24,19 @@ export default function Navbar() {
             setMenuOpen={setMenuOpen}
           />
         </div>
+
+        <MobileMenu isOpen={menuOpen} setIsOpen={setMenuOpen} />
+
+        <Modals
+          activeModal={activeModal}
+          setActiveModal={setActiveModal}
+          userEmail={userEmail}
+          setUserEmail={setUserEmail}
+          verifyCode={verifyCode}
+          setverifyCode={setverifyCode}
+        />
       </div>
 
-      <MobileMenu isOpen={menuOpen} setIsOpen={setMenuOpen} />
-
-      <Modals
-        activeModal={activeModal}
-        setActiveModal={setActiveModal}
-        userEmail={userEmail}
-        setUserEmail={setUserEmail}
-        verifyCode={verifyCode}
-        setverifyCode={setverifyCode}
-      />
     </>
   );
 }

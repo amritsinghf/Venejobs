@@ -1,27 +1,29 @@
 import Image from "next/image";
-import Button from "../../button/Button";
 
 export default function SignupHeader({ setActiveModal }) {
   return (
     <>
-      <div className="flex items-center justify-center gap-3 mt-5 mb-5">
+      {/* Logo */}
+      <div className="flex items-center justify-center gap-3 mb-5">
         <Image src="/logo.png" width={40} height={40} alt="logo" />
-        <h1 className="font-semibold text-xl text-gray-500">Venejobs</h1>
+        <h1 className="text-xl font-semibold text-gray-500">Venejobs</h1>
       </div>
 
-      <h2 className="text-3xl text-heading font-extrabold leading-tight text-center mb-3">Sign Up</h2>
+      {/* Title */}
+      <h2 className="mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
+        Sign Up
+      </h2>
 
+      {/* Sign In redirect */}
       <p className="text-sm text-center text-gray-500 tracking-wide">
         Already have an account?{" "}
-        <Button
+        <button
           type="button"
           onClick={() => setActiveModal("signin")}
-          className="text-black font-semibold tracking-wide cursor-pointer"
-          style={{ color: "var(--color-primary)" }}
-
+          className="font-semibold text-heading tracking-wide cursor-pointer hover:text-primary"
         >
           Sign In
-        </Button>
+        </button>
       </p>
     </>
   );

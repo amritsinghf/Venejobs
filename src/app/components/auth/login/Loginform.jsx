@@ -19,7 +19,7 @@ export default function Loginform({ setActiveModal }) {
 
   const login = userApiStore((s) => s.login);
   const showSuccess = toastStore.getState().showSuccess;
-  const showError  = toastStore.getState().showError;
+  const showError = toastStore.getState().showError;
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
@@ -51,7 +51,7 @@ export default function Loginform({ setActiveModal }) {
 
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="space-y-10 p-4 md:p-6"
+        className="space-y-4 py-10 px-2 md:px-6 md:py-15"
       >
         <LoginFormFields
           register={register}

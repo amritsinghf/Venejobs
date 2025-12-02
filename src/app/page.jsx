@@ -12,20 +12,20 @@ export default function Home() {
   return (
     <>
       <div
-        className="w-full min-h-[90vh] bg-primary relative flex flex-col"
+        className="w-full h-screen md:h-[85vh] lg:h-[90vh] bg-primary relative flex flex-col bg-cover bg-center"
         style={{ backgroundImage: "url('/bg-image.png')" }}
       >
-        <div className="bg-white  lg:bg-transparent">
+
+        <div className="w-full sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1600px] mx-auto">
           <Navbar />
         </div>
-
-        <div className="flex flex-1 items-center justify-center">
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1600px] mx-auto flex-1 flex items-center">
           <HeroSection />
         </div>
       </div>
 
       {/* FIXED layout: proper wrapper */}
-      <main className="w-full lg:max-w-[80%] mx-auto flex flex-col gap-20 lg:gap-30 my-20 lg:my-30">
+      <main className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1600px] mx-auto flex flex-col gap-20 lg:gap-30 my-20 lg:my-30">
         <HowItWorks />
 
         <BrowseCategories />
@@ -33,7 +33,7 @@ export default function Home() {
         <FreelancerPromo />
         <MostPopular />
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

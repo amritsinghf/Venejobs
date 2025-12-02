@@ -17,11 +17,11 @@ export default function BrowseCategories() {
                 mb-8
             ">
                 <div className="flex flex-col gap-4">
-                    <h2 className="text-3xl lg:text-5xl font-bold text-heading">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-heading">
                         Browse talent by category
                     </h2>
 
-                    <p className="text-gray-500 text-sm md:text-lg">
+                    <p className="text-gray-500 text-sm md:text-base">
                         Get some Inspirations from 1800+ skills
                     </p>
                 </div>

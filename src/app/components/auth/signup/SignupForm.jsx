@@ -41,7 +41,7 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
     <SignupModalWrapper setActiveModal={setActiveModal}>
       <SignupHeader setActiveModal={setActiveModal} />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 p-4 md:p-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-10 px-2 md:px-6 md:py-15">
         <SignupFormFields
           register={register}
           errors={errors}

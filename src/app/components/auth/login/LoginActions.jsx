@@ -1,36 +1,54 @@
 import Button from "../../button/Button";
+import Loader from "../../common/Loader";
 import SvgIcon from "../../SvgIcon";
 
 export default function LoginActions({ setActiveModal, isSubmitting }) {
     return (
         <>
-            <div className="flex justify-between items-center flex-wrap gap-3">
-                <label className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex justify-between items-center flex-wrap gap-3 my-5">
+                {/* Remember Me */}
+                <label className="flex items-center gap-3 text-sm text-gray-500">
                     <input
                         type="checkbox"
-                        className="w-4 h-4 cursor-pointer checked:bg-primary checked:border-primary"
+                        className="
+                            w-4 h-4 cursor-pointer appearance-none 
+                            border border-gray-400 rounded 
+                            flex items-center justify-center 
+                            checked:bg-primary checked:border-primary 
+                            relative 
+                            checked:before:content-['✔'] 
+                            checked:before:text-white 
+                            checked:before:text-xs 
+                            checked:before:flex 
+                            checked:before:items-center 
+                            checked:before:justify-center 
+                            checked:before:absolute 
+                            checked:before:inset-0
+                        "
                     />
                     Remember Me
                 </label>
 
-                <Button
+                {/* Forget Password */}
+                <button
                     type="button"
                     onClick={() => setActiveModal("forget_password")}
-                    className="flex items-center text-sm font-semibold text-heading cursor-pointer"
+                    className="text-sm font-semibold text-heading hover:text-primary cursor-pointer bg-transparent p-0 hover:underline"
                 >
                     Forget password?
-                </Button>
+                </button>
             </div>
-            <div className="flex justify-end mt-5">
+
+            {/* Sign In Button */}
+            <div className="flex justify-end mt-10">
                 <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full max-w-[200px] h-[50px] md:h-[60px] bg-primary text-white border border-[#FAFAFA] rounded-md flex items-center justify-center gap-2 font-semibold tracking-wide text-sm md:text-base cursor-pointer disabled:opacity-70"
+                    className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-3"
                 >
                     {isSubmitting ? (
                         <>
-                            Logging in
-                            <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                            <Loader size={22} border={3} color="white" />
                         </>
                     ) : (
                         <>
@@ -40,7 +58,6 @@ export default function LoginActions({ setActiveModal, isSubmitting }) {
                     )}
                 </Button>
             </div>
-
         </>
     );
 }

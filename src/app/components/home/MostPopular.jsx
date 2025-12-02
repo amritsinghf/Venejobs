@@ -15,10 +15,10 @@ export default function MostPopular() {
                 text-center md:text-left
             ">
                 <div className="flex flex-col gap-4 w-full md:w-auto">
-                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight">
+                    <h2 className="text-3xl lg:text-4xl text-heading font-bold leading-tight">
                         Most Popular
                     </h2>
-                    <p className="text-gray-500 text-sm md:text-lg tracking-wide font-medium">
+                    <p className="text-gray-500 text-sm md:text-base tracking-wide font-medium">
                         See how you can up your career status
                     </p>
                 </div>

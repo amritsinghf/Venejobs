@@ -8,25 +8,35 @@ export default function LoginFormFields({
 }) {
     return (
         <>
-            {/* Email */}
             <div>
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Enter a valid email address",
-                        },
-                    })}
-                    className="block py-2.5 px-1 w-full text-base border-b border-neutral-300 focus:border-[var(--color-primary)] focus:outline-none text-heading tracking-wide placeholder:text-sm"
-                />
+                <div className="relative h-[48px]">
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Enter a valid email address",
+                            },
+                        })}
+                        className="block py-2.5 px-1 w-full h-full text-base border-b border-neutral-300 
+            focus:border-primary focus:outline-none text-heading tracking-wide 
+            placeholder:text-sm"
+                    />
+                </div>
 
-                {errors.email && (
-                    <span className="text-red-500 text-sm">{errors.email.message}</span>
-                )}
+                {/* ERROR WRAPPER WITH FIXED HEIGHT */}
+                <div className="min-h-[20px]">
+                    {errors.email?.message && (
+                        <span className="text-sm text-red-500 mt-2 block">
+                            {errors.email.message}
+                        </span>
+                    )}
+                </div>
             </div>
+
+
 
             <PasswordInput
                 register={register}

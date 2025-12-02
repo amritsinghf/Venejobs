@@ -11,7 +11,7 @@ const BASE_TOAST_OPTIONS = {
   closeOnClick: true,
   draggable: false,
   transition: Slide,
-
+  icon: false,
   // Style overrides
   className: "!bg-transparent !shadow-none !p-0 !m-0",
   bodyClassName: "!p-0 !m-0 flex",

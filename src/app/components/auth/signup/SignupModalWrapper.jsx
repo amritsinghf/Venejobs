@@ -9,22 +9,30 @@ export default function SignupModalWrapper({ children, setActiveModal }) {
   useClickOutside(modalRef, () => setActiveModal(""));
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center p-3">
-      <div className="relative p-1 w-full max-w-md mx-auto">
-        {/* Your same width but now responsive */}
-        <div className="relative bg-white w-full sm:w-[31rem] rounded-lg shadow-sm">
-          <div className="flex justify-end px-2">
-            <button
-              type="button"
-              onClick={() => setActiveModal("")}
-              className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-            >
-              <SvgIcon name="CrossButton" />
-            </button>
-          </div>
-          <div className="p-4 py-15" ref={modalRef}>
-            {children}
-          </div>
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6 sm:p-8 md:p-10">
+      <div
+        ref={modalRef}
+        className="
+          relative bg-white w-full max-w-[460px] rounded-lg shadow-sm
+          min-h-[640px] sm:min-h-[580px] md:min-h-[720px]
+        "
+      >
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={() => setActiveModal("")}
+          className="
+            absolute top-4 right-4 w-9 h-9
+            flex items-center justify-center
+            rounded-full hover:bg-gray-100 transition
+          "
+        >
+          <SvgIcon name="CrossButton" size={18} />
+        </button>
+
+        {/* Content */}
+        <div className="pt-20 p-6 sm:p-8 md:py-10 md:px-5">
+          {children}
         </div>
       </div>
     </div>

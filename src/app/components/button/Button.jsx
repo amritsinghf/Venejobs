@@ -11,8 +11,8 @@ export default function Button({
   ...props
 }) {
   const variantClasses = {
-    primary: "text-white w-40 rounded bg-primary hover:bg-blue-800",
-    secondary: "bg-gray-200 text-black hover:bg-gray-300",
+    primary: "text-white bg-black hover:bg-neutral-900",
+    secondary: "bg-white text-gray-600 hover:bg-gray-100",
     text: "text-heading text-[14px] font-semibold hover:underline",
   };
 
@@ -20,7 +20,18 @@ export default function Button({
     <button
       type={type}
       disabled={disabled || isLoading}
-      className={` ${variantClasses[variant]} ${className}`}
+      className={`
+        ${variantClasses[variant]} 
+        ${className}
+        w-[160px] sm:w-[180px] md:w-[208px]
+        h-[48px] sm:h-[52px] md:h-[56px]
+        rounded
+        font-semibold tracking-wide 
+        text-sm sm:text-base
+        flex items-center justify-center 
+        cursor-pointer
+        transition-all
+      `}
       {...props}
     >
       {isLoading ? "Loading..." : children}
@@ -28,4 +39,3 @@ export default function Button({
     </button>
   );
 }
-  

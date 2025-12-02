@@ -1,7 +1,6 @@
 "use client";
 import { useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import Button from "../../button/Button";
 import SvgIcon from "../../SvgIcon";
 
 export default function LoginModalWrapper({ children, setActiveModal }) {
@@ -10,23 +9,30 @@ export default function LoginModalWrapper({ children, setActiveModal }) {
   useClickOutside(loginRef, () => setActiveModal(""));
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center p-3">
-      <div className="relative p-1 w-full max-w-md mx-auto">
-        {/* Your same width but now responsive */}
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6 sm:p-8 md:p-10">
+      <div
+        ref={loginRef}
+        className="
+          relative bg-white w-full max-w-[460px] rounded-lg shadow-sm
+          min-h-[640px] sm:min-h-[580px] md:min-h-[720px]
+        "
+      >
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={() => setActiveModal("")}
+          className="
+            absolute top-4 right-4 w-9 h-9
+            flex items-center justify-center
+            rounded-full hover:bg-gray-100 transition cursor-pointer
+          "
+        >
+          <SvgIcon name="CrossButton" size={18} />
+        </button>
 
-        <div className="relative bg-white w-full sm:w-[440px] rounded-lg shadow-sm">
-          <div className="flex justify-end px-2">
-            <button
-              type="button"
-              onClick={() => setActiveModal("")}
-              className="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-            >
-              <SvgIcon name="CrossButton"/>
-            </button>
-          </div>
-          <div className="p-4 pt-15 pb-40 md:pt-15" ref={loginRef}>
-            {children}
-          </div>
+        {/* Content */}
+        <div className="pt-20 p-6 sm:p-8 md:py-10 md:px-5">
+          {children}
         </div>
       </div>
     </div>

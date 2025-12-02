@@ -21,11 +21,11 @@ export default function FreelancerPromo() {
                         #Great Freelance Marketplace
                     </p>
 
-                    <h2 className="text-3xl lg:text-5xl text-heading font-bold leading-tight">
+                    <h2 className="text-3xl lg:text-4xl text-heading font-bold leading-tight">
                         Empowering Freelancers to Achieve Their Career Goals
                     </h2>
 
-                    <p className="text-gray-500 text-sm md:text-lg text-start tracking-wide font-medium leading-6 lg:leading-8">
+                    <p className="text-gray-500 text-sm md:text-base text-start tracking-wide font-medium leading-6 lg:leading-8">
                         Meet clients you’re excited to work with and takeyour career or business to new heights. Find opportunities for every stage of your freelance career.
                     </p>
 
@@ -53,7 +53,7 @@ export default function FreelancerPromo() {
                         </div>
                     ))}
 
-                    <Button className="flex items-center gap-3 border px-6 py-3 lg:px-10 lg:py-4 bg-primary text-white rounded-md font-semibold w-fit cursor-pointer">
+                    <Button className=" bg-primary text-white w-fit gap-3">
                         Find Work
                         <SvgIcon name="RightArrWhite" />
                     </Button>
