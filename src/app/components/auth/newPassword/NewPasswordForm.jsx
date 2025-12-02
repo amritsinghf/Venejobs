@@ -6,6 +6,7 @@ import Button from "../../button/Button";
 import SvgIcon from "../../SvgIcon";
 import NewPasswordInput from "./NewPasswordInput";
 import Loader from "../../common/Loader";
+import useToastStore from "@/app/store/toastStore";
 
 export default function NewPasswordForm({ email, setActiveModal }) {
     const {
@@ -14,6 +15,8 @@ export default function NewPasswordForm({ email, setActiveModal }) {
         watch,
         formState: { errors, isSubmitting },
     } = useForm();
+
+    const { showSuccess, showError } = useToastStore.getState();
 
     const resetPassword = userApiStore((s) => s.resetPassword);
 
@@ -28,12 +31,25 @@ export default function NewPasswordForm({ email, setActiveModal }) {
     const password = watch("password");
 
     const onSubmit = async (data) => {
-        const res = await resetPassword({
-            email: email,
-            newPassword: data.password,
-        });
+        try {
+            const res = await resetPassword({
+                email: email,
+                newPassword: data.password,
+            });
 
-        if (res.success) setActiveModal("success_pass_reset");
+            if (res.success) {
+                showSuccess("Success", "Your password has been reset successfully.");
+                setActiveModal("success_pass_reset");
+            } else {
+                console.log(res.messagem,)
+                showError("Error", res.message || "Failed to reset password.");
+            }
+        } catch (err) {
+            showError(
+                err?.response?.data?.message,
+                "Something went wrong."
+            );
+        }
     };
 
     return (
@@ -68,7 +84,6 @@ export default function NewPasswordForm({ email, setActiveModal }) {
                 toggleVisibility={() => toggle("confirmPassword")}
             />
 
-
             <div className="flex justify-end pt-5">
                 <Button
                     type="submit"
@@ -77,9 +92,7 @@ export default function NewPasswordForm({ email, setActiveModal }) {
                     variant="primary"
                 >
                     {isSubmitting ? (
-                        <>
-                            <Loader size={22} border={3} color="white" />
-                        </>
+                        <Loader size={22} border={3} color="white" />
                     ) : (
                         <>
                             Reset Password
@@ -88,8 +101,6 @@ export default function NewPasswordForm({ email, setActiveModal }) {
                     )}
                 </Button>
             </div>
-
-
         </form>
     );
 }
