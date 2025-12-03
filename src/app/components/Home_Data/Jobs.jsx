@@ -33,7 +33,7 @@ export default function Jobs() {
   };
 
   return (
-    <div className="rounded-2xl mt-10 border border-gray-300 w-full  mx-auto">
+    <div className="rounded-2xl border border-gray-300 w-full  mx-auto">
       {jobs?.map((item) => (
         <div
           className="border-b border-gray-300 rounded py-2 px-3"

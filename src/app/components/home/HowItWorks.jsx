@@ -3,11 +3,11 @@ import SvgIcon from "../SvgIcon";
 export default function HowItWorks() {
     return (
         <div className="w-full mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-10">
-            <div className="flex flex-col gap-12">
+            <div className="flex flex-col gap-8 lg:gap-12">
 
                 {/* Heading */}
                 <div className="text-center flex flex-col gap-4">
-                    <p className="text-[#01237C] text-sm md:text-lg font-bold">
+                    <p className="text-primary text-sm md:text-lg font-bold">
                         For Clients
                     </p>
 
@@ -15,13 +15,13 @@ export default function HowItWorks() {
                         How it Works
                     </h2>
 
-                    <p className="text-sm lg:text-base text-gray-500 mx-auto tracking-wide font-medium">
+                    <p className="text-sm lg:text-base text-gray-500 mx-auto tracking-wide font-medium leading-7">
                         Find the perfect talent to bring your projects to life with a streamlined process designed for your success.
                     </p>
                 </div>
 
                 {/* Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12">
                     {[
                         {
                             icon: "Brifcase",

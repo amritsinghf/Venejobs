@@ -21,14 +21,14 @@ export default function BrowseCategories() {
                         Browse talent by category
                     </h2>
 
-                    <p className="text-gray-500 text-sm md:text-base">
+                    <p className="text-gray-500 text-sm md:text-base font-medium">
                         Get some Inspirations from 1800+ skills
                     </p>
                 </div>
 
                 {/* CENTER BUTTON ON MOBILE */}
                 <div className="flex justify-center sm:justify-end w-full sm:w-auto">
-                    <Button className="flex items-center gap-2 bg-[#5BBB7B1A] text-primary font-semibold rounded-md">
+                    <Button className="flex items-center gap-2 text-primary font-semibold rounded-md">
                         All Category
                         <SvgIcon name="RightOne" />
                     </Button>

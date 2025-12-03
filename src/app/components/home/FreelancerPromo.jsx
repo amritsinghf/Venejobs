@@ -53,7 +53,7 @@ export default function FreelancerPromo() {
                         </div>
                     ))}
 
-                    <Button className=" bg-primary text-white w-fit gap-2" variant="primary">
+                    <Button className=" bg-primary text-white gap-2" variant="primary">
                         Find Work
                         <SvgIcon name="RightArrWhite" />
                     </Button>

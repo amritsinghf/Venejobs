@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <>
       <div className="bg-white lg:bg-transparent w-full">
-        <div className="flex justify-between items-center py-5 w-[90%] md:w-full mx-auto">
+        <div className="flex justify-between items-center py-5 w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1600px] mx-auto">
           <LogoSection />
           <DesktopMenu />
 
