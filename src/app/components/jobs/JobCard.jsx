@@ -1,4 +1,3 @@
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SvgIcon from "../SvgIcon";
 import Button from "../button/Button";
 
@@ -52,11 +51,16 @@ export default function JobCard({ item }) {
             {/* ---------- MOBILE LAYOUT ---------- */}
 
             {/* Budget stays exactly the same */}
-            <div className="flex flex-row items-center mt-4 lg:mt-3">
-                <p className="text-heading font-semibold">${item.budget_amount}: &nbsp;</p>
-                <p className="text-paragraph text-sm font-medium tracking-wide">
-                    {budgetType} Price
-                </p>
+            <div className="flex flex-row items-center gap-3 mt-4 lg:mt-3">
+                <SvgIcon name="PriceTag" size={22} />
+
+                <div className="flex items-center gap-1">
+                    <p className="text-heading font-semibold">${item.budget_amount}: &nbsp;</p>
+
+                    <p className="text-paragraph text-sm font-medium tracking-wide">
+                        {budgetType} Price
+                    </p>
+                </div>
             </div>
 
             {/* Move these BELOW Budget for mobile (CSS unchanged) */}

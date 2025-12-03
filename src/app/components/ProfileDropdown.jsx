@@ -23,7 +23,6 @@ export default function ProfileDropdown() {
       localStorage.removeItem("token");
 
       router.push(Routes.home);
-      //currenly just removing from localstorage but still in cookie
       showSuccess("Logged Out Successfully!", "success");
     } catch (error) {
       showError(error, "error");
@@ -41,23 +40,21 @@ export default function ProfileDropdown() {
 
   return (
     <div className="hidden sm:hidden lg:block ">
-      <div className="flex items-center gap-1 ">
-        <div className="flex items-center gap-2 lg:gap-4">
-          <div className="relative ">
-            <span className="absolute inset-y-0 px-4  flex items-center ">
-              <SvgIcon name="Search_Icon" />
-            </span>
-            <input
-              type="search"
-              id="search"
-              className="block w-full px-10 py-2 rounded-4xl text-sm text-gray-900 font-medium shadow-sm"
-              placeholder="Search"
-              required
-            />
-          </div>
-
-          <SvgIcon name="Question" />
+      <div className="flex items-center gap-6 md:gap-4">
+        <div className="relative ">
+          <span className="absolute inset-y-0 px-4  flex items-center ">
+            <SvgIcon name="Search_Icon" />
+          </span>
+          <input
+            type="search"
+            id="search"
+            className="block w-full px-10 py-2 rounded-4xl text-sm text-gray-900 font-medium shadow-sm"
+            placeholder="Search"
+            required
+          />
         </div>
+
+        <SvgIcon name="Question" />
 
         <button
           type="button"
@@ -65,25 +62,11 @@ export default function ProfileDropdown() {
         >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">View notifications</span>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            data-slot="icon"
-            aria-hidden="true"
-            className="size-6"
-          >
-            <path
-              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <SvgIcon name="Notification" size={25} />
         </button>
 
         <div
-          className="relative inline-block text-left  px-3"
+          className="relative inline-block "
           ref={dropdownRef}
         >
           <button
@@ -99,39 +82,39 @@ export default function ProfileDropdown() {
             />
           </button>
 
-          {showDropdown && (
-            <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
-              <Link
-                href={Routes.profile}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                {user?.name}
-              </Link>
-              <Link
-                href={
-                  user?.role_id === 2
-                    ? Routes.profile.client.info
-                    : Routes.profile.freelancer.info 
-                }
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                Profile
-              </Link>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                Settings
-              </a>
-              <button
-                onClick={() => logout()}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
         </div>
+        {showDropdown && (
+          <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
+            <Link
+              href={Routes.profile}
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              {user?.name}
+            </Link>
+            <Link
+              href={
+                user?.role_id === 2
+                  ? Routes.profile.client.info
+                  : Routes.profile.freelancer.info
+              }
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              Profile
+            </Link>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              Settings
+            </a>
+            <button
+              onClick={() => logout()}
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
+              Sign out
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
