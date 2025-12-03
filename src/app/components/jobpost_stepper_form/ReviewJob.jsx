@@ -25,112 +25,139 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
   };
 
   return (
-    <div className="w-full h-auto  max-w-[1420px]  mb-20 mt-30 mx-auto lg:px-3 md:px-3 sm:px-3">
-      <div className="mt-20  flex flex-col gap-5  w-full ">
-        <h2 className="text-heading font-semibold text-[44px]">
+    <div className="w-full h-auto  max-w-[1420px]  mb-20 mt-12 mx-auto sm:px-3">
+      <div className="flex flex-col gap-5  w-full px-5">
+        <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
           Review your Job details
         </h2>
-        <p className="text-paragraph text-[18px]">
+        <p className="text-paragraph text-base lg:text-[18px]">
           Take a moment to double-check your job details to ensure everything is
           clear and ready for the right talent to apply.
         </p>
 
-        <div className="h-auto px-7 py-5 flex flex-col gap-10 hover:bg-neutral-secondary-medium bg-neutral-primary-soft border-default rounded-base shadow-xs">
+        <div className="h-auto px-7 py-5 flex flex-col gap-10 hover:bg-neutral-secondary-medium  border-default rounded shadow-2xl">
           {/* title */}
           <div className="flex justify-between border-b border-gray-300 pb-4">
-            <div className="flex flex-col gap-3">
-              <h2 className="font-semibold text-2xl text-heading">Title</h2>
-              <p className="text-paragraph text-lg">{data.title}</p>
+            <div className="flex flex-col gap-6">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
+                Title
+              </h2>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.title}
+              </p>
             </div>
             <div onClick={() => setStep(1)} className="cursor-pointer">
-              <SvgIcon name="Edit" size={32} color="#01237C" />
+              <SvgIcon name="Edit" size={24} className="text-blue-900" />
             </div>
           </div>
 
           {/* description and attachment file */}
           <div className="flex justify-between border-b border-gray-300 pb-4">
-            <div className="flex flex-col gap-3 ">
-              <h2 className="font-semibold text-2xl text-heading">
+            <div className="flex flex-col gap-6 ">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
                 Description
               </h2>
-              <p className="text-paragraph  text-lg max-w-[900px] break-all">
+              <p className="text-paragraph  text-base lg:text-lg max-w-[900px] break-all">
                 {data.description}
               </p>
 
               {/*file  */}
-              <h2 className="font-semibold text-2xl text-heading">
+              <h2 className="font-semibold text-base lg:text-lg text-heading">
                 Attachments
               </h2>
               <p>{data.attachment?.[0].name}</p>
             </div>
             <div onClick={() => setStep(5)} className="cursor-pointer">
-              <SvgIcon name="Edit" size={32} color="#01237C" />
+              <SvgIcon name="Edit" size={24} className="text-blue-900"/>
             </div>
           </div>
 
           <div className="flex justify-between border-b border-gray-300 pb-4">
-            <div className="flex flex-col gap-3">
-              <h2 className="font-semibold text-2xl text-heading">Category</h2>
-              <p className="text-paragraph text-lg">{data.category}</p>
+            <div className="flex flex-col gap-6">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
+                Category
+              </h2>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.category}
+              </p>
 
-              <h2 className="font-semibold text-2xl text-heading">Skills</h2>
-              <p className="text-paragraph text-lg">{data.skills}</p>
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
+                Skills
+              </h2>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.skills}
+              </p>
             </div>
             <div onClick={() => setStep(2)} className="cursor-pointer">
-              <SvgIcon name="Edit" size={32} color="#01237C" />
+              <SvgIcon name="Edit" size={24} className="text-blue-900"/>
             </div>
           </div>
 
           <div className="flex justify-between border-b border-gray-300 pb-4">
-            <div className="flex flex-col gap-3">
-              <h2 className="font-semibold text-2xl text-heading">
+            <div className="flex flex-col gap-6">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
                 Project size
               </h2>
-              <p className="text-paragraph text-lg">{data.project_size}</p>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.project_size}
+              </p>
 
-              <h2 className="font-semibold text-2xl text-heading">Deadline</h2>
-              <p className="text-paragraph text-lg">{final_deadline}</p>
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
+                Deadline
+              </h2>
+              <p className="text-paragraph text-base lg:text-lg">
+                {final_deadline}
+              </p>
 
-              <h2 className="font-semibold text-2xl text-heading">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
                 What level of experience will it need?
               </h2>
-              <p className="text-paragraph text-lg">{data.experience_level}</p>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.experience_level}
+              </p>
             </div>
             <div onClick={() => setStep(3)} className="cursor-pointer">
-              <SvgIcon name="Edit" size={32} color="#01237C" />
+              <SvgIcon name="Edit" size={24} className="text-blue-900"/>
             </div>
           </div>
 
           <div className="flex justify-between ">
-            <div className="flex flex-col gap-3">
-              <h2 className="font-semibold text-2xl text-heading">
+            <div className="flex flex-col gap-6">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
                 Budget Type
               </h2>
-              <p className="text-paragraph text-lg">{data.budget_type}</p>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.budget_type}
+              </p>
 
-              <h2 className="font-semibold text-2xl text-heading">
+              <h2 className="font-semibold text-lg lg:text-2xl text-heading">
                 Budget Amount
               </h2>
-              <p className="text-paragraph text-lg">{data.budget_amount}</p>
+              <p className="text-paragraph text-base lg:text-lg">
+                {data.budget_amount}
+              </p>
             </div>
             <div onClick={() => setStep(4)} className="cursor-pointer">
-              <SvgIcon name="Edit" size={32} color="#01237C" />
+              <SvgIcon name="Edit" size={24} className="text-blue-900"/>
             </div>
           </div>
 
-          <div className="flex justify-end">
-            <Button
-              type="button"
-              onClick={handlePrev}
-              className="bg-white text-gray-800 w-[150] p-3"
-            >
-              Back
-            </Button>
-            <input
-              type="submit"
-              className="bg-primary text-white w-[150] p-3 border"
-              value={"Post Job"}
-            />
+          <div className="flex md:justify-end">
+            <div className="flex justify-between w-full md:flex-row lg:gap-4 mt-5">
+              <Button
+                type="button"
+                onClick={handlePrev}
+                className="bg-white text-gray-800  p-3 flex items-center gap-2  shadow"
+              >
+                <SvgIcon name="PrevButton" />
+                Back
+              </Button>
+              <button
+                type="submit"
+                className="bg-primary text-white  px-1 lg:px-7 rounded flex items-center gap-2"
+                 
+              >Post This Job <SvgIcon name="NextArrow" /></button> 
+            </div>
           </div>
         </div>
       </div>

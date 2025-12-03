@@ -40,7 +40,7 @@ export default function Home() {
                 <Link
                   href={""}
                   className="bg-white text-paragraph text-center py-2 px-2 lg:py-3 lg:px-8 font-medium rounded"
-                  style={{ boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)" }}
+                  style={{ boxShadow: "0 1px 2px rgba(0, 0, 0, 0.20)" }}
                 >
                   Find Talent
                 </Link>
@@ -54,9 +54,9 @@ export default function Home() {
             </h2>
           </div>
           <div className="flex  gap-4 mt-10 ">
-            <Button
+            <button
               onClick={() => setshowData(true)}
-              className={`font-medium  p-2  `}
+              className={`font-medium  px-5  `}
             >
               <p
                 className={`px-4 sm:px-1 text-sm md:text-lg ${
@@ -67,8 +67,8 @@ export default function Home() {
               >
                 All job posts
               </p>
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={() => setshowData(false)}
               className={`font-medium  p-2`}
             >
@@ -81,7 +81,7 @@ export default function Home() {
               >
                 Your Active Contracts
               </p>
-            </Button>
+            </button>
           </div>
           <hr className="mt-4 mx-5 border-gray-300 " />
 

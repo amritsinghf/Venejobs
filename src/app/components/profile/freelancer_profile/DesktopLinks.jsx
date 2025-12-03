@@ -95,14 +95,14 @@ export default function DesktopLinks() {
               Help & Support
             </Link>
 
-            <Button
+            <button
               onClick={()=>user_logout()}
               type="button"
               className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
             >
               <SvgIcon name="Logout" />
               Sign Out
-            </Button>
+            </button>
           </div>
         </div>
       </nav>

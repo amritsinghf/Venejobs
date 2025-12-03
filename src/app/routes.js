@@ -3,7 +3,7 @@ export const Routes = {
   client: "/client",
   job_post: {
     home: "/client/jobpost/",
-    form: "/client/jobpost/forms",
+    form: "/client/jobpost/forms/",
   },
   freelancer: {
     get_started: "/freelancer",

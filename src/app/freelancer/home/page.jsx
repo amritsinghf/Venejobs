@@ -28,21 +28,21 @@ export default function Home() {
           </div>
 
           <div className="max-w-[1200px]  h-auto  w-full  flex  mt-10 flex-col">
-            <div className="p-5 ">
+            <div className="p-5">
               <label
                 htmlFor="search"
                 className="block mb-2.5 text-sm font-medium text-heading sr-only "
               >
                 Search
               </label>
-              <div className="relative ">
-                <span className="absolute inset-y-0 px-2   flex items-center  ">
+              <div className="relative">
+                <span className="absolute inset-y-0 px-4   flex items-center  ">
                   <SvgIcon name="Search_Icon" />
                 </span>
                 <input
                   type="search"
                   id="search"
-                  className="block w-full px-8 rounded-2xl text-sm text-gray-900 border border-gray-300  bg-gray-50"
+                  className="block w-full px-10 py-2 rounded-2xl text-sm text-gray-900 shadow-2xs  bg-white font-medium"
                   placeholder="Search"
                   required
                 />

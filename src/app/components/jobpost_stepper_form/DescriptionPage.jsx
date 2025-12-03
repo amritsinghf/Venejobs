@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
 import StepperNumber from "./StepperNumber";
+import SvgIcon from "../SvgIcon";
 
 const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -20,28 +21,28 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   };
 
   return (
-    <div className="w-full h-[1200]  max-w-[1420px]  mb-20 mt-30 mx-auto ">
-      <StepperNumber currstep={currstep}/>
-      <div className="flex gap-9 lg:px-3 md:px-3 sm:px-3">
-        <div className="mt-20  flex flex-col gap-5 h-[325px] w-[700px]">
-          <h2 className="text-heading font-semibold text-[44px]">
+    <div>
+      <StepperNumber currstep={currstep} />
+      <div className="flex flex-col lg:flex-row gap-9 px-5">
+        <div className="flex-1 flex flex-col gap-4 mt-6">
+          <h2 className="text-heading font-semibold md:text-3xl lg:text-[44px] text-2xl">
             Share the Details of Your Project
           </h2>
-          <p className="text-paragraph text-[18px]">
+          <p className="text-paragraph text-base lg:text-[18px]">
             Provide a clear overview of your project, including your goals,
             requirements, and expectations, to attract the right talent.
           </p>
         </div>
 
-        <div className="flex flex-col h-[1100] w-[700px] mt-20 ">
-          <div className="flex flex-col gap-5 w-full px-15 ">
-            <div className="">
-              <h2 className="font-semibold text-heading text-2xl ">
+        <div className="flex flex-1 flex-col h-auto">
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
+              <h2 className="font-semibold text-heading text-lg lg:text-2xl ">
                 Describe the job or project
               </h2>
 
-              <div className="flex gap-5 mt-4  p-1  h-[280px]">
-                <div class="flex  space-x-2.5 bg-neutral-primary-soft w-full ">
+              <div className="flex gap-5 w-full">
+                <div className="flex  space-x-2.5 bg-neutral-primary-soft w-full">
                   <textarea
                     name="description"
                     {...register("description", {
@@ -55,9 +56,9 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                       },
                     })}
                     placeholder="Example: I need a virtual assistant to reply to emails, organize files, and follow up on team tasks."
-                    className="border rounded border-gray-500"
-                    cols={55}
-                    rows={44}
+                    className="border rounded border-gray-300 text-sm lg:text-base w-full px-4 py-2"
+                    cols={40}
+                    rows={14}
                   ></textarea>
                 </div>
               </div>
@@ -68,8 +69,8 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               )}
             </div>
 
-            <div className="flex flex-col gap-1">
-              <h2 className="font-semibold text-heading text-2xl ">
+            <div className="flex flex-col gap-1 ">
+              <h2 className="font-semibold text-heading text-lg lg:text-2xl">
                 Upload Your File
               </h2>
               <div className="mt-5 flex flex-col  gap-5 justify-between">
@@ -105,7 +106,8 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                     })}
                     type="file"
                     name="attachment"
-                    class="text-blue-900 rounded"
+                    className="w-full max-w-sm  p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
+
                   />
                 </div>
               </div>
@@ -118,22 +120,22 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-end mt-5">
+              <div className="flex justify-between md:flex-row lg:gap-4 mt-5">
                 <Button
                   type="button"
                   onClick={handlePrev}
-                  className="bg-white text-gray-800 w-[150] p-3  "
+                  className="bg-white text-gray-800 w-[150px] p-3 flex items-center gap-2  shadow"
                 >
+                  <SvgIcon name="PrevButton" />
                   Back
                 </Button>
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="bg-primary text-white w-[150] p-3 border "
+                  className="bg-primary text-white w-[150px] p-3 border flex items-center gap-2"
                 >
-                  Review Job Post
+                  Next <SvgIcon name="NextArrow" />
                 </Button>
-                {/* <input type="submit" className="bg-blue-900 text-white w-[150] p-3 border" value={"Review Job Post"}/> */}
               </div>
             </div>
           </div>

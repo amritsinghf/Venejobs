@@ -16,11 +16,10 @@ const TitlePage = ({ nextStep, currstep }) => {
   };
 
   return (
-    <div className="w-full  max-w-[1420px]  mb-20 mt-10 mx-auto ">
-      <StepperNumber currstep={currstep}/>
-
-      <div className="flex gap-20 sm:px-3  flex-col lg:flex-row">
-        <div className="mt-20 flex flex-col gap-4  w-full px-5 lg:px-0 lg:mt-20">
+    <div>
+      <StepperNumber currstep={currstep} />
+      <div className="flex gap-10 sm:px-3  flex-col lg:flex-row px-5">
+        <div className="mt-6 flex flex-col gap-4  w-full  lg:px-0 lg:mt-10">
           <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
             Let's start with a strong title.
           </h2>
@@ -30,9 +29,9 @@ const TitlePage = ({ nextStep, currstep }) => {
           </p>
         </div>
 
-        <div className="flex flex-col  w-full px-5 lg:mt-25">
+        <div className="flex flex-col w-full lg:mt-10">
           <div className="flex flex-col gap-5 w-full  ">
-            <h2 className="font-semibold text-heading text-2xl ">
+            <h2 className="font-semibold text-heading text-lg lg:text-2xl">
               Write a title for your job post
             </h2>
 
@@ -46,7 +45,7 @@ const TitlePage = ({ nextStep, currstep }) => {
                   message: "Title should be atleast 5 characters long",
                 },
               })}
-              className="w-full rounded p-4"
+              className="w-full rounded p-4 border border-gray-200"
               placeholder="Enter Your Title"
             />
             {errors.title && (
@@ -56,7 +55,7 @@ const TitlePage = ({ nextStep, currstep }) => {
             )}
             <div className="flex flex-col gap-5 py-3">
               <h3 className="text-[18px] ">Example titles</h3>
-              <ul className="text-[16px] flex flex-col gap-5 text-paragraph list-disc px-3 ">
+              <ul className="text-[16px] flex flex-col gap-5 text-paragraph list-disc px-8">
                 <li>
                   UX/UI designer to bring website mockup and prototype to life
                 </li>
@@ -71,7 +70,7 @@ const TitlePage = ({ nextStep, currstep }) => {
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className="bg-primary text-white w-[150] p-3 border flex items-center gap-2 justify-center"
+                  className="bg-primary text-white w-[150] px-7 border flex items-center gap-2 justify-center"
                 >
                   Next <SvgIcon name="NextArrow" />
                 </Button>

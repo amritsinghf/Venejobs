@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
 import toastStore from "../store/toastStore";
-import Button from "./button/Button";
 import userApiStore from "../store/userStore";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -97,7 +96,7 @@ export default function HomeNavbar() {
     <>
       <div className="w-full relative">
         <div className="max-w-[1420px] w-full mx-auto">
-          <div className="flex justify-between items-center py-5 px-7  sm:px-5 ">
+          <div className="flex justify-between items-center gap-2 py-5 px-7  sm:px-5 ">
             <div className="flex justify-evenly gap-1  items-center ">
               <Link href={Routes.client}>
                 <Image
@@ -128,7 +127,7 @@ export default function HomeNavbar() {
             <ProfileDropdown />
 
             <div className="text-center">
-              <Button
+              <button
                 className="text-black lg:hidden   hover:bg-brand-strong  font-medium leading-5 rounded-base text-sm px-4 py-2.5"
                 type="button"
                 aria-controls="drawer-navigation"
@@ -136,7 +135,7 @@ export default function HomeNavbar() {
                 onClick={() => setMenuOpen(true)}
               >
                 <SvgIcon name="ToggleMenu" />
-              </Button>
+              </button>
             </div>
 
             {menuOpen && (
@@ -165,12 +164,12 @@ export default function HomeNavbar() {
                         Venejobs
                       </h5>
                     </div>
-                    <Button
+                    <button
                       className="text-gray-500 hover:text-gray-700 "
                       onClick={() => setMenuOpen(false)}
                     >
                       <ClearIcon fontSize="small" />
-                    </Button>
+                    </button>
                   </div>
                   <hr />
 
@@ -196,13 +195,13 @@ export default function HomeNavbar() {
                       role="button"
                       className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-2xl"
                     >
-                      <Button
+                      <button
                         type="button"
                         onClick={() => logout()}
                         className="w-full text-left flex items-center gap-1 px-4 py-2 text-xl font-medium text-red-600 cursor-pointer"
                       >
                         <SvgIcon name="Signout" /> Sign out
-                      </Button>
+                      </button>
                     </div>
                   </nav>
                 </div>

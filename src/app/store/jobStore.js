@@ -116,6 +116,7 @@ const jobApiStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const res = await get_project_experienceLevel();
+      console.log(res)
       set({
         experienceLevels: res.experienceLevels,
         loading: false,

@@ -104,13 +104,13 @@ export default function AllJobs() {
 
         {/* pagiantion */}
         <div className="flex justify-start px-4 gap-5 items-center">
-          <Button
+          <button
             disabled={page === 1}
             onClick={() => selectPage(page - 1)}
             className={`cursor-pointer ${page === 1 ? "opacity-40" : ""}`}
           >
             <SvgIcon name="Control_prev" />
-          </Button>
+          </button>
 
           {[...Array(totalPages)].map((_, i) => {
             const active = page === i + 1;
@@ -128,15 +128,15 @@ export default function AllJobs() {
             );
           })}
 
-          <Button
+          <button
             disabled={page === totalPages}
             onClick={() => selectPage(page + 1)}
             className={`cursor-pointer ${
               page === totalPages ? "opacity-40" : ""
-            }`}
+            } md:w-10`}
           >
             <SvgIcon name="Control_next" />
-          </Button>
+          </button>
         </div>
       </div>
     </>

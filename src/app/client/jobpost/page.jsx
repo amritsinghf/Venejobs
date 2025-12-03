@@ -11,7 +11,7 @@ export default function Jobpost() {
     <>
       <ClientLayout>
         <div className="w-full max-w-[1420px]  mb-20 lg:mt-20 mt-20  px-4 2xl:mx-auto ">
-          <div className="flex justify-items-start flex-col gap-8  ">
+          <div className="flex justify-items-start flex-col gap-8 px-3 lg:px-3">
             <div className="flex flex-col justify-items-start  w-full lg:max-w-[1000px] gap-6 ">
               <div>
                 <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-6xl">

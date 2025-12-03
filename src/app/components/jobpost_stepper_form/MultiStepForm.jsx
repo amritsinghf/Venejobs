@@ -10,6 +10,7 @@ import ReviewJob from "./ReviewJob";
 import SuccessJobCreate from "./SuccessJobCreate";
 import toastStore from "@/app/store/toastStore";
 import jobApiStore from "@/app/store/jobStore";
+import StepperNumber from "./StepperNumber";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -109,7 +110,12 @@ const MultiStepForm = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>{renderStep()}</form>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="w-full h-auto max-w-[1420px] mx-auto mb-20 mt-10 flex flex-col gap-6">
+            {/* <StepperNumber currstep={step} /> */}
+            {renderStep()}
+          </div>
+        </form>
       </FormProvider>
 
       {showConfirmMessage && <SuccessJobCreate />}

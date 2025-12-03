@@ -1,6 +1,6 @@
 export default function StepperNumber({ currstep }) {
   return (
-    <div className="flex items-center justify-around md:max-w-[350px] w-full px-5  lg:px-0 lg:mt-30">
+    <div className="flex items-center justify-around md:max-w-[350px] w-full px-5  lg:px-5 lg:mt-30">
       {[...Array(5)].map((_, i) => (
         <div className="flex items-center w-full" key={i}>
           {/* Circle */}
@@ -11,7 +11,7 @@ export default function StepperNumber({ currstep }) {
                   ? "bg-primary text-white"
                   : "bg-white text-black"
               }
-              rounded-full w-[40px] h-[40px] flex items-center justify-center
+              rounded-full w-8 h-8 md:w-10 md:h-10 flex items-center justify-center
               border border-gray-300 shrink-0
             `}
           >

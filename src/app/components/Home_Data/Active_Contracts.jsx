@@ -5,7 +5,7 @@ import Button from "../button/Button";
 
 export default function Active_Contracts() {
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(3);
   const selectPage = (selectedPage) => {
     if (
       selectedPage >= 1 &&
@@ -136,36 +136,45 @@ export default function Active_Contracts() {
       </div>
 
       <div className="flex justify-end py-6 px-6">
-        <div className="flex justify-center gap-5 items-center">
+        <div className="flex justify-center gap-3 items-center">
+          {/* Prev Button */}
           <button
             disabled={page === 1}
             onClick={() => selectPage(page - 1)}
-            className="cursor-pointer"
+            className={`w-10 h-10 flex items-center justify-center rounded-full border 
+        cursor-pointer transition
+        ${page === 1 ? "opacity-40" : "bg-white text-paragraph"}`}
           >
             <SvgIcon name="Control_prev" />
           </button>
 
-          {[...Array(5)].map((_, i) => (
-            <span
-              key={i}
-              onClick={() => selectPage(i + 1)}
-              className={`${
-                page === i + 1
-                  ? "bg-primary text-white border rounded-full "
-                  : "bg-white text-paragraph border rounded-full font-medium px-2 py-1"
-              }px-3 py-1  cursor-pointer`}
-            >
-              {i + 1}
-            </span>
-          ))}
+          {/* Page Numbers */}
+          {[...Array(totalPage)].map((_, i) => {
+            const active = page === i + 1;
 
-          <Button
+            return (
+              <button
+                key={i}
+                onClick={() => selectPage(i + 1)}
+                className={`w-10 h-10 flex items-center justify-center rounded-full 
+    border border-gray-300 leading-none transition font-semibold
+    ${active ? "bg-primary text-white" : "bg-white text-paragraph"}`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+
+          {/* Next Button */}
+          <button
             disabled={page === totalPage}
             onClick={() => selectPage(page + 1)}
-            className="cursor-pointer"
+            className={`w-10 h-10 flex items-center justify-center rounded-full border 
+        cursor-pointer transition
+        ${page === totalPage ? "opacity-40" : "bg-white text-paragraph"}`}
           >
             <SvgIcon name="Control_next" />
-          </Button>
+          </button>
         </div>
       </div>
     </div>

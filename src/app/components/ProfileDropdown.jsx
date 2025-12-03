@@ -42,7 +42,7 @@ export default function ProfileDropdown() {
   return (
     <div className="hidden sm:hidden lg:block ">
       <div className="flex items-center gap-1 ">
-        <div className="flex items-center gap-6 ">
+        <div className="flex items-center gap-2 lg:gap-4">
           <div className="relative ">
             <span className="absolute inset-y-0 px-4  flex items-center ">
               <SvgIcon name="Search_Icon" />
@@ -59,7 +59,7 @@ export default function ProfileDropdown() {
           <SvgIcon name="Question" />
         </div>
 
-        <Button
+        <button
           type="button"
           className="relative rounded-full p-1 text-paragraph focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
         >
@@ -80,13 +80,13 @@ export default function ProfileDropdown() {
               strokeLinejoin="round"
             />
           </svg>
-        </Button>
+        </button>
 
         <div
           className="relative inline-block text-left  px-3"
           ref={dropdownRef}
         >
-          <Button
+          <button
             className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             onClick={() => setshowDropdown((prev) => !prev)}
           >
@@ -97,7 +97,7 @@ export default function ProfileDropdown() {
               alt=""
               className="size-10 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
             />
-          </Button>
+          </button>
 
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
@@ -123,12 +123,12 @@ export default function ProfileDropdown() {
               >
                 Settings
               </a>
-              <Button
+              <button
                 onClick={() => logout()}
                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
               >
                 Sign out
-              </Button>
+              </button>
             </div>
           )}
         </div>

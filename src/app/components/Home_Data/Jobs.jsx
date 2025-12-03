@@ -53,17 +53,17 @@ export default function Jobs() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-start items-center gap-2 sm:gap-10">
+            <div className="flex flex-col md:flex-row justify-start md:items-center gap-2 sm:gap-10">
               <div className="flex items-center gap-5 lg:gap-8 flex-wrap">
-                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
+                <span className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Proposals (2)
-                </Button>
-                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
+                </span>
+                <span className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Message (1)
-                </Button>
-                <Button className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
+                </span>
+                <span className="text-paragraph font-medium border px-1 py-2 sm:p-4 border-gray-100">
                   Shortlist (2)
-                </Button>
+                </span>
               </div>
               <div className="flex justify-start items-center lg:justify-between  gap-8 mt-2 md:mt-0">
                 <Button className="bg-primary text-white border h-10 md:h-15 px-4  rounded cursor-pointer">
