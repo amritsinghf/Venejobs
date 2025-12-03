@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ContractCard from "./ContractCard";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
 
 export default function ActiveContracts() {
     const [page, setPage] = useState(1);

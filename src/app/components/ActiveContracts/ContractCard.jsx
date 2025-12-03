@@ -4,7 +4,7 @@ import Button from "../button/Button";
 export default function ContractCard() {
     return (
         <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
-            <div className="w-full flex flex-col lg:flex-row items-start lg:items-center rounded p-2 justify-between gap-6">
+            <div className="w-full flex flex-col lg:flex-row items-start lg:items-center rounded justify-between gap-6">
 
                 {/* Left Section */}
                 <div className="flex items-center gap-6 w-full lg:w-auto">
@@ -42,7 +42,7 @@ export default function ContractCard() {
 
                 {/* Amounts */}
                 <div className="flex flex-col sm:flex-row lg:flex-row items-start sm:items-center gap-5 lg:gap-30 w-full lg:w-auto">
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                         <h3 className="text-heading font-semibold text-sm md:text-lg">
                             Contract Amount :
                         </h3>
@@ -51,7 +51,7 @@ export default function ContractCard() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                         <h3 className="text-heading font-semibold text-sm md:text-lg">
                             Paid Amount :
                         </h3>

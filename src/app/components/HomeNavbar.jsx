@@ -10,6 +10,7 @@ import toastStore from "../store/toastStore";
 import userApiStore from "../store/userStore";
 import ClearIcon from "@mui/icons-material/Clear";
 import Button from "./button/Button";
+import HomeNavbarMobileMenu from "./navbar/HomeNavbarMobileMenu";
 
 export default function HomeNavbar() {
   const router = useRouter();
@@ -148,75 +149,9 @@ export default function HomeNavbar() {
 
           </div>
 
-          {/* THE REST IS SAME — Drawer etc */}
-          {menuOpen && (
-            <>
-              <div
-                className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300`}
-                onClick={() => setMenuOpen(false)}
-              ></div>
+        <HomeNavbarMobileMenu isOpen={menuOpen} setIsOpen={setMenuOpen} SidebarLinks={SidebarLinks} logout={logout} />
 
-              <div
-                className={`fixed top-0 right-0 lg:hidden h-full w-50 bg-white shadow-xl z-50 p-4 flex flex-col gap-4 transform transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
-                  }`}
-              >
-                <div className="flex justify-between items-center mt-10">
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src="/home/logo-home.png"
-                      alt="logo image"
-                      height={500}
-                      width={500}
-                      style={{ width: 30, height: 30 }}
-                      className="cursor-pointer"
-                    />
-                    <h5 className="text-xl font-semibold text-gray-900">
-                      Venejobs
-                    </h5>
-                  </div>
-
-                  <button
-                    className="text-gray-500 hover:text-gray-700"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <ClearIcon fontSize="small" />
-                  </button>
-                </div>
-
-                <hr />
-
-                <nav className="flex flex-col items-start gap-4 sm:gap-3">
-                  {SidebarLinks.map((item) => (
-                    <div
-                      role="button"
-                      className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-lg"
-                      key={item.label}
-                    >
-                      <Link
-                        href={item.href}
-                        className="text-xl text-paragraph px-4 font-medium"
-                      >
-                        {item.label}
-                      </Link>
-                    </div>
-                  ))}
-
-                  <div
-                    role="button"
-                    className="flex items-center w-full py-3 rounded-lg hover:bg-blue-gray-50 text-2xl"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => logout()}
-                      className="w-full text-left flex items-center gap-1 px-4 py-2 text-xl font-medium text-red-600 cursor-pointer"
-                    >
-                      <SvgIcon name="Signout" /> Sign out
-                    </button>
-                  </div>
-                </nav>
-              </div>
-            </>
-          )}
+         
         </div>
       </div>
     </>
