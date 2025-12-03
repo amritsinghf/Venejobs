@@ -7,7 +7,6 @@ import Pagination from "./Pagination";
 
 export default function Jobs() {
   const { jobs, totalpagenum, fetchJobsByUser } = jobApiStore();
-    console.log(jobs, ">>>>>>>>>")
   const [page, setPage] = useState(1);
   const limit = 10;
 
@@ -16,7 +15,7 @@ export default function Jobs() {
   }, [page]);
 
   return (
-    <div className="rounded-2xl border border-gray-300 w-full mx-auto">
+    <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full mx-auto">
       <JobsList jobs={jobs} />
 
       <Pagination

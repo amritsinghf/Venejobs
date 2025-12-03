@@ -7,7 +7,7 @@ export default function JobCard({ item }) {
         : "";
 
     return (
-        <div className="border-b border-gray-300 rounded p-6 lg:p-8">
+        <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
 
             {/* Desktop View */}
             <div className="w-full flex flex-col lg:flex-row rounded justify-between gap-5 lg:gap-3.5">

@@ -35,7 +35,7 @@ export default function JobTabs({ showData, setshowData }) {
                         absolute bottom-0 h-0.5 bg-blue-900 transition-all duration-300
                         ${showData
                             ? "left-0 w-[110px]"   
-                            : "left-[150px] w-[200px]"
+                            : "left-[140px] lg:left-[150px] w-[180px] lg:w-[200px]"
                         }
                     `}
                 ></div>
