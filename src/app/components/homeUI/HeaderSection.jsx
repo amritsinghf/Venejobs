@@ -17,7 +17,7 @@ export default function HeaderSection({ name }) {
             </div>
 
             {/* Right: Buttons */}
-            <div className="flex justify-end gap-8">
+            <div className="flex justify-end gap-6 lg:gap-8">
                 <Link
                     href={Routes.job_post.home}
                     className="bg-primary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] 

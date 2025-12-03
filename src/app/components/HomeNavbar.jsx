@@ -95,7 +95,7 @@ export default function HomeNavbar() {
   return (
     <>
       <div className="w-full relative">
-        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1600px] mx-auto">
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto">
           <div className="flex justify-between items-center gap-3 py-5">
             <div className="flex gap-2 items-center ">
               <Link href={Routes.client}>
