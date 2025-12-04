@@ -10,7 +10,7 @@ export default function JobCard({ item }) {
         <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
 
             {/* Desktop View */}
-            <div className="w-full flex flex-col lg:flex-row rounded justify-between gap-5 lg:gap-3.5">
+            <div className="w-full flex flex-col xl:flex-row rounded justify-between gap-5 lg:gap-3.5">
 
                 {/* Title + Posted (same CSS) */}
                 <div className="flex flex-col gap-5 lg:gap-3.5">
@@ -32,7 +32,8 @@ export default function JobCard({ item }) {
                     <span className="hidden lg:flex text-paragraph font-medium text-base">Shortlist (2)</span>
 
                     {/* Desktop Button */}
-                    <Button className="bg-primary text-white border rounded cursor-pointer hidden lg:flex">
+                    <Button className="bg-primary text-white border hidden lg:flex" variant="primary"
+                    >
                         View details
                     </Button>
 
@@ -73,7 +74,10 @@ export default function JobCard({ item }) {
             <div className="flex lg:hidden items-center gap-10 mt-6">
 
                 {/* Mobile View Details button — same CSS */}
-                <Button className="bg-primary text-white border h-10 md:h-15 px-4 rounded cursor-pointer">
+                <Button
+                    className="bg-primary text-white border disabled:opacity-70"
+                    variant="primary"
+                >
                     View details
                 </Button>
 
@@ -81,7 +85,7 @@ export default function JobCard({ item }) {
                 <div
                     role="button"
                     tabIndex={0}
-                    className="flex flex-col gap-2 items-center justify-center text-paragraph cursor-pointer font-medium text-sm lg:text-base"
+                    className="flex flex-col gap-2 items-center justify-center text-paragraph cursor-pointer font-medium text-sm xl:text-base"
                 >
                     <SvgIcon name="More" size={18} />
                     More
