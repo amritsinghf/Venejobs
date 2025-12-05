@@ -16,12 +16,14 @@ export default function Jobs() {
 
   return (
     <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full mx-auto">
+      
       <JobsList jobs={jobs} />
 
       <Pagination
         page={page}
         totalPages={totalpagenum}
         onPageChange={setPage}
+        jobs={jobs}
       />
     </div>
   );

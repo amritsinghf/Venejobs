@@ -6,8 +6,9 @@ export default function HeroImage() {
             <Image
                 src="/heroSectionImage.png"
                 alt="person working"
-                width={700}
-                height={700}
+                width={450}
+                height={500}
+                className="md:w-[400px] lg:w-[500px] xl:w-full"
             />
             {/* Floating Card 1 - Proof of Quality */}
             <div className="absolute left-[-60px] bottom-5 bg-white shadow-lg rounded-2xl px-5 py-3 hidden lg:flex items-center gap-3">
@@ -21,8 +22,8 @@ export default function HeroImage() {
             </div>
 
             {/* Floating Card 2 - Safe & Secure */}
-            <div className="absolute right-[-100px] bottom-50 bg-white shadow-lg rounded-2xl px-5 py-3 hidden lg:flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center">
+            <div className="absolute lg:right-0 xl:right-[-100px] bottom-25 bg-white shadow-lg rounded-2xl  px-5 py-3 hidden lg:flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center ">
                     <img src="/icons/security.png" className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col gap-1">

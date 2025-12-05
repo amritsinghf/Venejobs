@@ -39,7 +39,7 @@ export default function SignupActions({ isSubmitting, setActiveModal }) {
                     <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-2"
+                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-2 px-2"
                         variant="primary"
                     >
                         {isSubmitting ? (

@@ -23,7 +23,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   return (
     <div>
       <StepperNumber currstep={currstep} />
-      <div className="flex flex-col lg:flex-row gap-9 px-5">
+      <div className="flex flex-col lg:flex-row gap-9 ">
         <div className="flex-1 flex flex-col gap-4 mt-6">
           <h2 className="text-heading font-semibold md:text-3xl lg:text-[44px] text-2xl">
             Share the Details of Your Project
@@ -74,7 +74,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                 Upload Your File
               </h2>
               <div className="mt-5 flex flex-col  gap-5 justify-between">
-                <div class="flex items-center  bg-neutral-primary-soft rounded-2xl">
+                <div className="flex items-center  bg-neutral-primary-soft rounded-2xl">
                   <input
                     id="bordered-radio-2"
                     {...register("attachment", {
@@ -107,7 +107,6 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                     type="file"
                     name="attachment"
                     className="w-full max-w-sm  p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
-
                   />
                 </div>
               </div>
@@ -120,7 +119,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-between md:flex-row lg:gap-4 mt-5">
+              <div className="flex justify-between gap-3 md:flex-row lg:gap-4 mt-5">
                 <Button
                   type="button"
                   onClick={handlePrev}

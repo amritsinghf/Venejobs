@@ -66,6 +66,44 @@ export default function ContractCard() {
                     View contract
                 </Button>
             </div>
+
+            <p className="text-paragraph text-sm lg:text-base font-medium">
+              Can u design ui
+            </p>
+
+            <div className="flex flex-row items-center">
+              <p className="text-heading text-sm lg:text-base font-medium">
+                Started Date:&nbsp;
+              </p>
+              <p className="text-paragraph text-sm lg:text-base font-medium">
+                11-01-0001
+              </p>
+            </div>
+          </div>
         </div>
-    );
+
+        {/* Amounts */}
+        <div className="flex flex-col sm:flex-row lg:flex-row items-start sm:items-center gap-5 lg:gap-30 w-full lg:w-auto">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-heading font-semibold text-sm md:text-lg">
+              Contract Amount :
+            </h3>
+            <p className="text-paragraph font-medium text-base">$1000.00</p>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-heading font-semibold text-sm md:text-lg">
+              Paid Amount :
+            </h3>
+            <p className="text-paragraph font-medium text-base">$500.00</p>
+          </div>
+        </div>
+
+        {/* View Button */}
+        <Button className="bg-primary text-white px-4 rounded  sm:w-auto">
+          View contract
+        </Button>
+      </div>
+    </div>
+  );
 }

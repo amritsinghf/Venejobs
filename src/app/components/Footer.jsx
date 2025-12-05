@@ -43,7 +43,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-footerclient sm:w-full 2xl:mt-44">
+      <footer className="bg-footerclient sm:w-full 2xl:mt-94">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="px-4 py-6 bg-footerclient  flex justify-between flex-wrap">
             <div className="flex items-center justify-start gap-2  ">
@@ -133,12 +133,12 @@ export default function Footer() {
                   required
                 />
 
-                <Button
+                <button
                   type="submit"
                   className="text-primary text-[16px] font-medium absolute end-2.5 bottom-2.5 md:top-7 lg:top-2 xl:top-2 2xl:top-2 sm:top-0 rounded-lg text-sm px-4 py-2"
                 >
                   Send
-                </Button>
+                </button>
               </div>
             </div>
           </div>

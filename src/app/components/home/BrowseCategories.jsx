@@ -28,7 +28,7 @@ export default function BrowseCategories() {
 
                 {/* CENTER BUTTON ON MOBILE */}
                 <div className="flex justify-center sm:justify-end w-full sm:w-auto">
-                    <Button className="flex items-center gap-2 text-primary font-semibold rounded-md">
+                    <Button className="flex items-center gap-2 text-primary bg-[#5BBB7B1A] font-semibold rounded-md px-2">
                         All Category
                         <SvgIcon name="RightOne" />
                     </Button>

@@ -4,7 +4,7 @@ import CustomToast from "../components/CustomToast";
 
 const BASE_TOAST_OPTIONS = {
   position: "bottom-right",
-  autoClose: 2500,
+  autoClose: 1200,
   hideProgressBar: true,
   closeButton: false,
   pauseOnHover: true,

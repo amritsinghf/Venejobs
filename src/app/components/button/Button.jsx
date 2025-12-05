@@ -33,8 +33,8 @@ export default function Button({
       className={`
         ${variantClasses[variant]} 
         ${className}
-        w-[180px] md:w-52
-        h-12 sm:h-[50px] lg:h-13
+        lg:w-[180px] md:w-52
+        h-12 sm:h-[52px] md:h-13
         rounded
         font-semibold tracking-wide 
         text-sm lg:text-base
