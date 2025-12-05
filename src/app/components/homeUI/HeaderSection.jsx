@@ -18,10 +18,10 @@ export default function HeaderSection({ name }) {
 
             {/* Left: Welcome Text */}
             <div className="flex flex-col gap-4">
-                <h1 className="text-2xl lg:text-4xl text-heading font-bold leading-tight">
+                <h1 className="text-2xl lg:text-4xl text-heading font-bold leading-tight leading-tight">
                     Welcome back, {name}
                 </h1>
-                <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-9">
+                <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
                     Here's what's happening with your projects today. Ready to find top talent?
                 </p>
             </div>

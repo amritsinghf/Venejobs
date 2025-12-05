@@ -62,12 +62,12 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
         <div className="flex flex-col gap-6 lg:gap-10">
             <StepperNumber currstep={currstep} />
 
-            <div className="flex gap-5 lg:gap-25 flex-col lg:flex-row w-full">
+            <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
                 <div className="w-full flex flex-col gap-4">
-                    <h2 className="text-2xl lg:text-4xl font-bold">
+                    <h2 className="text-2xl lg:text-4xl font-bold leading-tight">
                         Let’s find the perfect freelancer for your project
                     </h2>
-                    <p className="text-gray-500 text-base">
+                    <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
                         This helps your job post stand out to the right candidates.
                     </p>
                 </div>

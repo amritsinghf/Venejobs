@@ -58,7 +58,7 @@ const SkillsSelector = ({
 
               <label
                 htmlFor={checkboxId}
-                className="flex flex-col py-3.5 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
+                className="flex flex-col py-3 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
               >
                 <span className="flex items-center gap-2 text-sm lg:text-base text-paragraph">
                   {item.name}

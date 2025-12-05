@@ -39,7 +39,7 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                         />
 
                         <label
-                            htmlFor={item.code} className="flex flex-col py-3.5 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
+                            htmlFor={item.code} className="flex flex-col py-3 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
                         >
                             <div className="flex items-center gap-3">
                                 <span className="text-paragraph text-sm lg:text-base">

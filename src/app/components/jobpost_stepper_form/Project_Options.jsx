@@ -42,156 +42,160 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
-      <div className="flex gap-10 flex-col lg:flex-row ">
-        <div className="mt-10  flex flex-col gap-5  ">
-          <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
+      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+        <div className="flex flex-col gap-4 w-full">
+          <h2 className="text-2xl lg:text-4xl text-heading font-bold leading-tight ">
             Next, Define the Scope of Your Project
           </h2>
-          <p className="text-paragraph text-base lg:text-[18px]">
+          <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
             Think about the scale of your project, the tasks involved, and the
             estimated time required to bring it to completion.{" "}
           </p>
         </div>
 
-        <div className="flex flex-col h-auto">
-          <div className="flex flex-col gap-5 w-full lg:mt-8">
+        <div className="w-full flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-xl lg:text-2xl text-heading font-bold">
+              Project size
+            </h2>
             <div className="flex flex-col gap-6">
-              <h2 className="font-semibold text-heading text-lg lg:text-2xl ">
-                Project size
-              </h2>
-              <div className="flex flex-col gap-5">
-                {projectSizes?.map((item) => (
-                  <div
-                    className="flex space-x-2.5 bg-neutral-primary-soft border  border-gray-200 rounded p-2"
-                    key={item.id}
-                  >
-                    <input
-                      id={item.code}
-                      type="radio"
-                      value={item.title}
-                      {...register("project_size", {
-                        required: "Please select at least one option",
-                      })}
-                      name="project_size"
-                      className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-gray-200"
-                    />
-                    <label htmlFor={item.code} className="py-2">
-                      <p className="select-none w-full text-base md:text-lg  text-heading font-semibold ">
-                        {item.title}
-                      </p>
-                      <p
-                        className="select-none text-xs lg:text-sm text-paragraph text-body"
-                      >
-                        {item.description}
-                      </p>
-                    </label>
-                  </div>
-                ))}
+              {projectSizes?.map((item) => (
+                <div
+                  className="w-full py-3.5 px-6 text-base border border-[#D0D5DD] rounded-md 
+             focus-within:border-primary 
+             flex items-center gap-4 cursor-pointer"
+                  key={item.id}
+                >
+                  <input
+                    id={item.code}
+                    type="radio"
+                    value={item.title}
+                    {...register("project_size", {
+                      required: "Please select at least one option",
+                    })}
+                    name="project_size"
+                    className="w-4 h-4 text-primary accent-primary "
+                  />
 
-                {errors.project_size && (
-                  <span className="text-red-500 font-bold">
-                    {errors.project_size.message}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <h2 className="font-semibold text-heading  text-lg lg:text-2xl ">
-                Deadline
-              </h2>
-              <div className="flex flex-wrap  gap-4 justify w-full">
-                {projectDuration?.map((item) => (
-                  <div
-                    className="flex items-center px-2 border border-gray-200 bg-neutral-primary-soft rounded-2xl"
-                    key={item.id}
-                  >
-                    <input
-                      id={item.code}
-                      {...register("duration", {
-                        required: "Please select at least one option",
-                      })}
-                      type="radio"
-                      value={item.code}
-                      name="duration"
-                      className="w-4 h-4 rounded-full checked:border-brand"
-                    />
-                    <label
-                      htmlFor={item.code}
-                      className="w-full py-4 select-none ms-2 lg:text-lg text-base text-paragraph font-medium "
-                    >
-                      {item.label}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {errors.duration && (
-              <span className="text-red-500 font-bold">
-                {errors.duration.message}
-              </span>
-            )}
-
-            <div className="flex flex-col gap-6">
-              <h2 className="font-semibold text-heading text-lg lg:text-2xl ">
-                What level of experience will it need?
-              </h2>
-
-              {experienceLevels?.map((item) => (
-                <div key={item.id}>
-                  <div className="flex space-x-2.5 bg-neutral-primary-soft border border-gray-200 rounded p-2 ">
-                    <input
-                      id={item.code}
-                      type="radio"
-                      value={item.title}
-                      {...register("experience_level", {
-                        required: "Please select at least one option",
-                      })}
-                      name="experience_level"
-                      className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
-                    />
-                    <label htmlFor={item.code} className="py-2">
-                      <p className="select-none w-full text-base lg:text-lg  text-heading font-semibold">
-                        {item.title}
-                      </p>
-                      <p
-                        
-                        className="select-none text-xs lg:text-sm  text-paragraph text-body"
-                      >
-                        Looking for someone relatively new to this field
-                      </p>
-                    </label>
-                  </div>
+                  <label htmlFor={item.code} className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer">
+                    <p className="select-none text-base lg:text-lg text-heading font-semibold tracking-wide">
+                      {item.title}
+                    </p>
+                    <p className="select-none text-gray-500 text-sm font-medium tracking-wide">
+                      {item.description}
+                    </p>
+                  </label>
                 </div>
+
               ))}
-              {errors.experience_level && (
+
+              {errors.project_size && (
                 <span className="text-red-500 font-bold">
-                  {errors.experience_level.message}
+                  {errors.project_size.message}
                 </span>
               )}
             </div>
+          </div>
 
-            <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-between gap-3 md:flex-row lg:gap-4 mt-5">
-                <Button
-                  type="button"
-                  onClick={handlePrev}
-                  className="bg-white text-gray-800 w-[150px] p-3 flex items-center gap-2  shadow"
+          <div className="flex flex-col gap-4">
+            <h2 className="text-xl lg:text-2xl text-heading font-bold">
+              Deadline
+            </h2>
+            <div className="flex flex-wrap  gap-4 justify w-full">
+              {projectDuration?.map((item) => (
+                <div
+                  className="flex items-center rounded-lg cursor-pointer border border-[#D0D5DD] py-3 px-4 gap-3 focus-within:border-primary"
+                  key={item.id}
                 >
-                  <SvgIcon name="PrevButton" />
-                  Back
-                </Button>
-                <Button
-                  type="button"
-                  onClick={handleNext}
-                  className="bg-primary text-white w-[150px] p-3 border flex items-center gap-2"
-                >
-                  Next <SvgIcon name="NextArrow" />
-                </Button>
-              </div>
+                  <input
+                    id={item.code}
+                    {...register("duration", {
+                      required: "Please select at least one option",
+                    })}
+                    type="radio"
+                    value={item.code}
+                    name="duration"
+                    className="w-4 h-4 text-primary accent-primary "
+                  />
+                  <label
+                    htmlFor={item.code}
+                    className="w-full select-none text-sm lg:text-base text-paragraph font-medium "
+                  >
+                    {item.label}
+                  </label>
+                </div>
+              ))}
             </div>
+          </div>
+          {errors.duration && (
+            <span className="text-red-500 font-bold">
+              {errors.duration.message}
+            </span>
+          )}
+
+          <div className="flex flex-col gap-6">
+            <h2 className="text-xl lg:text-2xl text-heading font-bold">
+              What level of experience will it need?
+            </h2>
+
+            {experienceLevels?.map((item) => (
+              <div key={item.id} className="cursor-pointer">
+                <div className="w-full py-3.5 px-6 text-base border border-[#D0D5DD] rounded-md 
+             focus-within:border-primary 
+             flex items-center gap-4">
+                  <input
+                    id={item.code}
+                    type="radio"
+                    value={item.title}
+                    {...register("experience_level", {
+                      required: "Please select at least one option",
+                    })}
+                    name="experience_level"
+                    className="w-4 h-4 text-primary accent-primary "
+                  />
+                  <label htmlFor={item.code} className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer">
+                    <p className="select-none text-base lg:text-lg text-heading font-semibold tracking-wide">
+                      {item.title}
+                    </p>
+                    <p
+
+                      className="select-none text-gray-500 text-sm font-medium tracking-wide"
+                    >
+                      Looking for someone relatively new to this field
+                    </p>
+                  </label>
+                </div>
+              </div>
+            ))}
+            {errors.experience_level && (
+              <span className="text-red-500 font-bold">
+                {errors.experience_level.message}
+              </span>
+            )}
+          </div>
+
+          <div className="flex justify-between gap-10 lg:gap-2">
+              <Button
+                type="button"
+                onClick={handlePrev}
+                className="bg-white text-gray-800  flex items-center gap-2 transition-all duration-300"
+                style={{
+                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(0,0,0,0.08)"
+                }}
+              >
+                <SvgIcon name="PrevButton" />
+                Back
+              </Button>
+              <Button
+                type="button"
+                onClick={handleNext}
+                className="bg-primary text-white flex items-center gap-2"
+              >
+                Next <SvgIcon name="NextArrow" />
+              </Button>
           </div>
         </div>
       </div>
