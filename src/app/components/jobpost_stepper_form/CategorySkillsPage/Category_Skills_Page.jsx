@@ -90,7 +90,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                         errors={errors}
                     />
 
-                    <div className="flex justify-between">
+                    <div className="flex justify-between gap-10 lg:gap-2">
                         <Button
                             type="button"
                             onClick={prevStep}

@@ -29,8 +29,7 @@ const SkillsSelector = ({
         placeholder="For the best results, add 3-5 skills"
         value={inputValue}
         {...skillsRegister}
-        className="w-full py-3.5 px-3 text-base border border-[#D0D5DD] 
-        focus:border-primary rounded-md focus:outline-none"
+        className="w-full py-3.5 px-3 text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
       />
 
       {errors.skills && (
@@ -59,11 +58,9 @@ const SkillsSelector = ({
 
               <label
                 htmlFor={checkboxId}
-                className="border border-gray-200 flex h-[45px] items-center
-                justify-center p-5 rounded-lg cursor-pointer bg-white
-                text-gray-900 transition-all peer-checked:bg-primary peer-checked:text-white"
+                className="flex flex-col py-3.5 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 text-sm lg:text-base text-paragraph">
                   {item.name}
                   <AddIcon
                     fontSize="small"
