@@ -20,20 +20,20 @@ export default function HeaderSection({ name }) {
             <div className="flex justify-end gap-6 lg:gap-8">
                 <Link
                     href={Routes.job_post.home}
-                    className="bg-primary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] 
-          font-semibold tracking-wide text-sm sm:text-base flex items-center justify-center 
-          rounded transition-all duration-300"
+                    className="bg-primary text-white text-center p-4 lg:w-[180px] md:w-44 h-12 sm:h-[50px] 
+                                font-semibold tracking-wide text-sm sm:text-base flex items-center justify-center 
+                                rounded transition-all duration-300"
                 >
                     Post a Job
                 </Link>
 
                 <Link
                     href=""
-                    className="bg-white text-paragraph text-center w-[180px] md:w-44 h-12 sm:h-[50px]
-          font-semibold tracking-wide text-sm sm:text-base flex items-center justify-center 
-          rounded transition-all duration-300"
+                    className="bg-white text-paragraph text-center p-4 lg:w-[180px] md:w-44 h-12 sm:h-[50px]
+                                    font-semibold tracking-wide text-sm sm:text-base flex items-center justify-center 
+                                    rounded transition-all duration-300"
                     style={{
-                        boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                        boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.10)",
                         border: "1px solid rgba(0,0,0,0.08)"
                     }}
                 >

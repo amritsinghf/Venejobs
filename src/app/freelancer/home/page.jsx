@@ -8,15 +8,15 @@ export default function Home() {
   return (
     <>
       <FreelancerLayout>
-        <div className="w-full   max-w-[1420px]  mb-20 mt-30  sm:mx-auto">
-          <div className="w-2xs md:w-full  mx-auto bg-gray-100 rounded-2xl px-8   py-5  flex flex-col gap-4 ">
-            <div className="flex flex-row justify-between items-center ">
+        <div className="w-full max-w-[1420px] mb-20 mt-30 sm:mx-auto">
+          <div className="mx-4 sm:mx-6 md:mx-6  bg-gray-100 rounded-2xl p-5 md:px-8 md:py-5 flex flex-col gap-4 border">
+            <div className="flex flex-row justify-between items-center">
               <h2 className="text-heading font-semibold text-[24px] sm:text-[44px]">
                 Find Projects That Match Your Passion With Venejobs
               </h2>
             </div>
 
-            <div className="">
+            <div>
               <p className="text-paragraph text-sm sm:text-lg">
                 Explore hand-picked freelance jobs tailored to your skills.
                 Start earning on your own terms with Venejobs.

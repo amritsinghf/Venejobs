@@ -25,8 +25,8 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
   };
 
   return (
-    <div className="w-full h-auto  max-w-[1420px]  mb-20 mt-12 mx-auto sm:px-3">
-      <div className="flex flex-col gap-5  w-full px-5">
+    <div className="w-full h-auto  max-w-[1420px]  mb-20 mt-12 mx-auto">
+      <div className="flex flex-col gap-5  w-full ">
         <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
           Review your Job details
         </h2>
@@ -35,7 +35,7 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
           clear and ready for the right talent to apply.
         </p>
 
-        <div className="h-auto px-7 py-5 flex flex-col gap-10 hover:bg-neutral-secondary-medium  border-default rounded shadow-2xl">
+        <div className="h-auto px-4  lg:px-7 py-5 flex flex-col gap-10 hover:bg-neutral-secondary-medium  border-default rounded shadow-2xl">
           {/* title */}
           <div className="flex justify-between border-b border-gray-300 pb-4">
             <div className="flex flex-col gap-6">
@@ -154,7 +154,7 @@ const ReviewJob = ({ nextStep, prevStep, setStep }) => {
               </Button>
               <button
                 type="submit"
-                className="bg-primary text-white  px-1 lg:px-7 rounded flex items-center gap-2"
+                className="bg-primary text-white  px-4 lg:px-7 rounded flex items-center gap-2"
                  
               >Post This Job <SvgIcon name="NextArrow" /></button> 
             </div>

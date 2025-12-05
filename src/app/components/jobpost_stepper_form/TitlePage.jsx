@@ -18,7 +18,7 @@ const TitlePage = ({ nextStep, currstep }) => {
   return (
     <div>
       <StepperNumber currstep={currstep} />
-      <div className="flex gap-10 sm:px-3  flex-col lg:flex-row px-5">
+      <div className="flex gap-10 flex-col lg:flex-row ">
         <div className="mt-6 flex flex-col gap-4  w-full  lg:px-0 lg:mt-10">
           <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
             Let's start with a strong title.

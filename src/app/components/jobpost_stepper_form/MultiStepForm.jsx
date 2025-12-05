@@ -111,7 +111,7 @@ const MultiStepForm = () => {
     <>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="w-full h-auto max-w-[1420px] mx-auto mb-20 mt-10 flex flex-col gap-6">
+          <div className="w-full  h-auto mb-20 lg:mt-10 flex flex-col gap-6">
             {/* <StepperNumber currstep={step} /> */}
             {renderStep()}
           </div>

@@ -53,7 +53,6 @@ export default function ProfileDropdown() {
             required
           />
         </div>
-
         <SvgIcon name="Question" />
 
         <button
@@ -65,10 +64,7 @@ export default function ProfileDropdown() {
           <SvgIcon name="Notification" size={25} />
         </button>
 
-        <div
-          className="relative inline-block "
-          ref={dropdownRef}
-        >
+        <div className="relative inline-block" ref={dropdownRef}>
           <button
             className="relative flex rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             onClick={() => setshowDropdown((prev) => !prev)}
@@ -76,45 +72,55 @@ export default function ProfileDropdown() {
             <span className="absolute -inset-1.5"></span>
             <span className="sr-only">Open user menu</span>
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src={
+                user?.profile_picture ||
+                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              }
               alt=""
               className="size-10 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
             />
           </button>
 
+          {showDropdown && (
+            <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
+              <Link
+               href={
+                  user?.role_id === 2
+                    ? Routes.profile.client.info
+                    : Routes.profile.freelancer.info
+                }
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                {user?.name}
+              </Link>
+
+              <Link
+                href={
+                  user?.role_id === 2
+                    ? Routes.profile.client.info
+                    : Routes.profile.freelancer.info
+                }
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                Profile
+              </Link>
+
+              <a
+                href="#"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                Settings
+              </a>
+
+              <button
+                onClick={() => logout()}
+                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+              >
+                Sign out
+              </button>
+            </div>
+          )}
         </div>
-        {showDropdown && (
-          <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
-            <Link
-              href={Routes.profile}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              {user?.name}
-            </Link>
-            <Link
-              href={
-                user?.role_id === 2
-                  ? Routes.profile.client.info
-                  : Routes.profile.freelancer.info
-              }
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              Profile
-            </Link>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              Settings
-            </a>
-            <button
-              onClick={() => logout()}
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-            >
-              Sign out
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

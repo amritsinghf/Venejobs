@@ -43,7 +43,7 @@ export default function Footer_Freelance() {
 
   return (
     <>
-      <footer className="bg-footerfreelance w-full 2xl:mt-54">
+      <footer className="bg-footerfreelance w-full 2xl:mt-84">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="px-4 py-6 bg-footerfreelance flex justify-between flex-wrap">
             <div className="flex items-center justify-start gap-2">

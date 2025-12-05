@@ -61,52 +61,51 @@ export default function DesktopLinks() {
 
   return (
     <>
-      <div className="flex flex-col lg:w-[350px]">
-      <nav className="hidden lg:flex lg:flex-col lg:gap-8 items-start gap-1 border border-gray-300 rounded-2xl mb-4 p-5">
-        <div className="flex flex-col gap-64 justify-between items-center w-full">
-
-          {/* --------- Dynamic Links --------- */}
-          <div className="flex flex-col gap-6 mt-5 pr-6">
-            {Links.map((item, idx) => (
-              <div
-                key={idx}
-                role="button"
-                className={`flex items-center justify-center w-full py-7 h-[45px] rounded hover:bg-blue-gray-50
+      <div className="lg:flex flex-col lg:w-[350px] hidden">
+        <nav className="lg:flex lg:flex-col lg:gap-8 items-start gap-1 border border-gray-300 rounded-2xl mb-4 p-5">
+          <div className="flex flex-col gap-64 justify-between items-center w-full">
+            {/* --------- Dynamic Links --------- */}
+            <div className="flex flex-col gap-6 mt-5 pr-6">
+              {Links.map((item, idx) => (
+                <div
+                  key={idx}
+                  role="button"
+                  className={`flex items-center justify-center w-full py-7 h-[45px] rounded hover:bg-blue-gray-50
                 ${item.active ? "bg-secondary text-white" : ""}`}
-              >
-                <Link
-                  href={item.href}
-                  className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6"
                 >
-                  <SvgIcon name={item.icon} />
-                  {item.label}
-                </Link>
-              </div>
-            ))}
-          </div>
+                  <Link
+                    href={item.href}
+                    className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6"
+                  >
+                    <SvgIcon name={item.icon} />
+                    {item.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
 
-          {/* -------- Bottom Section -------- */}
-          <div className="flex flex-col gap-8 pr-6">
-            <Link
-              href=""
-              className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
-            >
-              <SvgIcon name="Question" />
-              Help & Support
-            </Link>
+            {/* -------- Bottom Section -------- */}
+            <div className="flex flex-col gap-8 pr-6">
+              <Link
+                href=""
+                className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
+              >
+                <SvgIcon name="Question" />
+                Help & Support
+              </Link>
 
-            <button
-              onClick={()=>user_logout()}
-              type="button"
-              className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
-            >
-              <SvgIcon name="Logout" />
-              Sign Out
-            </button>
+              <button
+                onClick={() => user_logout()}
+                type="button"
+                className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
+              >
+                <SvgIcon name="Logout" />
+                Sign Out
+              </button>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
     </>
   );
 }

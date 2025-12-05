@@ -19,9 +19,9 @@ export default function CheckMailScreen({ setActiveModal }) {
 
   return (
     <>
-      <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div className="relative p-4 w-full max-w-md max-h-full mx-auto">
-          <div className="relative bg-white w-[440px] rounded-lg shadow-sm">
+      <div className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+        <div className="relative p-4 w-full max-w-md max-h-full mx-auto ">
+          <div className="relative bg-white w-full rounded-lg shadow-sm border">
             <button
               type="button"
               onClick={() => setActiveModal("")}
@@ -57,7 +57,7 @@ export default function CheckMailScreen({ setActiveModal }) {
                 <Button
                   onClick={handleVerify}
                   disabled={loading}
-                  className=" bg-primary text-white border border-[#FAFAFA] gap-3 disabled:opacity-70"
+                  className=" bg-primary text-white border border-[#FAFAFA] gap-3 disabled:opacity-70 px-2"
                   variant="primary"
                 >
                   {loading ? (

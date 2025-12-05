@@ -96,14 +96,12 @@ export default function HomeNavbar() {
 
   return (
     <>
-      <div className="w-full relative">
-        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto">
-
+      <div className="w-full relative ">
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1340px] 2xl:max-w-[1400px] mx-auto">
           {/* HEADER */}
-          <div className="flex justify-between items-center py-5">
-
+          <div className="flex justify-between items-center py-5 ">
             {/* Logo */}
-            <div className="flex gap-3 items-center ">
+            <div className="flex gap-3 items-center">
               <Link href={Routes.client}>
                 <Image
                   className="cursor-pointer w-10 md:w-[50px] md:h-[50px]"
@@ -122,7 +120,7 @@ export default function HomeNavbar() {
             {/* Desktop Nav */}
             <div className="lg:block hidden">
               <nav>
-                <ul className="flex items-center gap-6 md:gap-10">
+                <ul className="flex items-center gap-6 lg:gap-3 xl:gap-15 md:gap-10">
                   {NavLinks.map((item) => (
                     <li className="text-paragraph" key={item.label}>
                       <Link href={item.href}>{item.label}</Link>
@@ -146,15 +144,16 @@ export default function HomeNavbar() {
             >
               <SvgIcon name="ToggleMenu" />
             </div>
-
           </div>
 
-        <HomeNavbarMobileMenu isOpen={menuOpen} setIsOpen={setMenuOpen} SidebarLinks={SidebarLinks} logout={logout} />
-
-         
+          <HomeNavbarMobileMenu
+            isOpen={menuOpen}
+            setIsOpen={setMenuOpen}
+            SidebarLinks={SidebarLinks}
+            logout={logout}
+          />
         </div>
       </div>
     </>
-
   );
 }

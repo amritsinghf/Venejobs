@@ -81,7 +81,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70"
+                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 px-2"
                         variant="primary"
                     >
                         {loading ? (

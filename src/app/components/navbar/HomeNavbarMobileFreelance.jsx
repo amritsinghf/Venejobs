@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import ClearIcon from "@mui/icons-material/Clear";
 
-export default function HomeNavbarMobileMenu({ isOpen, setIsOpen, SidebarLinks, logout }) {
+export default function HomeNavbarMobileFreelance({ isOpen, setIsOpen, SidebarLinks, logout }) {
 
     return (
         <>
@@ -21,27 +22,28 @@ export default function HomeNavbarMobileMenu({ isOpen, setIsOpen, SidebarLinks, 
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 {/* HEADER */}
-                <div className="flex justify-between items-center mb-6 mt-4">
-                    <div className="flex items-center gap-3">
-                        <Image
-                            src="/home/logo-home.png"
-                            width={40}
-                            height={40}
-                            alt="logo"
-                            className="cursor-pointer"
-                        />
-                        <h3 className="text-lg font-semibold text-gray-600">Venejobs</h3>
+                <div className="flex justify-between items-center  mt-4">
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/logo_freelance.png"
+                        alt="logo image"
+                        height={500}
+                        width={500}
+                        style={{ width: 40, height: 40 }}
+                        className="cursor-pointer"
+                      />
+                      <h5 className="text-lg font-semibold text-gray-600">
+                        Venejobs
+                      </h5>
                     </div>
-
                     <button
-                        onClick={() => setIsOpen(false)}
-                        className="text-gray-600 text-4xl leading-none hover:text-gray-600"
+                      className="text-gray-500 hover:text-gray-700"
+                      onClick={() => setIsOpen(false)}
                     >
-                        &times;
+                      <ClearIcon fontSize="small" />
                     </button>
-                </div>
-
-                <hr className="mb-4" />
+                  </div>
+                  <hr className="mt-4" />
 
                 {/* NAVIGATION */}
                 <nav className="flex flex-col items-start gap-2 mt-2">

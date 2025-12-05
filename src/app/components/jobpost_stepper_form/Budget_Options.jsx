@@ -33,7 +33,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   return (
     <div>
       <StepperNumber currstep={currstep} />
-      <div className="flex flex-col lg:flex-row gap-9 px-5">
+      <div className="flex flex-col lg:flex-row gap-9 ">
         <div className="mt-6  flex flex-col gap-5 ">
           <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
             Set Your Budget with Confidence
@@ -164,7 +164,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-between md:flex-row lg:gap-4 mt-5">
+              <div className="flex justify-between gap-3 md:flex-row lg:gap-4 mt-5">
                 <Button
                   type="button"
                   onClick={handlePrev}

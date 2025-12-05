@@ -3,8 +3,8 @@ import SvgIcon from "../SvgIcon";
 
 export default function OtpModal({ children, setActiveModal, email }) {
     return (
-        <div className="flex fixed inset-0 z-50 justify-center items-center p-2 sm:p-3 bg-black/30">
-            <div className="w-full max-w-lg sm:max-w-3xl bg-white rounded-xl shadow-sm">
+        <div className="flex fixed inset-0 z-50 justify-center items-center p-2 sm:p-3 bg-black/30 ">
+            <div className="w-full max-w-lg sm:max-w-3xl bg-white rounded-xl shadow-sm ">
 
                 {/* Header */}
                 <div className="flex justify-between items-center border-b py-3 sm:py-4 px-4 sm:px-8">

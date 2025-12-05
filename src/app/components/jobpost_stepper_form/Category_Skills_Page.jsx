@@ -73,7 +73,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   return (
     <div>
       <StepperNumber currstep={currstep} />
-      <div className="flex flex-col lg:flex-row gap-9 px-5 ">
+      <div className="flex flex-col lg:flex-row gap-9 ">
         <div className="mt-6 flex flex-col gap-4 w-full">
           <h2 className="text-heading font-semibold md:text-3xl lg:text-[44px] text-2xl">
             Let’s find the perfect freelancer for your project
@@ -191,7 +191,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             </div>
 
             <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-between md:flex-row lg:gap-4 mt-5">
+              <div className="flex justify-between gap-3 md:flex-row lg:gap-4 mt-5">
                 <Button
                   type="button"
                   onClick={handlePrev}

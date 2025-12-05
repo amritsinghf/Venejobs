@@ -7,14 +7,14 @@ export default function JobCard({ item }) {
         : "";
 
     return (
-        <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
+        <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8 ">
 
             {/* Desktop View */}
             <div className="w-full flex flex-col lg:flex-row rounded justify-between gap-5 lg:gap-3.5">
 
                 {/* Title + Posted (same CSS) */}
                 <div className="flex flex-col gap-5 lg:gap-3.5">
-                    <h3 className="text-xl lg:text-2xl text-heading font-semibold tracking-normal">
+                    <h3 className="text-xl lg:text-2xl text-heading font-semibold tracking-normal xl:w-full lg:w-[237px] ">
                         {item.title}
                     </h3>
 
@@ -24,15 +24,15 @@ export default function JobCard({ item }) {
                 </div>
 
                 {/* RIGHT SIDE – DESKTOP ITEMS */}
-                <div className="hidden lg:flex flex-col md:flex-row justify-start md:items-center gap-5 sm:gap-20">
+                <div className="hidden lg:flex flex-col md:flex-row justify-start md:items-center gap-5 lg:gap-4 sm:gap-20">
 
                     {/* Desktop stats (same CSS) */}
-                    <span className="hidden lg:flex text-paragraph font-medium text-base">Proposals (2)</span>
-                    <span className="hidden lg:flex text-paragraph font-medium text-base">Message (1)</span>
-                    <span className="hidden lg:flex text-paragraph font-medium text-base">Shortlist (2)</span>
+                    <span className="hidden lg:flex text-paragraph font-medium text-base border border-gray-100 flex-none lg:py-3 px-1">Proposals (2)</span>
+                    <span className="hidden lg:flex text-paragraph font-medium text-base border border-gray-100 flex-none lg:py-3 px-1">Message (1)</span>
+                    <span className="hidden lg:flex text-paragraph font-medium text-base border border-gray-100 flex-none lg:py-3 px-1">Shortlist (2)</span>
 
                     {/* Desktop Button */}
-                    <Button className="bg-primary text-white border rounded cursor-pointer hidden lg:flex">
+                    <Button className="bg-primary text-white border  lg:w-full py-4 lg:px-4 rounded cursor-pointer hidden lg:flex">
                         View details
                     </Button>
 
@@ -64,10 +64,10 @@ export default function JobCard({ item }) {
             </div>
 
             {/* Move these BELOW Budget for mobile (CSS unchanged) */}
-            <div className="flex lg:hidden items-center gap-10 lg:justify-between mt-4">
-                <span className="text-paragraph font-medium text-sm">Proposals (2)</span>
-                <span className="text-paragraph font-medium text-sm">Message (1)</span>
-                <span className="text-paragraph font-medium text-sm">Shortlist (2)</span>
+            <div className="flex lg:hidden items-center gap-2 md:gap-4 lg:justify-between mt-4 flex-wrap sm:py-3">
+                <span className="text-paragraph font-medium text-sm border border-gray-100 py-3 px-1 sm:p-3 flex-none">Proposals (2)</span>
+                <span className="text-paragraph font-medium text-sm border border-gray-100 py-3 px-1 sm:p-3 flex-none">Message (1)</span>
+                <span className="text-paragraph font-medium text-sm border border-gray-100 py-3 px-1  sm:p-3 flex-none">Shortlist (2)</span>
             </div>
 
             <div className="flex lg:hidden items-center gap-10 mt-6">

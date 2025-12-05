@@ -10,14 +10,14 @@ export default function Jobpost() {
   return (
     <>
       <ClientLayout>
-        <div className="w-full max-w-[1420px]  mb-20 lg:mt-20 mt-20  px-4 2xl:mx-auto ">
-          <div className="flex justify-items-start flex-col gap-8 px-3 lg:px-3">
+        <div className="w-full   mb-20 lg:mt-40 mt-20  2xl:mx-auto">
+          <div className="flex justify-items-start flex-col gap-8">
             <div className="flex flex-col justify-items-start  w-full lg:max-w-[1000px] gap-6 ">
               <div>
-                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-6xl">
+                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-[64px]">
                   Welcome {user?.name}!
                 </h2>
-                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-6xl">
+                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-[64px]">
                   Let’s post your job and find the best Venezuelan talent.
                 </h2>
               </div>
@@ -33,7 +33,7 @@ export default function Jobpost() {
             <div className="flex mt-2 mb-5">
               <Link
                 href={Routes.job_post.form}
-                className="border bg-primary text-white rounded py-3 px-3 md:py-4 md:px-8 flex items-center gap-2"
+                className="border bg-primary text-white rounded py-3 px-3 md:py-4 md:px-8 lg:px-12 flex items-center gap-2"
               >
                 Post a Job <SvgIcon name="RightArrWhite"/>
               </Link>
