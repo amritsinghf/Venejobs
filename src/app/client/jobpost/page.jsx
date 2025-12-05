@@ -10,39 +10,29 @@ export default function Jobpost() {
   return (
     <>
       <ClientLayout>
-        <div className="w-full   mb-20 lg:mt-40 mt-20  2xl:mx-auto">
-          <div className="flex justify-items-start flex-col gap-8">
-            <div className="flex flex-col justify-items-start  w-full lg:max-w-[1000px] gap-6 ">
-              <div>
-                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-[64px]">
-                  Welcome {user?.name}!
-                </h2>
-                <h2 className="text-heading font-semibold text-2xl md:text-4xl lg:text-[64px]">
-                  Let’s post your job and find the best Venezuelan talent.
-                </h2>
-              </div>
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto my-10 lg:my-20">
+          <div className="flex flex-col gap-5 lg:gap-8">
+            <h1
+              className="text-4xl lg:text-5xl text-heading font-bold leading-snug	 max-w-5xl">
+              Welcome {user?.name}! <br />
+              Let’s post your job and find the best Venezuelan talent.
+            </h1>
 
-              <div>
-                <p className="text-paragraph text-base md:text-xl lg:text-lg">
-                  Post your job and connect with exceptional Venezuelan talent.
-                  From creative minds to skilled professionals, find the perfect
-                  match to achieve outstanding results.
-                </p>
-              </div>
-            </div>
-            <div className="flex mt-2 mb-5">
-              <Link
-                href={Routes.job_post.form}
-                className="border bg-primary text-white rounded py-3 px-3 md:py-4 md:px-8 lg:px-12 flex items-center gap-2"
-              >
-                Post a Job <SvgIcon name="RightArrWhite"/>
-              </Link>
-            </div>
+            <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-9 max-w-5xl">
+              Post your job and connect with exceptional Venezuelan talent. From creative minds to skilled professionals, find the perfect match to achieve outstanding results.
+            </p>
+
+            <Link
+              href={Routes.job_post.form}
+              className="bg-primary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded transition-all duration-300 gap-2"
+            >
+              Post a Job <SvgIcon name="RightArrWhite" />
+            </Link>
           </div>
         </div>
 
-        
-      </ClientLayout>
+
+      </ClientLayout >
     </>
   );
 }

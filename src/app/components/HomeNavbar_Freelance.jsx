@@ -23,7 +23,6 @@ export default function HomeNavbarFreelance() {
       logout();
       localStorage.removeItem("token");
       router.push(Routes.home);
-      //currenly just removing from localstorage but still in cookie
       showSuccess("Logged Out Successfully!", "success");
     } catch (error) {
       showError(error, "error");

@@ -15,7 +15,7 @@ export default function FreelancerPromo() {
             </div>
 
             <div className="flex w-full justify-start md:justify-center">
-                <div className="flex flex-col gap-5 text-left md:text-center lg:text-left">
+                <div className="flex flex-col gap-5 md:gap-10 lg:gap-6 text-left md:text-center lg:text-left">
 
                     <p className="text-primary text-base font-bold tracking-wide">
                         #Great Freelance Marketplace
