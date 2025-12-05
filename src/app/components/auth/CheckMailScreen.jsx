@@ -62,7 +62,7 @@ export default function CheckMailScreen({ setActiveModal }) {
                 >
                   {loading ? (
                     <>
-                      <Loader size={22} border={3} color="white" />
+                      <Loader size={18} border={3} color="white" />
                     </>
                   ) : (
                     <>Verify Your OTP</>

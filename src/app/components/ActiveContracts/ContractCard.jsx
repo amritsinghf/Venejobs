@@ -3,7 +3,7 @@ import Button from "../button/Button";
 
 export default function ContractCard() {
     return (
-        <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
+        <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-8">
             <div className="w-full flex flex-col lg:flex-row items-start lg:items-center rounded justify-between gap-6">
 
                 {/* Left Section */}
@@ -25,7 +25,7 @@ export default function ContractCard() {
                             </p>
                         </div>
 
-                        <p className="text-paragraph text-sm lg:text-base font-medium">
+                        <p className="text-paragraph text-base font-medium">
                             Can u design ui
                         </p>
 
@@ -33,7 +33,7 @@ export default function ContractCard() {
                             <p className="text-heading text-sm lg:text-base font-medium">
                                 Started Date:&nbsp;
                             </p>
-                            <p className="text-paragraph text-sm lg:text-base font-medium">
+                            <p className="text-paragraph text-base font-medium">
                                 11-01-0001
                             </p>
                         </div>

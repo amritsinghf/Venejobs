@@ -1,18 +1,25 @@
+"use client";
+
+import { useState } from "react";
 import SvgIcon from "../SvgIcon";
 import Button from "../button/Button";
+import Loader from "../common/Loader";
 
 export default function JobCard({ item }) {
+    const [loading, setLoading] = useState(false);
+
     const budgetType = item?.budget_type
         ? item.budget_type.charAt(0).toUpperCase() + item.budget_type.slice(1)
         : "";
 
+    const handleDetailsClick = () => {
+        setLoading(true);
+    };
+
     return (
-        <div className="border-b border-[rgba(68,68,68,0.08)] p-6 lg:p-8">
+        <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-8">
 
-            {/* Desktop View */}
             <div className="w-full flex flex-col xl:flex-row rounded justify-between gap-5 lg:gap-3.5">
-
-                {/* Title + Posted (same CSS) */}
                 <div className="flex flex-col gap-5 lg:gap-3.5">
                     <h3 className="text-xl lg:text-2xl text-heading font-semibold tracking-normal">
                         {item.title}
@@ -23,21 +30,28 @@ export default function JobCard({ item }) {
                     </p>
                 </div>
 
-                {/* RIGHT SIDE – DESKTOP ITEMS */}
                 <div className="hidden lg:flex flex-col md:flex-row justify-start md:items-center gap-5 sm:gap-20">
 
-                    {/* Desktop stats (same CSS) */}
                     <span className="hidden lg:flex text-paragraph font-medium text-base">Proposals (2)</span>
                     <span className="hidden lg:flex text-paragraph font-medium text-base">Message (1)</span>
                     <span className="hidden lg:flex text-paragraph font-medium text-base">Shortlist (2)</span>
 
-                    {/* Desktop Button */}
-                    <Button className="bg-primary text-white border hidden lg:flex" variant="primary"
+                    {/* -------- DESKTOP: View Details Button with Loader -------- */}
+                    <Button
+                        onClick={handleDetailsClick}
+                        disabled={loading}
+                        className={`bg-primary text-white border hidden lg:flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
+                            }`}
+                        variant="primary"
                     >
-                        View details
+                        {loading ? (
+                            <Loader size={18} border={3} color="white" />
+                        ) : (
+                            "View details"
+                        )}
                     </Button>
 
-                    {/* Desktop More */}
+                    {/* -------- DESKTOP: More Button -------- */}
                     <div
                         role="button"
                         tabIndex={0}
@@ -49,9 +63,6 @@ export default function JobCard({ item }) {
                 </div>
             </div>
 
-            {/* ---------- MOBILE LAYOUT ---------- */}
-
-            {/* Budget stays exactly the same */}
             <div className="flex flex-row items-center gap-3 mt-4 lg:mt-3">
                 <SvgIcon name="PriceTag" size={22} />
 
@@ -64,8 +75,7 @@ export default function JobCard({ item }) {
                 </div>
             </div>
 
-            {/* Move these BELOW Budget for mobile (CSS unchanged) */}
-            <div className="flex lg:hidden items-center gap-10 lg:justify-between mt-4">
+            <div className="flex lg:hidden items-center justify-between md:justify-start lg:justify-between md:gap-10 mt-4 lg:mt-3">
                 <span className="text-paragraph font-medium text-sm">Proposals (2)</span>
                 <span className="text-paragraph font-medium text-sm">Message (1)</span>
                 <span className="text-paragraph font-medium text-sm">Shortlist (2)</span>
@@ -73,15 +83,22 @@ export default function JobCard({ item }) {
 
             <div className="flex lg:hidden items-center gap-10 mt-6">
 
-                {/* Mobile View Details button — same CSS */}
+                {/* -------- MOBILE: View Details Button with Loader -------- */}
                 <Button
-                    className="bg-primary text-white border disabled:opacity-70"
+                    onClick={handleDetailsClick}
+                    disabled={loading}
+                    className={`bg-primary text-white border disabled:opacity-70 flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
                     variant="primary"
                 >
-                    View details
+                    {loading ? (
+                        <Loader size={18} border={3} color="white" />
+                    ) : (
+                        "View details"
+                    )}
                 </Button>
 
-                {/* Mobile More button — same CSS */}
+                {/* -------- MOBILE: More Button -------- */}
                 <div
                     role="button"
                     tabIndex={0}

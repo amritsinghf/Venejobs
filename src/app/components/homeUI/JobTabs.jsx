@@ -5,7 +5,7 @@ export default function JobTabs({ showData, setshowData }) {
                 <button onClick={() => setshowData(true)}>
                     <p
                         className={`
-                            font-semibold text-sm lg:text-base tracking-wide cursor-pointer relative pb-2
+                            font-semibold text-base tracking-wide cursor-pointer relative pb-2
                             ${showData ? "text-blue-900" : "text-paragraph"}
                         `}
                     >
@@ -16,7 +16,7 @@ export default function JobTabs({ showData, setshowData }) {
                 <button onClick={() => setshowData(false)}>
                     <p
                         className={`
-                            font-semibold text-sm lg:text-base tracking-wide cursor-pointer relative pb-2
+                            font-semibold lg:text-base tracking-wide cursor-pointer relative pb-2
                             ${!showData ? "text-blue-900" : "text-paragraph"}
                         `}
                     >

@@ -92,7 +92,7 @@ export default function NewPasswordForm({ email, setActiveModal }) {
                     variant="primary"
                 >
                     {isSubmitting ? (
-                        <Loader size={22} border={3} color="white" />
+                        <Loader size={18} border={3} color="white" />
                     ) : (
                         <>
                             Reset Password

@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import TitlePage from "./TitlePage";
-import Category_Skills_Page from "./Category_Skills_Page";
 import Project_Options from "./Project_Options";
 import Budget_Options from "./Budget_Options";
 import DescriptionPage from "./DescriptionPage";
@@ -10,7 +8,8 @@ import ReviewJob from "./ReviewJob";
 import SuccessJobCreate from "./SuccessJobCreate";
 import toastStore from "@/app/store/toastStore";
 import jobApiStore from "@/app/store/jobStore";
-import StepperNumber from "./StepperNumber";
+import TitlePage from "./TitlePage/TitlePage";
+import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -111,7 +110,7 @@ const MultiStepForm = () => {
     <>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="w-full h-auto max-w-[1420px] mx-auto mb-20 mt-10 flex flex-col gap-6">
+          <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto my-10 lg:my-20">
             {/* <StepperNumber currstep={step} /> */}
             {renderStep()}
           </div>
