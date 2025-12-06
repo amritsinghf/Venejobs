@@ -5,7 +5,7 @@ import React from "react";
 export default function RoleSelection({ register, errors }) {
     return (
         <>
-            <div className="grid grid-cols-2 gap-2 md:gap-x-4 m-0">
+            <div className="grid grid-cols-2 gap-2 md:gap-x-4 mb-4">
 
                 {/* Freelancer */}
                 <div className="group">
