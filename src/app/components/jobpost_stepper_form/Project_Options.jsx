@@ -126,7 +126,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                   />
                   <label
                     htmlFor={item.code}
-                    className="w-full select-none text-sm xl:text-base text-paragraph font-medium "
+                    className="w-full text-gray-500 text-sm xl:text-base font-medium tracking-wide"
                   >
                     {item.label}
                   </label>

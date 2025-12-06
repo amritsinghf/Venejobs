@@ -22,7 +22,7 @@ const Row = ({ title, children, onEdit }) => (
 );
 
 const ReviewJob = ({ nextStep, prevStep, currstep, setStep }) => {
-  const { getValues, trigger } = useFormContext();
+  const { register, formState: { errors }, trigger, getValues } = useFormContext();
   const data = getValues();
 
   const [loadingSubmit, setLoadingSubmit] = useState(false);
@@ -107,7 +107,7 @@ const ReviewJob = ({ nextStep, prevStep, currstep, setStep }) => {
           </Row>
 
           {/* Buttons */}
-          <div className="flex justify-between w-full mt-5">
+          <div className="flex justify-between w-full mt-5 gap-10 xl:gap-5">
             <Button
               type="button"
               onClick={prevStep}
@@ -125,7 +125,7 @@ const ReviewJob = ({ nextStep, prevStep, currstep, setStep }) => {
               type="button"
               onClick={handleSubmit}
               disabled={loadingSubmit}
-              className={`bg-primary text-white flex items-center gap-2 justify-center px-6
+              className={`bg-primary text-white flex items-center gap-2 justify-center
                 ${loadingSubmit ? "opacity-70 cursor-not-allowed" : ""}`}
             >
               {loadingSubmit ? (
