@@ -19,26 +19,29 @@ const SkillsSelector = ({
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <h2 className="text-xl lg:text-2xl text-heading font-bold">
+    <div className="flex flex-col gap-4">
+      <h2 className="text-xl xl:text-2xl text-heading font-bold">
         Search skills or add your own
       </h2>
 
-      <input
-        type="text"
-        placeholder="For the best results, add 3-5 skills"
-        value={inputValue}
-        {...skillsRegister}
-        className="w-full py-3.5 px-3 text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
-      />
+      <div className="flex flex-col gap-2">
+        <input
+          type="text"
+          placeholder="For the best results, add 3-5 skills"
+          value={inputValue}
+          {...skillsRegister}
+          className="w-full py-3.5 px-3 text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+        />
 
-      {errors.skills && (
-        <span className="text-sm text-red-500 font-medium">
-          {errors.skills.message}
-        </span>
-      )}
+        {errors.skills && (
+          <span className="text-sm text-red-500 font-medium">
+            {errors.skills.message}
+          </span>
+        )}
 
-      <h2 className="text-base lg:text-lg text-heading font-medium">
+      </div>
+
+      <h2 className="text-base xl:text-lg text-heading font-medium">
         {categoryName && `Popular skills for ${categoryName}`}
       </h2>
 

@@ -3,7 +3,7 @@ import Button from "../button/Button";
 
 export default function ContractCard() {
     return (
-        <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-8">
+        <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-6 xl:p-8">
             <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
 
                 {/* Left Section */}

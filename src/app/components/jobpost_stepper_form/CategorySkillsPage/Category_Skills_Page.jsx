@@ -7,13 +7,15 @@ import SkillsSelector from "./SkillsSelector";
 import StepperNumber from "../StepperNumber";
 import Button from "../../button/Button";
 import SvgIcon from "../../SvgIcon";
+import Loader from "../../common/Loader";
 
 const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
-    const { trigger, formState: { errors } } = useFormContext();
+    const { trigger, formState: { errors }, setValue } = useFormContext();
 
     const [categoryName, setCategoryName] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const {
         category_data,
@@ -31,40 +33,52 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
         const { value, checked } = e.target;
         let updated = [...selectedItems];
 
-        checked
-            ? !updated.includes(value) && updated.push(value)
-            : (updated = updated.filter((i) => i !== value));
+        if (checked) {
+            if (!updated.includes(value)) updated.push(value);
+        } else {
+            updated = updated.filter((item) => item !== value);
+        }
 
         setSelectedItems(updated);
         setInputValue(updated.join(", "));
     };
 
+
     const handleInputChange = (e) => {
-        const updated = e.target.value
+        const typed = e.target.value
             .split(",")
             .map((x) => x.trim())
             .filter(Boolean);
 
         setInputValue(e.target.value);
-        setSelectedItems(updated);
+
+        setSelectedItems(typed);
     };
 
     useEffect(() => {
         getCategories();
     }, []);
 
+    useEffect(() => {
+        setValue("skills", selectedItems, { shouldValidate: true });
+    }, [selectedItems]);
+
+
     const handleNext = async () => {
+        setLoading(true);
+
         const valid = await trigger(["category", "skills"]);
         if (valid) nextStep();
-    };
 
+        setLoading(false);
+    };
     return (
         <div className="flex flex-col gap-6 lg:gap-10">
             <StepperNumber currstep={currstep} />
 
             <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
                 <div className="w-full flex flex-col gap-4">
-                    <h2 className="text-2xl lg:text-4xl font-bold leading-tight">
+                    <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
                         Let’s find the perfect freelancer for your project
                     </h2>
                     <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
@@ -90,11 +104,12 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                         errors={errors}
                     />
 
-                    <div className="flex justify-between gap-10 lg:gap-2">
+                    <div className="flex justify-between gap-10 xl:gap-2 mt-5">
+
                         <Button
                             type="button"
                             onClick={prevStep}
-                            className="bg-white text-gray-800  flex items-center gap-2 transition-all duration-300"
+                            className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
                             style={{
                                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
                                 border: "1px solid rgba(0,0,0,0.08)"
@@ -103,13 +118,23 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
                             <SvgIcon name="PrevButton" />
                             Back
                         </Button>
+
                         <Button
                             type="button"
                             onClick={handleNext}
-                            className="bg-primary text-white flex items-center gap-2"
+                            disabled={loading}
+                            className={`bg-primary text-white flex items-center gap-2 justify-center px-7 
+            ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
                         >
-                            Next <SvgIcon name="NextArrow" />
+                            {loading ? (
+                                <Loader size={18} border={3} color="white" />
+                            ) : (
+                                <>
+                                    Next <SvgIcon name="NextArrow" />
+                                </>
+                            )}
                         </Button>
+
                     </div>
 
                 </div>

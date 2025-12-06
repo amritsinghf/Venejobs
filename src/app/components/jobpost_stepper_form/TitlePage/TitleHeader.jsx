@@ -1,6 +1,6 @@
 const TitleHeader = () => (
     <div className="flex flex-col gap-4 w-full">
-        <h2 className="text-2xl lg:text-4xl text-heading font-bold leading-tight">
+        <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
             Let's start with a strong title.
         </h2>
 

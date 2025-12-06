@@ -4,6 +4,7 @@ import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
 import SvgIcon from "../SvgIcon";
 import StepperNumber from "./StepperNumber";
+import Loader from "../common/Loader";
 
 const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -12,13 +13,19 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
     trigger,
     watch,
   } = useFormContext();
+  const [loadingNext, setLoadingNext] = useState(false);
 
   const priceType = watch("budget_type");
 
   const handleNext = async () => {
+    setLoadingNext(true);
+
     const valid = await trigger(["budget_type", "budget_amount"]);
     if (valid) nextStep();
+
+    setLoadingNext(false);
   };
+
 
   const { budget_data, loading, getBudgetData } = jobApiStore();
 
@@ -29,13 +36,12 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   const handlePrev = async () => {
     prevStep();
   };
-
   return (
-    <div>
+    <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
-      <div className="flex flex-col lg:flex-row gap-9 ">
-        <div className="mt-6  flex flex-col gap-5 ">
-          <h2 className="text-heading font-semibold text-2xl lg:text-[44px]">
+      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+        <div className="flex flex-col gap-4 w-full">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Set Your Budget with Confidence
           </h2>
           <p className="text-paragraph text-base lg:text-[18px]">
@@ -46,22 +52,22 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
         </div>
 
         <div className="flex flex-col w-full ">
-          <div className="flex flex-col gap-5 w-full ">
-            <div className="lg:mt-5 flex flex-col gap-8">
-              <div className="flex flex-col gap-3">
-                <h2 className="font-semibold text-heading text-lg lg:text-3xl ">
+          <div className="flex flex-col gap-4 w-full ">
+            <div className="flex flex-col gap-6 w-full">
+              <div className="flex flex-col gap-4">
+                <h2 className="text-xl xl:text-2xl text-heading font-bold">
                   Tell us about your budget.
                 </h2>
-                <p className="text-paragraph text-lg">
+                <p className="text-gray-500 text-sm xl:text-base font-medium tracking-wide">
                   This will help us match you to talent within your range.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 space-x-8">
                 {budget_data?.map((item) => (
                   <div key={item.id}>
-                    <div className="flex justify-between space-x-3.5 bg-neutral-primary-soft border border-gray-200 rounded p-5">
-                      <div className="flex flex-col gap-4">
+                    <div className="flex justify-between items-start gap-4 bg-neutral-primary-soft border border-[#D0D5DD] rounded-lg p-5 hover:bg-neutral-secondary-medium cursor-pointer">
+                      <div className="flex flex-col gap-3 w-full">
                         <svg
                           width="32"
                           height="32"
@@ -85,103 +91,115 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                             </clipPath>
                           </defs>
                         </svg>
-                        <label
-                          htmlFor={item.id}
-                          className="h-auto md:h-26"
-                        >
-                          <p className="select-none w-full  text-sm  text-heading font-semibold">
-                            {item.label}
-                          </p>
-                          <div className="flex">
-                            <p>{item.description}</p>
-                          </div>
-                        </label>
+
+                        <p className="text-sm xl:text-base text-heading font-semibold">
+                          {item.label}
+                        </p>
+
+                        <p className="w-full text-base text-paragraph font-medium">{item.description}</p>
+
                       </div>
-                      <input
-                        id={item.id}
-                        type="radio"
-                        value={item.code}
-                        {...register("budget_type", {
-                          required: "Please select at least one option",
-                        })}
-                        name="budget_type"
-                        className="rounded-2xl w-4 h-4 mt-4 ms-4 border border-default-medium  bg-neutral-secondary-medium "
-                      />
+                      <div className="flex items-start justify-end cursor-pointer">
+                        <input
+                          id={item.id}
+                          type="radio"
+                          value={item.code}
+                          {...register("budget_type", {
+                            required: "Please select at least one option",
+                          })}
+                          name="budget_type"
+                          className="w-5 h-5 text-primary accent-primary "
+                        />
+                      </div>
+
                     </div>
                   </div>
                 ))}
               </div>
               {errors.budget_type && (
-                <span className="text-red-500 font-bold">
+                <span className="text-sm text-red-500 font-medium">
                   {errors.budget_type.message}
                 </span>
               )}
 
-              <div className="flex flex-col">
-                <h2 className="font-semibold text-heading text-lg lg:text-2xl ">
+              <div className="flex flex-col gap-4">
+                <h2 className="text-xl xl:text-2xl text-heading font-bold">
                   What’s the Ideal Budget for Your Project?
                 </h2>
-                <p className="text-paragraph text-base lg:text-lg">
+                <p className="text-gray-500 text-sm xl:text-base font-medium tracking-wide">
                   You can talk about the cost with your freelancer and set
                   milestones to make the project progress smoothly.
                 </p>
-                <div className="mt-5 flex flex-wrap  gap-5   justify-between ">
-                  <div className="flex items-center  bg-neutral-primary-soft rounded-2xl">
-                    <input
-                      id="bordered-radio-2"
-                      {...register("budget_amount", {
-                        required: {
-                          value: true,
-                          message: "Please enter budget amount",
-                        },
-                        pattern: {
-                          value: /^[0-9]+$/,
-                          message: "Numbers only",
-                        },
-                        validate: (value) => {
-                          if (priceType === "fixed" && Number(value) < 1) {
-                            return "Amount cannot be less than 1 for fixed price";
-                          }
-                          if (priceType === "monthly" && Number(value) < 300) {
-                            return "Amount cannot be less than 300 for monthly price";
-                          }
-                          return true;
-                        },
-                      })}
-                      type="text"
-                      placeholder="Enter budget amount"
-                      name="budget_amount"
-                      className="w-full px-4 py-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded border border-gray-200 appearance-none"
-                    />
-                  </div>
+
+                <div className="flex flex-col gap-2 w-48">
+                  <input
+                    id="bordered-radio-2"
+                    {...register("budget_amount", {
+                      required: {
+                        value: true,
+                        message: "Please enter budget amount",
+                      },
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: "Numbers only",
+                      },
+                      validate: (value) => {
+                        if (priceType === "fixed" && Number(value) < 1) {
+                          return "Amount cannot be less than 1 for fixed price";
+                        }
+                        if (priceType === "monthly" && Number(value) < 300) {
+                          return "Amount cannot be less than 300 for monthly price";
+                        }
+                        return true;
+                      },
+                    })}
+                    type="text"
+                    placeholder="Enter budget amount"
+                    name="budget_amount"
+                    className="w-full py-3.5 px-3 text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                  />
+
+                  {errors.budget_amount && (
+                    <span className="text-sm text-red-500 font-medium">
+                      {errors.budget_amount.message}
+                    </span>
+                  )}
                 </div>
-                {errors.budget_amount && (
-                  <span className="text-red-500 font-bold">
-                    {errors.budget_amount.message}
-                  </span>
-                )}
+
               </div>
             </div>
 
-            <div className="flex flex-col gap-5 py-3">
-              <div className="flex justify-between gap-3 md:flex-row lg:gap-4 mt-5">
-                <Button
-                  type="button"
-                  onClick={handlePrev}
-                  className="bg-white text-gray-800 w-[150px] p-3 flex items-center gap-2  shadow"
-                >
-                  <SvgIcon name="PrevButton" />
-                  Back
-                </Button>
-                <Button
-                  type="button"
-                  onClick={handleNext}
-                  className="bg-primary text-white w-[150px] p-3 border flex items-center gap-2"
-                >
-                  Next <SvgIcon name="NextArrow" />
-                </Button>
-              </div>
+            <div className="flex justify-between gap-10 xl:gap-2 mt-5">
+              <Button
+                type="button"
+                onClick={handlePrev}
+                className="bg-white text-gray-800  flex items-center gap-2 transition-all duration-300"
+                style={{
+                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(0,0,0,0.08)"
+                }}
+              >
+                <SvgIcon name="PrevButton" />
+                Back
+              </Button>
+
+              <Button
+                type="button"
+                onClick={handleNext}
+                disabled={loadingNext}
+                className={`bg-primary text-white flex items-center gap-2 justify-center px-7
+      ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
+              >
+                {loadingNext ? (
+                  <Loader size={18} border={3} color="white" />
+                ) : (
+                  <>
+                    Next <SvgIcon name="NextArrow" />
+                  </>
+                )}
+              </Button>
             </div>
+
           </div>
         </div>
       </div>

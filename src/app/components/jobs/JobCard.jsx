@@ -17,7 +17,7 @@ export default function JobCard({ item }) {
   };
 
   return (
-    <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-8">
+    <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-6 xl:p-8">
       <div className="w-full flex flex-col xl:flex-row rounded justify-between gap-5 lg:gap-3.5">
         <div className="flex flex-col gap-5 lg:gap-3.5">
           <h3 className="text-xl xl:text-2xl text-heading font-semibold tracking-normal">

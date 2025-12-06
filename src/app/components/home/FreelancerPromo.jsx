@@ -21,7 +21,7 @@ export default function FreelancerPromo() {
                         #Great Freelance Marketplace
                     </p>
 
-                    <h2 className="text-2xl lg:text-4xl text-heading font-bold leading-tight leading-tight">
+                    <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight leading-tight">
                         Empowering Freelancers to Achieve Their Career Goals
                     </h2>
 
