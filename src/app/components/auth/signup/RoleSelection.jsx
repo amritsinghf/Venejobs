@@ -5,7 +5,7 @@ import React from "react";
 export default function RoleSelection({ register, errors }) {
     return (
         <>
-            <div className="grid grid-cols-2 gap-1 md:gap-4">
+            <div className="grid grid-cols-2 gap-2 md:gap-x-4 m-0">
 
                 {/* Freelancer */}
                 <div className="group">
@@ -19,19 +19,11 @@ export default function RoleSelection({ register, errors }) {
 
                     <label
                         htmlFor="freelancer"
-                        className="
-                flex items-center justify-center gap-3
-                rounded-md py-4 cursor-pointer
-                text-gray-500 transition-all
-
-                peer-checked:bg-primary
-                peer-checked:text-white
-                peer-checked:border-primary
-            "
+                        className="flex items-center justify-center gap-3 rounded-lg py-4 cursor-pointer text-gray-500 transition-all peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary border border-[#D0D5DD]"
                     >
                         <SvgIcon
                             name="Teleworking"
-                            className="w-5 h-5 text-gray-500 group-has-[:checked]:text-white transition-colors"
+                            className="w-5 h-5 text-gray-500 group-has-checked:text-white transition-colors"
                         />
                         <span className="text-sm md:text-base font-medium">
                             I'm a freelancer
@@ -53,17 +45,18 @@ export default function RoleSelection({ register, errors }) {
                         htmlFor="client"
                         className="
                 flex items-center justify-center gap-3
-                rounded-md py-4 cursor-pointer
+                rounded-lg py-4 cursor-pointer
                 text-gray-500 transition-all
 
                 peer-checked:bg-primary
                 peer-checked:text-white
                 peer-checked:border-primary
+                border border-[#D0D5DD]
             "
                     >
                         <SvgIcon
                             name="Businessman"
-                            className="w-5 h-5 text-gray-500 group-has-[:checked]:text-white transition-colors"
+                            className="w-5 h-5 text-gray-500 group-has-checked:text-white transition-colors"
                         />
                         <span className="text-sm md:text-base font-medium">
                             I'm a Client
@@ -71,12 +64,12 @@ export default function RoleSelection({ register, errors }) {
                     </label>
                 </div>
 
+                {errors.role && (
+                    <p className="text-red-500 text-sm m-0">{errors.role.message}</p>
+                )}
             </div>
 
 
-            {errors.role && (
-                <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>
-            )}
         </>
     );
 }

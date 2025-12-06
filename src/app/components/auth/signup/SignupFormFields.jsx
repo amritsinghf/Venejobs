@@ -20,7 +20,7 @@ export default function SignupFormFields({
                         type="text"
                         placeholder="Full Name"
                         {...register("name", { required: "Name is required" })}
-                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-[#D0D5DD]
                         focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                     />
                 </div>
@@ -41,7 +41,7 @@ export default function SignupFormFields({
                         type="text"
                         placeholder="Username"
                         {...register("username", { required: "Username is required" })}
-                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-[#D0D5DD]
                         focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                     />
                 </div>
@@ -68,7 +68,7 @@ export default function SignupFormFields({
                                 message: "Invalid email address",
                             },
                         })}
-                        className="block w-full h-full py-2.5 px-1 text-base border-b border-neutral-300
+                        className="block w-full h-full py-2.5 px-1 text-base border-b border-[#D0D5DD]
                         focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                     />
                 </div>
