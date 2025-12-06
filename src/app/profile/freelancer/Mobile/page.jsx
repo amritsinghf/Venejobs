@@ -1,3 +1,4 @@
+"use client"
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/SvgIcon";
 import { Routes } from "@/app/routes";
