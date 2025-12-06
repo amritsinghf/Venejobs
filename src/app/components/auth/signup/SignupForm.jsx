@@ -49,7 +49,12 @@ export default function SignupForm({ setActiveModal, setUserEmail, setverifyCode
           toggleVisibility={toggleVisibility}
         />
 
-        <SignupActions isSubmitting={isSubmitting} setActiveModal={setActiveModal} />
+        <SignupActions
+          isSubmitting={isSubmitting}
+          setActiveModal={setActiveModal}
+          register={register}
+          errors={errors}
+        />
       </form>
     </SignupModalWrapper>
   );
