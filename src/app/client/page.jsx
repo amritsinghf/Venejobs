@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <ClientLayout>
-      <div className="w-full lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto my-10 lg:my-20">
+      <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
         <div className="flex flex-col gap-6 lg:gap-10">
 
           <HeaderSection name={name} />
