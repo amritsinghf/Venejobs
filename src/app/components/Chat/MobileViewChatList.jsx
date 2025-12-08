@@ -37,7 +37,7 @@ const MobileViewChatList = ({ chatData }) => {
               </div>
               <SvgIcon name="SettingSlider" />
             </div>
-            <div className="flex flex-col gap-6 mt-5 mb-3">
+            <div className="flex flex-col gap-4">
               {chatData.map((chat) => (
                 <div
                   onClick={() => showhideModal()}

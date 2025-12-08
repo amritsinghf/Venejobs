@@ -49,7 +49,7 @@ export default function MobileView() {
     },
     {
       label: "Security Settings",
-      icon: "Settingss",
+      icon: "Setting",
       href: "/security-settings",
     },
     {
@@ -63,9 +63,9 @@ export default function MobileView() {
 
   return (
     <>
-      <div className="flex flex-col gap-44 justify-between items-center w-full md:px-3 lg:hidden">
+      <div className="flex flex-col lg:hidden">
         <div className="rounded-2xl flex flex-col gap-44 p-1 w-full ">
-          <div className="flex flex-col gap-6 mt-5">
+          <div className="flex flex-col gap-4">
             <div className="flex justify-between items-center px-4 py-2 border border-gray-200 rounded-4xl shadow">
               <div className="flex items-center gap-2">
                 <img

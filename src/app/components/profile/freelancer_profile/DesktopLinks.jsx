@@ -50,7 +50,7 @@ export default function DesktopLinks() {
     {
       label: "Security Settings",
       href: "",
-      icon: "Settingss",
+      icon: "Setting",
     },
     {
       label: "Legal & Compliance",
@@ -65,7 +65,7 @@ export default function DesktopLinks() {
         <nav className="lg:flex lg:flex-col lg:gap-8 items-start gap-1 border border-gray-300 rounded-2xl mb-4 p-5">
           <div className="flex flex-col gap-64 justify-between items-center w-full">
             {/* --------- Dynamic Links --------- */}
-            <div className="flex flex-col gap-6 mt-5 pr-6">
+            <div className="flex flex-col gap-4">
               {Links.map((item, idx) => (
                 <div
                   key={idx}

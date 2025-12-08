@@ -17,12 +17,12 @@ export default function Profile() {
   return (
     <>
       <ClientLayout>
-        <div className="w-full 2xl:w-[1500px] 2xl:mx-auto  h-auto  lg:mt-28  lg:px-12 mb-10">
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
           <div className="flex md:gap-7">
             <Page />
             <DesktopLinks />
 
-            <div className="hidden lg:flex border border-[#D0D5DD] p-5 rounded-2xl mx-auto flex-col w-full  gap-6 ">
+            <div className="hidden lg:flex border border-[#F2F2F2] p-5 rounded-2xl mx-auto flex-col w-full  gap-6 ">
               <PersonalInfoForm />
             </div>
           </div>

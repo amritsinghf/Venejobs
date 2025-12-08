@@ -19,7 +19,6 @@ export default function Page() {
       logout();
       localStorage.removeItem("token");
       router.push(Routes.home);
-      //currenly just removing from localstorage but still in cookie
       showSuccess("Logged Out Successfully!", "success");
     } catch (error) {
       showError(error, "error");
@@ -49,7 +48,7 @@ export default function Page() {
     },
     {
       label: "Security Settings",
-      icon: "Settingss",
+      icon: "Setting",
       href: "/security-settings",
     },
     {
@@ -63,10 +62,10 @@ export default function Page() {
 
   return (
     <>
-      <div className="flex flex-col gap-44 justify-between items-center w-full md:px-3 lg:hidden">
-        <div className="rounded-2xl flex flex-col gap-44 p-1 w-full ">
-          <div className="flex flex-col gap-6 mt-5">
-            <div className="flex justify-between items-center px-4 py-2 border border-gray-200 rounded-4xl shadow">
+      <div className="flex flex-col lg:hidden">
+        <div className="rounded-2xl flex flex-col w-full ">
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between items-center px-4 py-4 border border-[#F2F2F2] rounded-lg shadow">
               <div className="flex items-center gap-2">
                 <img
                   src={
@@ -91,18 +90,18 @@ export default function Page() {
               <div
                 key={item.label}
                 role="button"
-                className={`flex items-center justify-start w-full py-6 h-[45px] hover:bg-blue-gray-50 border border-gray-200 rounded-4xl shadow ${
+                className={`flex items-center justify-start w-full p-3 hover:bg-blue-gray-50 border border-[#F2F2F2] rounded-lg ${
                   activeTab === item.label
                     ? "bg-primary text-white"
                     : "text-paragraph"
                 }`}
-                onClick={() => setActiveTab(item.label)} // set clicked tab as active
+                onClick={() => setActiveTab(item.label)}
               >
                 <Link
                   href={item.href}
-                  className="flex items-center lg:w-64 gap-4 text-lg text-center px-6 w-full"
+                  className="flex items-center lg:w-64 gap-4 text-base font-medium text-center w-full"
                 >
-                  <SvgIcon name={item.icon} /> {item.label}
+                  <SvgIcon name={item.icon} size={19} /> {item.label}
                 </Link>
               </div>
             ))}

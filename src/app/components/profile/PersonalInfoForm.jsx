@@ -38,7 +38,7 @@ export default function PersonalInfoForm() {
             placeholder="Name"
             value={user?.name ?? ""}
             onChange={(e) => setUser({ ...user, name: e.target.value })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#F5F5F5] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
           />
         </div>
 
@@ -49,7 +49,7 @@ export default function PersonalInfoForm() {
             placeholder="Username"
             value={user?.username ?? ""}
             onChange={(e) => setUser({ ...user, username: e.target.value })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#F5F5F5] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
           />
         </div>
 
@@ -58,7 +58,7 @@ export default function PersonalInfoForm() {
           <input
             type="date"
             placeholder="DOB"
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#F5F5F5] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
           />
         </div>
 
@@ -67,7 +67,7 @@ export default function PersonalInfoForm() {
           <input
             type="text"
             placeholder="Mobile Number"
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#F5F5F5] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function PersonalInfoForm() {
             placeholder="Email"
             value={user?.email ?? ""}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#F5F5F5] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
           />
         </div>
       </div>

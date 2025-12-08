@@ -1,49 +1,27 @@
+"use client";
+
 import Link from "next/link";
 import SvgIcon from "../../SvgIcon";
-import Button from "../../button/Button";
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Routes } from "@/app/routes";
 
 export default function DesktopLinks() {
   const router = useRouter();
+  const pathname = usePathname();
+
   const { logout } = userApiStore();
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
 
   const Links = [
-    {
-      label: "My Info",
-      href: Routes.profile.client.info,
-      icon: "Preview",
-      active: true,
-    },
-    {
-      label: "Billing & Payments",
-      href: Routes.profile.client.bill,
-      icon: "CreditCard",
-    },
-    {
-      label: "Notification",
-      href: "",
-      icon: "Notify",
-    },
-    {
-      label: "Subscription Setting",
-      href: "",
-      icon: "Premium",
-    },
-    {
-      label: "Security Settings",
-      href: "",
-      icon: "Settingss",
-    },
-    {
-      label: "Legal & Compliance",
-      href: "",
-      icon: "leagal_doc",
-    },
+    { label: "My Info", href: Routes.profile.client.info || "#", icon: "Preview" },
+    { label: "Billing & Payments", href: Routes.profile.client.bill || "#", icon: "CreditCard" },
+    { label: "Notification", href: Routes.profile.client.notification || "#", icon: "Notify" },
+    { label: "Subscription Setting", href: Routes.profile.client.subscription || "#", icon: "Premium" },
+    { label: "Security Settings", href: Routes.profile.client.security || "#", icon: "Setting" },
+    { label: "Legal & Compliance", href: Routes.profile.client.legal || "#", icon: "leagal_doc" },
   ];
 
   const user_logout = () => {
@@ -59,52 +37,52 @@ export default function DesktopLinks() {
 
   return (
     <div className="hidden lg:flex flex-col w-[350px]">
-      <nav className="flex flex-col border border-[#D0D5DD] rounded-2xl py-7 px-5 h-full">
+      <nav className="flex flex-col border border-[#F2F2F2] rounded-2xl py-7 px-5 h-full">
 
-        {/* --------- Dynamic Links --------- */}
+        {/* Sidebar Links */}
         <div className="flex flex-col w-full gap-4">
-          {Links.map((item, idx) => (
-            <div
-              key={idx}
-              role="button"
-              className={`flex items-center w-full py-3.5 rounded-lg transition-all
-              ${item.active ? "bg-primary text-white" : "hover:bg-blue-gray-50"}
-            `}
-            >
+          {Links.map((item, idx) => {
+            const isActive = pathname === item.href;
+
+            return (
               <Link
+                key={idx}
                 href={item.href}
-                className="flex items-center gap-3 font-medium text-base w-full text-paragraph px-2"
+                className={`flex items-center gap-3 w-full px-3 py-3 rounded-lg font-medium text-base transition-all
+                  ${isActive ? "bg-primary text-white" : "text-paragraph hover:bg-[#F2F4F7]"}
+                `}
               >
-                <SvgIcon name={item.icon} />
+                <SvgIcon
+                  name={item.icon}
+                  size={20}
+                  color={isActive ? "text-white" : "text-paragraph"}
+                />
                 {item.label}
               </Link>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* -------- Bottom Section -------- */}
-        <div className="flex flex-col gap-3 mt-auto">
-
+        {/* Bottom Section */}
+        <div className="flex flex-col gap-2 mt-auto pt-5">
           <Link
             href=""
-            className="flex items-center gap-3 text-base font-medium text-paragraph py-3.5 px-2"
+            className="flex items-center gap-3 text-base font-medium text-[#344054] py-3 px-3 hover:bg-[#F2F4F7] rounded-lg"
           >
-            <SvgIcon name="Question" />
+            <SvgIcon name="Question" size={20} color="#667085" />
             Help & Support
           </Link>
 
           <div
             onClick={user_logout}
-            className="flex items-center gap-3 text-base font-medium text-paragraph py-3.5 px-2 cursor-pointer"
+            className="flex items-center gap-3 text-base font-medium text-[#344054] py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer"
           >
-            <SvgIcon name="Logout" />
+            <SvgIcon name="Logout" size={17} color="#667085" />
             Sign Out
           </div>
-
         </div>
 
       </nav>
     </div>
   );
-
 }

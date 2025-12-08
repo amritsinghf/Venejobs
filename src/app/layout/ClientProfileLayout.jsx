@@ -14,12 +14,12 @@ export default function ClientProfileLayout({ children }) {
           <DesktopLinks />
 
           {/* FULL WIDTH on all screens ≥ md */}
-          <div className="border border-[#D0D5DD] p-7 rounded-2xl flex flex-col w-full gap-6 ">
+          <div className="border border-[#F2F2F2] p-7 rounded-2xl flex flex-col w-full gap-6 ">
 
-            <div className="flex justify-end lg:hidden">
+            <div className="flex justify-start lg:hidden">
               <Link
                 href={Routes.profile.client.home}
-                className="bg-primary text-white px-4 py-1 rounded flex items-center gap-2"
+                className="text-paragraph flex items-center gap-3 hover:text-primary"
               >
                 <SvgIcon name="PrevButton" color="white"/> Back
               </Link>
