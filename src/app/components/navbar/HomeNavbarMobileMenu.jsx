@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function HomeNavbarMobileMenu({ isOpen, setIsOpen, SidebarLinks, logout }) {
+export default function HomeNavbarMobileMenu({ isOpen, setIsOpen, SidebarLinks, userLogout }) {
 
     return (
         <>
@@ -61,7 +61,7 @@ export default function HomeNavbarMobileMenu({ isOpen, setIsOpen, SidebarLinks, 
                     <button
                         type="button"
                         onClick={() => {
-                            logout();
+                            userLogout();
                             setIsOpen(false);
                         }}
                         className="flex items-center gap-3 w-full py-2.5 px-2 text-base font-medium

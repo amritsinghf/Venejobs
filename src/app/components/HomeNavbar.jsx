@@ -18,10 +18,11 @@ export default function HomeNavbar() {
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
 
-  const { user, loading, error, fetchProfile } = userApiStore();
+  const { user, loading, error, fetchProfile, logout } = userApiStore();
 
-  const logout = () => {
+  const userLogout = () => {
     try {
+      logout();
       localStorage.removeItem("token");
       router.push(Routes.home);
       //currenly just removing from localstorage but still in cookie
@@ -52,11 +53,11 @@ export default function HomeNavbar() {
       href: "",
       icon: "",
     },
-    {
-      label: "Message",
-      href: "",
-      icon: "",
-    },
+    // {
+    //   label: "Message",
+    //   href: Routes.client.chat,
+    //   icon: "",
+    // },
   ];
 
   const SidebarLinks = [
@@ -89,7 +90,7 @@ export default function HomeNavbar() {
     },
     {
       label: "Message",
-      href: "",
+      href: Routes.client.chat,
       icon: "",
     },
   ];
@@ -97,13 +98,15 @@ export default function HomeNavbar() {
   return (
     <>
       <div className="w-full relative ">
-        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px]
- mx-auto">
+        <div
+          className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px]
+ mx-auto"
+        >
           {/* HEADER */}
           <div className="flex justify-between items-center py-5 ">
             {/* Logo */}
             <div className="flex gap-3 items-center">
-              <Link href={Routes.client}>
+              <Link href={Routes.client.home}>
                 <Image
                   className="cursor-pointer w-10 md:w-[50px] md:h-[50px]"
                   src="/home/logo-home.png"
@@ -114,7 +117,7 @@ export default function HomeNavbar() {
                 />
               </Link>
               <h2 className="text-gray-600  text-lg font-extrabold cursor-pointer">
-                <Link href={Routes.client}>Venejobs</Link>
+                <Link href={Routes.client.home}>Venejobs</Link>
               </h2>
             </div>
 
@@ -151,7 +154,7 @@ export default function HomeNavbar() {
             isOpen={menuOpen}
             setIsOpen={setMenuOpen}
             SidebarLinks={SidebarLinks}
-            logout={logout}
+            userLogout={userLogout}
           />
         </div>
       </div>
