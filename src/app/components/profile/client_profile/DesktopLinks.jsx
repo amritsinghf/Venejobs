@@ -50,7 +50,7 @@ export default function DesktopLinks() {
                 href={item.href}
                 className={`
                   flex items-center gap-4 w-full px-3 py-3 rounded-lg font-medium 
-                  text-base leading-none transition-all
+                  text-base leading-none transition-all tracking-wide
                   ${isActive ? "bg-primary text-white" : "text-paragraph hover:bg-[#F2F4F7]"}
                 `}
               >
@@ -69,7 +69,7 @@ export default function DesktopLinks() {
         <div className="flex flex-col gap-2 mt-auto pt-5">
           <Link
             href=""
-            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg"
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg tracking-wide"
           >
             <SvgIcon name="Question" size={20} className="text-inherit" />
             Help & Support
@@ -77,7 +77,7 @@ export default function DesktopLinks() {
 
           <div
             onClick={user_logout}
-            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer"
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer tracking-wide"
           >
             <SvgIcon name="Logout" size={17} className="text-inherit" />
             Sign Out

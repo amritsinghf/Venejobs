@@ -80,7 +80,7 @@ export default function Page() {
                 `}
               >
                 <SvgIcon name={item.icon} size={19} />
-                <span className="ml-4 text-base font-medium">{item.label}</span>
+                <span className="ml-4 text-base font-medium tracking-wide">{item.label}</span>
               </Link>
             );
           })}
@@ -90,7 +90,7 @@ export default function Page() {
             className="flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition"
           >
             <SvgIcon name="Question" size={19} />
-            <span className="ml-4 text-base font-medium text-paragraph">Help & Suppor</span>
+            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">Help & Suppor</span>
 
           </Link>
 
@@ -100,7 +100,7 @@ export default function Page() {
             className="flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition text-paragraph"
           >
             <SvgIcon name="Logout" />
-            <span className="ml-4 text-base font-medium text-paragraph">Sign Out</span>
+            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">Sign Out</span>
 
           </Button>
         </div>

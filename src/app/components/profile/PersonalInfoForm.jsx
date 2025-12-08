@@ -1,11 +1,13 @@
 import userApiStore from "@/app/store/userStore";
 import Image from "next/image";
 import DOBPicker from "../DatePicker";
+import SvgIcon from "../SvgIcon";
+import CompanyDetails from "./CompanyDetails";
 
 export default function PersonalInfoForm() {
   const { user, logout, fetchProfile } = userApiStore();
   return (
-    <div className="">
+    <>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-1">
           <h2 className="text-2xl lg:text-3xl xl:text-3xl text-heading font-bold leading-tight">My Info</h2>
@@ -18,7 +20,9 @@ export default function PersonalInfoForm() {
           <h2 className="text-lg xl:text-xl text-heading font-bold leading-9">
             Personal Information
           </h2>
-          <button className="text-primary font-bold text-base">Edit</button>
+          <button className="text-primary font-bold text-base flex items-center gap-2 cursor-pointer">
+            <SvgIcon name="Edit" />
+            Edit</button>
         </div>
 
         <div className="mt-4">
@@ -76,6 +80,7 @@ export default function PersonalInfoForm() {
           />
         </div>
       </div>
-    </div>
+      <CompanyDetails />
+    </>
   );
 }
