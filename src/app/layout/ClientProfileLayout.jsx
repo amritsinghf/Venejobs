@@ -8,13 +8,13 @@ export default function ClientProfileLayout({ children }) {
   return (
     <>
       <ClientLayout>
-      <div className="w-full 2xl:w-[1400px] 2xl:mx-auto h-auto md:mt-10 lg:mt-28 mb-4 ">
-        <div className="flex lg:gap-10 justify-center md:justify-start w-full">
+      <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
+        <div className="flex lg:gap-5 justify-center md:justify-start w-full">
 
           <DesktopLinks />
 
           {/* FULL WIDTH on all screens ≥ md */}
-          <div className="border border-gray-300 p-5 rounded-2xl flex flex-col w-full gap-6 ">
+          <div className="border border-[#D0D5DD] p-7 rounded-2xl flex flex-col w-full gap-6 ">
 
             <div className="flex justify-end lg:hidden">
               <Link

@@ -123,7 +123,7 @@ export default function HomeNavbar() {
               <nav>
                 <ul className="flex items-center gap-6 lg:gap-3 xl:gap-15 md:gap-10">
                   {NavLinks.map((item) => (
-                    <li className="text-paragraph" key={item.label}>
+                    <li className="text-paragraph text-base font-medium" key={item.label}>
                       <Link href={item.href}>{item.label}</Link>
                     </li>
                   ))}

@@ -18,11 +18,11 @@ export default function Profile() {
     <>
       <ClientLayout>
         <div className="w-full 2xl:w-[1500px] 2xl:mx-auto  h-auto  lg:mt-28  lg:px-12 mb-10">
-          <div className="flex md:gap-10">
+          <div className="flex md:gap-7">
             <Page />
             <DesktopLinks />
 
-            <div className="hidden lg:flex border-gray-300 border p-5  mx-auto  rounded-2xl  flex-col w-full  gap-6 ">
+            <div className="hidden lg:flex border border-[#D0D5DD] p-5 rounded-2xl mx-auto flex-col w-full  gap-6 ">
               <PersonalInfoForm />
             </div>
           </div>
