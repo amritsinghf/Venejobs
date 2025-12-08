@@ -48,7 +48,12 @@ export default function ProfileDropdown() {
           <input
             type="search"
             id="search"
-            className="block w-full px-10 py-2 rounded-4xl text-sm text-gray-900 font-medium shadow-sm"
+            className="
+      block w-full pl-10 pr-4 py-2 
+      rounded-4xl text-sm text-gray-900 font-medium 
+      border border-lightborder focus:border-primary outline-none
+      placeholder:text-gray-400
+    "
             placeholder="Search"
             required
           />
@@ -84,7 +89,7 @@ export default function ProfileDropdown() {
           {showDropdown && (
             <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
               <Link
-               href={
+                href={
                   user?.role_id === 2
                     ? Routes.profile.client.info
                     : Routes.profile.freelancer.info
