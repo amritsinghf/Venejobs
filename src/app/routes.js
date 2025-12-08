@@ -1,6 +1,9 @@
 export const Routes = {
   home: "/",
-  client: "/client",
+  client: {
+    home:"/client",
+    chat:"/client/chat/"
+  },
   job_post: {
     home: "/client/jobpost/",
     form: "/client/jobpost/forms/",

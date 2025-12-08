@@ -82,7 +82,7 @@ export default function Page() {
               <Link
                 className="bg-primary text-white p-1 rounded text-sm 
              active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md flex items-center gap-1"
-                href={Routes.client}
+                href={Routes.client.home}
               >
                 <HomeFilledIcon fontSize="small" /> Home
               </Link>
