@@ -48,14 +48,16 @@ export default function DesktopLinks() {
               <Link
                 key={idx}
                 href={item.href}
-                className={`flex items-center gap-3 w-full px-3 py-3 rounded-lg font-medium text-base transition-all
+                className={`
+                  flex items-center gap-4 w-full px-3 py-3 rounded-lg font-medium 
+                  text-base leading-none transition-all
                   ${isActive ? "bg-primary text-white" : "text-paragraph hover:bg-[#F2F4F7]"}
                 `}
               >
                 <SvgIcon
                   name={item.icon}
                   size={20}
-                  color={isActive ? "text-white" : "text-paragraph"}
+                  className="text-inherit"
                 />
                 {item.label}
               </Link>
@@ -67,17 +69,17 @@ export default function DesktopLinks() {
         <div className="flex flex-col gap-2 mt-auto pt-5">
           <Link
             href=""
-            className="flex items-center gap-3 text-base font-medium text-[#344054] py-3 px-3 hover:bg-[#F2F4F7] rounded-lg"
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg"
           >
-            <SvgIcon name="Question" size={20} color="#667085" />
+            <SvgIcon name="Question" size={20} className="text-inherit" />
             Help & Support
           </Link>
 
           <div
             onClick={user_logout}
-            className="flex items-center gap-3 text-base font-medium text-[#344054] py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer"
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer"
           >
-            <SvgIcon name="Logout" size={17} color="#667085" />
+            <SvgIcon name="Logout" size={17} className="text-inherit" />
             Sign Out
           </div>
         </div>

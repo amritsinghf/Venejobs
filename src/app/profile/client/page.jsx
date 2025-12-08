@@ -22,7 +22,7 @@ export default function Profile() {
             <Page />
             <DesktopLinks />
 
-            <div className="hidden lg:flex border border-[#F2F2F2] p-5 rounded-2xl mx-auto flex-col w-full  gap-6 ">
+            <div className="hidden lg:flex border border-[#F2F2F2] p-7 rounded-2xl mx-auto flex-col w-full  gap-6 ">
               <PersonalInfoForm />
             </div>
           </div>
