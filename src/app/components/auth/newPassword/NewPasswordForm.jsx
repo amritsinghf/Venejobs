@@ -41,7 +41,6 @@ export default function NewPasswordForm({ email, setActiveModal }) {
                 showSuccess("Success", "Your password has been reset successfully.");
                 setActiveModal("success_pass_reset");
             } else {
-                console.log(res.messagem,)
                 showError("Error", res.message || "Failed to reset password.");
             }
         } catch (err) {

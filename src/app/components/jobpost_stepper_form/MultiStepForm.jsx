@@ -13,10 +13,13 @@ import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
-  const showToast = toastStore.getState().showToast;
+  const showError = toastStore.getState().showError;
 
   const methods = useForm({ mode: "onBlur" });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   const [step, setStep] = useState(1);
 
@@ -31,13 +34,8 @@ const MultiStepForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const skillsArray = data.skills
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean);
-
       const formData = new FormData();
-      skillsArray.forEach((skill) => {
+      data.skills.forEach((skill) => {
         formData.append("skills[]", skill);
       });
       formData.append("title", data.title);
@@ -51,14 +49,15 @@ const MultiStepForm = () => {
       formData.append("attachment", data.attachment[0]);
 
       const res = await create_job(formData);
-
       if (res.success) {
         setshowConfirmMessage(true);
       }
     } catch (error) {
+      console.log(error);
       if (error.response) {
-        showToast(error.response.data.message, "error");
+        // showError(error.response.data.message);
       } else {
+        // showError(error);
       }
     }
   };
@@ -111,7 +110,6 @@ const MultiStepForm = () => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
-            {/* <StepperNumber currstep={step} /> */}
             {renderStep()}
           </div>
         </form>

@@ -3,14 +3,24 @@ import Image from "next/image";
 import DOBPicker from "../DatePicker";
 import SvgIcon from "../SvgIcon";
 import CompanyDetails from "./CompanyDetails";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm() {
   const { user, logout, fetchProfile } = userApiStore();
+  const [isEditable, setIsEditable] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditable(true);
+  };
+  
   return (
     <>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-1">
-          <h2 className="text-2xl lg:text-3xl xl:text-3xl text-heading font-bold leading-tight">My Info</h2>
+          <h2 className="text-2xl lg:text-3xl xl:text-3xl text-heading font-bold leading-tight">
+            My Info
+          </h2>
           <p className="text-gray-500 text-sm font-medium leading-7 lg:leading-8 tracking-wide">
             Update your account information
           </p>
@@ -20,9 +30,13 @@ export default function PersonalInfoForm() {
           <h2 className="text-lg xl:text-xl text-heading font-bold leading-9">
             Personal Information
           </h2>
-          <button className="text-primary font-bold text-base flex items-center gap-2 cursor-pointer">
+          <button
+            className="text-primary font-bold text-base flex items-center gap-2 cursor-pointer"
+            onClick={handleEditClick}
+          >
             <SvgIcon name="Edit" />
-            Edit</button>
+            Edit
+          </button>
         </div>
 
         <div className="mt-4">
@@ -41,6 +55,7 @@ export default function PersonalInfoForm() {
           <input
             type="text"
             placeholder="Name"
+            disabled={!isEditable}
             value={user?.name ?? ""}
             onChange={(e) => setUser({ ...user, name: e.target.value })}
             className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
@@ -52,18 +67,20 @@ export default function PersonalInfoForm() {
           <input
             type="text"
             placeholder="Username"
+            disabled={!isEditable}
             value={user?.username ?? ""}
             onChange={(e) => setUser({ ...user, username: e.target.value })}
             className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
           />
         </div>
 
-        <DOBPicker />
+        <DOBPicker isEditable={isEditable}/>
 
         <div className="flex flex-col gap-2 ">
           <h3 className="text-base text-heading font-bold">Mobile Number : </h3>
           <input
             type="text"
+            disabled={!isEditable}
             placeholder="Mobile Number"
             className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
           />
@@ -74,6 +91,7 @@ export default function PersonalInfoForm() {
           <input
             type="text"
             placeholder="Email"
+            disabled={!isEditable}
             value={user?.email ?? ""}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
             className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"

@@ -1,11 +1,14 @@
-"use client"
+"use client";
+import BillingPage from "@/app/components/profile/BillingPage";
 import ClientProfileLayout from "@/app/layout/ClientProfileLayout";
 
 export default function Bill() {
+  
+
   return (
     <>
       <ClientProfileLayout>
-        <h2>Billing</h2>
+        <BillingPage/>
       </ClientProfileLayout>
     </>
   );

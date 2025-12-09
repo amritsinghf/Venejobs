@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/SvgIcon";
 import { Routes } from "@/app/routes";
@@ -65,8 +65,8 @@ export default function MobileView() {
     <>
       <div className="flex flex-col lg:hidden">
         <div className="rounded-2xl flex flex-col gap-44 p-1 w-full ">
-          <div className="flex flex-col gap-4">
-            <div className="flex justify-between items-center px-4 py-2 border border-gray-200 rounded-4xl shadow">
+          <div className="flex flex-col gap-6">
+            <div className="flex justify-between items-center px-4 py-4 border border-[#F2F2F2] rounded-lg shadow">
               <div className="flex items-center gap-2">
                 <img
                   src={
@@ -92,12 +92,14 @@ export default function MobileView() {
               <div
                 key={item.label}
                 role="button"
-                className={`flex items-center justify-start w-full py-6 h-[45px] hover:bg-blue-gray-50 border border-gray-200 rounded-4xl shadow ${
+                className={`flex items-center justify-start w-full py-6 h-[45px] hover:bg-blue-gray-50 border border-gray-200 rounded shadow ${
                   activeTab === item.label
                     ? "bg-secondary text-white"
                     : "text-paragraph"
                 }`}
-                onClick={() => {setActiveTab(item.label)}}
+                onClick={() => {
+                  setActiveTab(item.label);
+                }}
               >
                 <Link
                   href={item.href}
@@ -112,7 +114,7 @@ export default function MobileView() {
           <div className="flex flex-col gap-8">
             <Link
               href={""}
-              className="flex items-center md:w-full justify-start px-10 py-2 gap-5 lg:w-64  text-lg text-center  text-paragraph border border-gray-200 rounded-4xl shadow active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md"
+              className="flex items-center md:w-full justify-start px-10 py-2 gap-5 lg:w-64  text-lg text-center  text-paragraph border border-gray-200 rounded shadow active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md"
             >
               <SvgIcon name="Question" />
               Help & Support
@@ -120,7 +122,7 @@ export default function MobileView() {
             <button
               onClick={() => user_logout()}
               type="button"
-              className="flex items-center md:w-full justify-start px-10 py-2 gap-5 lg:w-64  text-lg text-center  text-paragraph mb-4 border border-gray-200 rounded-4xl shadow active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md"
+              className="flex items-center md:w-full justify-start px-10 py-2 gap-5 lg:w-64  text-lg text-center  text-paragraph mb-4 border border-gray-200 rounded shadow active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md"
             >
               <SvgIcon name="Logout" />
               Sign Out
