@@ -11,7 +11,6 @@ export default function Footer({
   socialLinks,
   sections,
 }) {
-  console.log(socialLinks, ">>>>>>>>>>")
   const [open, setOpen] = useState(false);
 
   return (
