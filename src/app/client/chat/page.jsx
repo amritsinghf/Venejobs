@@ -66,13 +66,14 @@ export default function Chat() {
   ];
 
   return (
-    <ClientLayout>
-      <ClientChatWrapper chatData={chatData}>
-        {/* chat panel */}
-        <ChatPanel chatData={chatData} />
-        {/* user info panel */}
-        <UserInfoPanel />
-      </ClientChatWrapper>
-    </ClientLayout>
+    // <ClientLayout>
+    //   <ClientChatWrapper chatData={chatData}>
+    //     {/* chat panel */}
+    //     <ChatPanel chatData={chatData} />
+    //     {/* user info panel */}
+    //     <UserInfoPanel />
+    //   </ClientChatWrapper>
+    // </ClientLayout>
+    <></>
   );
 }
