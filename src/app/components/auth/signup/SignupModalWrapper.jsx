@@ -29,7 +29,7 @@ export default function SignupModalWrapper({ children, setActiveModal }) {
         </button>
 
         {/* Content */}
-        <div className="pt-20 p-6 md:py-10">
+        <div className="pt-20 px-4 py-6 md:px-5 md:py-10 lg:px-6">
           {children}
         </div>
       </div>

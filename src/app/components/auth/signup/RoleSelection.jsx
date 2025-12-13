@@ -5,7 +5,7 @@ import React from "react";
 export default function RoleSelection({ register, errors }) {
     return (
         <>
-            <div className="grid grid-cols-2 gap-2 md:gap-x-4 mb-4">
+            <div className="grid md:grid-cols-2 gap-2 md:gap-x-4 mb-4">
 
                 {/* Freelancer */}
                 <div className="group">
@@ -25,7 +25,7 @@ export default function RoleSelection({ register, errors }) {
                             name="Teleworking"
                             className="w-5 h-5 text-gray-500 group-has-checked:text-white transition-colors"
                         />
-                        <span className="text-sm md:text-base font-medium">
+                        <span className="text-[15px] font-medium">
                             I'm a freelancer
                         </span>
                     </label>
@@ -58,7 +58,7 @@ export default function RoleSelection({ register, errors }) {
                             name="Businessman"
                             className="w-5 h-5 text-gray-500 group-has-checked:text-white transition-colors"
                         />
-                        <span className="text-sm md:text-base font-medium">
+                        <span className="text-[15px] font-medium">
                             I'm a Client
                         </span>
                     </label>
