@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Brifcase = ({ size = 16, color = "currentColor", className = "" }) => {
+export const Brifcase = ({ size, color = "currentColor", className = "" }) => {
   return (
     <svg
       width={size}

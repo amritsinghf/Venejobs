@@ -11,7 +11,7 @@ export default function HowItWorks() {
                         For Clients
                     </p>
 
-                    <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight leading-tight">
+                    <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
                         How it Works
                     </h2>
 
@@ -44,10 +44,10 @@ export default function HowItWorks() {
                             className="flex flex-col items-center text-center gap-2 md:gap-5"
                         >
                             {/* Icon Wrapper */}
-                            <div className="w-20 h-20 flex items-center justify-center">
-                                <SvgIcon name={item.icon} />
+            
+                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-[2px_2px_50px_6px_rgba(0,0,0,0.05)]">
+                                <SvgIcon name={item.icon} size={28} />
                             </div>
-
                             {/* Text */}
                             <div className="flex flex-col gap-3">
                                 <h3 className="text-xl text-heading font-semibold">
