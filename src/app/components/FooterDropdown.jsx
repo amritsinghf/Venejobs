@@ -4,14 +4,23 @@ export default function Footerdropdown() {
   const items = ["Hindi", "Gujarati", "German", "Spanish"];
 
   return (
-    <ul className="py-2 text-sm text-gray-200">
-      {items.map((item) => (
-        <li key={item}>
-          <Button className="w-full text-left px-4 py-2 hover:bg-gray-700 hover:text-white">
-            {item}
-          </Button>
-        </li>
-      ))}
-    </ul>
+    <div className="rounded-lg bg-neutral-900 shadow-lg ring-1 ring-white/10 overflow-hidden">
+      <ul className="text-center">
+        {items.map((item) => (
+          <li key={item}>
+            <Button
+              className="
+                w-full
+                text-gray-200
+                hover:bg-white/10 hover:text-white
+                transition-colors
+              "
+            >
+              {item}
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

@@ -5,13 +5,14 @@ import Button from "../../button/Button";
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
 import { Routes } from "@/app/routes";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function DesktopLinks() {
   const router = useRouter();
   const { user, logout, fetchProfile } = userApiStore();
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
+  const pathname = usePathname();
 
   const user_logout = () => {
     try {
@@ -60,52 +61,55 @@ export default function DesktopLinks() {
   ];
 
   return (
-    <>
-      <div className="lg:flex flex-col lg:w-[350px] hidden">
-        <nav className="lg:flex lg:flex-col lg:gap-8 items-start gap-1 border border-gray-300 rounded-2xl mb-4 p-5">
-          <div className="flex flex-col gap-64 justify-between items-center w-full">
-            {/* --------- Dynamic Links --------- */}
-            <div className="flex flex-col gap-4">
-              {Links.map((item, idx) => (
-                <div
-                  key={idx}
-                  role="button"
-                  className={`flex items-center justify-center w-full py-7 h-[45px] rounded hover:bg-blue-gray-50
-                ${item.active ? "bg-secondary text-white" : ""}`}
-                >
-                  <Link
-                    href={item.href}
-                    className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6"
-                  >
-                    <SvgIcon name={item.icon} />
-                    {item.label}
-                  </Link>
-                </div>
-              ))}
-            </div>
+    <div className="hidden lg:flex flex-col w-[350px]">
+      <nav className="flex flex-col border border-[#F2F2F2] rounded-2xl py-7 px-5 h-full">
 
-            {/* -------- Bottom Section -------- */}
-            <div className="flex flex-col gap-8 pr-6">
+        {/* Sidebar Links */}
+        <div className="flex flex-col w-full gap-4">
+          {Links.map((item, idx) => {
+            const isActive = pathname === item.href;
+
+            return (
               <Link
-                href=""
-                className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
+                key={idx}
+                href={item.href}
+                className={`
+                  flex items-center gap-4 w-full px-3 py-3 rounded-lg font-medium 
+                  text-base leading-none transition-all tracking-wide
+                  ${isActive ? "bg-primary text-white" : "text-paragraph hover:bg-[#F2F4F7]"}
+                `}
               >
-                <SvgIcon name="Question" />
-                Help & Support
+                <SvgIcon
+                  name={item.icon}
+                  size={20}
+                  className="text-inherit"
+                />
+                {item.label}
               </Link>
+            );
+          })}
+        </div>
 
-              <button
-                onClick={() => user_logout()}
-                type="button"
-                className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 text-paragraph"
-              >
-                <SvgIcon name="Logout" />
-                Sign Out
-              </button>
-            </div>
+        {/* Bottom Section */}
+        <div className="flex flex-col gap-2 mt-auto pt-5">
+          <Link
+            href=""
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg tracking-wide"
+          >
+            <SvgIcon name="Question" size={20} className="text-inherit" />
+            Help & Support
+          </Link>
+
+          <div
+            onClick={user_logout}
+            className="flex items-center gap-4 text-base font-medium text-paragraph py-3 px-3 hover:bg-[#F2F4F7] rounded-lg cursor-pointer tracking-wide"
+          >
+            <SvgIcon name="Logout" size={17} className="text-inherit" />
+            Sign Out
           </div>
-        </nav>
-      </div>
-    </>
+        </div>
+
+      </nav>
+    </div>
   );
 }

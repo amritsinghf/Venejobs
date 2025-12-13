@@ -6,6 +6,7 @@ import HowItWorks from "./components/home/HowItWorks";
 import BrowseCategories from "./components/home/BrowseCategories";
 import FreelancerPromo from "./components/home/FreelancerPromo";
 import MostPopular from "./components/home/MostPopular";
+import { footerClientConfig } from "./lib/footer/footerClientConfig";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -32,7 +33,8 @@ export default function Home() {
         <FreelancerPromo />
         <MostPopular />
       </main>
-      <Footer />
+
+      <Footer {...footerClientConfig} />
     </>
   );
 }
