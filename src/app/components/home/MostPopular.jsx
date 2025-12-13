@@ -15,7 +15,7 @@ export default function MostPopular() {
                 text-center md:text-left
             ">
                 <div className="flex flex-col gap-4 w-full md:w-auto">
-                    <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight leading-tight">
+                    <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
                         Most Popular
                     </h2>
                     <p className="text-gray-500 text-sm md:text-base tracking-wide font-medium">
@@ -25,10 +25,10 @@ export default function MostPopular() {
 
                 {/* Center on mobile */}
                 <div className="flex justify-center md:justify-end w-full md:w-auto">
-                    <Button className="flex items-center justify-center gap-2 text-primary bg-[#5BBB7B1A] font-bold text-base rounded-md px-2">
+                    <button className="flex items-center justify-center gap-2 text-primary font-bold text-base rounded-md px-2">
                         All category
                         <SvgIcon name="RightOne" />
-                    </Button>
+                    </button>
                 </div>
             </div>
 
