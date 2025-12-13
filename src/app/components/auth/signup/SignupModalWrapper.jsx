@@ -1,12 +1,9 @@
 "use client";
 import { useRef } from "react";
-import { useClickOutside } from "@/hooks/useClickOutside";
 import SvgIcon from "../../SvgIcon";
 
 export default function SignupModalWrapper({ children, setActiveModal }) {
   const modalRef = useRef(null);
-
-  useClickOutside(modalRef, () => setActiveModal(""));
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6 sm:p-8 md:p-10">
@@ -25,6 +22,7 @@ export default function SignupModalWrapper({ children, setActiveModal }) {
             absolute top-4 right-4 w-9 h-9
             flex items-center justify-center
             rounded-full hover:bg-gray-100 transition
+            cursor-pointer
           "
         >
           <SvgIcon name="CrossButton" size={18} />

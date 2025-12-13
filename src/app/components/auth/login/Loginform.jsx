@@ -51,7 +51,7 @@ export default function Loginform({ setActiveModal }) {
 
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="space-y-4 py-10 px-2 md:px-6 md:py-15"
+        className="space-y-4 py-10 px-2 md:px-4 md:py-15"
       >
         <LoginFormFields
           register={register}
