@@ -11,6 +11,7 @@ export default function Footer({
   socialLinks,
   sections,
 }) {
+  console.log(socialLinks, ">>>>>>>>>>")
   const [open, setOpen] = useState(false);
 
   return (
@@ -26,7 +27,7 @@ export default function Footer({
 
           <div className="flex items-center gap-4">
             <p className="text-white font-medium text-base">Follow Us</p>
-            {socialLinks.map((item) => (
+            {socialLinks.length > 0 && socialLinks.map((item) => (
               <Link key={item.name} href={item.url} target="_blank">
                 <SvgIcon name={item.name} />
               </Link>
