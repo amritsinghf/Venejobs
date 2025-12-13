@@ -70,7 +70,7 @@ export default function Footer({
             Copyright <b>Venejobs</b>. 2024 All Rights Reserved.
           </span>
 
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-5 xl:gap-10">
             <a className="text-sm text-white/70 tracking-wide underline underline-offset-4 cursor-pointer">
               Terms of policy
             </a>
