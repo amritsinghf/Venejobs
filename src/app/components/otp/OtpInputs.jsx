@@ -9,7 +9,9 @@ export default function OtpInputs({ otp, setOtp, setFinalOtp, inputRefs }) {
         newOtp[index] = value.slice(-1);
         setOtp(newOtp);
 
-        if (value && index < 5) inputRefs.current[index + 1].focus();
+        if (value && index < 5) {
+            inputRefs.current[index + 1].focus();
+        }
 
         if (newOtp.join("").length === 6) {
             setFinalOtp(newOtp.join(""));
@@ -28,6 +30,20 @@ export default function OtpInputs({ otp, setOtp, setFinalOtp, inputRefs }) {
         }
     };
 
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData("text").trim();
+
+        if (!/^\d{6}$/.test(pasteData)) return;
+
+        const pasteArray = pasteData.split("");
+        setOtp(pasteArray);
+        setFinalOtp(pasteData);
+
+        // focus last input
+        inputRefs.current[5].focus();
+    };
+
     return (
         <div className="flex justify-center gap-2 sm:gap-3 mt-4 px-4">
             {otp.map((value, index) => (
@@ -39,6 +55,7 @@ export default function OtpInputs({ otp, setOtp, setFinalOtp, inputRefs }) {
                     ref={(el) => (inputRefs.current[index] = el)}
                     onChange={(e) => handleChange(index, e)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
+                    onPaste={handlePaste}
                     className="
                         w-10 h-10 sm:w-14 sm:h-14 
                         rounded-xl text-center text-lg sm:text-xl 
