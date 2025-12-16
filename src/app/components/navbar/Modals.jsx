@@ -16,7 +16,7 @@ export default function Modals({
 }) {
   switch (activeModal) {
     case "signin":
-      return <Loginform setActiveModal={setActiveModal} />;
+      return <Loginform setActiveModal={setActiveModal} setUserEmail={setUserEmail}/>;
 
     case "signup":
       return (

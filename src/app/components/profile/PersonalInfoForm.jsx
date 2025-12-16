@@ -3,17 +3,25 @@ import Image from "next/image";
 import DOBPicker from "../DatePicker";
 import SvgIcon from "../SvgIcon";
 import CompanyDetails from "./CompanyDetails";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import Button from "../button/Button";
 
 export default function PersonalInfoForm() {
-  const { user, logout, fetchProfile } = userApiStore();
+  const { user, logout, fetchProfile, updateProfile } = userApiStore();
   const [isEditable, setIsEditable] = useState(false);
+
+  const [showButton, setshowButton] = useState(true);
+
+  // const [stateuser, setstateUser] = useState()
 
   const handleEditClick = () => {
     setIsEditable(true);
   };
-  
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-2">
@@ -74,13 +82,14 @@ export default function PersonalInfoForm() {
           />
         </div>
 
-        <DOBPicker isEditable={isEditable}/>
+        <DOBPicker isEditable={isEditable} />
 
         <div className="flex flex-col gap-2 ">
           <h3 className="text-base text-heading font-bold">Mobile Number : </h3>
           <input
             type="text"
             disabled={!isEditable}
+            value={user?.phone ?? ""}
             placeholder="Mobile Number"
             className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
           />
@@ -98,6 +107,11 @@ export default function PersonalInfoForm() {
           />
         </div>
       </div>
+
+      <Button className="bg-primary text-white" onClick={() => {}}>
+        Update
+      </Button>
+
       <CompanyDetails />
     </>
   );

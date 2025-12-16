@@ -63,7 +63,7 @@ export default function MobileView() {
 
   return (
     <>
-      <div className="flex flex-col lg:hidden">
+      <div className="flex flex-col lg:hidden w-full">
         <div className="rounded-2xl flex flex-col gap-44 p-1 w-full ">
           <div className="flex flex-col gap-6">
             <div className="flex justify-between items-center px-4 py-4 border border-[#F2F2F2] rounded-lg shadow">

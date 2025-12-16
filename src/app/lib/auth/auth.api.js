@@ -31,3 +31,7 @@ export async function reset_password(data) {
 export async function get_client_profile() {
   return api.get("api/auth/profile");
 }
+
+export async function profile_update() {
+  return api.put("api/auth/profile");
+}

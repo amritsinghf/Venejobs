@@ -4,6 +4,7 @@ import {
   forget_password,
   get_client_profile,
   login,
+  profile_update,
   resend_verification_code,
   reset_password,
   signupapi,
@@ -76,6 +77,7 @@ const userApiStore = create(
 
         try {
           const res = await get_client_profile();
+          console.log(res.data)
           set({
             user: res.data.user,
             loading: false,
@@ -118,7 +120,6 @@ const userApiStore = create(
         set({ loading: true, error: null });
         try {
           const res = await resend_verification_code(otpData);
-          
           set({  loading: false, fetched: true });
 
           return res;
@@ -185,6 +186,25 @@ const userApiStore = create(
               err?.response?.data?.message ||
               err.message ||
               "Verification of reset code failed",
+            loading: false,
+          });
+          throw err;
+        }
+      },
+      updateProfile: async (data) => {
+        set({ loading: true, error: null });
+        try {
+          const res = await profile_update(data);
+          
+          set({  loading: false, fetched: true });
+
+          return res;
+        } catch (err) {
+          set({
+            error:
+              err?.response?.data?.message ||
+              err.message ||
+              "Update profile failed",
             loading: false,
           });
           throw err;

@@ -11,7 +11,9 @@ export const Routes = {
   freelancer: {
     get_started: "/freelancer",
     page: "/freelancer/home",
-    chat:"/freelancer/chat/"
+    chat:"/freelancer/chat/",
+    jobdetail:"/freelancer/JobDetail/",
+    proposal:"/freelancer/Proposal/"
   },
   profile: {
     client:{

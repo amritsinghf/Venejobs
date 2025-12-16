@@ -70,7 +70,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
               Skills
             </h2>
             <p className="text-paragraph text-base">
-              {data.skills.join(", ")}
+              {data.skills}
             </p>
           </Row>
 

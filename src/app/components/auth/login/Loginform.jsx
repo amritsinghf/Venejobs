@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
 import LoginModalWrapper from "../login/LoginModalWrapper";
@@ -12,16 +11,21 @@ import LoginHeader from "../login/LoginHeader";
 import LoginFormFields from "../login/LoginFormFields";
 import LoginActions from "../login/LoginActions";
 
-export default function Loginform({ setActiveModal }) {
+export default function Loginform({ setActiveModal, setUserEmail }) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible((v) => !v);
 
   const login = userApiStore((s) => s.login);
+  const sendOtp = userApiStore((s) => s.resendOtp);
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
   const handleLogin = async (data) => {
     try {
@@ -41,7 +45,13 @@ export default function Loginform({ setActiveModal }) {
         showError(res.message, "error");
       }
     } catch (error) {
-      showError(error?.response?.data?.message || "Login failed", "error");
+      // this below will go to else part in try when amrit send other response so when password is invalid so otp form not open
+      setTimeout(() => {
+        setActiveModal("otp_verify");
+      }, 500);
+      setUserEmail(data.email);
+      sendOtp({ email: data.email });
+      showError(error?.response?.data?.message || "Login error", "error");
     }
   };
 
@@ -66,6 +76,5 @@ export default function Loginform({ setActiveModal }) {
         />
       </form>
     </LoginModalWrapper>
-
   );
 }
