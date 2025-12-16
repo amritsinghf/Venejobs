@@ -9,6 +9,7 @@ import OtpInputs from "./OtpInputs";
 import toastStore from "@/app/store/toastStore";
 import userApiStore from "@/app/store/userStore";
 import Button from "../button/Button";
+import Loader from "../common/Loader";
 
 export default function OtpForm({
     email,
@@ -28,6 +29,7 @@ export default function OtpForm({
 
     const [seconds, setSeconds] = useState(10 * 60);
     const [canResend, setCanResend] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const inputRefs = useRef([]);
 
@@ -58,14 +60,14 @@ export default function OtpForm({
     // Verify OTP
     const VerifyAccount = async () => {
         try {
-            if (setverifyCode === "signup-code") {
+            setLoading(true);
 
+            if (setverifyCode === "signup-code") {
                 const res = await verifyOtpAndSetToken({ email, code: finalOtp });
                 const token = res.data.token;
 
                 if (res.success) {
                     showSuccess(res.message);
-
                     await axios.post("/api/set-token", { token });
                     localStorage.setItem("token", token);
 
@@ -77,7 +79,6 @@ export default function OtpForm({
 
             } else {
                 const res = await verify_resetCode({ email, code: finalOtp });
-
                 if (res.success) {
                     setActiveModal("new_password");
                     setUserEmail(email);
@@ -87,8 +88,11 @@ export default function OtpForm({
 
         } catch (error) {
             showError(error?.response?.data?.message || "Something went wrong");
+        } finally {
+            setLoading(false);
         }
     };
+
 
     const handleResend = async () => {
         try {
@@ -116,11 +120,13 @@ export default function OtpForm({
             <div className="flex justify-center mt-5">
                 <Button
                     onClick={VerifyAccount}
-                    className="bg-primary text-white mt-4 sm:mt-5 px-6 sm:px-8 py-3 rounded"
+                    disabled={loading}
+                    className="bg-primary text-white mt-4 sm:mt-5 px-6 sm:px-8 py-3 rounded flex items-center justify-center gap-2"
                     variant="primary"
                 >
-                    Verify Account
+                    {loading ? <Loader size={18} border={3} color="white" /> : "Verify Account"}
                 </Button>
+
             </div>
 
             {/* Timer */}

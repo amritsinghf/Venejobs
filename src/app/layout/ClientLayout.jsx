@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import HomeNavbar from "../components/HomeNavbar";
 import { useEffect } from "react";
 import userApiStore from "../store/userStore";
+import { footerClientConfig } from "../lib/footer/footerClientConfig";
 
 export default function ClientLayout({ children }) {
   const {logout} = userApiStore();
@@ -20,7 +21,7 @@ export default function ClientLayout({ children }) {
     <>
       <HomeNavbar />
       {children}
-      <Footer />
+      <Footer {...footerClientConfig} />
     </>
   );
 }

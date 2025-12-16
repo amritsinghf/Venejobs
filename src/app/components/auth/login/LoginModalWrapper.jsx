@@ -1,12 +1,10 @@
 "use client";
 import { useRef } from "react";
-import { useClickOutside } from "@/hooks/useClickOutside";
 import SvgIcon from "../../SvgIcon";
 
 export default function LoginModalWrapper({ children, setActiveModal }) {
   const loginRef = useRef(null);
 
-  useClickOutside(loginRef, () => setActiveModal(""));
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6 sm:p-8 md:p-10">
@@ -31,7 +29,7 @@ export default function LoginModalWrapper({ children, setActiveModal }) {
         </button>
 
         {/* Content */}
-        <div className="pt-20 p-6 md:py-10 md:px-5">
+        <div className="pt-20 px-4 py-6 md:px-5 md:py-10 lg:px-6">
           {children}
         </div>
       </div>

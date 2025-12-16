@@ -1,9 +1,9 @@
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Button from "../button/Button";
 import SvgIcon from "../SvgIcon";
 import PaginationFreelance from "../PaginationFreelance";
+import JobDescription from "../jobs/JobDescription";
 
 export default function AllJobs() {
   const [page, setPage] = useState(1);
@@ -94,7 +94,7 @@ export default function AllJobs() {
               {/* job desc */}
               <div className="flex flex-col gap-3 mt-4">
                 <h3 className="font-medium text-lg">Qualifications :</h3>
-                <p className="text-paragraph">{item.description}</p>
+                <JobDescription text={item.description} font="font-medium text-[#5BBB7B]" />
               </div>
 
               {/*category or skills */}
@@ -122,7 +122,7 @@ export default function AllJobs() {
         )}
 
         {/* pagiantion */}
-        <PaginationFreelance page={page} selectPage={selectPage} totalPages={totalPages}/>
+        <PaginationFreelance page={page} selectPage={selectPage} totalPages={totalPages} />
       </div>
     </>
   );

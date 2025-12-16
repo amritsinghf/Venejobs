@@ -3,7 +3,7 @@ import SvgIcon from "../SvgIcon";
 import { useState } from "react";
 import MobileChat from "./MobileChat";
 
-const MobileViewChatList = ({ chatData }) => {
+const MobileViewChatList = ({ chatData = [] }) => {
   const [showChat, setshowChat] = useState(false);
   const [showChatList, setshowChatList] = useState(true);
 
@@ -38,7 +38,7 @@ const MobileViewChatList = ({ chatData }) => {
               <SvgIcon name="SettingSlider" />
             </div>
             <div className="flex flex-col gap-4">
-              {chatData.map((chat) => (
+              {chatData.length > 0 && chatData.map((chat) => (
                 <div
                   onClick={() => showhideModal()}
                   key={chat.id}
