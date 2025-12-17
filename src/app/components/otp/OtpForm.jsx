@@ -71,8 +71,8 @@ export default function OtpForm({
                     await axios.post("/api/set-token", { token });
                     localStorage.setItem("token", token);
 
-                    const role = res.data.user.role_id;
-                    router.push(role === 1 ? "/freelancer" : role === 2 ? "/client" : "/admin");
+                    const role = res.data.user.role_name;
+                    router.push(role === "freelancer" ? "/freelancer" : role === "client" ? "/client" : "/admin");
                 } else {
                     showError(res.message);
                 }

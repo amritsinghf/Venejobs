@@ -86,28 +86,29 @@ export default function HomeNavbarFreelance() {
   return (
     <>
       <div className="w-full  relative ">
-        <div className="max-w-[1420px] w-full mx-auto ">
-          <div className="flex justify-between items-center py-5 ">
-            <div className="flex justify-evenly gap-1  items-center px-2">
+        <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto">
+          <div className="flex justify-between items-center py-5">
+            <div className="flex gap-3 items-center">
               <Link href={Routes.freelancer.get_started}>
                 <Image
-                  src="/logo_freelance.png"
+                  className="cursor-pointer w-10 md:w-[50px] md:h-[50px]"
+                  src="/home/logo-home.png"
                   alt="logo image"
                   height={500}
                   width={500}
                   style={{ width: 40, height: 40 }}
-                  className="cursor-pointer"
                 />
               </Link>
-              <h2 className="text-paragraph font-bold cursor-pointer">
+              <h2 className="text-gray-600  text-lg font-extrabold cursor-pointer">
                 <Link href={Routes.freelancer.get_started}>Venejobs</Link>
               </h2>
             </div>
+            
             <div className="lg:block hidden">
               <nav>
-                <ul className="flex justify-around gap-6  items-center sm:w-[500]   xl:mx-50">
-                  {NavLinks.map((item, idx) => (
-                    <li className="text-paragraph" key={item.label}>
+                <ul className="flex items-center gap-6 lg:gap-3 xl:gap-15 md:gap-10">
+                  {NavLinks.map((item) => (
+                    <li className="text-paragraph text-base font-medium" key={item.label}>
                       <Link href={item.href}>{item.label}</Link>
                     </li>
                   ))}
@@ -120,7 +121,7 @@ export default function HomeNavbarFreelance() {
             <div
               role="button"
               tabIndex={0}
-              className="text-black lg:hidden hover:bg-brand-strong font-medium leading-5 rounded-base text-sm  cursor-pointer px-2"
+              className="text-black lg:hidden hover:bg-brand-strong font-medium leading-5 rounded-base text-sm  cursor-pointer"
               aria-controls="drawer-navigation"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(true)}

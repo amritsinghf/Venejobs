@@ -31,15 +31,14 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
     try {
       const res = await login(data);
       const token = res.data.token;
-
       if (res.success) {
         showSuccess(res.message, "success");
 
         await axios.post("/api/set-token", { token });
         localStorage.setItem("token", token);
 
-        if (res.data.user.role_id === 1) router.push("/freelancer");
-        else if (res.data.user.role_id === 2) router.push("/client");
+        if (res.data.user.role_name === "freelancer") router.push("/freelancer");
+        else if (res.data.user.role_name === "client") router.push("/client");
         else router.push("/admin");
       } else {
         showError(res.message, "error");
