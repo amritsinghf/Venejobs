@@ -30,8 +30,7 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
   const handleLogin = async (data) => {
     try {
       const res = await login(data);
-
-      if (!res?.data?.success) {
+      if (!res?.success) {
         showError(res?.data?.message || "Login failed", "error");
         return;
       }

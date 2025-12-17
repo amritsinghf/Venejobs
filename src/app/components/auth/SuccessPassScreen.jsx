@@ -37,7 +37,7 @@ export default function SuccessPassScreen({ setActiveModal }) {
             Password Reset
           </h2>
 
-          <p className="text-center text-gray-500 text-sm tracking-wide">
+          <p className="text-center text-gray-500 text-sm lg:text-base leading-6 tracking-wide">
             Your password has been successfully reset.
             Click below to log in magically.
           </p>
@@ -46,7 +46,7 @@ export default function SuccessPassScreen({ setActiveModal }) {
           <div className="flex justify-center mt-12">
             <Button
               onClick={() => setActiveModal("signin")}
-              className="bg-primary text-white border border-[#FAFAFA] gap-2"
+              className="bg-primary text-white gap-2"
               variant="primary"
             >
               Back to Login
