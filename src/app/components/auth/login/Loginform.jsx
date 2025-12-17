@@ -39,7 +39,7 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
 
         if (res.data.user.role_name === "freelancer") router.push("/freelancer");
         else if (res.data.user.role_name === "client") router.push("/client");
-        else router.push("/admin");
+        else if (res.data.user.role_name === "admin") router.push("/admin");
       } else {
         showError(res.message, "error");
       }
