@@ -46,7 +46,7 @@ export default function JobSearch() {
             <JobFilterSidebar showFilters={showFilters}
                 setShowFilters={setShowFilters} />
             <div className="hidden lg:block w-px bg-gray-200"></div>
-            <div className="flex flex-col w-full lg:w-[70%] lg:w-4/5 gap-6 ml-0 lg:ml-5">
+            <div className="flex flex-col w-full lg:w-4/5 gap-6 ml-0 lg:ml-5">
                 <div className="flex flex-col md:flex-row gap-5 md:justify-between mb-2">
                     <div className="flex flex-row md:justify-normal justify-between md:w-1/2 gap-6">
                         <div className="relative">
@@ -71,7 +71,7 @@ export default function JobSearch() {
                             Filter<SvgIcon name="Filter" color="#04040E" />
                         </button>
                         <button
-                            className="flex float-right lg:hidden border border-[#FAFAFA] bg-white p-3 rounded-full text-gray-800 text-xs flex items-center gap-2"
+                            className="flex float-right lg:hidden border border-[#FAFAFA] bg-white p-3 rounded-full text-gray-800 text-xs items-center gap-2"
                             onClick={() => setShowFilters(true)}
                             style={{ boxShadow: "2px 2px 50px 6px #0000000D" }}>
                             <SvgIcon name="Filter" color="#04040E" />
@@ -109,7 +109,7 @@ export default function JobSearch() {
                             {/* job title and time ago */}
                             <div className="flex flex-col gap-3 ">
                                 <div className="flex justify-between items-center gap-2">
-                                    <h2 className="text-[#333333] font-medium text-xl md:text-2xl max-w-[700px]">
+                                    <h2 className="text-heading font-medium text-xl md:text-2xl max-w-[700px]">
                                         {item.title}
                                     </h2>
                                     <p className="text-paragraph text-sm text-nowrap">
@@ -119,7 +119,7 @@ export default function JobSearch() {
 
                                 {/* budget and industry */}
                                 <div className="flex items-center justify-between flex-wrap sm:flex-row">
-                                    <p className="text-[#333333] font-medium">
+                                    <p className="text-heading font-medium">
                                         {item.budget_type} - {item.experience_level} - Est. Budget:{" "}
                                         <span className="text-paragraph">
                                             {" "}
@@ -139,7 +139,7 @@ export default function JobSearch() {
 
                             {/* job desc */}
                             <div className="flex flex-col gap-3 mt-4">
-                                <h3 className="text-[#333333] font-medium text-lg">Qualifications :</h3>
+                                <h3 className="text-heading font-medium text-lg">Qualifications :</h3>
                                 <JobDescription text={item.description} font="font-medium text-[#5BBB7B]" />
                             </div>
 

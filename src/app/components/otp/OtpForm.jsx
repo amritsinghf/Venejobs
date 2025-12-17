@@ -121,7 +121,7 @@ export default function OtpForm({
                 <Button
                     onClick={VerifyAccount}
                     disabled={loading}
-                    className="bg-primary text-white mt-4 sm:mt-5 px-6 sm:px-8 py-3 rounded flex items-center justify-center gap-2"
+                    className="bg-primary text-white rounded flex items-center justify-center gap-2"
                     variant="primary"
                 >
                     {loading ? <Loader size={18} border={3} color="white" /> : "Verify Account"}

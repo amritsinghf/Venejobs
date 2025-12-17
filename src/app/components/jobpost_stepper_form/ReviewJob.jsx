@@ -34,8 +34,8 @@ const ReviewJob = ({ prevStep, setStep }) => {
 
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
-      <div className="flex flex-col gap-6">
-        <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl lg:text-3xl text-heading font-bold leading-9">
           Review your Job details
         </h2>
 

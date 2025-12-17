@@ -45,7 +45,7 @@ export default function OtpInputs({ otp, setOtp, setFinalOtp, inputRefs }) {
     };
 
     return (
-        <div className="flex justify-center gap-2 sm:gap-3 mt-4 px-4">
+        <div className="flex justify-center gap-2 sm:gap-3 mt-2 px-4">
             {otp.map((value, index) => (
                 <input
                     key={index}
@@ -58,7 +58,7 @@ export default function OtpInputs({ otp, setOtp, setFinalOtp, inputRefs }) {
                     onPaste={handlePaste}
                     className="
                         w-10 h-10 sm:w-14 sm:h-14 
-                        rounded-xl text-center text-lg sm:text-xl 
+                        rounded-lg lg:rounded-xl text-center text-lg sm:text-xl 
                         border border-gray-500
                         focus:border-primary focus:ring-1 focus:ring-primary
                         outline-none text-heading font-medium

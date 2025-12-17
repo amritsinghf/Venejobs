@@ -82,7 +82,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               {...register("attachment", {
                 required: {
                   value: true,
-                  message: "Please select image",
+                  message: "Please select file",
                 },
                 validate: {
                   isPdf: (files) => {
