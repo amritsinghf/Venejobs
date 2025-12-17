@@ -1,7 +1,5 @@
 import jobApiStore from "@/app/store/jobStore";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import SvgIcon from "../SvgIcon";
 import PaginationFreelance from "../PaginationFreelance";
 import JobDescription from "../jobs/JobDescription";
 
@@ -10,8 +8,7 @@ export default function AllJobs() {
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
 
-  const { jobs, pagenum, totalpagenum, loading, error, fetchAllJob } =
-    jobApiStore();
+  const { jobs, totalpagenum, fetchAllJob } = jobApiStore();
 
   useEffect(() => {
     fetchAllJob(page, limit);
@@ -32,98 +29,76 @@ export default function AllJobs() {
   };
 
   const formatDuration = (duration) => {
-    if (duration === "ongoing") return "ongoing";
+    if (duration === "ongoing") return "Ongoing";
     const [start, end, unit] = duration.split("_");
     return `${start} to ${end} ${unit}`;
   };
+
   return (
-    <>
-      <div className="flex flex-col  h-auto  mb-50 ">
-        <h3 className="text-secondary px-5">My feed</h3>
-        {/* main container for jobs */}
-        {!jobs || jobs.length === 0 ? (
-          <p>No jobs available.</p>
-        ) : (
-          jobs?.map((item) => (
-            <div
-              className="flex flex-col p-5 m-5 border rounded border-gray-200 gap-4"
-              key={item.id}
-            >
-              {/* title and image */}
-              <div className="flex items-center gap-2">
-                <Image
-                  src={"/logo.png"}
-                  height={"32"}
-                  width={"38"}
-                  alt="Logo of company"
-                />
-                <h2 className="text-lg text-[#3B3A40]">Adobe</h2>
-              </div>
+    <div className="flex flex-col gap-5">
+      {!jobs || jobs.length === 0 ? (
+        <p>No jobs available.</p>
+      ) : (
+        jobs.map((item) => (
+          <div
+            key={item.id}
+            className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full p-5 sm:p-6 flex flex-col gap-4"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <h2 className="text-xl xl:text-2xl text-heading font-semibold">
+                {item.title}
+              </h2>
+              <p className="text-paragraph text-base font-medium whitespace-nowrap">
+                {formatDuration(item.duration)}
+              </p>
+            </div>
 
-              {/* job title and time ago */}
-              <div className="flex flex-col gap-3 ">
-                <div className="flex justify-between items-center gap-2">
-                  <h2 className="font-medium text-2xl max-w-[700px]">
-                    {item.title}
-                  </h2>
-                  <p className="text-paragraph text-sm text-nowrap">
-                    {formatDuration(item.duration)}
-                  </p>
-                </div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <p className="text-heading font-semibold text-base">
+                {item.budget_type} · {item.experience_level} · Est. Budget:
+                <span className="text-paragraph ml-1">
+                  {item.budget_amount}
+                </span>
+              </p>
 
-                {/* budget and industry */}
-                <div className="flex items-center justify-between flex-wrap sm:flex-row">
-                  <p className="font-medium">
-                    {item.budget_type} - {item.experience_level} - Est. Budget:{" "}
-                    <span className="text-paragraph">
-                      {" "}
-                      {item.budget_amount}
-                    </span>
-                  </p>
-
-                  <div className="flex items-center gap-8">
-                    <p className="text-paragraph text-sm">{item.category}</p>
-                    <p className="text-paragraph text-sm">
-                      {item.project_size}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <hr />
-
-              {/* job desc */}
-              <div className="flex flex-col gap-3 mt-4">
-                <h3 className="font-medium text-lg">Qualifications :</h3>
-                <JobDescription text={item.description} font="font-medium text-[#5BBB7B]" />
-              </div>
-
-              {/*category or skills */}
-              <div className="flex items-center gap-3 flex-wrap">
-                {item.skills.map((item) => (
-                  <p
-                    className="
-                    relative overflow-hidden
-                    bg-[#FAFAFA] p-3 font-medium text-paragraph rounded-2xl
-                    transition-all duration-300
-                    before:content-[''] before:absolute before:inset-0
-                    before:bg-gray-200 before:-translate-x-full before:transition-transform before:duration-300
-                    before:-z-10
-                    hover:before:translate-x-0
-                    z-10
-                  "
-                    key={item}
-                  >
-                    {item}
-                  </p>
-                ))}
+              <div className="text-paragraph text-base font-medium flex gap-2">
+                <span>{item.category}</span>
+                <span>{item.project_size}</span>
               </div>
             </div>
-          ))
-        )}
 
-        {/* pagiantion */}
-        <PaginationFreelance page={page} selectPage={selectPage} totalPages={totalPages} />
-      </div>
-    </>
+            <hr />
+
+            <div className="flex flex-col gap-2">
+              <h3 className="text-heading font-semibold text-base lg:text-lg">
+                Qualifications
+              </h3>
+              <JobDescription
+                text={item.description}
+                font="text-paragraph text-sm lg:text-base font-medium"
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {item.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 text-sm font-medium text-paragraph bg-[#FAFAFA] border border-gray-200 rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      )}
+
+      <PaginationFreelance
+        page={page}
+        totalPages={totalPages}
+        totalItems={jobs?.length || 0}
+        selectPage={selectPage}
+      />
+    </div>
   );
 }

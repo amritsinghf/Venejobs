@@ -19,7 +19,7 @@ export default function JobDescription({ text, font }) {
         <div>
             <p
                 ref={textRef}
-                className={`text-sm lg:text-base text-paragraph transition-all duration-200 ${!isExpanded ? "line-clamp-6 lg:line-clamp-3" : ""
+                className={`text-paragraph text-sm lg:text-base font-medium transition-all duration-200 ${!isExpanded ? "line-clamp-6 lg:line-clamp-3" : ""
                     }`}
             >
                 {text}
