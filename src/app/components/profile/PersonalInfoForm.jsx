@@ -108,7 +108,7 @@ export default function PersonalInfoForm() {
         </div>
       </div>
 
-      <Button className="bg-primary text-white" onClick={() => {}}>
+      <Button className="bg-primary text-white my-10" onClick={() => {}}>
         Update
       </Button>
 
