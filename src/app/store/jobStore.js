@@ -19,7 +19,7 @@ const jobApiStore = create((set) => ({
       const res = await create_job_post(formdata);
       return res;
     } catch (error) {
-      set({ error: err.message, loading: false });
+      set({ error: error.message, loading: false });
     }
   },
   fetchJobsByUser: async (page, limit) => {

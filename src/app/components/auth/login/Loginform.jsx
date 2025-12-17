@@ -30,27 +30,42 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
   const handleLogin = async (data) => {
     try {
       const res = await login(data);
-      const token = res.data.token;
-      if (res.success) {
-        showSuccess(res.message, "success");
 
-        await axios.post("/api/set-token", { token });
-        localStorage.setItem("token", token);
+      if (!res?.data?.success) {
+        showError(res?.data?.message || "Login failed", "error");
+        return;
+      }
 
-        if (res.data.user.role_name === "freelancer") router.push("/freelancer");
-        else if (res.data.user.role_name === "client") router.push("/client");
-        else if (res.data.user.role_name === "admin") router.push("/admin");
-      } else {
-        showError(res.message, "error");
+      const { token, user } = res.data;
+
+      showSuccess(res.data.message, "success");
+
+      await axios.post("/api/set-token", { token });
+      localStorage.setItem("token", token);
+
+      switch (user?.role_name) {
+        case "freelancer":
+          router.push("/freelancer");
+          break;
+        case "client":
+          router.push("/client");
+          break;
+        case "admin":
+          router.push("/admin");
+          break;
+        default:
+          router.push("/");
       }
     } catch (error) {
-      // this below will go to else part in try when amrit send other response so when password is invalid so otp form not open
-      setTimeout(() => {
+      const message = error?.response?.data?.message;
+
+      if (error?.response?.data?.code === "EMAIL_NOT_VERIFIED") {
+        setUserEmail(data.email);
         setActiveModal("otp_verify");
-      }, 500);
-      setUserEmail(data.email);
-      sendOtp({ email: data.email });
-      showError(error?.response?.data?.message || "Login error", "error");
+        sendOtp({ email: data.email });
+      }
+
+      showError(message || "Login error", "error");
     }
   };
 
