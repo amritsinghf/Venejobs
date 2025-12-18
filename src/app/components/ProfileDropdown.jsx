@@ -6,8 +6,8 @@ import toastStore from "../store/toastStore";
 import { Routes } from "../routes";
 import SvgIcon from "./SvgIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import Button from "./button/Button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ProfileDropdown() {
   const router = useRouter();
@@ -36,7 +36,6 @@ export default function ProfileDropdown() {
   });
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="hidden sm:hidden lg:block ">
@@ -49,10 +48,10 @@ export default function ProfileDropdown() {
             type="search"
             id="search"
             className="
-      block w-full pl-10 pr-4 py-2 
-      rounded-4xl text-sm text-gray-900 font-medium 
-      border border-lightborder focus:border-primary outline-none
-      placeholder:text-gray-400
+            block w-full pl-10 pr-4 py-2 
+            rounded-4xl text-sm text-gray-900 font-medium 
+            border border-lightborder focus:border-primary outline-none
+            placeholder:text-gray-400
     "
             placeholder="Search"
             required
@@ -76,12 +75,14 @@ export default function ProfileDropdown() {
           >
             <span className="absolute -inset-1.5"></span>
             <span className="sr-only">Open user menu</span>
-            <img
+            <Image
               src={
-                user?.profile_picture ||
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                "/home/Group_Home.png"
+                // user?.profile_picture ||
               }
               alt=""
+              height={"100"}
+              width={"100"}
               className="size-10 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
             />
           </button>

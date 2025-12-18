@@ -7,7 +7,6 @@ import { useState } from "react";
 import SvgIcon from "./SvgIcon";
 import { useRouter } from "next/navigation";
 import toastStore from "../store/toastStore";
-import Button from "./button/Button";
 import userApiStore from "../store/userStore";
 
 import HomeNavbarMobileFreelance from "./navbar/HomeNavbarMobileFreelance";
@@ -123,6 +122,7 @@ export default function HomeNavbarFreelance() {
               className="text-black lg:hidden hover:bg-brand-strong font-medium leading-5 rounded-base text-sm  cursor-pointer px-2"
               aria-controls="drawer-navigation"
               aria-expanded={menuOpen}
+              aria-label="Toggle menu"
               onClick={() => setMenuOpen(true)}
             >
               <SvgIcon name="ToggleMenu" />

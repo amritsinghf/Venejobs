@@ -13,7 +13,8 @@ export const Routes = {
     page: "/freelancer/home",
     chat:"/freelancer/chat/",
     jobdetail:"/freelancer/JobDetail/",
-    proposal:"/freelancer/Proposal/"
+    // jobsearch:"/freelancer/JobSearch/",
+    proposal:"/freelancer/Proposal/",
   },
   profile: {
     client:{

@@ -6,16 +6,21 @@ import HowItWorks from "./components/home/HowItWorks";
 import BrowseCategories from "./components/home/BrowseCategories";
 import FreelancerPromo from "./components/home/FreelancerPromo";
 import MostPopular from "./components/home/MostPopular";
-import { footerClientConfig } from "./lib/footer/footerClientConfig";
+import { footerClientConfig } from "./utils/footer/footerClientConfig";
 import Footer from "./components/Footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <>
-      <div
-        className="w-full h-[90vh] md:h-screen xl:h-[90vh] bg-primary relative flex flex-col bg-cover bg-center"
-        style={{ backgroundImage: "url('/bg-image.png')" }}
-      >
+      <div className="w-full h-[90vh] md:h-screen xl:h-[90vh] bg-primary relative flex flex-col bg-cover bg-center">
+        <Image
+          src="/bg-image.png"
+          width={1800}
+          height={1500}
+          alt="Hero background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="w-full lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto">
           <Navbar />
         </div>
@@ -33,7 +38,6 @@ export default function Home() {
         <FreelancerPromo />
         <MostPopular />
       </main>
-
       <Footer {...footerClientConfig} />
     </>
   );

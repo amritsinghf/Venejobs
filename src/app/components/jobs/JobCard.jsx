@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import SvgIcon from "../SvgIcon";
 import Button from "../button/Button";
@@ -20,9 +18,9 @@ export default function JobCard({ item }) {
     <div className="border-b border-[rgba(68,68,68,0.08)] p-5 lg:p-6 xl:p-8">
       <div className="w-full flex flex-col xl:flex-row rounded justify-between gap-5 lg:gap-3.5">
         <div className="flex flex-col gap-5 lg:gap-3.5">
-          <h3 className="text-xl xl:text-2xl text-heading font-semibold tracking-normal">
+          <h1 className="text-xl xl:text-2xl text-heading font-semibold tracking-normal">
             {item.title}
-          </h3>
+          </h1>
 
           <p className="text-paragraph text-sm lg:text-base font-medium">
             Posted 4 days ago
@@ -43,8 +41,9 @@ export default function JobCard({ item }) {
           <Button
             onClick={handleDetailsClick}
             disabled={loading}
-            className={`bg-primary text-white border hidden lg:flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+            className={`bg-primary text-white border hidden lg:flex items-center justify-center gap-2 ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
             variant="primary"
           >
             {loading ? (
@@ -91,8 +90,9 @@ export default function JobCard({ item }) {
         <Button
           onClick={handleDetailsClick}
           disabled={loading}
-          className={`bg-primary text-white border flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+          className={`bg-primary text-white border flex items-center justify-center gap-2 ${
+            loading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
           variant="primary"
         >
           {loading ? (

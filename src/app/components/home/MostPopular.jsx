@@ -64,9 +64,9 @@ export default function MostPopular() {
                                 November 7, 2022
                             </p>
 
-                            <h5 className="font-semibold text-lg leading-7 text-heading">
+                            <h1 className="font-semibold text-lg leading-7 text-heading">
                                 Exploring Some of the Cities and Home Services
-                            </h5>
+                            </h1>
 
                             <p className="text-gray-500 font-medium text-sm leading-snug">
                                 Bringing the culture of sharing to everyone

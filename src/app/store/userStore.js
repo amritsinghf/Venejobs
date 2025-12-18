@@ -1,15 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import {
-  forget_password,
-  get_client_profile,
+  forgetPassword,
+  getUserProfile,
   login,
-  profile_update,
-  resend_verification_code,
-  reset_password,
+  resendVerificationCode,
+  resetPassword,
   signupapi,
-  verify_account,
-  verify_reset_code,
+  UpdateProfile,
+  UpdateProfilePhoto,
+  verifyAccount,
+  verifyResetCode,
 } from "../lib/auth/auth.api";
 
 const userApiStore = create(
@@ -76,8 +77,7 @@ const userApiStore = create(
         set({ loading: true });
 
         try {
-          const res = await get_client_profile();
-          console.log(res.data)
+          const res = await getUserProfile();
           set({
             user: res.data.user,
             loading: false,
@@ -85,7 +85,6 @@ const userApiStore = create(
           });
           return res;
         } catch (err) {
-          
           set({
             user: null,
             token: null,
@@ -97,7 +96,7 @@ const userApiStore = create(
       verifyOtpAndSetToken: async (otpData) => {
         set({ loading: true, error: null });
         try {
-          const res = await verify_account(otpData);
+          const res = await verifyAccount(otpData);
           const { token } = res.data;
 
           set({ token, loading: false, fetched: true });
@@ -119,8 +118,8 @@ const userApiStore = create(
       resendOtp: async (otpData) => {
         set({ loading: true, error: null });
         try {
-          const res = await resend_verification_code(otpData);
-          set({  loading: false, fetched: true });
+          const res = await resendVerificationCode(otpData);
+          set({ loading: false, fetched: true });
 
           return res;
         } catch (err) {
@@ -137,9 +136,9 @@ const userApiStore = create(
       forgetPassword: async (data) => {
         set({ loading: true, error: null });
         try {
-          const res = await forget_password(data);
-          
-          set({  loading: false, fetched: true });
+          const res = await forgetPassword(data);
+
+          set({ loading: false, fetched: true });
 
           return res;
         } catch (err) {
@@ -156,9 +155,9 @@ const userApiStore = create(
       resetPassword: async (data) => {
         set({ loading: true, error: null });
         try {
-          const res = await reset_password(data);
-          
-          set({  loading: false, fetched: true });
+          const res = await resetPassword(data);
+
+          set({ loading: false, fetched: true });
 
           return res;
         } catch (err) {
@@ -175,9 +174,9 @@ const userApiStore = create(
       verify_resetCode: async (data) => {
         set({ loading: true, error: null });
         try {
-          const res = await verify_reset_code(data);
-          
-          set({  loading: false, fetched: true });
+          const res = await verifyResetCode(data);
+
+          set({ loading: false, fetched: true });
 
           return res;
         } catch (err) {
@@ -194,9 +193,10 @@ const userApiStore = create(
       updateProfile: async (data) => {
         set({ loading: true, error: null });
         try {
-          const res = await profile_update(data);
-          
-          set({  loading: false, fetched: true });
+          // console.log(data.age)
+          const res = await UpdateProfile(data);
+
+          set({ loading: false, fetched: true });
 
           return res;
         } catch (err) {
@@ -205,6 +205,24 @@ const userApiStore = create(
               err?.response?.data?.message ||
               err.message ||
               "Update profile failed",
+            loading: false,
+          });
+          throw err;
+        }
+      },
+      UpdateProfilePhoto: async (data) => {
+        set({ loading: true, error: null });
+        try {
+          const res = await UpdateProfilePhoto(data);
+          set({ loading: false, fetched: true });
+
+          return res;
+        } catch (err) {
+          set({
+            error:
+              err?.response?.data?.message ||
+              err.message ||
+              "Update profile photo failed",
             loading: false,
           });
           throw err;

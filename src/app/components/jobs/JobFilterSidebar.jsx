@@ -1,6 +1,13 @@
 import { useState } from "react";
 import SvgIcon from "@/app/components/SvgIcon";
+import jobApiStore from "@/app/store/jobStore";
 export default function JobFilterSidebar({ showFilters, setShowFilters }) {
+  const {
+        category_data,
+        skills_data,
+        getCategories,
+        getSkillsByCategory,
+    } = jobApiStore();
   return (
     <>
       {showFilters && (
@@ -13,9 +20,9 @@ export default function JobFilterSidebar({ showFilters, setShowFilters }) {
       {/* ---------------- MOBILE SIDEBAR ---------------- */}
       <div
         className={`fixed top-0 left-0 z-50 h-full w-85 bg-white p-4 pt-7 shadow-xl
-  transform transition-transform duration-300 lg:hidden
-  overflow-y-auto overscroll-contain
-  ${showFilters ? "translate-x-0" : "-translate-x-full"}`}
+        transform transition-transform duration-300 lg:hidden
+        overflow-y-auto overscroll-contain
+        ${showFilters ? "translate-x-0" : "-translate-x-full"}`}
       >
         <button
           className="mb-4 text-sm text-gray-600 float-right"
@@ -26,14 +33,12 @@ export default function JobFilterSidebar({ showFilters, setShowFilters }) {
         <JobFilters />
       </div>
 
-
-
       {/* ---------------- DESKTOP SIDEBAR ---------------- */}
       <div className="hidden lg:block p-5 mt-5 w-full md:w-[30%] lg:w-1/5">
         <JobFilters />
       </div>
     </>
-  )
+  );
 }
 /* ----------------  SIDEBAR FILTER CONTENT ---------------- */
 function JobFilters() {
@@ -107,10 +112,13 @@ function JobFilters() {
             }
             type="button"
           >
-            <span className="text-sm md:text-base font-semibold text-[#333333]">{section.title}</span>
+            <span className="text-sm md:text-base font-semibold text-heading">
+              {section.title}
+            </span>
             <svg
-              className={`w-4 h-4 transition-transform ${openDropdowns[section.stateKey] ? "rotate-180" : ""
-                }`}
+              className={`w-4 h-4 transition-transform ${
+                openDropdowns[section.stateKey] ? "rotate-180" : ""
+              }`}
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -122,7 +130,10 @@ function JobFilters() {
           {openDropdowns[section.stateKey] && (
             <div className="mt-6 flex flex-col gap-4">
               {section.options.map((item) => (
-                <label key={item.value} className="flex items-center gap-3 cursor-pointer">
+                <label
+                  key={item.value}
+                  className="flex items-center gap-3 cursor-pointer"
+                >
                   <input
                     type="checkbox"
                     className="h-5 w-5 relative cursor-pointer appearance-none border border-gray-300 rounded flex items-center justify-center 
@@ -135,23 +146,28 @@ function JobFilters() {
                             checked:before:justify-center 
                             checked:before:absolute 
                             checked:before:inset-0"
-                    checked={selectedValues[section.stateKey].includes(item.value)}
+                    checked={selectedValues[section.stateKey].includes(
+                      item.value
+                    )}
                     onChange={() => {
                       setSelectedValues((prev) => {
-                        const isSelected = prev[section.stateKey].includes(item.value);
+                        const isSelected = prev[section.stateKey].includes(
+                          item.value
+                        );
 
                         return {
                           ...prev,
                           [section.stateKey]: isSelected
-                            ? prev[section.stateKey].filter((v) => v !== item.value)
+                            ? prev[section.stateKey].filter(
+                                (v) => v !== item.value
+                              )
                             : [...prev[section.stateKey], item.value],
                         };
                       });
                     }}
                   />
                   <span className="text-sm md:text-base font-medium text-gray-600">
-                    {item.label}{" "}
-                    {item.count ? `(${item.count})` : ""}
+                    {item.label} {item.count ? `(${item.count})` : ""}
                   </span>
                 </label>
               ))}

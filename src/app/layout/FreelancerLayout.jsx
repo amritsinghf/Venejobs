@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import HomeNavbarFreelance from "../components/HomeNavbar_Freelance";
 import userApiStore from "../store/userStore";
 import Footer from "../components/Footer";
-import { footerFreelanceConfig } from "../lib/footer/footerFreelanceConfig";
+import { footerFreelanceConfig } from "../utils/footer/footerFreelanceConfig";
 
 export default function FreelancerLayout({ children }) {
-  const {logout} = userApiStore();
+  const { logout } = userApiStore();
   const router = useRouter();
 
   useEffect(() => {

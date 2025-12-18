@@ -17,7 +17,7 @@ export default function HeroImage() {
             {/* Floating Card 1 - Proof of Quality */}
             <div className="absolute left-[-60px] bottom-5 bg-white shadow-lg rounded-2xl px-5 py-3 hidden lg:flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center">
-                    <img src="/icons/medal.png" className="w-6 h-6" />
+                    <img src="/icons/medal.png" className="w-6 h-6" alt="medal icon"/>
                 </div>
                 <div className="flex flex-col gap-1">
                     <h4 className="text-start font-semibold text-sm text-gray-800 tracking-wide">Proof of quality</h4>
@@ -28,7 +28,7 @@ export default function HeroImage() {
             {/* Floating Card 2 - Safe & Secure */}
             <div className="absolute lg:right-0 xl:-right-24 bottom-25 bg-white shadow-lg rounded-2xl  px-5 py-3 hidden lg:flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center ">
-                    <img src="/icons/security.png" className="w-6 h-6" />
+                    <img src="/icons/security.png" className="w-6 h-6" alt="security icon"/>
                 </div>
                 <div className="flex flex-col gap-1">
                     <h4 className="text-start font-semibold text-sm text-gray-800 tracking-wide">Safe & secure</h4>

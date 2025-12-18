@@ -63,7 +63,6 @@ export default function DesktopLinks() {
   return (
     <div className="hidden lg:flex flex-col w-[350px]">
       <nav className="flex flex-col border border-[#F2F2F2] rounded-2xl py-7 px-5 h-full">
-
         {/* Sidebar Links */}
         <div className="flex flex-col w-full gap-4">
           {Links.map((item, idx) => {
@@ -76,14 +75,14 @@ export default function DesktopLinks() {
                 className={`
                   flex items-center gap-4 w-full px-3 py-3 rounded-lg font-medium 
                   text-base leading-none transition-all tracking-wide
-                  ${isActive ? "bg-primary text-white" : "text-paragraph hover:bg-[#F2F4F7]"}
+                  ${
+                    isActive
+                      ? "bg-secondary text-white"
+                      : "text-paragraph hover:bg-[#F2F4F7]"
+                  }
                 `}
               >
-                <SvgIcon
-                  name={item.icon}
-                  size={20}
-                  className="text-inherit"
-                />
+                <SvgIcon name={item.icon} size={20} className="text-inherit" />
                 {item.label}
               </Link>
             );
@@ -108,7 +107,6 @@ export default function DesktopLinks() {
             Sign Out
           </div>
         </div>
-
       </nav>
     </div>
   );

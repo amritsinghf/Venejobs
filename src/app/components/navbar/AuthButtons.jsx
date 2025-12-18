@@ -9,14 +9,14 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
 
       <div
         className="
-    text-gray-600 lg:text-white 
-    font-medium cursor-pointer tracking-wide 
-    relative
-    after:content-[''] after:absolute after:left-0 after:bottom-0 
-    after:w-0 after:h-0.5 after:bg-white 
-    after:transition-all after:duration-300 
-    hover:after:w-full
-  "
+        text-gray-600 lg:text-white 
+        font-medium cursor-pointer tracking-wide 
+        relative
+        after:content-[''] after:absolute after:left-0 after:bottom-0 
+        after:w-0 after:h-0.5 after:bg-white 
+        after:transition-all after:duration-300 
+        hover:after:w-full
+      "
         onClick={() => setActiveModal('signin')}
       >
         Login
@@ -29,7 +29,8 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
         className="hidden xl:block bg-white font-medium rounded-full px-6 py-2.5 tracking-wide cursor-pointer 
   transition-all duration-300 ease-out 
   hover:bg-[#0057ff] hover:text-white hover:shadow-lg hover:scale-[1.05]"
-        onClick={() => setActiveModal('signup')}
+        // onClick={() => setActiveModal('signup')}
+        onClick={()=>alert("hello")}
       >
         Sign Up
       </button>
@@ -37,6 +38,7 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
       {/* HAMBURGER (mobile + tablet only) */}
       <button
         className="block lg:hidden text-gray-600 md:text-white"
+        aria-label="Toggle button"
         onClick={() => setMenuOpen(true)}
       >
         <SvgIcon name="ToggleMenu" />

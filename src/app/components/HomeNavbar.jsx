@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
 import toastStore from "../store/toastStore";
 import userApiStore from "../store/userStore";
-import ClearIcon from "@mui/icons-material/Clear";
-import Button from "./button/Button";
 import HomeNavbarMobileMenu from "./navbar/HomeNavbarMobileMenu";
 
 export default function HomeNavbar() {
@@ -116,9 +114,9 @@ export default function HomeNavbar() {
                   style={{ width: 40, height: 40 }}
                 />
               </Link>
-              <h2 className="text-gray-600  text-lg font-extrabold cursor-pointer">
+              <h1 className="text-gray-600  text-lg font-extrabold cursor-pointer">
                 <Link href={Routes.client.home}>Venejobs</Link>
-              </h2>
+              </h1>
             </div>
 
             {/* Desktop Nav */}

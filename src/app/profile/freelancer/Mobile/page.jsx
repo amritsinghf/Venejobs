@@ -74,6 +74,8 @@ export default function MobileView() {
                     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   }
                   alt=""
+                  height={50}
+                  width={50}
                   className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
                 />
                 <p>Hi, {user?.name} !</p>
@@ -88,27 +90,26 @@ export default function MobileView() {
                 Home
               </Link>
             </div>
-            {freelancerMenu.map((item) => (
-              <div
-                key={item.label}
-                role="button"
-                className={`flex items-center justify-start w-full py-6 h-[45px] hover:bg-blue-gray-50 border border-gray-200 rounded shadow ${
-                  activeTab === item.label
-                    ? "bg-secondary text-white"
-                    : "text-paragraph"
-                }`}
-                onClick={() => {
-                  setActiveTab(item.label);
-                }}
-              >
-                <Link
-                  href={item.href}
-                  className="flex items-center lg:w-[260px] gap-4 text-lg text-center px-6 active:scale-95 transition-transform duration-150 hover:scale-105 hover:shadow-md"
+            {freelancerMenu.map((item) => {
+              const isActive = activeTab === item.label;
+              return (
+                <div
+                  key={item.label}
+                  role="button"
+                  className={`flex items-center w-full py-6 h-[45px] border border-gray-200 rounded ${
+                    isActive ? "bg-secondary text-white" : "text-paragraph"
+                  }`}
+                  onClick={() => setActiveTab(item.label)}
                 >
-                  <SvgIcon name={item.icon} /> {item.label}
-                </Link>
-              </div>
-            ))}
+                  <Link
+                    href={item.href}
+                    className="flex items-center lg:w-[260px] gap-4 text-lg px-6"
+                  >
+                    <SvgIcon name={item.icon} /> {item.label}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex flex-col gap-8">

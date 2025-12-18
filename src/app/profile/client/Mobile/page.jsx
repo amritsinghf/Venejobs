@@ -51,6 +51,8 @@ export default function Page() {
                   user?.profile_picture ||
                   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 }
+                height={50}
+                width={50}
                 alt="Profile"
                 className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
               />

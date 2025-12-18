@@ -37,29 +37,31 @@ export default function CategorySlider({ items }) {
 
             {/* PREV BUTTON */}
             <button className="
-    prev-btn hidden lg:flex items-center justify-center
-    absolute top-1/2 -translate-y-1/2 left-[-18px]
-    w-11 h-11 rounded-full bg-white
-    shadow-[0_4px_20px_rgba(0,0,0,0.10)]
-    border border-transparent
-    hover:shadow-[0_6px_22px_rgba(0,0,0,0.18)]
-    transition-all duration-200
-    z-50 cursor-pointer
-">
+                prev-btn hidden lg:flex items-center justify-center
+                absolute top-1/2 -translate-y-1/2 left-[-18px]
+                w-11 h-11 rounded-full bg-white
+                shadow-[0_4px_20px_rgba(0,0,0,0.10)]
+                border border-transparent
+                hover:shadow-[0_6px_22px_rgba(0,0,0,0.18)]
+                transition-all duration-200
+                z-50 cursor-pointer
+            "
+            aria-label="Previous button">
                 <SvgIcon name="Control_prev" className="w-4 h-4 text-[#111]" />
             </button>
 
             {/* NEXT BUTTON */}
             <button className="
-    next-btn hidden lg:flex items-center justify-center
-    absolute top-1/2 -translate-y-1/2 right-[-18px]
-    w-11 h-11 rounded-full bg-white
-    shadow-[0_4px_20px_rgba(0,0,0,0.10)]
-    border border-transparent
-    hover:shadow-[0_6px_22px_rgba(0,0,0,0.18)]
-    transition-all duration-200
-    z-50 cursor-pointer
-">
+                next-btn hidden lg:flex items-center justify-center
+                absolute top-1/2 -translate-y-1/2 right-[-18px]
+                w-11 h-11 rounded-full bg-white
+                shadow-[0_4px_20px_rgba(0,0,0,0.10)]
+                border border-transparent
+                hover:shadow-[0_6px_22px_rgba(0,0,0,0.18)]
+                transition-all duration-200
+                z-50 cursor-pointer
+            "
+            aria-label="Previous button">
                 <SvgIcon name="Control_next" className="w-4 h-4 text-[#111]" />
             </button>
 

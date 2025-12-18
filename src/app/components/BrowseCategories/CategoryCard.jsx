@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function CategoryCard({ src, label }) {
   return (
     <div className="relative flex-shrink-0 rounded-2xl overflow-hidden bg-gray-200 w-[250px] h-[260px]">
@@ -11,9 +13,11 @@ export default function CategoryCard({ src, label }) {
       </div>
 
       {/* Image */}
-      <img
+      <Image
         src={src}
         alt={label}
+        width={300}
+        height={300}
         className="w-full h-full object-cover"
       />
     </div>

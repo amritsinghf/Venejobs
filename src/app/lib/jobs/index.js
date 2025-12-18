@@ -1,37 +1,37 @@
 import api from '@/app/lib/api.js'
 
-export async function create_job_post(data) {
+export async function createJobPost(data) {
   return api.post("api/jobs/create", data);
 }
 
-export async function get_categories() {
+export async function getCategories() {
   return api.get("api/lookup/categories");
 }
 
-export async function getskills_by_category(data) {
+export async function getSkillsByCategory(data) {
   return api.get(`api/lookup/skills?category=${data}`)
 }
 
-export async function get_project_size() {
+export async function getProjectSize() {
     return api.get("api/lookup/project-options/project-sizes");
 }
 
-export async function get_project_duration() {
+export async function getProjectDuration() {
     return api.get("api/lookup/project-options/durations");
 }
 
-export async function get_project_experienceLevel() {
+export async function getProjectExperienceLevel() {
     return api.get("api/lookup/project-options/experience-levels");
 }
 
-export async function get_budget_data() {
+export async function getBudgetData() {
     return api.get("api/lookup/budget-types");
 }
 
-export async function get_jobByClient(page, limit) {
+export async function getJobByClient(page, limit) {
     return api.get(`api/jobs/my-jobs?limit=${limit}&page=${page}`);
 }
 
-export async function get_all_jobs(page, limit) {
+export async function getAllJobs(page, limit) {
   return api.get(`api/jobs?limit=${limit}&page=${page}`);
 }

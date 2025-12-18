@@ -9,6 +9,7 @@ export default function PaginationFreelance({selectPage,totalPages,page}){
             onClick={() => selectPage(page - 1)}
             className={`cursor-pointer transition-transform duration-200
                 ${page === 1 ? "opacity-40" : "hover:-translate-x-1"}`}
+                 aria-label="Previous button"
           >
             <SvgIcon name="Control_prev" />
           </button>
@@ -41,6 +42,7 @@ export default function PaginationFreelance({selectPage,totalPages,page}){
             onClick={() => selectPage(page + 1)}
             className={`cursor-pointer transition-transform duration-200 md:w-10
                 ${page === totalPages ? "opacity-40" : "hover:translate-x-1"}`}
+                aria-label="Next button"
           >
             <SvgIcon name="Control_next" />
           </button>

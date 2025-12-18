@@ -17,6 +17,7 @@ export default function Pagination({ page, totalPages, onPageChange, jobs }) {
           onClick={() => selectPage(page - 1)}
           className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full cursor-pointer
           ${page === 1 ? "opacity-40" : "hover:-translate-x-1"}`}
+          aria-label="Previous button"
         >
           <SvgIcon name="Control_prev" />
         </button>
@@ -43,6 +44,7 @@ export default function Pagination({ page, totalPages, onPageChange, jobs }) {
           onClick={() => selectPage(page + 1)}
           className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full cursor-pointer
           ${page === totalPages ? "opacity-40" : "hover:translate-x-1"}`}
+          aria-label="Next button"
         >
           <SvgIcon name="Control_next" />
         </button>

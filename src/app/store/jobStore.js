@@ -1,22 +1,32 @@
 import { create } from "zustand";
-import { create_job_post, get_all_jobs, get_budget_data, get_categories, get_jobByClient, get_project_duration, get_project_experienceLevel, get_project_size, getskills_by_category } from "../lib/jobs";
+import {
+  createJobPost,
+  getAllJobs,
+  getBudgetData,
+  getCategories,
+  getJobByClient,
+  getProjectDuration,
+  getProjectExperienceLevel,
+  getProjectSize,
+  getSkillsByCategory,
+} from "../lib/jobs";
 
 const jobApiStore = create((set) => ({
   jobs: [],
   budget_data: [],
   category_data: [],
   skills_data: [],
-  projectSizes:[],
-  projectDuration:[],
-  experienceLevels:[],
+  projectSizes: [],
+  projectDuration: [],
+  experienceLevels: [],
   pagenum: 0,
   totalpagenum: 1,
   loading: false,
   error: null,
-  create_job : async (formdata) =>{
+  create_job: async (formdata) => {
     set({ loading: true, error: null });
     try {
-      const res = await create_job_post(formdata);
+      const res = await createJobPost(formdata);
       return res;
     } catch (error) {
       set({ error: err.message, loading: false });
@@ -25,7 +35,7 @@ const jobApiStore = create((set) => ({
   fetchJobsByUser: async (page, limit) => {
     set({ loading: true, error: null });
     try {
-      const res = await get_jobByClient(page, limit);
+      const res = await getJobByClient(page, limit);
       set({
         jobs: res.jobs,
         pagenum: res.page + 1,
@@ -39,7 +49,7 @@ const jobApiStore = create((set) => ({
   fetchAllJob: async (page, limit) => {
     set({ loading: true, error: null });
     try {
-      const res = await get_all_jobs(page, limit);
+      const res = await getAllJobs(page, limit);
       set({
         jobs: res.jobs,
         pagenum: res.page + 1,
@@ -53,7 +63,7 @@ const jobApiStore = create((set) => ({
   getBudgetData: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await get_budget_data();
+      const res = await getBudgetData();
       set({
         budget_data: res.budgetTypes,
         loading: false,
@@ -65,7 +75,7 @@ const jobApiStore = create((set) => ({
   getCategories: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await get_categories();
+      const res = await getCategories();
       set({
         category_data: res.data,
         loading: false,
@@ -75,11 +85,10 @@ const jobApiStore = create((set) => ({
     }
   },
   getSkillsByCategory: async (selectedCategory) => {
-    
     set({ loading: true, error: null });
     try {
-      const res = await getskills_by_category(selectedCategory);
-      
+      const res = await getSkillsByCategory(selectedCategory);
+
       set({
         skills_data: res.data,
         loading: false,
@@ -91,7 +100,7 @@ const jobApiStore = create((set) => ({
   getProjectSize: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await get_project_size();
+      const res = await getProjectSize();
       set({
         projectSizes: res.projectSizes,
         loading: false,
@@ -103,7 +112,7 @@ const jobApiStore = create((set) => ({
   getProjectDuration: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await get_project_duration();
+      const res = await getProjectDuration();
       set({
         projectDuration: res.durations,
         loading: false,
@@ -115,7 +124,7 @@ const jobApiStore = create((set) => ({
   getExperienceLevels: async () => {
     set({ loading: true, error: null });
     try {
-      const res = await get_project_experienceLevel();
+      const res = await getProjectExperienceLevel();
       set({
         experienceLevels: res.experienceLevels,
         loading: false,
