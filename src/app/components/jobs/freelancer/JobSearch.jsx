@@ -1,10 +1,10 @@
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import SvgIcon from "../SvgIcon";
-import PaginationFreelance from "../PaginationFreelance";
-import JobDescription from "./JobDescription";
-import JobFilterSidebar from "./JobFilterSidebar";
+import SvgIcon from "../../SvgIcon";
+import PaginationFreelance from "../../PaginationFreelance";
+import JobDescription from "../JobDescription";
+import JobFilterSidebar from "../client/JobFilterSidebar";
 
 export default function JobSearch() {
     const [showFilters, setShowFilters] = useState(false);

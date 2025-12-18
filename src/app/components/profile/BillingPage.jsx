@@ -37,7 +37,7 @@ const BillingPage = () => {
             onClick={() => setshowCard(false)}
             className="text-red-400 text-sm md:text-lg font-semibold flex items-center gap-2"
           >
-            <SvgIcon name="DeleteRed" />
+            <SvgIcon name="DeleteRed" color="#DF3A49" size={18} />
             Remove
           </button>
         </div>

@@ -2,8 +2,8 @@
 import { useState } from "react";
 import ClientLayout from "@/app/layout/ClientLayout";
 import SvgIcon from "@/app/components/SvgIcon";
-import FreelancerCard from "@/app/components/Freelancers/FreelancerCard";
-import FilterSidebar from "@/app/components/Freelancers/FilterSidebar";
+import FreelancerCard from "@/app/components/Client/Freelancers/FreelancerCard";
+import FilterSidebar from "@/app/components/Client/Freelancers/FilterSidebar";
 import Pagination from "@/app/components/Pagination";
 
 export default function freelancerList() {

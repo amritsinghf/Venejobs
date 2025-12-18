@@ -34,7 +34,7 @@ const UserInfoPanel = () => {
             <SvgIcon name="Clock" /> 7:19 AM GMT+1 (4 h behind)
           </p>
           <p className="text-primary text-sm font-medium flex items-center gap-2">
-            <SvgIcon name="Eye2" /> View Contract
+            <SvgIcon name="Eye2" size={18} /> View Contract
           </p>
         </div>
 

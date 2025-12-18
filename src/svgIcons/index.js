@@ -70,3 +70,8 @@ export { Delete } from "./Delete";
 export { Heart } from "./Heart";
 export { File } from "./File";
 export { PersonWSetting } from "./PersonWSetting";
+export { Location } from "./Location";
+export { PostEdit } from "./PostEdit";
+export { Editing } from "./Editing";
+export { Verified } from "./Verified";
+export { NotVerified } from "./NotVerified";

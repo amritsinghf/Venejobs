@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-import Pagination from "../Pagination";
 import SvgIcon from "@/app/components/SvgIcon";
-import JobDescription from "../jobs/JobDescription";
+import JobDescription from "../../jobs/JobDescription";
 
 export default function FreelancerCard({ index, total }) {
   const [page, setPage] = useState(1);

@@ -1,4 +1,4 @@
-import Jobs from "../jobs/Jobs";
+import Jobs from "../jobs/client/Jobs";
 import ActiveContracts from "../ActiveContracts/ActiveContracts";
 
 export default function JobContent({ showData }) {
