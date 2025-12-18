@@ -82,22 +82,20 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               {...register("attachment", {
                 required: {
                   value: true,
-                  message: "Please select image",
+                  message: "Please select file",
                 },
                 validate: {
-                  isImage: (files) => {
+                  isPdf: (files) => {
                     if (files && files.length > 0) {
                       const type = files[0].type;
                       return (
-                        ["image/jpeg", "image/jpg", "image/png"].includes(
-                          type
-                        ) || "Only JPG or PNG files are allowed."
+                        type === "application/pdf" ||
+                        "Only PDF files are allowed."
                       );
                     }
                     return true;
                   },
                 },
-
                 maxSize: (files) => {
                   if (!files || files.length === 0) return true;
                   return (

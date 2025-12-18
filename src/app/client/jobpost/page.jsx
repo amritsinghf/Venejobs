@@ -23,7 +23,7 @@ export default function Jobpost() {
           <div className="flex flex-col gap-5 lg:gap-8">
 
             <h1 className="text-3xl lg:text-5xl text-heading font-bold leading-snug w-full lg:max-w-5xl">
-              Welcome {user?.name}! <br />
+              Welcome back {user?.name}! <br />
               Let’s post your job and find the best Venezuelan talent.
             </h1>
 

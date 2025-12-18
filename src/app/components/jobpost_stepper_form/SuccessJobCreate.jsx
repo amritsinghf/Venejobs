@@ -1,56 +1,74 @@
 import Image from "next/image";
 import Link from "next/link";
 import SvgIcon from "../SvgIcon";
+import { useState } from "react";
+import Loader from "../common/Loader";
 
 export default function SuccessJobCreate() {
+
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    setTimeout(() => {
+      window.location.href = "/client/";
+    }, 800);
+  };
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
         <div
           className="
-      bg-white rounded-lg shadow-sm 
-      w-full max-w-[90%]
-      sm:max-w-md
-      md:max-w-[600px]
-      lg:max-w-[800px]
-      xl:max-w-[1000px]
-      h-[600px]
-
-      overflow-y-auto
-      p-4
+      bg-white rounded-xl shadow-md
+      w-full max-w-md sm:max-w-lg lg:max-w-2xl
+      max-h-[90vh] overflow-y-auto
+      flex flex-col items-center
+      px-6 py-8 sm:px-8 sm:py-10
     "
         >
-          <div className="flex flex-col lg:mt-20 justify-center gap-3 md:p-5">
-            <div className="flex justify-center items-center">
-              <Image
-                src="/job_post/party-popper.png"
-                alt="party popper"
-                height={150}
-                width={150}
-                className="sm:h-[150px] sm:w-[150px]"
-              />
-            </div>
-
-            <h2 className="text-center text-heading font-semibold text-lg lg:text-2xl mb-3">
-              Congrats! Your Job Post is Now Live!
-            </h2>
-
-            <p className="text-paragraph text-center text-sm lg:text-lg px-3">
-              You’ll start receiving proposals soon. You can also browse
-              profiles to invite the perfect match.
-            </p>
-
-            <div className="flex justify-center">
-              <Link
-                href={"/client/"}
-                className="bg-primary px-3 py-2 lg:px-6 lg:py-3 rounded text-white flex items-center gap-2"
-              >
-                Continue <SvgIcon name="RightArrWhite"/>
-              </Link>
-            </div>
+          {/* Image */}
+          <div className="mb-4 sm:mb-6">
+            <Image
+              src="/job_post/party-popper.png"
+              alt="party popper"
+              height={120}
+              width={120}
+              className="sm:h-[150px] sm:w-[150px]"
+            />
           </div>
+
+          {/* Heading */}
+          <h2 className="text-center text-heading font-semibold text-lg sm:text-xl lg:text-2xl mb-3">
+            Congrats! Your Job Post is Now Live!
+          </h2>
+
+          {/* Description */}
+          <p className="text-paragraph text-center text-sm sm:text-base lg:text-lg max-w-md mb-6">
+            You’ll start receiving proposals soon. You can also browse profiles to
+            invite the perfect match.
+          </p>
+
+          {/* CTA Button */}
+          <Link
+            href="/client/"
+            onClick={handleClick}
+            className={`bg-primary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}`}
+          >
+            {loading ? (
+              <>
+                <Loader size={18} border={3} color="white" />
+              </>
+            ) : (
+              <>
+                Continue <SvgIcon name="RightArrWhite" />
+              </>
+            )}
+          </Link>
         </div>
       </div>
+
     </>
   );
 }

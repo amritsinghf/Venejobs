@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import ClearIcon from "@mui/icons-material/Clear";
 
 export default function HomeNavbarMobileFreelance({
   isOpen,
@@ -27,27 +26,25 @@ export default function HomeNavbarMobileFreelance({
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {/* HEADER */}
-        <div className="flex justify-between items-center  mt-4">
-          <div className="flex items-center gap-2">
+        <div className="flex justify-between items-center mb-6 mt-4">
+          <div className="flex items-center gap-3">
             <Image
-              src="/logo_freelance.png"
-              alt="logo image"
-              height={500}
-              width={500}
-              style={{ width: 40, height: 40 }}
+              src="/home/logo-home.png"
+              width={40}
+              height={40}
+              alt="logo"
               className="cursor-pointer"
             />
-            <h1 className="text-lg font-semibold text-gray-600">Venejobs</h1>
+            <h3 className="text-lg font-semibold text-gray-600">Venejobs</h3>
           </div>
           <button
-            className="text-gray-500 hover:text-gray-700"
             onClick={() => setIsOpen(false)}
-            aria-label="Close menu"
+            className="text-gray-600 text-4xl leading-none hover:text-gray-600"
           >
-            <ClearIcon fontSize="small" />
+            &times;
           </button>
         </div>
-        <hr className="mt-4" />
+        <hr className="mb-4" />
 
         {/* NAVIGATION */}
         <nav className="flex flex-col items-start gap-2 mt-2">
@@ -55,8 +52,7 @@ export default function HomeNavbarMobileFreelance({
             <Link
               key={item.label}
               href={item.href}
-              className="py-2.5 px-2 text-base font-medium text-gray-600 
-            hover:bg-gray-100 rounded-lg w-full transition"
+              className="py-2.5 px-2 text-base font-medium text-gray-600 hover:bg-gray-100 rounded-lg w-full transition"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
@@ -70,8 +66,7 @@ export default function HomeNavbarMobileFreelance({
               logout();
               setIsOpen(false);
             }}
-            className="flex items-center gap-3 w-full py-2.5 px-2 text-base font-medium
-        text-gray-600 hover:bg-gray-100 rounded-lg transition"
+            className="flex items-center gap-3 w-full py-2.5 px-2 text-base font-medium text-gray-600 hover:bg-gray-100 rounded-lg transition"
           >
             Sign out
           </button>

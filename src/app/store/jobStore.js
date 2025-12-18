@@ -13,6 +13,7 @@ import {
 
 const jobApiStore = create((set) => ({
   jobs: [],
+  job: [],
   budget_data: [],
   category_data: [],
   skills_data: [],
@@ -29,7 +30,7 @@ const jobApiStore = create((set) => ({
       const res = await createJobPost(formdata);
       return res;
     } catch (error) {
-      set({ error: err.message, loading: false });
+      set({ error: error.message, loading: false });
     }
   },
   fetchJobsByUser: async (page, limit) => {
@@ -129,6 +130,15 @@ const jobApiStore = create((set) => ({
         experienceLevels: res.experienceLevels,
         loading: false,
       });
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  },
+  getJobById: async (id) => {
+    set({ loading: true, error: null });
+    try {
+      const res = await get_job_by_id(id);
+      set({ job: res.job, loading: false });
     } catch (err) {
       set({ error: err.message, loading: false });
     }

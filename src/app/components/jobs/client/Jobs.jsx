@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import jobApiStore from "@/app/store/jobStore";
 import JobsList from "./JobsList";
-import Pagination from "../Pagination";
+import Pagination from "../../Pagination";
 
 export default function Jobs() {
   const { jobs, totalpagenum, fetchJobsByUser } = jobApiStore();
@@ -16,7 +16,7 @@ export default function Jobs() {
 
   return (
     <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full mx-auto">
-      
+
       <JobsList jobs={jobs} />
 
       <Pagination

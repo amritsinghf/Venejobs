@@ -262,11 +262,14 @@ export default function PersonalInfoForm() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-base text-heading font-bold" htmlFor="fileinput">
+            <label
+              className="text-base text-heading font-bold"
+              htmlFor="fileinput"
+            >
               Profile Picture :
             </label>
             <input
-            id="fileinput"
+              id="fileinput"
               type="file"
               disabled={!isEditable}
               {...register("profile_picture", {

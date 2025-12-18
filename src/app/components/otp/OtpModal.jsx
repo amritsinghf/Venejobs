@@ -7,7 +7,7 @@ export default function OtpModal({ children, setActiveModal, email }) {
             <div className="w-full max-w-lg sm:max-w-3xl bg-white rounded-xl shadow-sm ">
 
                 {/* Header */}
-                <div className="flex justify-between items-center border-b py-3 sm:py-4 px-4 sm:px-8">
+                <div className="flex justify-between items-center border-b border-[#D0D5DD] py-3 sm:py-4 px-4 sm:px-8">
                     <div className="flex items-center gap-2 sm:gap-3">
                         <Image src="/logo.png" width={35} height={35} alt="logo" />
                         <h1 className="text-lg sm:text-xl font-semibold text-gray-500">Venejobs</h1>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SvgIcon from "../SvgIcon";
-import Button from "../button/Button";
-import Loader from "../common/Loader";
+import SvgIcon from "../../SvgIcon";
+import Button from "../../button/Button";
+import Loader from "../../common/Loader";
 
 export default function JobCard({ item }) {
   const [loading, setLoading] = useState(false);
