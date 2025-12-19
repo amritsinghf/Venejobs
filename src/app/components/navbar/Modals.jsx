@@ -3,8 +3,8 @@ import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 import SignupForm from "../auth/signup/SignupForm";
 import ForgetPasswordWrapper from "../auth/forget-password/ForgetPasswordWrapper";
 import Loginform from "../auth/login/Loginform";
-import OtpForm from "../otp/OtpForm";
 import NewPassword from "../auth/newPassword/NewPassword";
+import OtpForm from "../auth/otp/OtpForm";
 
 export default function Modals({
   activeModal,

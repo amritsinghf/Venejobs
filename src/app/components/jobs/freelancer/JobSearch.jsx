@@ -1,7 +1,7 @@
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "../../Utility/SvgIcon";
 import PaginationFreelance from "../../PaginationFreelance";
 import JobDescription from "../JobDescription";
 import JobFilterSidebar from "../client/JobFilterSidebar";

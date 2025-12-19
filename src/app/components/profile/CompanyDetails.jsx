@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import DOBPicker from "../DatePicker";
-import SvgIcon from "../SvgIcon";
-import SelectInput from "../SelectInput"; // <---- IMPORT NEW COMPONENT
+import DOBPicker from "../Utility/DatePicker";
+import SvgIcon from "../Utility/SvgIcon";
+import SelectInput from "../Utility/SelectInput"; // <---- IMPORT NEW COMPONENT
 import { useState } from "react";
 
 export default function CompanyDetails() {
@@ -37,7 +37,6 @@ export default function CompanyDetails() {
 
       {/* GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-
         {/* Company Name */}
         <div className="flex flex-col gap-2">
           <h3 className="text-base text-heading font-bold">Company Name</h3>

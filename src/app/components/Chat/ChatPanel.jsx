@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 
 const ChatPanel = ({ chatData = [] }) => {
   const staticMessages = [
@@ -57,28 +57,30 @@ const ChatPanel = ({ chatData = [] }) => {
           </div>
 
           <div className="flex flex-col  gap-8 mt-8 mb-4">
-            {chatData.length > 0 && chatData.map((chat) => (
-              <div
-                key={chat.id}
-                className={`flex gap-1.5 py-2 px-1 rounded items-center  ${chat.active ? "bg-primary text-white" : ""
+            {chatData.length > 0 &&
+              chatData.map((chat) => (
+                <div
+                  key={chat.id}
+                  className={`flex gap-1.5 py-2 px-1 rounded items-center  ${
+                    chat.active ? "bg-primary text-white" : ""
                   }`}
-              >
-                <img
-                  src={chat.avatar}
-                  alt={chat.name}
-                  className="size-12 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                />
+                >
+                  <img
+                    src={chat.avatar}
+                    alt={chat.name}
+                    className="size-12 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
+                  />
 
-                <div className="flex flex-col ">
-                  <div className="flex items-center gap-3 ">
-                    <h2 className="font-semibold text-base">{chat.name}</h2>
-                    <p className="font-medium text-xs">{chat.time}</p>
+                  <div className="flex flex-col ">
+                    <div className="flex items-center gap-3 ">
+                      <h2 className="font-semibold text-base">{chat.name}</h2>
+                      <p className="font-medium text-xs">{chat.time}</p>
+                    </div>
+
+                    <p className="text-xs">{chat.message}</p>
                   </div>
-
-                  <p className="text-xs">{chat.message}</p>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
@@ -107,8 +109,9 @@ const ChatPanel = ({ chatData = [] }) => {
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`flex gap-3 ${msg.sentByMe ? "flex-row-reverse text-right" : ""
-                  }`}
+                className={`flex gap-3 ${
+                  msg.sentByMe ? "flex-row-reverse text-right" : ""
+                }`}
               >
                 <img
                   src={msg.avatar}
@@ -116,7 +119,11 @@ const ChatPanel = ({ chatData = [] }) => {
                 />
 
                 <div>
-                  <p className={`${msg.sentByMe ? "bg-primary text-white" : "bg-white"} p-2 text-sm rounded-lg inline-block shadow-2xs`}>
+                  <p
+                    className={`${
+                      msg.sentByMe ? "bg-primary text-white" : "bg-white"
+                    } p-2 text-sm rounded-lg inline-block shadow-2xs`}
+                  >
                     {msg.text}
                   </p>
                   <p className="text-xs text-gray-400 mt-1">{msg.time}</p>

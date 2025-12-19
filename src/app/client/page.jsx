@@ -4,9 +4,9 @@ import { useState } from "react";
 import userApiStore from "../store/userStore";
 
 import ClientLayout from "../layout/ClientLayout";
-import HeaderSection from "../components/homeUI/HeaderSection";
-import JobTabs from "../components/homeUI/JobTabs";
-import JobContent from "../components/homeUI/JobContent";
+import HeaderSection from "@/app/components/Client/homeUI/HeaderSection";
+import JobTabs from "@/app/components/Client/homeUI/JobTabs";
+import JobContent from "@/app/components/Client/homeUI/JobContent";
 
 export default function Home() {
   const [showData, setshowData] = useState(true);

@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
 import StepperNumber from "./StepperNumber";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import Loader from "../common/Loader";
 
 const Project_Options = ({ nextStep, prevStep, currstep }) => {
@@ -84,7 +84,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                     className="w-4 h-4 text-primary accent-primary "
                   />
 
-                  <label htmlFor={item.code} className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer">
+                  <label
+                    htmlFor={item.code}
+                    className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer"
+                  >
                     <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
                       {item.title}
                     </p>
@@ -93,7 +96,6 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                     </p>
                   </label>
                 </div>
-
               ))}
 
               {errors.project_size && (
@@ -158,14 +160,14 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                     name="experience_level"
                     className="w-4 h-4 text-primary accent-primary "
                   />
-                  <label htmlFor={item.code} className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer">
+                  <label
+                    htmlFor={item.code}
+                    className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer"
+                  >
                     <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
                       {item.title}
                     </p>
-                    <p
-
-                      className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide"
-                    >
+                    <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
                       Looking for someone relatively new to this field
                     </p>
                   </label>
@@ -186,7 +188,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)"
+                border: "1px solid rgba(0,0,0,0.08)",
               }}
             >
               <SvgIcon name="PrevButton" />
@@ -209,7 +211,6 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               )}
             </Button>
           </div>
-
         </div>
       </div>
     </div>

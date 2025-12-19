@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
 import StepperNumber from "./StepperNumber";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../common/Loader";
 
@@ -122,7 +122,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)"
+                border: "1px solid rgba(0,0,0,0.08)",
               }}
             >
               <SvgIcon name="PrevButton" />

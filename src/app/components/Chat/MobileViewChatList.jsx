@@ -1,5 +1,5 @@
 import React from "react";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
 import MobileChat from "./MobileChat";
 
@@ -38,36 +38,42 @@ const MobileViewChatList = ({ chatData = [] }) => {
               <SvgIcon name="SettingSlider" />
             </div>
             <div className="flex flex-col gap-4">
-              {chatData.length > 0 && chatData.map((chat) => (
-                <div
-                  onClick={() => showhideModal()}
-                  key={chat.id}
-                  className={`flex gap-1.5   py-1 px-1 rounded-xl items-center border border-gray-200   ${
-                    chat.active ? "bg-primary text-white" : ""
-                  }`}
-                >
-                  <img
-                    src={chat.avatar}
-                    alt={chat.name}
-                    className="size-12 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                  />
+              {chatData.length > 0 &&
+                chatData.map((chat) => (
+                  <div
+                    onClick={() => showhideModal()}
+                    key={chat.id}
+                    className={`flex gap-1.5   py-1 px-1 rounded-xl items-center border border-gray-200   ${
+                      chat.active ? "bg-primary text-white" : ""
+                    }`}
+                  >
+                    <img
+                      src={chat.avatar}
+                      alt={chat.name}
+                      className="size-12 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
+                    />
 
-                  <div className="flex flex-col ">
-                    <div className="flex items-center gap-3 ">
-                      <h2 className="font-semibold text-base">{chat.name}</h2>
-                      <p className="font-medium text-xs">{chat.time}</p>
+                    <div className="flex flex-col ">
+                      <div className="flex items-center gap-3 ">
+                        <h2 className="font-semibold text-base">{chat.name}</h2>
+                        <p className="font-medium text-xs">{chat.time}</p>
+                      </div>
+
+                      <p className="text-xs">{chat.message}</p>
                     </div>
-
-                    <p className="text-xs">{chat.message}</p>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
       )}
 
-      {showChat && <MobileChat setshowChat={setshowChat} setshowChatList={setshowChatList} />}
+      {showChat && (
+        <MobileChat
+          setshowChat={setshowChat}
+          setshowChatList={setshowChatList}
+        />
+      )}
     </>
   );
 };

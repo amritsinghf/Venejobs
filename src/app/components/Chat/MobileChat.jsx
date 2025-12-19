@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 
 const MobileChat = ({ setshowChat, setshowChatList }) => {
   const goBackToList = () => {
@@ -77,7 +77,11 @@ const MobileChat = ({ setshowChat, setshowChatList }) => {
               />
 
               <div>
-                <p className={`${msg.sentByMe ? "bg-primary text-white" : "bg-white"} p-2 text-xs rounded-lg inline-block shadow-2xs`}>
+                <p
+                  className={`${
+                    msg.sentByMe ? "bg-primary text-white" : "bg-white"
+                  } p-2 text-xs rounded-lg inline-block shadow-2xs`}
+                >
                   {msg.text}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">{msg.time}</p>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import Image from "next/image";
 
 const BillingPage = () => {

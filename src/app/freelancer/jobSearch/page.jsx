@@ -1,6 +1,6 @@
 "use client";
 import JobSearch from "@/app/components/jobs/freelancer/JobSearch";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 
 export default function jobSearch() {
@@ -20,9 +20,14 @@ export default function jobSearch() {
                 <span className="absolute inset-y-0 px-4   flex items-center  ">
                   <SvgIcon name="Search_Icon" />
                 </span>
-                <input type="search" id="search"
+                <input
+                  type="search"
+                  id="search"
                   className="block w-full py-3 px-10 md:py-4 rounded-[26px] text-sm text-gray-900 bg-white font-medium border border-gray-100"
-                  placeholder="Search" required style={{ boxShadow: "2px 2px 50px 6px #0000000D" }} />
+                  placeholder="Search"
+                  required
+                  style={{ boxShadow: "2px 2px 50px 6px #0000000D" }}
+                />
               </div>
             </div>
             <div>

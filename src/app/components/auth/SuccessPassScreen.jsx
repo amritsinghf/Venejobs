@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Button from "../button/Button";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 
 export default function SuccessPassScreen({ setActiveModal }) {
   return (
@@ -25,7 +25,6 @@ export default function SuccessPassScreen({ setActiveModal }) {
 
         {/* Content */}
         <div className="pt-20 px-6 md:px-5 md:py-10">
-
           {/* Logo */}
           <div className="flex items-center justify-center gap-3 mb-10">
             <Image src="/logo.png" alt="logo" width={40} height={40} />
@@ -38,8 +37,8 @@ export default function SuccessPassScreen({ setActiveModal }) {
           </h2>
 
           <p className="text-center text-gray-500 text-sm lg:text-base leading-6 tracking-wide">
-            Your password has been successfully reset.
-            Click below to log in magically.
+            Your password has been successfully reset. Click below to log in
+            magically.
           </p>
 
           {/* Actions */}
@@ -53,7 +52,6 @@ export default function SuccessPassScreen({ setActiveModal }) {
               <SvgIcon name="RightArrWhite" />
             </Button>
           </div>
-
         </div>
       </div>
     </div>

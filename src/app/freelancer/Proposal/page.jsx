@@ -1,7 +1,7 @@
 import Button from "@/app/components/button/Button";
-import ProposalWrapper from "@/app/components/Proposal/ProposalWrapper";
-import SelectInput from "@/app/components/SelectInput";
-import SvgIcon from "@/app/components/SvgIcon";
+import ProposalWrapper from "@/app/components/Freelancer/Proposal/ProposalWrapper";
+import SelectInput from "@/app/components/Utility/SelectInput";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 
 export default function page() {

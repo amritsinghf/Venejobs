@@ -1,10 +1,9 @@
 "use client";
 import { useRef } from "react";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "../../Utility/SvgIcon";
 
 export default function LoginModalWrapper({ children, setActiveModal }) {
   const loginRef = useRef(null);
-
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6 sm:p-8 md:p-10">

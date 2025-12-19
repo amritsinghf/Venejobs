@@ -1,6 +1,7 @@
-import InviteWrapper from "@/app/components/InviteTalent/InviteWrapper";
-import LeftPanel from "@/app/components/InviteTalent/LeftPanel";
-import RightPanel from "@/app/components/InviteTalent/RightPanel";
+
+import InviteWrapper from "@/app/components/Client/InviteTalent/InviteWrapper";
+import LeftPanel from "@/app/components/Client/InviteTalent/LeftPanel";
+import RightPanel from "@/app/components/Client/InviteTalent/RightPanel";
 import ClientLayout from "@/app/layout/ClientLayout";
 
 export default function page() {

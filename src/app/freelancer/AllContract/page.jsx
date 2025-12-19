@@ -1,5 +1,7 @@
-import ContractsData from "@/app/components/AllContractFreelancer/ContractsData";
-import HeaderSection from "@/app/components/AllContractFreelancer/HeaderSection";
+
+
+import ContractsData from "@/app/components/Freelancer/AllContractFreelancer/ContractsData";
+import HeaderSection from "@/app/components/Freelancer/AllContractFreelancer/HeaderSection";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 
 export default function page() {

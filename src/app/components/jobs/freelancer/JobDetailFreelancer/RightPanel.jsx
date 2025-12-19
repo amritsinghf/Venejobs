@@ -1,5 +1,5 @@
 import React from "react";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const RightPanel = () => {
   return (

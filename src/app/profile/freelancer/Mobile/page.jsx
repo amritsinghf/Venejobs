@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { Routes } from "@/app/routes";
 import userApiStore from "@/app/store/userStore";
 import Link from "next/link";

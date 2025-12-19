@@ -1,7 +1,7 @@
 import userApiStore from "@/app/store/userStore";
 import Image from "next/image";
-import DOBPicker from "../DatePicker";
-import SvgIcon from "../SvgIcon";
+import DOBPicker from "../Utility/DatePicker";
+import SvgIcon from "../Utility/SvgIcon";
 import CompanyDetails from "./CompanyDetails";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "../../Utility/SvgIcon";
 import Button from "../../button/Button";
 import Loader from "../../common/Loader";
 
@@ -19,7 +19,7 @@ export default function JobCard({ item }) {
       <div className="w-full flex flex-col xl:flex-row rounded justify-between gap-5 lg:gap-3.5">
         <div className="flex flex-col gap-5 lg:gap-3.5">
           <h1 className="text-xl xl:text-2xl text-heading font-semibold tracking-normal">
-            {item.title}
+            {item.title ?? "Need a UI/UX Designer for Mobile App"}
           </h1>
 
           <p className="text-paragraph text-sm lg:text-base font-medium">

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import Button from "../button/Button";
 import Loader from "../common/Loader";
 
@@ -69,9 +69,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
             <h2 className="font-semibold text-lg lg:text-xl text-heading">
               Skills
             </h2>
-            <p className="text-paragraph text-base">
-              {data.skills}
-            </p>
+            <p className="text-paragraph text-base">{data.skills}</p>
           </Row>
 
           {/* PROJECT DETAILS */}

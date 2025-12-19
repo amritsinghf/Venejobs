@@ -1,12 +1,14 @@
 "use client";
 // import AllJobs from "@/app/components/Home_Data/AllJobs";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "@/app/components/button/Button";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 
 import React, { lazy, Suspense } from "react";
 
-const AllJobs = lazy(() => import("../../components/Home_Data/AllJobs"));
+const AllJobs = lazy(() =>
+  import("../../components/Freelancer/Home_Data/AllJobs")
+);
 
 export default function Home() {
   return (
@@ -26,7 +28,7 @@ export default function Home() {
                 </p>
               </div>
               <Button
-                className="bg-primary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 
+                className="bg-secondary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 
               font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
               transition-all duration-300 gap-2"
               >
@@ -48,21 +50,21 @@ export default function Home() {
                 {/* Input */}
                 <input
                   type="search"
-                  id="search"
+                  id="searchInJob"
                   placeholder="Search jobs, skills, companies"
                   className="
-      w-full
-      py-2.5
-      pl-8 pr-2
-      text-sm sm:text-base
-      font-medium text-heading
-      border-b border-[#D0D5DD]
-      bg-transparent
-      placeholder:text-sm placeholder:text-gray-400
-      focus:outline-none
-      focus:border-primary
-      transition
-    "
+                  w-full
+                  py-2.5
+                  pl-8 pr-2
+                  text-sm sm:text-base
+                  font-medium text-heading
+                  border-b border-[#D0D5DD]
+                  bg-transparent
+                  placeholder:text-sm placeholder:text-gray-400
+                  focus:outline-none
+                  focus:border-primary
+                  transition
+                "
                 />
               </div>
             </div>

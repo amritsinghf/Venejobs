@@ -1,17 +1,17 @@
 import Button from "../../button/Button";
 import Loader from "../../common/Loader";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "../../Utility/SvgIcon";
 
 export default function LoginActions({ setActiveModal, isSubmitting }) {
-    return (
-        <>
-            <div className="flex flex-col gap-5">
-                <div className="flex justify-between items-center flex-wrap gap-3 my-5">
-                    {/* Remember Me */}
-                    <label className="flex items-center gap-3 text-sm text-gray-500">
-                        <input
-                            type="checkbox"
-                            className="
+  return (
+    <>
+      <div className="flex flex-col gap-5">
+        <div className="flex justify-between items-center flex-wrap gap-3 my-5">
+          {/* Remember Me */}
+          <label className="flex items-center gap-3 text-sm text-gray-500">
+            <input
+              type="checkbox"
+              className="
                             w-4 h-4 cursor-pointer appearance-none 
                             border border-gray-400 rounded 
                             flex items-center justify-center 
@@ -26,42 +26,41 @@ export default function LoginActions({ setActiveModal, isSubmitting }) {
                             checked:before:absolute 
                             checked:before:inset-0
                         "
-                        />
-                        Remember Me
-                    </label>
+            />
+            Remember Me
+          </label>
 
-                    {/* Forget Password */}
-                    <button
-                        type="button"
-                        onClick={() => setActiveModal("forget_password")}
-                        className="text-sm font-semibold text-heading hover:text-primary cursor-pointer bg-transparent p-0 hover:underline"
-                    >
-                        Forget password?
-                    </button>
-                </div>
+          {/* Forget Password */}
+          <button
+            type="button"
+            onClick={() => setActiveModal("forget_password")}
+            className="text-sm font-semibold text-heading hover:text-primary cursor-pointer bg-transparent p-0 hover:underline"
+          >
+            Forget password?
+          </button>
+        </div>
 
-                {/* Sign In Button */}
-                <div className="flex justify-end">
-                    <Button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-2 px-2"
-                        variant="primary"
-                    >
-                        {isSubmitting ? (
-                            <>
-                                <Loader size={18} border={3} color="white" />
-                            </>
-                        ) : (
-                            <>
-                                Sign In
-                                <SvgIcon name="RightArrWhite" />
-                            </>
-                        )}
-                    </Button>
-                </div>
-            </div>
-
-        </>
-    );
+        {/* Sign In Button */}
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-2 px-2"
+            variant="primary"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader size={18} border={3} color="white" />
+              </>
+            ) : (
+              <>
+                Sign In
+                <SvgIcon name="RightArrWhite" />
+              </>
+            )}
+          </Button>
+        </div>
+      </div>
+    </>
+  );
 }

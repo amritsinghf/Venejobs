@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import StepperNumber from "./StepperNumber";
 import Loader from "../common/Loader";
 
@@ -25,7 +25,6 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
 
     setLoadingNext(false);
   };
-
 
   const { budget_data, loading, getBudgetData } = jobApiStore();
 
@@ -171,7 +170,6 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                     </span>
                   )}
                 </div>
-
               </div>
             </div>
 
@@ -182,7 +180,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                 className="bg-white text-gray-800  flex items-center gap-2 transition-all duration-300"
                 style={{
                   boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)"
+                  border: "1px solid rgba(0,0,0,0.08)",
                 }}
               >
                 <SvgIcon name="PrevButton" />
@@ -205,7 +203,6 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                 )}
               </Button>
             </div>
-
           </div>
         </div>
       </div>

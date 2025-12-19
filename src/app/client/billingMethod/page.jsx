@@ -1,6 +1,6 @@
-import BillingWrapper from "@/app/components/BillingMethod/BillingWrapper";
-import LeftPanel from "@/app/components/BillingMethod/LeftPanel";
-import RightPanel from "@/app/components/BillingMethod/RightPanel";
+import BillingWrapper from "@/app/components/Client/BillingMethod/BillingWrapper";
+import LeftPanel from "@/app/components/Client/BillingMethod/LeftPanel";
+import RightPanel from "@/app/components/Client/BillingMethod/RightPanel";
 import ClientLayout from "@/app/layout/ClientLayout";
 
 export default function page() {

@@ -1,5 +1,5 @@
 import React from "react";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const RightPanel = () => {
   return (
@@ -18,15 +18,20 @@ const RightPanel = () => {
       <div className="flex flex-col gap-6 md:gap-10 border-b border-[#44444414] lg:border-none">
         <div className="flex flex-col gap-3">
           <h3 className="flex gap-6 font-semibold text-lg text-heading">
-            About the client<SvgIcon name="Editing" size={21} />
+            About the client
+            <SvgIcon name="Editing" size={21} />
           </h3>
-          <p className="flex gap-4 text-paragraph text-base font-medium"><SvgIcon name="NotVerified" />Payment method not verified</p>
-          <p className="flex gap-4 text-paragraph text-base font-medium"><SvgIcon name="Verified" />Phone number verified</p>
+          <p className="flex gap-4 text-paragraph text-base font-medium">
+            <SvgIcon name="NotVerified" />
+            Payment method not verified
+          </p>
+          <p className="flex gap-4 text-paragraph text-base font-medium">
+            <SvgIcon name="Verified" />
+            Phone number verified
+          </p>
         </div>
         <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg text-heading">
-            Pakistan
-          </h3>
+          <h3 className="font-semibold text-lg text-heading">Pakistan</h3>
           <p className="text-paragraph text-base font-medium">1:14 AM</p>
         </div>
 

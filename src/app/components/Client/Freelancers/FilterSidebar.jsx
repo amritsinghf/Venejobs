@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 export default function FilterSidebar({ showFilters, setShowFilters }) {
   return (
     <>
@@ -31,7 +31,7 @@ export default function FilterSidebar({ showFilters, setShowFilters }) {
         <Filters />
       </div>
     </>
-  )
+  );
 }
 /* ----------------  SIDEBAR FILTER CONTENT ---------------- */
 function Filters() {
@@ -99,8 +99,9 @@ function Filters() {
             </span>
 
             <svg
-              className={`w-4 h-4 transition-transform ${openDropdowns[section.stateKey] ? "rotate-180" : ""
-                }`}
+              className={`w-4 h-4 transition-transform ${
+                openDropdowns[section.stateKey] ? "rotate-180" : ""
+              }`}
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -114,7 +115,10 @@ function Filters() {
           {openDropdowns[section.stateKey] && (
             <div className="mt-6 flex flex-col gap-4">
               {section.options.map((item) => (
-                <label key={item.value} className="flex items-center gap-3 cursor-pointer">
+                <label
+                  key={item.value}
+                  className="flex items-center gap-3 cursor-pointer"
+                >
                   <input
                     type="checkbox"
                     className="h-5 w-5 relative cursor-pointer appearance-none border border-gray-300 rounded flex items-center justify-center 
@@ -140,16 +144,15 @@ function Filters() {
                           ...prev,
                           [section.stateKey]: isSelected
                             ? prev[section.stateKey].filter(
-                              (v) => v !== item.value
-                            )
+                                (v) => v !== item.value
+                              )
                             : [...prev[section.stateKey], item.value],
                         };
                       });
                     }}
                   />
                   <span className="text-sm md:text-base font-medium text-gray-600">
-                    {item.label}{" "}
-                    {item.count ? `(${item.count})` : ""}
+                    {item.label} {item.count ? `(${item.count})` : ""}
                   </span>
                 </label>
               ))}

@@ -1,13 +1,9 @@
 import { useState } from "react";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import jobApiStore from "@/app/store/jobStore";
 export default function JobFilterSidebar({ showFilters, setShowFilters }) {
-  const {
-        category_data,
-        skills_data,
-        getCategories,
-        getSkillsByCategory,
-    } = jobApiStore();
+  const { category_data, skills_data, getCategories, getSkillsByCategory } =
+    jobApiStore();
   return (
     <>
       {showFilters && (

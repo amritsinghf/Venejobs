@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../common/Loader";
 
 export default function SuccessJobCreate() {
-
   const [loading, setLoading] = useState(false);
 
   const handleClick = (e) => {
@@ -46,15 +45,17 @@ export default function SuccessJobCreate() {
 
           {/* Description */}
           <p className="text-paragraph text-center text-sm sm:text-base lg:text-lg max-w-md mb-6">
-            You’ll start receiving proposals soon. You can also browse profiles to
-            invite the perfect match.
+            You’ll start receiving proposals soon. You can also browse profiles
+            to invite the perfect match.
           </p>
 
           {/* CTA Button */}
           <Link
             href="/client/"
             onClick={handleClick}
-            className={`bg-primary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}`}
+            className={`bg-primary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${
+              loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"
+            }`}
           >
             {loading ? (
               <>
@@ -68,7 +69,6 @@ export default function SuccessJobCreate() {
           </Link>
         </div>
       </div>
-
     </>
   );
 }

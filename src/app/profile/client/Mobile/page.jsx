@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import HomeFilledIcon from "@mui/icons-material/HomeFilled";
 
 import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { Routes } from "@/app/routes";
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
@@ -18,7 +18,11 @@ export default function Page() {
 
   const menuItems = [
     { label: "My Info", icon: "Preview", href: Routes.profile.client.info },
-    { label: "Billing & Payments", icon: "CreditCard", href: Routes.profile.client.bill },
+    {
+      label: "Billing & Payments",
+      icon: "CreditCard",
+      href: Routes.profile.client.bill,
+    },
     { label: "Notification", icon: "Notify", href: "/notifications" },
     { label: "Subscription Setting", icon: "Premium", href: "/subscription" },
     { label: "Security Settings", icon: "Setting", href: "/security-settings" },
@@ -42,7 +46,6 @@ export default function Page() {
     <div className="flex flex-col lg:hidden w-full">
       <div className="rounded-2xl flex flex-col w-full">
         <div className="flex flex-col gap-5">
-
           {/* ---------- Profile Header ---------- */}
           <div className="flex justify-between items-center px-4 py-4 border border-[#F2F2F2] rounded-lg shadow">
             <div className="flex items-center gap-2">
@@ -78,11 +81,17 @@ export default function Page() {
                 href={item.href}
                 onClick={() => setActiveTab(item.href)}
                 className={`flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition 
-                  ${isActive ? "bg-primary text-white" : "hover:bg-blue-gray-50 text-paragraph"}
+                  ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "hover:bg-blue-gray-50 text-paragraph"
+                  }
                 `}
               >
                 <SvgIcon name={item.icon} size={19} />
-                <span className="ml-4 text-base font-medium tracking-wide">{item.label}</span>
+                <span className="ml-4 text-base font-medium tracking-wide">
+                  {item.label}
+                </span>
               </Link>
             );
           })}
@@ -92,8 +101,9 @@ export default function Page() {
             className="flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition"
           >
             <SvgIcon name="Question" size={19} />
-            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">Help & Suppor</span>
-
+            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">
+              Help & Suppor
+            </span>
           </Link>
 
           <Button
@@ -102,11 +112,11 @@ export default function Page() {
             className="flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition text-paragraph"
           >
             <SvgIcon name="Logout" />
-            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">Sign Out</span>
-
+            <span className="ml-4 text-base font-medium tracking-wide text-paragraph">
+              Sign Out
+            </span>
           </Button>
         </div>
-
       </div>
     </div>
   );

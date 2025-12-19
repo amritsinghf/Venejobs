@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Button from "../button/Button";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import Loader from "../common/Loader";
 
 export default function CheckMailScreen({ setActiveModal }) {
-
   const [loading, setLoading] = useState(false);
 
   const handleVerify = () => {
@@ -36,11 +35,12 @@ export default function CheckMailScreen({ setActiveModal }) {
             <div className="p-4 pt-15 pb-40 md:pt-15">
               <div className="flex items-center justify-center gap-3 mb-5">
                 <Image src="/logo.png" width={40} height={40} alt="logo" />
-                <h1 className="text-xl font-semibold text-gray-500">Venejobs</h1>
+                <h1 className="text-xl font-semibold text-gray-500">
+                  Venejobs
+                </h1>
               </div>
 
               <div>
-
                 <h2 className="mt-10 mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
                   Check your email
                 </h2>
@@ -69,7 +69,6 @@ export default function CheckMailScreen({ setActiveModal }) {
                   )}
                 </Button>
               </div>
-
             </div>
           </div>
         </div>

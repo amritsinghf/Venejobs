@@ -2,7 +2,7 @@ import Link from "next/link";
 import DesktopLinks from "../components/profile/freelancer_profile/DesktopLinks";
 import FreelancerLayout from "./FreelancerLayout";
 import { Routes } from "../routes";
-import SvgIcon from "../components/SvgIcon";
+import SvgIcon from "../components/Utility/SvgIcon";
 
 export default function FreelanceProfileLayout({ children }) {
   return (
@@ -14,7 +14,6 @@ export default function FreelanceProfileLayout({ children }) {
 
             {/* FULL WIDTH on md+, with border spacing */}
             <div className="border border-[#F2F2F2] p-7 rounded-2xl flex flex-col w-full gap-6 ">
-
               <div className="flex justify-start lg:hidden">
                 <Link
                   href={Routes.profile.freelancer.home}

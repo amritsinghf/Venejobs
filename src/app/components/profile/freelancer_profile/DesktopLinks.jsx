@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import SvgIcon from "../../SvgIcon";
-import Button from "../../button/Button";
+import SvgIcon from "../../Utility/SvgIcon";
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
 import { Routes } from "@/app/routes";

@@ -1,10 +1,9 @@
 import Button from "../button/Button";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 
 export default function AuthButtons({ setActiveModal, setMenuOpen }) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
-
       {/* LOGIN BUTTON (mobile + tablet + desktop) */}
 
       <div
@@ -17,11 +16,10 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
         after:transition-all after:duration-300 
         hover:after:w-full
       "
-        onClick={() => setActiveModal('signin')}
+        onClick={() => setActiveModal("signin")}
       >
         Login
       </div>
-
 
       {/* SIGNUP BUTTON (only on desktop) */}
 
@@ -29,8 +27,7 @@ export default function AuthButtons({ setActiveModal, setMenuOpen }) {
         className="hidden xl:block bg-white font-medium rounded-full px-6 py-2.5 tracking-wide cursor-pointer 
   transition-all duration-300 ease-out 
   hover:bg-[#0057ff] hover:text-white hover:shadow-lg hover:scale-[1.05]"
-        // onClick={() => setActiveModal('signup')}
-        onClick={()=>alert("hello")}
+        onClick={() => setActiveModal("signup")}
       >
         Sign Up
       </button>

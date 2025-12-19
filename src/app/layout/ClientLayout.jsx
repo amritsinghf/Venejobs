@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Footer from "../components/Footer";
-import HomeNavbar from "../components/HomeNavbar";
+import Footer from "../components/Footer/Footer";
+import HomeNavbar from "../components/Header/HomeNavbar";
 import { useEffect } from "react";
 import userApiStore from "../store/userStore";
 import { footerClientConfig } from "../utils/footer/footerClientConfig";

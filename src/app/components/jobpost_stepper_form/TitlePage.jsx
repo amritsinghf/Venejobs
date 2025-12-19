@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import Button from "../button/Button";
-import SvgIcon from "../SvgIcon";
+import SvgIcon from "../Utility/SvgIcon";
 import StepperNumber from "./StepperNumber";
 import { useState } from "react";
 import Loader from "../common/Loader";
@@ -64,9 +64,7 @@ const TitlePage = ({ nextStep, currstep }) => {
                   {errors.title.message}
                 </span>
               )}
-
             </div>
-
 
             <div className="flex flex-col gap-5 py-3">
               <h3 className="text-[18px] ">Example titles</h3>
@@ -85,8 +83,9 @@ const TitlePage = ({ nextStep, currstep }) => {
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className={`bg-primary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
-                    }`}
+                  className={`bg-primary text-white flex items-center gap-2 justify-center ${
+                    loading ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
                 >
                   {loading ? (
                     <Loader size={18} border={3} color="white" />

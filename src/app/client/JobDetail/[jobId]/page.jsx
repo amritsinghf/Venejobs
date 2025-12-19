@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import JobTabs from "@/app/components/jobs/client/JobDetail/JobTabs";
 import ClientLayout from "@/app/layout/ClientLayout";
 import JobTabContent from "@/app/components/jobs/client/JobDetail/JobTabContent";

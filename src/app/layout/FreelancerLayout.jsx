@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import HomeNavbarFreelance from "../components/HomeNavbar_Freelance";
+import HomeNavbarFreelance from "../components/Header/HomeNavbar_Freelance";
 import userApiStore from "../store/userStore";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer/Footer";
 import { footerFreelanceConfig } from "../utils/footer/footerFreelanceConfig";
 
 export default function FreelancerLayout({ children }) {

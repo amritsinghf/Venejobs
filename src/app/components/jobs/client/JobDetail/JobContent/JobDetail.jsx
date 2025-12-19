@@ -1,4 +1,4 @@
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import jobApiStore from "@/app/store/jobStore";
 import React from "react";
 
@@ -31,7 +31,9 @@ const JobDetail = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <h2 className="font-semibold text-base lg:text-lg text-heading">Attachments</h2>
+          <h2 className="font-semibold text-base lg:text-lg text-heading">
+            Attachments
+          </h2>
           <div className="flex gap-2 mb-8 lg:mb-10">
             <div className="flex items-center gap-2 border border-[#44444414] rounded px-3 py-2">
               <div className="bg-gray-200 p-2 md:p-3 rounded-full">
@@ -47,7 +49,9 @@ const JobDetail = () => {
                 <SvgIcon name="File" size={32} />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-heading text-xs md:text-sm">project-details.pdf</h3>
+                <h3 className="text-heading text-xs md:text-sm">
+                  project-details.pdf
+                </h3>
                 <p className="text-paragraph text-[10px] md:text-xs">2.3mb</p>
               </div>
             </div>
@@ -60,15 +64,21 @@ const JobDetail = () => {
           <div className="flex gap-4 md:gap-8 items-center">
             <SvgIcon name="PriceTag" />
             <div className="flex flex-col gap-2">
-              <h2 className="text-[#333333] lg:text-lg font-semibold">${job.budget_amount}</h2>
-              <p className="text-paragraph text-sm lg:text-base font-medium">{job.budget_type} Price</p>
+              <h2 className="text-[#333333] lg:text-lg font-semibold">
+                ${job.budget_amount}
+              </h2>
+              <p className="text-paragraph text-sm lg:text-base font-medium">
+                {job.budget_type} Price
+              </p>
             </div>
           </div>
 
           <div className="flex gap-4 md:gap-8 items-center ">
             <SvgIcon name="PersonWSetting" size={24} />
             <div className="flex flex-col gap-2">
-              <h2 className="text-[#333333] font-semibold lg:text-lg">Entry level</h2>
+              <h2 className="text-[#333333] font-semibold lg:text-lg">
+                Entry level
+              </h2>
               <p className="text-paragraph text-sm lg:text-base font-medium">
                 {job.experience_level}
               </p>

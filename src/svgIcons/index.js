@@ -75,3 +75,4 @@ export { PostEdit } from "./PostEdit";
 export { Editing } from "./Editing";
 export { Verified } from "./Verified";
 export { NotVerified } from "./NotVerified";
+export { Share } from "./Share";
