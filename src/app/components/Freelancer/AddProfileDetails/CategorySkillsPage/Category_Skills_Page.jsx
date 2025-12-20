@@ -65,7 +65,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const handleNext = async () => {
     setLoading(true);
 
-    const valid = await trigger(["category", "skills"]);
+    const valid = await trigger(["skills"]);
     if (valid) nextStep();
 
     setLoading(false);

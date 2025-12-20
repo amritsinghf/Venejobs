@@ -25,7 +25,7 @@ const TitleInputSection = ({ handleNext }) => {
                 message: "Title should be atleast 5 characters long",
               },
             })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
             placeholder="Enter Your Title"
           />
 
@@ -43,11 +43,37 @@ const TitleInputSection = ({ handleNext }) => {
 
           <ul className="flex flex-col text-gray-500 text-base font-medium gap-4 list-disc pl-6 tracking-wide">
             <li>
-             Google Certified UX/UI Designer | Expert in Website|App|Software|Figma 
+              Google Certified UX/UI Designer | Expert in
+              Website|App|Software|Figma
             </li>
             <li>UX/UI Designer | Web & Mobile App Specialist</li>
             <li>UX/UI Designer, Mobile App Developer, Marketing Expert</li>
           </ul>
+
+          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+            Overview
+          </h2>
+
+          <div className="flex flex-col gap-2">
+          <input
+            type="text"
+            {...register("overview", {
+              required: "Overview required",
+              minLength: {
+                value: 5,
+                message: "Overview should be atleast 5 characters long",
+              },
+            })}
+            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            placeholder="Enter Your Overview"
+          />
+
+          {errors.overview && (
+            <span className="text-sm text-red-500 font-medium">
+              {errors.overview.message}
+            </span>
+          )}
+        </div>
 
           <div className="flex justify-end mt-5">
             <Button

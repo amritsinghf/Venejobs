@@ -32,10 +32,10 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                                 id={item.code}
                                 className="sr-only peer"
                                 value={item.name}
-                                {...register("category", {
-                                    validate: (value) =>
-                                        value?.length > 0 || "Select at least one Category",
-                                })}
+                                // {...register("category", {
+                                //     validate: (value) =>
+                                //         value?.length > 0 || "Select at least one Category",
+                                // })}
                                 onChange={() => getskillsbycategory(item.code, item.name)}
                             />
 
@@ -53,11 +53,11 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                         </li>
                     ))}
                 </ul>
-                {errors.category && (
+                {/* {errors.category && (
                     <span className="text-sm text-red-500 font-medium">
                         {errors.category.message}
                     </span>
-                )}
+                )} */}
             </div>
 
         </div>

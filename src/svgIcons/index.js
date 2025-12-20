@@ -66,6 +66,7 @@ export { Write } from "./Write";
 
 export { DeleteRed } from "./DeleteRed";
 export { Delete } from "./Delete";
+export { Delete1 } from "./Delete1";
 
 export { Heart } from "./Heart";
 export { File } from "./File";
@@ -76,3 +77,4 @@ export { Editing } from "./Editing";
 export { Verified } from "./Verified";
 export { NotVerified } from "./NotVerified";
 export { Share } from "./Share";
+export { ShareGreen } from "./ShareGreen";

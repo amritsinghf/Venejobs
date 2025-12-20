@@ -45,7 +45,6 @@ export default function PersonalInfoForm() {
   }, [user, reset]);
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       setLoading(true);
 

@@ -8,7 +8,7 @@ const TitlePage = ({ nextStep, currstep }) => {
     const { trigger } = useFormContext();
 
     const handleNext = async () => {
-        const valid = await trigger(["title"]);
+        const valid = await trigger(["title","overview"]);
         if (valid) nextStep();
     };
 

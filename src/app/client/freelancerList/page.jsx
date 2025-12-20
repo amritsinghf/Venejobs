@@ -4,7 +4,7 @@ import ClientLayout from "@/app/layout/ClientLayout";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import FreelancerCard from "@/app/components/Client/Freelancers/FreelancerCard";
 import FilterSidebar from "@/app/components/Client/Freelancers/FilterSidebar";
-import Pagination from "@/app/components/Pagination";
+import Pagination from "@/app/components/Pagination/Pagination";
 
 export default function freelancerList() {
   const freelancers = [1, 2, 3, 4, 5];

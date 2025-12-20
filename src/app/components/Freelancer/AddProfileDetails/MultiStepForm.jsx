@@ -5,6 +5,11 @@ import toastStore from "@/app/store/toastStore";
 import TitlePage from "./TitlePage/TitlePage";
 import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
 import ExperiencePage from "./AddExperience/ExperiencePage";
+import EducationPage from "./AddEducation/EducationPage";
+import LanguagePage from "./AddLanguage/LanguagePage";
+import HourlyRatePage from "./AddHourlyRate/HourlyRatePage";
+import PersonalDetailsPage from "./AddPersonalDetails/PersonalDetailsPage";
+import SuccessJobCreate from "./SuccessProfileCreate";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -28,6 +33,10 @@ const MultiStepForm = () => {
   // const { create_job, loading } = jobApiStore();
 
   const onSubmit = async (data) => {
+    console.log(data)
+    if(data.title === "Test1"){
+        setshowConfirmMessage(true);
+    }
     // try {
     //   const formData = new FormData();
     //   data.skills.forEach((skill) => {
@@ -42,7 +51,6 @@ const MultiStepForm = () => {
     //   formData.append("budget_type", data.budget_type);
     //   formData.append("budget_amount", data.budget_amount);
     //   formData.append("attachment", data.attachment[0]);
-
     //   const res = await create_job(formData);
     //   if (res.success) {
     //     setshowConfirmMessage(true);
@@ -75,24 +83,39 @@ const MultiStepForm = () => {
             currstep={step}
           />
         );
-      // case 4:
-      //   return (
-      //     <Budget_Options
-      //       nextStep={nextStep}
-      //       prevStep={prevStep}
-      //       currstep={step}
-      //     />
-      //   );
-      // case 5:
-      //   return (
-      //     <DescriptionPage
-      //       nextStep={nextStep}
-      //       prevStep={prevStep}
-      //       currstep={step}
-      //     />
-      //   );
-      // case 6:
-      //   return <ReviewJob prevStep={prevStep} setStep={setStep} />;
+      
+      case 4:
+        return (
+          <EducationPage
+            nextStep={nextStep}
+            prevStep={prevStep}
+            currstep={step}
+          />
+        );
+      case 5:
+        return (
+          <LanguagePage
+            nextStep={nextStep}
+            prevStep={prevStep}
+            currstep={step}
+          />
+        );
+      case 6:
+        return (
+          <HourlyRatePage
+            nextStep={nextStep}
+            prevStep={prevStep}
+            currstep={step}
+          />
+        );
+      case 7:
+        return (
+          <PersonalDetailsPage
+            nextStep={nextStep}
+            prevStep={prevStep}
+            currstep={step}
+          />
+        );
       default:
         return <TitlePage nextStep={nextStep} prevStep={prevStep} />;
     }
@@ -108,7 +131,7 @@ const MultiStepForm = () => {
         </form>
       </FormProvider>
 
-      {/* {showConfirmMessage && <SuccessJobCreate />} */}
+      {showConfirmMessage && <SuccessJobCreate />}
     </>
   );
 };
