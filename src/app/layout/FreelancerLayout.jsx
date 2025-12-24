@@ -9,10 +9,11 @@ import Footer from "../components/Footer/Footer";
 import { footerFreelanceConfig } from "../utils/footer/footerFreelanceConfig";
 
 export default function FreelancerLayout({ children }) {
-  const { logout } = userApiStore();
+  const { logout,fetchProfile } = userApiStore();
   const router = useRouter();
 
   useEffect(() => {
+    fetchProfile()
     const token = localStorage.getItem("token");
 
     if (!token) {

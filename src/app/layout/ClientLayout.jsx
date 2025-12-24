@@ -7,10 +7,11 @@ import userApiStore from "../store/userStore";
 import { footerClientConfig } from "../utils/footer/footerClientConfig";
 
 export default function ClientLayout({ children }) {
-  const { logout } = userApiStore();
+  const { logout,fetchProfile } = userApiStore();
   const router = useRouter();
 
   useEffect(() => {
+    fetchProfile()
     const token = localStorage.getItem("token");
 
     if (!token) {

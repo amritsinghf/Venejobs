@@ -3,20 +3,22 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-const HourlyRateInputSection = ({ nextStep, prevStep, currstep }) => {
+const HourlyRateInputSection = ({ nextStep, prevStep }) => {
   const {
     register,
     formState: { errors },
     trigger,
-    getValues
+    watch
   } = useFormContext();
 
-  const [showForm, setshowForm] = useState(false);
-
   const handleNext = async () => {
-    const valid = await trigger(["HourlyRate"]);
+    const valid = await trigger(["hourly_rate"]);
     if (valid) nextStep();
   };
+
+  const rate = watch("hourly_rate");
+  const serviceFee = rate ? rate * 0.1 : 0;
+  const youGet = rate ? rate - serviceFee : 0;
 
   return (
     <div className="flex flex-col w-full">
@@ -27,20 +29,26 @@ const HourlyRateInputSection = ({ nextStep, prevStep, currstep }) => {
               <h2 className="text-2xl text-heading font-semibold">
                 Set your hourly rate
               </h2>
-
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="$0.00"
-                {...register("HourlyRate.Rate",{
-                    required:{
-                        value:true,
-                        message:"Hourly Rate is required"
-                    }
+                {...register("hourly_rate", {
+                  required: {
+                    value: true,
+                    message: "Hourly Rate is required",
+                  },
                 })}
                 className="border border-gray-200 rounded px-3 py-2"
               />
+              <div className="min-h-5">
+                {errors.hourly_rate && (
+                  <span className="text-red-500 text-sm">
+                    {errors.hourly_rate.message}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="flex flex-col gap-6 w-full">
               <h2 className="text-2xl text-heading font-semibold">
@@ -51,15 +59,19 @@ const HourlyRateInputSection = ({ nextStep, prevStep, currstep }) => {
                 type="text"
                 name=""
                 id=""
+                disabled
+                value={`$${serviceFee.toFixed(2)} (10%)`}
                 placeholder="$0.00"
-                {...register("HourlyRate.ServiceFee",{
-                    required:{
-                        value:true,
-                        message:"Service Fee is required"
-                    }
-                })}
+                {...register("hourlyRate.ServiceFee")}
                 className="border border-gray-200 rounded px-3 py-2"
               />
+              <div className="min-h-5">
+                {/* {errors.hourlyRate?.ServiceFee && (
+                  <span className="text-red-500 text-sm">
+                    {errors.hourlyRate.ServiceFee.message}
+                  </span>
+                )} */}
+              </div>
             </div>
           </div>
 
@@ -68,20 +80,28 @@ const HourlyRateInputSection = ({ nextStep, prevStep, currstep }) => {
             ensure secure, protected payments. Set your hourly rate based on
             what you want to earn.
           </p>
-          <hr className="text-gray-200"/>
+          <hr className="text-gray-200" />
 
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-semibold text-heading">You’ll get</h2>
-            <input type="text" name="" id="" placeholder="$0.00" className="border border-gray-200 rounded px-3 py-2"/>
+            <input
+              type="text"
+              disabled
+              value={`$${youGet.toFixed(2)}`}
+              name=""
+              id=""
+              placeholder="$0.00"
+              className="border border-gray-200 rounded px-3 py-2"
+            />
           </div>
         </div>
 
         <div className="flex flex-col gap-4 lg:gap-6">
-          <div className="flex justify-between gap-2 mt-5">
+          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button
               type="button"
               onClick={prevStep}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
+              className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.08)",

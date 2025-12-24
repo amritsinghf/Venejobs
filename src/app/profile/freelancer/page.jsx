@@ -8,7 +8,6 @@ import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import MobileView from "./Mobile/page";
 
 export default function Profile() {
-  const router = useRouter();
 
   const { user, logout, fetchProfile } = userApiStore();
 

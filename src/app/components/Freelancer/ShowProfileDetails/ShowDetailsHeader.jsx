@@ -3,7 +3,7 @@ import Button from "../../button/Button";
 import Image from "next/image";
 import SvgIcon from "../../Utility/SvgIcon";
 
-const ShowDetailsHeader = () => {
+const ShowDetailsHeader = ({ name, country }) => {
   return (
     <div className="flex flex-col gap-8 lg:flex-row lg:items-center justify-between border-b border-gray-200 pb-10">
       <div className="flex items-center gap-8">
@@ -15,22 +15,21 @@ const ShowDetailsHeader = () => {
           className="rounded-full w-[60px] h-[60px] lg:w-[100px] lg:h-[100px]"
         />
         <div className="flex flex-col gap-3 lg:gap-4">
-            <div className="flex items-center gap-4">
-                <h2 className="text-heading text-lg lg:text-2xl font-semibold">
-            Thomas watson
-          </h2>
-            <SvgIcon name="ShareGreen" className="flex lg:hidden"/>
-            </div>
-          
+          <div className="flex items-center gap-4">
+            <h2 className="text-heading text-lg lg:text-2xl font-semibold">
+              {name}
+            </h2>
+            <SvgIcon name="ShareGreen" className="flex lg:hidden" />
+          </div>
+
           <div className="flex gap-10">
-            <p className="text-paragraph text-sm font-medium">United State</p>
+            <p className="text-paragraph text-sm font-medium">{country}</p>
             <p className="text-paragraph text-sm font-medium">
               {" "}
               – 8:10 am local time
             </p>
           </div>
         </div>
-        
       </div>
 
       <div className="flex flex-col gap-6">

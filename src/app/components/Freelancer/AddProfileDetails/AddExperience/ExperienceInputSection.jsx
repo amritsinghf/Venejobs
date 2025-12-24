@@ -5,21 +5,31 @@ import React, { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import ExperienceModal from "./ExperienceModal";
 import ShowExperiencePage from "./ShowExperiencePage";
+import useToastStore from "@/app/store/toastStore";
 
 const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
+  const {showError} = useToastStore.getState();
   const { control, trigger } = useFormContext();
 
   const { fields, append, update, remove } = useFieldArray({
     control,
-    name: "experience",
+    name: "experiences",
   });
 
   const [showForm, setShowForm] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
   const handleNext = async () => {
-    const valid = await trigger("experience");
-    if (valid) nextStep();
+    const valid = await trigger("experiences");
+
+    if (fields.length === 0) {
+      showError("Please add at least one experience before proceeding.","error")
+      return;
+    }
+
+    if (valid) {
+      nextStep();
+    }
   };
 
   return (
@@ -48,11 +58,11 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
             </h2>
           </div>
 
-          <div className="flex justify-between gap-2 mt-5">
+          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button
               type="button"
               onClick={prevStep}
-              className="bg-white text-gray-800 flex items-center gap-2"
+              className="bg-white text-paragraph flex items-center gap-2 shadow"
             >
               <SvgIcon name="PrevButton" /> Back
             </Button>

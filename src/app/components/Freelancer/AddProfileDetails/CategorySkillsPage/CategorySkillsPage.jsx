@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import jobApiStore from "@/app/store/jobStore";
-
 import CategorySelector from "./CategorySelector";
 import SkillsSelector from "./SkillsSelector";
 import StepperNumber from "../StepperNumber";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "@/app/components/button/Button";
-import Loader from "@/app/components/common/Loader";
 
-const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
+const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   const {
     trigger,
     formState: { errors },
@@ -105,11 +103,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={prevStep}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
+              className="bg-white text-paragraph  flex items-center gap-2 transition-all duration-300 shadow"
             >
               <SvgIcon name="PrevButton" />
               Back
@@ -118,17 +112,9 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={handleNext}
-              disabled={loading}
-              className={`bg-secondary text-white flex items-center gap-2 justify-center px-7 
-            ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+              className="bg-secondary text-white flex items-center gap-2 justify-center"
             >
-              {loading ? (
-                <Loader size={18} border={3} color="white" />
-              ) : (
-                <>
-                  Next <SvgIcon name="NextArrow" />
-                </>
-              )}
+              Next <SvgIcon name="NextArrow" />
             </Button>
           </div>
         </div>
@@ -137,4 +123,4 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   );
 };
 
-export default Category_Skills_Page;
+export default CategorySkillsPage;

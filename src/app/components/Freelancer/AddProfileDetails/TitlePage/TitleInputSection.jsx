@@ -18,7 +18,7 @@ const TitleInputSection = ({ handleNext }) => {
         <div className="flex flex-col gap-2">
           <input
             type="text"
-            {...register("title", {
+            {...register("professional_title", {
               required: "Title required",
               minLength: {
                 value: 5,
@@ -29,9 +29,9 @@ const TitleInputSection = ({ handleNext }) => {
             placeholder="Enter Your Title"
           />
 
-          {errors.title && (
+          {errors.professional_title && (
             <span className="text-sm text-red-500 font-medium">
-              {errors.title.message}
+              {errors.professional_title.message}
             </span>
           )}
         </div>
@@ -55,25 +55,25 @@ const TitleInputSection = ({ handleNext }) => {
           </h2>
 
           <div className="flex flex-col gap-2">
-          <input
-            type="text"
-            {...register("overview", {
-              required: "Overview required",
-              minLength: {
-                value: 5,
-                message: "Overview should be atleast 5 characters long",
-              },
-            })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
-            placeholder="Enter Your Overview"
-          />
+            <input
+              type="text"
+              {...register("overview", {
+                required: "Overview required",
+                minLength: {
+                  value: 5,
+                  message: "Overview should be atleast 5 characters long",
+                },
+              })}
+              className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+              placeholder="Enter Your Overview"
+            />
 
-          {errors.overview && (
-            <span className="text-sm text-red-500 font-medium">
-              {errors.overview.message}
-            </span>
-          )}
-        </div>
+            {errors.overview && (
+              <span className="text-sm text-red-500 font-medium">
+                {errors.overview.message}
+              </span>
+            )}
+          </div>
 
           <div className="flex justify-end mt-5">
             <Button

@@ -3,29 +3,26 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import EducationModal from "./EducationModal";
-import ShowEducationPage from "./ShowEducationPage";
+import ShowPorfolioPage from "./ShowPortfolioPage";
+import PortfolioModal from "./PortfolioModal";
 import useToastStore from "@/app/store/toastStore";
 
-const EducationInputSection = ({ nextStep, prevStep }) => {
+const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
   const {showError} = useToastStore.getState();
-  const { trigger, control,setValue } = useFormContext();
+  const { trigger, control, getValues } = useFormContext();
   const { fields, append, update, remove } = useFieldArray({
     control,
-    name: "educations",
+    name: "portfolios",
   });
 
   const [showForm, setshowForm] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
   const handleNext = async () => {
-    const valid = await trigger("educations");
+    const valid = await trigger("portfolios");
 
     if (fields.length === 0) {
-      showError(
-        "Please add at least one education before proceeding.",
-        "error"
-      );
+      showError("Please add at least one portfolio before proceeding.","error")
       return;
     }
 
@@ -33,14 +30,15 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
       nextStep();
     }
   };
+
   return (
     <div className="flex flex-col w-full gap-6">
+      <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+        Add Portfolio
+      </h2>
+
       {/* Show Add Panel only if no education added yet */}
       {fields.length === 0 && (
-        <>
-        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
-        Add Education
-      </h2>
         <div
           className="border border-dashed border-gray-500 h-[366px] flex flex-col justify-end pl-3 pb-20 cursor-pointer"
           onClick={() => {
@@ -50,15 +48,14 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
         >
           <Image src="/icons/Add.png" alt="Add button" width={40} height={40} />
           <h2 className="mt-6 font-semibold text-lg lg:text-[32px]">
-            Add Education
+            Add Portfolio
           </h2>
         </div>
-        </>
       )}
 
       {/* Show list of education entries */}
       {fields.length > 0 && (
-        <ShowEducationPage
+        <ShowPorfolioPage
           fields={fields}
           onEdit={(index) => {
             setEditIndex(index);
@@ -97,18 +94,17 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
 
       {/* Education Modal */}
       {showForm && (
-        <EducationModal
+        <PortfolioModal
           setshowForm={setshowForm}
           close={() => setshowForm(false)}
           append={append}
           update={update}
           editIndex={editIndex}
           fields={fields}
-          setValue={setValue}
         />
       )}
     </div>
   );
 };
 
-export default EducationInputSection;
+export default PorfolioInputSection;

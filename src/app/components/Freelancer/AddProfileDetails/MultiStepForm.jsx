@@ -3,13 +3,15 @@ import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import toastStore from "@/app/store/toastStore";
 import TitlePage from "./TitlePage/TitlePage";
-import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
 import ExperiencePage from "./AddExperience/ExperiencePage";
 import EducationPage from "./AddEducation/EducationPage";
 import LanguagePage from "./AddLanguage/LanguagePage";
 import HourlyRatePage from "./AddHourlyRate/HourlyRatePage";
 import PersonalDetailsPage from "./AddPersonalDetails/PersonalDetailsPage";
-import SuccessJobCreate from "./SuccessProfileCreate";
+import PortfolioPage from "./AddPortfolio/PortfolioPage";
+import SuccessProfileCreate from "./SuccessProfileCreate";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import CategorySkillsPage from "./CategorySkillsPage/CategorySkillsPage";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -30,37 +32,20 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
-  // const { create_job, loading } = jobApiStore();
+  const { SavePersonalDetails } = freelanceApiStore();
 
   const onSubmit = async (data) => {
-    console.log(data)
-    if(data.title === "Test1"){
+    try {
+      const res = await SavePersonalDetails(data);
+      if (res.success) {
         setshowConfirmMessage(true);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+      } else {
+      }
     }
-    // try {
-    //   const formData = new FormData();
-    //   data.skills.forEach((skill) => {
-    //     formData.append("skills[]", skill);
-    //   });
-    //   formData.append("title", data.title);
-    //   formData.append("description", data.description);
-    //   formData.append("category", data.category);
-    //   formData.append("project_size", data.project_size);
-    //   formData.append("duration", data.duration);
-    //   formData.append("experience_level", data.experience_level);
-    //   formData.append("budget_type", data.budget_type);
-    //   formData.append("budget_amount", data.budget_amount);
-    //   formData.append("attachment", data.attachment[0]);
-    //   const res = await create_job(formData);
-    //   if (res.success) {
-    //     setshowConfirmMessage(true);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   if (error.response) {
-    //   } else {
-    //   }
-    // }
   };
 
   const renderStep = () => {
@@ -69,7 +54,7 @@ const MultiStepForm = () => {
         return <TitlePage nextStep={nextStep} currstep={step} />;
       case 2:
         return (
-          <Category_Skills_Page
+          <CategorySkillsPage
             nextStep={nextStep}
             prevStep={prevStep}
             currstep={step}
@@ -83,7 +68,7 @@ const MultiStepForm = () => {
             currstep={step}
           />
         );
-      
+
       case 4:
         return (
           <EducationPage
@@ -92,9 +77,10 @@ const MultiStepForm = () => {
             currstep={step}
           />
         );
+
       case 5:
         return (
-          <LanguagePage
+          <PortfolioPage
             nextStep={nextStep}
             prevStep={prevStep}
             currstep={step}
@@ -102,13 +88,21 @@ const MultiStepForm = () => {
         );
       case 6:
         return (
-          <HourlyRatePage
+          <LanguagePage
             nextStep={nextStep}
             prevStep={prevStep}
             currstep={step}
           />
         );
       case 7:
+        return (
+          <HourlyRatePage
+            nextStep={nextStep}
+            prevStep={prevStep}
+            currstep={step}
+          />
+        );
+      case 8:
         return (
           <PersonalDetailsPage
             nextStep={nextStep}
@@ -131,7 +125,7 @@ const MultiStepForm = () => {
         </form>
       </FormProvider>
 
-      {showConfirmMessage && <SuccessJobCreate />}
+      {showConfirmMessage && <SuccessProfileCreate />}
     </>
   );
 };

@@ -2,15 +2,16 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 
-const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
+const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   if (!fields || fields.length === 0) {
-    return <p className="text-gray-500">No portfolio added yet.</p>;
+    return <p className="text-gray-500">No education added yet.</p>;
   }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg lg:text-[32px] ">
-          Education History
+        <h2 className="font-semibold text-lg lg:text-[32px]">
+          Portfolio History
         </h2>
         <button
           type="button"
@@ -26,10 +27,8 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
           className="border border-gray-200 p-4 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
           <div>
-            <h2 className="font-bold text-lg">{item.institution_name}</h2>
-            <p className="text-gray-600">{item.degree}</p>
-            <p className="text-gray-600">{item.field_of_study}</p>
-            <p className="text-gray-600">{item.type_of_education}</p>
+            <h2 className="font-bold text-lg">{item.title}</h2>
+            <p className="text-gray-600">{item.image_url}</p>
           </div>
 
           <div className="flex gap-2 mt-2 md:mt-0">
@@ -55,4 +54,4 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   );
 };
 
-export default ShowEducationPage;
+export default ShowPorfolioPage;

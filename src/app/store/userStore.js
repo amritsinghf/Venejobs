@@ -12,6 +12,7 @@ import {
   verifyAccount,
   verifyResetCode,
 } from "../lib/auth/auth.api";
+import useToastStore from "./toastStore";
 
 const userApiStore = create(
   persist(
@@ -91,6 +92,16 @@ const userApiStore = create(
             loading: false,
             fetched: true,
           });
+          if (err.response?.status === 401) {
+            set({ token: undefined, user: undefined });
+            get().logout();
+            const { showError } = useToastStore.getState();
+            showError(
+              "Session Expired",
+              "Your session has timed out. Please log in again."
+            );
+            return false;
+          }
         }
       },
       verifyOtpAndSetToken: async (otpData) => {
@@ -193,7 +204,6 @@ const userApiStore = create(
       updateProfile: async (data) => {
         set({ loading: true, error: null });
         try {
-          // console.log(data.age)
           const res = await UpdateProfile(data);
 
           set({ loading: false, fetched: true });

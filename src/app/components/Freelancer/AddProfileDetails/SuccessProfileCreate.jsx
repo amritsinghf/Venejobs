@@ -4,7 +4,7 @@ import { useState } from "react";
 import Loader from "../../common/Loader";
 import SvgIcon from "../../Utility/SvgIcon";
 
-export default function SuccessJobCreate() {
+export default function SuccessProfileCreate() {
   const [loading, setLoading] = useState(false);
 
   const handleClick = (e) => {

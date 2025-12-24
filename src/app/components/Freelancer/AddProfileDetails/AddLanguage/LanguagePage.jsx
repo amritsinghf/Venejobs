@@ -10,7 +10,7 @@ const LanguagePage = ({ nextStep, currstep, prevStep }) => {
 
   const { fields, append, update, remove } = useFieldArray({
     control,
-    name: "education",
+    name: "languages",
   });
   const [editIndex, setEditIndex] = useState(null);
   return (

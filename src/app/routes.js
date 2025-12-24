@@ -9,7 +9,7 @@ export const Routes = {
     form: "/client/jobpost/forms/",
   },
   freelancer: {
-    get_started: "/freelancer",
+    get_started: "/freelancer/addProfileDetails",
     page: "/freelancer/home",
     chat:"/freelancer/chat/",
     jobdetail:"/freelancer/JobDetail/",

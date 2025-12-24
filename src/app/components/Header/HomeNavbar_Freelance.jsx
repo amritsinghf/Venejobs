@@ -88,7 +88,7 @@ export default function HomeNavbarFreelance() {
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto">
           <div className="flex justify-between items-center py-5">
             <div className="flex gap-3 items-center">
-              <Link href={Routes.freelancer.get_started}>
+              {/* <Link href={Routes.freelancer.page}> */}
                 <Image
                   className="cursor-pointer w-10 md:w-[50px] md:h-[50px]"
                   src="/logo_freelance.png"
@@ -97,9 +97,11 @@ export default function HomeNavbarFreelance() {
                   width={500}
                   style={{ width: 40, height: 40 }}
                 />
-              </Link>
+              {/* </Link> */}
               <h2 className="text-gray-600  text-lg font-extrabold cursor-pointer">
-                <Link href={Routes.freelancer.get_started}>Venejobs</Link>
+                {/* <Link href={Routes.freelancer.page}> */}
+                Venejobs
+                {/* </Link> */}
               </h2>
             </div>
 

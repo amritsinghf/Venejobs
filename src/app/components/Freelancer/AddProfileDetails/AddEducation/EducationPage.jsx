@@ -8,7 +8,7 @@ const EducationPage = ({ nextStep, currstep,prevStep }) => {
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
 
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+      <div className="flex gap-6 flex-col lg:flex-row lg:gap-25">
         <EducationHeader />
         <EducationInputSection nextStep={nextStep} prevStep={prevStep} currstep={currstep}/>
       </div>

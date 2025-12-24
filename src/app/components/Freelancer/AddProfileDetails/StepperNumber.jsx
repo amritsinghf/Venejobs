@@ -1,7 +1,7 @@
 export default function StepperNumber({ currstep }) {
   return (
     <div className="flex items-center justify-around md:max-w-[350px] w-full">
-      {[...Array(7)].map((_, i) => (
+      {[...Array(8)].map((_, i) => (
         <div className="flex items-center w-full" key={i}>
           {/* Circle */}
           <span
@@ -19,7 +19,7 @@ export default function StepperNumber({ currstep }) {
           </span>
 
           {/* Dotted Line (only between circles) */}
-          {i < 6 && (
+          {i < 7 && (
             <div className="flex-1  border-t-2 border-dotted border-gray-200 "></div>
           )}
         </div>
