@@ -94,7 +94,7 @@ function Filters() {
             }
             type="button"
           >
-            <span className="text-sm md:text-base font-semibold text-[#333333]">
+            <span className="text-sm md:text-base font-semibold text-heading">
               {section.title}
             </span>
 

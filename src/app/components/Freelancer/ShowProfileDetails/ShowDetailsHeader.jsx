@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import SvgIcon from "../../Utility/SvgIcon";
 import Link from "next/link";
 import { Routes } from "@/app/routes";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const ShowDetailsHeader = ({ name, country }) => {
   return (
@@ -35,10 +35,16 @@ const ShowDetailsHeader = ({ name, country }) => {
 
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-6">
-          <Link href={Routes.profile.freelancer.info} className="bg-secondary w-auto h-auto px-3 py-2 md:px-6 md:py-3 text-white rounded">
+          <Link
+            href={Routes.profile.freelancer.info}
+            className="bg-secondary w-auto h-auto px-3 py-2 md:px-6 md:py-3 text-white rounded"
+          >
             Profile Settings
           </Link>
-          <Link href={Routes.freelancer.page} className="text-paragraph font-semibold shadow w-auto h-auto px-3 py-2 md:px-6 md:py-3 rounded">
+          <Link
+            href={Routes.freelancer.page}
+            className="text-paragraph font-semibold shadow w-auto h-auto px-3 py-2 md:px-6 md:py-3 rounded"
+          >
             Find Jobs
           </Link>
         </div>

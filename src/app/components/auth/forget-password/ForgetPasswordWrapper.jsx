@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import LogoHeader from "./LogoHeader";
 import ForgetPasswordForm from "./ForgetPasswordForm";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function ForgetPasswordWrapper({
   setActiveModal,

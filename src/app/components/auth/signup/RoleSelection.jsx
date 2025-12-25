@@ -1,4 +1,4 @@
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 import React from "react";
 

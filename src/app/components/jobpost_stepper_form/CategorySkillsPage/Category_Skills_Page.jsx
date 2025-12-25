@@ -6,7 +6,7 @@ import CategorySelector from "./CategorySelector";
 import SkillsSelector from "./SkillsSelector";
 import StepperNumber from "../StepperNumber";
 import Button from "../../button/Button";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Loader from "../../common/Loader";
 
 const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {

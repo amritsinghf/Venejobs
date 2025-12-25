@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "../../button/Button";
 import Loader from "../../common/Loader";
 
@@ -41,9 +41,8 @@ export default function JobCard({ item }) {
           <Button
             onClick={handleDetailsClick}
             disabled={loading}
-            className={`bg-primary text-white border hidden lg:flex items-center justify-center gap-2 ${
-              loading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`bg-primary text-white border hidden lg:flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
             variant="primary"
           >
             {loading ? (
@@ -90,9 +89,8 @@ export default function JobCard({ item }) {
         <Button
           onClick={handleDetailsClick}
           disabled={loading}
-          className={`bg-primary text-white border flex items-center justify-center gap-2 ${
-            loading ? "opacity-70 cursor-not-allowed" : ""
-          }`}
+          className={`bg-primary text-white border flex items-center justify-center gap-2 ${loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           variant="primary"
         >
           {loading ? (

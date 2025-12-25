@@ -3,8 +3,8 @@ import SuccessPassScreen from "@/app/components/auth/SuccessPassScreen";
 import SignupForm from "../auth/signup/SignupForm";
 import ForgetPasswordWrapper from "../auth/forget-password/ForgetPasswordWrapper";
 import Loginform from "../auth/login/Loginform";
-import NewPassword from "../auth/newPassword/NewPassword";
 import OtpForm from "../auth/otp/OtpForm";
+import NewPassword from "../auth/newPassword/NewPassword";
 
 export default function Modals({
   activeModal,
@@ -16,7 +16,7 @@ export default function Modals({
 }) {
   switch (activeModal) {
     case "signin":
-      return <Loginform setActiveModal={setActiveModal} setUserEmail={setUserEmail}/>;
+      return <Loginform setActiveModal={setActiveModal} setUserEmail={setUserEmail} />;
 
     case "signup":
       return (

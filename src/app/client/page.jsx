@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import userApiStore from "../store/userStore";
-
 import ClientLayout from "../layout/ClientLayout";
 import HeaderSection from "@/app/components/Client/homeUI/HeaderSection";
 import JobTabs from "@/app/components/Client/homeUI/JobTabs";
 import JobContent from "@/app/components/Client/homeUI/JobContent";
 
 export default function Home() {
-  const [showData, setshowData] = useState(true);
+  const [showData, setshowData] = useState(0);
+  const tabs = [{ label: "All job posts" }, { label: "Your Active Contracts" }];
   const name = userApiStore((s) => s.user?.name || "");
 
   return (
@@ -25,7 +25,7 @@ export default function Home() {
             </h2>
 
             <div className="">
-              <JobTabs showData={showData} setshowData={setshowData} />
+              <JobTabs tabs={tabs} showData={showData} setshowData={setshowData} />
 
               <JobContent showData={showData} />
             </div>

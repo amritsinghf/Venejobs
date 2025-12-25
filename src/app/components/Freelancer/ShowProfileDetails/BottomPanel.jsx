@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
-import SvgIcon from "../../Utility/SvgIcon";
 import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const BottomPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {

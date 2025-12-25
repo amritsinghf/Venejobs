@@ -1,44 +1,52 @@
-export default function JobTabs({ showData, setshowData }) {
+import { useRef, useLayoutEffect, useState } from "react";
+
+export default function JobTabs({ tabs, showData, setshowData }) {
+    const tabRefs = useRef([]);
+    const [indicatorStyle, setIndicatorStyle] = useState({
+        width: 0,
+        left: 0,
+    });
+
+    useLayoutEffect(() => {
+        const currentTab = tabRefs.current[showData];
+
+        if (currentTab) {
+            setIndicatorStyle({
+                width: currentTab.offsetWidth + 5,
+                left: currentTab.offsetLeft,
+            });
+        }
+    }, [showData, tabs]);
+
     return (
         <>
-            <div className="flex gap-15 justify-start">
-                <button onClick={() => setshowData(true)}>
-                    <p
-                        className={`
-                            font-semibold text-base tracking-wide cursor-pointer relative pb-2
-                            ${showData ? "text-blue-900" : "text-paragraph"}
-                        `}
-                    >
-                        All job posts
-                    </p>
-                </button>
+            {/* Tabs */}
+            <div className="relative">
+                <div className="flex gap-5 md:gap-15 justify-start">
+                    {tabs.map((tab, index) => (
+                        <button
+                            key={index}
+                            ref={(el) => (tabRefs.current[index] = el)}
+                            onClick={() => setshowData(index)}
+                        >
+                            <p
+                                className={`font-semibold cursor-pointer text-sm md:text-base tracking-wide pb-2
+                                ${showData === index ? "text-blue-900" : "text-paragraph"}`}
+                            >
+                                {tab.label}
+                            </p>
+                        </button>
+                    ))}
+                </div>
 
-                <button onClick={() => setshowData(false)}>
-                    <p
-                        className={`
-                            font-semibold lg:text-base tracking-wide cursor-pointer relative pb-2
-                            ${!showData ? "text-blue-900" : "text-paragraph"}
-                        `}
-                    >
-                        Your Active Contracts
-                    </p>
-                </button>
-            </div>
+                {/* HR */}
+                <hr className="border-[#44444414] mt-1" />
 
-            {/* HR + underline wrapper */}
-            <div className="relative mt-1">
-                <hr className="border-gray-300" />
-
-                {/* underline */}
+                {/* Underline */}
                 <div
-                    className={`
-                        absolute bottom-0 h-0.5 bg-blue-900 transition-all duration-300
-                        ${showData
-                            ? "left-0 w-[110px]"   
-                            : "left-[145px] lg:left-[150px] w-[150px] lg:w-[200px]"
-                        }
-                    `}
-                ></div>
+                    className="absolute bottom-0 h-0.5 bg-blue-900 transition-all duration-300"
+                    style={indicatorStyle}
+                />
             </div>
         </>
     );

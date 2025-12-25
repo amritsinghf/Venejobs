@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function OtpModal({ children, setActiveModal, email }) {
   return (

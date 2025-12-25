@@ -9,6 +9,7 @@ import {
   getProjectExperienceLevel,
   getProjectSize,
   getSkillsByCategory,
+  getJobById,
 } from "../lib/jobs";
 
 const jobApiStore = create((set) => ({
@@ -137,7 +138,7 @@ const jobApiStore = create((set) => ({
   getJobById: async (id) => {
     set({ loading: true, error: null });
     try {
-      const res = await get_job_by_id(id);
+      const res = await getJobById(id);
       set({ job: res.job, loading: false });
     } catch (err) {
       set({ error: err.message, loading: false });

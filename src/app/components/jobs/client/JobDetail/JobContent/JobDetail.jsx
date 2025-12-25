@@ -64,21 +64,15 @@ const JobDetail = () => {
           <div className="flex gap-4 md:gap-8 items-center">
             <SvgIcon name="PriceTag" />
             <div className="flex flex-col gap-2">
-              <h2 className="text-[#333333] lg:text-lg font-semibold">
-                ${job.budget_amount}
-              </h2>
-              <p className="text-paragraph text-sm lg:text-base font-medium">
-                {job.budget_type} Price
-              </p>
+              <h2 className="text-heading lg:text-lg font-semibold">${job.budget_amount}</h2>
+              <p className="text-paragraph text-sm lg:text-base font-medium">{job.budget_type} Price</p>
             </div>
           </div>
 
           <div className="flex gap-4 md:gap-8 items-center ">
             <SvgIcon name="PersonWSetting" size={24} />
             <div className="flex flex-col gap-2">
-              <h2 className="text-[#333333] font-semibold lg:text-lg">
-                Entry level
-              </h2>
+              <h2 className="text-heading font-semibold lg:text-lg">Entry level</h2>
               <p className="text-paragraph text-sm lg:text-base font-medium">
                 {job.experience_level}
               </p>

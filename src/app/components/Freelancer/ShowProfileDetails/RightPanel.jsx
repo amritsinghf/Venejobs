@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import React from "react";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
