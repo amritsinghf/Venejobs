@@ -36,6 +36,6 @@ export async function getAllJobs(page, limit) {
   return api.get(`api/jobs?limit=${limit}&page=${page}`);
 }
 
-export async function get_job_by_id(id) {
+export async function getJobById(id) {
   return api.get(`api/jobs/${id}`);
 }

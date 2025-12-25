@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function JobDescription({ text, font }) {
+export default function JobDescription({
+    text,
+    font,
+    paragraphFont = "font-medium leading-relaxed",
+    mobileLines = 6,
+    desktopLines = 3,
+}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLong, setIsLong] = useState(false);
-
     const textRef = useRef(null);
 
     useEffect(() => {
@@ -15,15 +20,19 @@ export default function JobDescription({ text, font }) {
         }
     }, []);
 
+    const clampClass = !isExpanded
+        ? `line-clamp-${mobileLines} lg:line-clamp-${desktopLines}`
+        : "";
+
     return (
         <div>
             <p
                 ref={textRef}
-                className={`text-paragraph text-sm lg:text-base font-medium transition-all duration-200 ${!isExpanded ? "line-clamp-6 lg:line-clamp-3" : ""
-                    }`}
+                className={`text-paragraph text-sm lg:text-base ${paragraphFont} transition-all duration-200 ${clampClass}`}
             >
                 {text}
             </p>
+
             {isLong && (
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}

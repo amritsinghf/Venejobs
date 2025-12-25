@@ -1,15 +1,8 @@
-import { useState } from "react";
 import Image from "next/image";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import JobDescription from "../../jobs/JobDescription";
 
 export default function FreelancerCard({ index, total }) {
-  const [page, setPage] = useState(1);
-  const totalPage = 3;
-
-  const selectPage = (p) => {
-    if (p >= 1 && p <= totalPage) setPage(p);
-  };
 
   const skills = [
     "Landing Page",
@@ -20,7 +13,9 @@ export default function FreelancerCard({ index, total }) {
   ];
 
   return (
-    <div className="flex flex-col p-4 md:p-5 gap-4">
+    <div
+      className="flex flex-col gap-4"
+    >
       {/* title and image */}
       <div className="flex items-center gap-6 w-full lg:w-auto justify-between">
         <div className="flex items-center gap-3 md:gap-6 w-full md:w-auto">

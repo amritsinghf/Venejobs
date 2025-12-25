@@ -12,6 +12,13 @@ export default function JobDetail() {
   const params = useParams();
   const jobId = params.jobId;
 
+  const tabs = [
+    { id: "all", label: "All job posts" },
+    { id: "review", label: "Review Proposals (2)" },
+    { id: "invite", label: "Invite Freelancers" },
+    { id: "hire", label: "Hire (0)" },
+  ];
+
   const { job, loading, error, getJobById } = jobApiStore();
 
   useEffect(() => {
@@ -54,7 +61,7 @@ export default function JobDetail() {
 
   return (
     <ClientLayout>
-      <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-4 mb-30 my-10 md:my-20 md:mb-20 md:mx-auto">
+      <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
         <div className="flex flex-col gap-6 lg:gap-10">
           <div className="flex flex-col lg:flex-row gap-6 lg:justify-between">
             <h2 className="text-2xl lg:text-[44px] text-heading font-semibold">
@@ -72,8 +79,8 @@ export default function JobDetail() {
             </div>
           </div>
 
-          <div>
-            <JobTabs showData={showData} setshowData={setshowData} />
+          <div className="flex flex-col gap-4 lg:gap-8">
+            <JobTabs tabs={tabs} showData={showData} setshowData={setshowData} />
             <JobTabContent showData={showData} />
           </div>
         </div>
