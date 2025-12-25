@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function NewPasswordModalWrapper({ children, setActiveModal }) {
   const modalRef = useRef(null);

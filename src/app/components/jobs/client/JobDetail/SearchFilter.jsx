@@ -1,4 +1,4 @@
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 export default function SearchFilter() {
   return (
     <div className="flex flex-row md:gap-10 mb-2 gap-5 items-center">

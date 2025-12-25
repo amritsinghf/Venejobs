@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Pagination from "../../Pagination";
+import Pagination from "@/app/components/Pagination/Pagination";
+
 
 const images = [
   "/Service-Detail.png",

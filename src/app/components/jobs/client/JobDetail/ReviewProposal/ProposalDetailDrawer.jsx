@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
-import SvgIcon from "@/app/components/SvgIcon";
-import JobTabs from "../JobTabs";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Coverletter from "./ProposalDetailDrawer/Coverletter";
-
+import JobTabs from "../JobTabs";
 export default function ProposalDetailDrawer({ isOpen, onClose }) {
 
   const [showData, setshowData] = useState("coverLetter");

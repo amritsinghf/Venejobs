@@ -1,4 +1,4 @@
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import HireForm from "./HireForm";
 
 const ProjectOverview = () => {

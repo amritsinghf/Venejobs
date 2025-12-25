@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import SvgIcon from "../../SvgIcon";
-import Pagination from "../../Pagination";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
+import Pagination from "../../Pagination/Pagination";
 
 const ServiceCard = () => {
   const services = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

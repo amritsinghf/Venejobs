@@ -1,5 +1,5 @@
 import ClientLayout from "@/app/layout/ClientLayout";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import ServiceCard from "@/app/components/Client/Service/ServiceCard";
 
 export default function Service() {

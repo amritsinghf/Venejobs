@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import JobDescription from "../../../JobDescription";
 
 export default function ProposalCard({ onOpen }) {

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Routes } from "@/app/routes.js";
 import { useState } from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Loader from "../../common/Loader";
 
 export default function HeaderSection({ name }) {
@@ -35,11 +35,10 @@ export default function HeaderSection({ name }) {
                         bg-primary text-white text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
                         font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
                         rounded transition-all duration-300 gap-2
-                        ${
-                          loadingBtn === "post"
-                            ? "opacity-60 cursor-not-allowed"
-                            : ""
-                        }
+                        ${loadingBtn === "post"
+              ? "opacity-60 cursor-not-allowed"
+              : ""
+            }
                     `}
         >
           {loadingBtn === "post" ? (
@@ -59,11 +58,10 @@ export default function HeaderSection({ name }) {
                         bg-white text-paragraph text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
                         font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
                         rounded transition-all duration-300
-                        ${
-                          loadingBtn === "talent"
-                            ? "opacity-60 cursor-not-allowed"
-                            : ""
-                        }
+                        ${loadingBtn === "talent"
+              ? "opacity-60 cursor-not-allowed"
+              : ""
+            }
                     `}
           style={{
             boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",

@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import JobTabs from "@/app/components/jobs/client/JobDetail/JobTabs";
 import ClientLayout from "@/app/layout/ClientLayout";
 import JobTabContent from "@/app/components/jobs/client/JobDetail/JobTabContent";
 import { useParams } from "next/navigation";
 import jobApiStore from "@/app/store/jobStore";
+import JobTabs from "@/app/components/jobs/client/JobDetail/JobTabs";
 
 export default function JobDetail() {
   const [showData, setshowData] = useState("all");

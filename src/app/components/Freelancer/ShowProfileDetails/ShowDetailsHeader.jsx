@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../button/Button";
 import Image from "next/image";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const ShowDetailsHeader = ({ name, country }) => {
   return (

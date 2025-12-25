@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import Pagination from "@/app/components/Pagination";
 import Image from "next/image";
+import Pagination from "@/app/components/Pagination/Pagination";
 
 export default function CoverletterDetail() {
   const reviews = [1, 2, 3];

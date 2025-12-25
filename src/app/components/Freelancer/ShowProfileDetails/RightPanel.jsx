@@ -1,5 +1,5 @@
 import React from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 
@@ -115,8 +115,8 @@ const RightPanel = ({ freelancerProfile }) => {
                   <p>4.9</p>
                 </div>
                 <p className="font-semibold text-heading">
-                  {item.start_date} -{" "} {item.end_date} 
-                  
+                  {item.start_date} -{" "} {item.end_date}
+
                 </p>
               </div>
               <hr className="text-gray-200" />

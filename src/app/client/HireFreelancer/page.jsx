@@ -1,8 +1,8 @@
 "use client";
-import SvgIcon from "@/app/components/SvgIcon";
 import ClientLayout from "@/app/layout/ClientLayout";
 import ProjectOverview from "@/app/components/Client/HirePage/ProjectOverview";
 import FreelancerDetail from "@/app/components/Client/HirePage/FreelancerDetail";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function HireFreelancer() {
   return (

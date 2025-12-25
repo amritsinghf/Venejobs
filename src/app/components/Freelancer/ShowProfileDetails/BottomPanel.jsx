@@ -1,6 +1,6 @@
 import React from "react";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const BottomPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -67,7 +67,7 @@ const BottomPanel = ({ freelancerProfile }) => {
         </div>
       ))}
 
-      
+
       <div className="flex justify-end">
         <PaginationFreelance totalPages={5} />
       </div>

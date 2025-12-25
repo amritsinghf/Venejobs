@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../../common/Loader";
 

@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import JobTabs from "@/app/components/homeUI/JobTabs";
 import ProposalCard from "./ReviewProposal/ProposalCard";
 import ShortlistCard from "./ReviewProposal/ShortlistCard";
 import SearchFilter from "./SearchFilter";
 import ProposalDetailDrawer from "./ReviewProposal/ProposalDetailDrawer";
+import JobTabs from "@/app/components/Client/homeUI/JobTabs";
+
 
 export default function ReviewProposal() {
   const [showData, setshowData] = useState(0);

@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import userApiStore from "@/app/store/userStore";
 import toastStore from "@/app/store/toastStore";
 import { Routes } from "@/app/routes";
@@ -74,10 +74,9 @@ export default function DesktopLinks() {
                 className={`
                   flex items-center gap-4 w-full px-3 py-3 rounded-lg font-medium 
                   text-base leading-none transition-all tracking-wide
-                  ${
-                    isActive
-                      ? "bg-secondary text-white"
-                      : "text-paragraph hover:bg-[#F2F4F7]"
+                  ${isActive
+                    ? "bg-secondary text-white"
+                    : "text-paragraph hover:bg-[#F2F4F7]"
                   }
                 `}
               >

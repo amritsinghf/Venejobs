@@ -1,6 +1,6 @@
 "use client";
 import ClientLayout from "@/app/layout/ClientLayout";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Image from "next/image";
 import ServiceContent from "@/app/components/Client/Service/ServiceContent";
 import ServiceRightPanal from "@/app/components/Client/Service/ServiceRightPanal";

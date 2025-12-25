@@ -1,9 +1,9 @@
 import { useFormContext } from "react-hook-form";
-import SvgIcon from "../../SvgIcon";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useState, useRef } from "react";
 import Link from "next/link";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function ContractTerms({ onNext }) {
   const {

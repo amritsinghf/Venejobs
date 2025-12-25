@@ -1,5 +1,5 @@
 import ClientLayout from "@/app/layout/ClientLayout";
-import SvgIcon from "@/app/components/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import BillingMethod from "@/app/components/Client/HirePage/BillingMethod";
 import HirePriceTotal from "@/app/components/Client/HirePage/HirePriceTotal";
 

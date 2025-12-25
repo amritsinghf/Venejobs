@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import SvgIcon from "../../SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { useState } from "react";
 import SuccessOfferCreate from "./SuccessOfferCreate";
 

@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import JobTabs from "@/app/components/homeUI/JobTabs";
 import SearchCard from "./InviteFreelancer/SearchCard";
 import InvitedFreelancerCard from "./InviteFreelancer/InvitedFreelancerCard";
 import SearchFilter from "./SearchFilter";
+import JobTabs from "@/app/components/Client/homeUI/JobTabs";
 
 export default function InviteFreelancer() {
   const [showData, setshowData] = useState(0);
