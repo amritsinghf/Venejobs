@@ -20,7 +20,7 @@ const CategorySelector = ({
 }) => {
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl text-heading font-bold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                 Select the Category
             </h2>
 
@@ -42,7 +42,7 @@ const CategorySelector = ({
                                 htmlFor={item.code}
                                 className="flex flex-col py-3 px-4 items-center justify-center w-full
                 rounded-lg cursor-pointer border border-[#D0D5DD]
-                transition-all peer-checked:bg-secondary peer-checked:**:text-white"
+               peer-checked:bg-secondary peer-checked:**:text-white"
                             >
                                 <div className="flex items-center gap-3">
                                     <span className="text-paragraph text-sm lg:text-base">

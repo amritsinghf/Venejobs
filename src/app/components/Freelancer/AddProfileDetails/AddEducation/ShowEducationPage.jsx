@@ -9,7 +9,7 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
           Education History
         </h2>
         <button
@@ -34,7 +34,7 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
       {fields.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+          className="border border-gray-200 p-4 rounded-lg flex md:flex-row justify-between items-center md:items-center gap-4"
         >
           <div className="flex flex-col gap-2">
             <h2 className="font-bold text-lg">{item.institution_name}</h2>
@@ -47,7 +47,7 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
             <button
               type="button"
               className="
-                w-8 h-8 md:w-12 md:h-12
+                w-10 h-10
                 flex items-center justify-center
               bg-secondary text-white
                 rounded-full cursor-pointer
@@ -65,7 +65,7 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
             <button
               type="button"
               className="
-                w-8 h-8 md:w-12 md:h-12
+                w-10 h-10
                 flex items-center justify-center
               bg-secondary text-white
                 rounded-full cursor-pointer

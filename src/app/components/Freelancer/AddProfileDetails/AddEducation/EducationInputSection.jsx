@@ -38,7 +38,7 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
       {/* Show Add Panel only if no education added yet */}
       {fields.length === 0 && (
         <>
-          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+          <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
             Add Education
           </h2>
 

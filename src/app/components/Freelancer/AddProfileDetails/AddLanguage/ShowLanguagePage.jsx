@@ -14,6 +14,7 @@ const ShowLanguagePage = ({
         const language = languagesData.find(
           (l) => l.name === field.language
         )?.name;
+
         const proficiency = proficiencyData.find(
           (p) => p.name === field.proficiency
         )?.name;
@@ -21,27 +22,55 @@ const ShowLanguagePage = ({
         return (
           <div
             key={field.id}
-            className="group relative flex items-center justify-between rounded-xl bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md"
+            className="
+              group relative
+              flex gap-4
+              sm:flex-row sm:items-center justify-between
+              rounded-2xl border border-gray-100 bg-white
+              p-4 sm:p-5
+              shadow-sm transition-all duration-300
+              hover:shadow-lg hover:-translate-y-px
+            "
           >
-            {/* Left accent bar */}
-            <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[#5BBB7B]" />
-
-            {/* Language info */}
-            <div className="pl-3">
-              <p className="text-base font-semibold text-gray-800">
+            {/* Content */}
+            <div className="pl-4">
+              <p className="text-base font-semibold text-heading">
                 {language}
               </p>
-              <span className="mt-1 inline-block rounded-full bg-green-50 px-3 py-0.5 text-sm font-medium text-[#3fa866]">
+
+              <span
+                className="
+                  mt-1 inline-flex items-center
+                  rounded-full bg-secondary/10
+                  px-3 py-0.5
+                  text-sm font-medium text-secondary
+                "
+              >
                 {proficiency}
               </span>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-2 opacity-80 transition group-hover:opacity-100">
+            <div
+              className="
+                flex items-center justify-end gap-3
+                opacity-80 transition
+                group-hover:opacity-100
+              "
+            >
               <button
                 type="button"
                 onClick={() => handleEdit(index)}
-                className="flex items-center justify-center rounded-lg bg-[#5BBB7B] p-2 text-white transition hover:bg-[#4aa86c]"
+                className="
+                  flex h-10 w-10 items-center justify-center
+                  rounded-lg border border-secondary/30
+                  bg-secondary/10
+                  text-secondary
+                  transition-all
+                  hover:bg-secondary hover:text-white
+                  focus:outline-none
+                  cursor-pointer
+                "
               >
                 <SvgIcon name="Editing" size={18} />
               </button>
@@ -49,7 +78,16 @@ const ShowLanguagePage = ({
               <button
                 type="button"
                 onClick={() => handleDelete(index)}
-                className="flex items-center justify-center rounded-lg bg-red-500 p-2 text-white transition hover:bg-red-600"
+                className="
+                  flex h-10 w-10 items-center justify-center
+                  rounded-lg border border-red-200
+                  bg-red-50
+                  text-red-500
+                  transition-all
+                  hover:bg-red-500 hover:text-white
+                  focus:outline-none
+                  cursor-pointer
+                "
               >
                 <SvgIcon name="Delete1" size={18} />
               </button>

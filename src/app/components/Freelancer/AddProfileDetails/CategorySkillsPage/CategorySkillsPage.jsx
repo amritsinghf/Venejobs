@@ -117,15 +117,17 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             getskillsbycategory={getskillsbycategory}
           />
 
-          <SkillsSelector
-            categoryName={categoryName}
-            skills_data={skills_data}
-            selectedItems={selectedItems}
-            handleCheckboxChange={handleCheckboxChange}
-            inputValue={inputValue}
-            handleInputChange={handleInputChange}
-            errors={errors}
-          />
+          {selectedCategory && (
+            <SkillsSelector
+              categoryName={categoryName}
+              skills_data={skills_data}
+              selectedItems={selectedItems}
+              handleCheckboxChange={handleCheckboxChange}
+              inputValue={inputValue}
+              handleInputChange={handleInputChange}
+              errors={errors}
+            />
+          )}
 
           <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button

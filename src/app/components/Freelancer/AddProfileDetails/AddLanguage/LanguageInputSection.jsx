@@ -64,6 +64,16 @@ const LanguageInputSection = ({
   const handleSave = () => {
     if (!languageTemp.language || !languageTemp.proficiency) return;
 
+    const alreadyExists = fields.some(
+      (item, idx) =>
+        item.language === languageTemp.language && idx !== editIndex
+    );
+
+    if (alreadyExists) {
+      showError("This language is already added.", "error");
+      return;
+    }
+
     if (editIndex !== null) {
       update(editIndex, languageTemp);
     } else {
@@ -73,6 +83,7 @@ const LanguageInputSection = ({
     setlanguageTemp({ language: "", proficiency: "" });
     setEditIndex(null);
   };
+
 
   const handleEdit = (index) => {
     setlanguageTemp(fields[index]);
@@ -96,52 +107,130 @@ const LanguageInputSection = ({
     }
   };
 
+  const selectedLanguages = fields.map((item) => item.language);
+
+
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col gap-6 w-full">
-            <h2 className="text-2xl text-heading font-semibold">Language</h2>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col gap-4 w-full">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
+              Language
+            </h2>
+            <div className="relative w-full">
+              <select
+                name="language"
+                value={languageTemp.language}
+                onChange={handleChange}
+                className="
+                  w-full py-3.5 pl-3 pr-10
+                  text-sm lg:text-base
+                  border border-[#D0D5DD]
+                  rounded-md
+                focus:border-secondary focus:outline-none
+                text-heading tracking-wide
+                  appearance-none bg-white
+                "
+              >
+                <option value="">Select language</option>
 
-            <select
-              name="language"
-              value={languageTemp.language}
-              onChange={handleChange}
-              className="text-paragraph py-2 border rounded"
-            >
-              <option value="">Select language</option>
-              {languagesData.map((item) => (
-                <option value={item.name} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+                {languagesData
+                  .filter((item) => {
+                    if (editIndex !== null && item.name === fields[editIndex]?.language) {
+                      return true;
+                    }
+
+                    return !selectedLanguages.includes(item.name);
+                  })
+                  .map((item) => (
+                    <option value={item.name} key={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+
+
+              {/* Custom Dropdown Icon */}
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.937a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
+
           </div>
-          <div className="flex flex-col gap-6 w-full">
-            <h2 className="text-2xl text-heading font-semibold">
+
+          <div className="flex flex-col gap-4 w-full">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Proficiency level
             </h2>
 
-            <select
-              name="proficiency"
-              value={languageTemp.proficiency}
-              onChange={handleChange}
-              className="text-paragraph py-2 border rounded"
-            >
-              <option value="">Select proficiency</option>
-              {proficiencyData.map((item) => (
-                <option value={item.name} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+            <div className="relative w-full">
+              <select
+                name="proficiency"
+                value={languageTemp.proficiency}
+                onChange={handleChange}
+                className="
+                  w-full py-3.5 pl-3 pr-10
+                  text-sm lg:text-base
+                  border border-[#D0D5DD]
+                  rounded-md
+                focus:border-secondary focus:outline-none
+                text-heading tracking-wide
+                  appearance-none bg-white
+                "
+              >
+                <option value="">Select proficiency</option>
+                {proficiencyData.map((item) => (
+                  <option value={item.name} key={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Custom Dropdown Icon */}
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.937a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
           </div>
+
         </div>
         <div className="flex items-center justify-end">
           <button
             type="button"
-            className="px-4 py-2 bg-secondary text-white rounded"
             onClick={handleSave}
+            className="
+              px-10 py-3
+            bg-secondary text-white
+              rounded-lg
+              font-semibold tracking-wide
+              transition-all duration-300
+            hover:bg-secondary/90
+              active:scale-95
+              focus:outline-none focus:ring-2 focus:ring-secondary/40
+              shadow-md hover:shadow-lg
+              cursor-pointer
+            "
           >
             {editIndex !== null ? "Update" : "Add"}
           </button>

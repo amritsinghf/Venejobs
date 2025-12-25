@@ -19,8 +19,8 @@ const SkillsSelector = ({
 
 
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-xl xl:text-2xl text-heading font-bold">
+    <div className="flex flex-col gap-4 transition-all">
+      <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
         Search skills or add your own
       </h2>
 

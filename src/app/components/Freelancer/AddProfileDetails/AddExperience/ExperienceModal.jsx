@@ -57,9 +57,7 @@ const InputField = ({
   type = "text",
 }) => (
   <div className="flex flex-col gap-2">
-    <label className="font-medium text-sm lg:text-base">
-      {label}
-    </label>
+    <label className="font-medium lg:text-base tracking-wide">{label}</label>
 
     <input
       type={type}
@@ -75,16 +73,14 @@ const InputField = ({
         tracking-wide placeholder:text-sm
         border transition-all duration-200
         focus:outline-none
-
         ${disabled
           ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"}
+          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+        }
       `}
     />
 
-    {error && (
-      <p className="text-red-500 text-sm">{error}</p>
-    )}
+    {error && <p className="text-red-500 text-sm">{error}</p>}
   </div>
 );
 
@@ -146,7 +142,6 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-
   const handleSave = () => {
     const validationErrors = validateExperience(experience);
     if (Object.keys(validationErrors).length) {
@@ -163,10 +158,23 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-      <div className="bg-white w-full max-w-[1000px] rounded-2xl max-h-screen overflow-y-auto">
-        <div className="px-6 py-8 flex flex-col gap-6">
+      {/* Modal Container */}
+      <div
+        className="
+          bg-white
+          w-full h-full
+          rounded-none
+          overflow-y-auto
 
-          <div className="flex justify-between items-center">
+          md:h-auto
+          md:max-h-[90vh]
+          md:max-w-[1000px]
+          md:rounded-2xl
+        "
+      >
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          {/* Header */}
+          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
             <h2 className="text-xl font-bold">
               {editIndex !== null ? "Edit Employment" : "Add Employment"}
             </h2>
@@ -175,48 +183,112 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             </button>
           </div>
 
+          {/* Form */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-            <InputField label="Job Title" name="job_title" value={experience.job_title} onChange={handleChange} error={errors.job_title} placeholder="Ex: Frontend Developer" />
-            <InputField label="Company Name" name="company" value={experience.company} onChange={handleChange} error={errors.company} placeholder="Ex: Infosys" />
-            <InputField label="Location" name="location" value={experience.location} onChange={handleChange} error={errors.location} placeholder="Ex: London" />
-            <InputField label="City" name="city" value={experience.city} onChange={handleChange} error={errors.city} placeholder="Ex: London" />
+            <InputField
+              label="Job Title"
+              name="job_title"
+              value={experience.job_title}
+              onChange={handleChange}
+              error={errors.job_title}
+              placeholder="Ex: Frontend Developer"
+            />
 
-            <InputField label="Start Month" name="start_month" value={experience.start_month} onChange={handleChange} error={errors.start_month} type="number" placeholder="1-12" />
-            <InputField label="Start Year" name="start_year" value={experience.start_year} onChange={handleChange} error={errors.start_year} type="number" placeholder={new Date().getFullYear() - 1} />
+            <InputField
+              label="Company Name"
+              name="company"
+              value={experience.company}
+              onChange={handleChange}
+              error={errors.company}
+              placeholder="Ex: Infosys"
+            />
 
-            <InputField label="End Month" name="end_month" value={experience.end_month} onChange={handleChange} error={errors.end_month} type="number" placeholder="1-12" disabled={experience.is_current} />
-            <InputField label="End Year" name="end_year" value={experience.end_year} onChange={handleChange} error={errors.end_year} type="number" placeholder={new Date().getFullYear()} disabled={experience.is_current} />
+            <InputField
+              label="Location"
+              name="location"
+              value={experience.location}
+              onChange={handleChange}
+              error={errors.location}
+              placeholder="Ex: London"
+            />
 
+            <InputField
+              label="City"
+              name="city"
+              value={experience.city}
+              onChange={handleChange}
+              error={errors.city}
+              placeholder="Ex: London"
+            />
+
+            <InputField
+              label="Start Month"
+              name="start_month"
+              value={experience.start_month}
+              onChange={handleChange}
+              error={errors.start_month}
+              type="number"
+              placeholder="1-12"
+            />
+
+            <InputField
+              label="Start Year"
+              name="start_year"
+              value={experience.start_year}
+              onChange={handleChange}
+              error={errors.start_year}
+              type="number"
+              placeholder={new Date().getFullYear() - 1}
+            />
+
+            <InputField
+              label="End Month"
+              name="end_month"
+              value={experience.end_month}
+              onChange={handleChange}
+              error={errors.end_month}
+              type="number"
+              placeholder="1-12"
+              disabled={experience.is_current}
+            />
+
+            <InputField
+              label="End Year"
+              name="end_year"
+              value={experience.end_year}
+              onChange={handleChange}
+              error={errors.end_year}
+              type="number"
+              placeholder={new Date().getFullYear()}
+              disabled={experience.is_current}
+            />
+
+            {/* Checkbox */}
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 name="is_current"
                 checked={experience.is_current}
                 onChange={handleChange}
-                className="appearance-none 
-                  w-5 h-5 border-2 
-                  border-gray-300 
-                  rounded-md checked:bg-primary 
-                  checked:border-primary relative 
-                  transition-all duration-200 
-                  after:content-['✓'] after:absolute 
-                  after:text-white
-                  after:text-sm
-                  after:font-bold
-                  after:-top-0.5
-                  after:left-0.5
-                  after:opacity-0
-                  checked:after:opacity-100
+                className="
+                  appearance-none w-5 h-5 border-2 border-gray-300 rounded-md
+                  checked:bg-primary checked:border-primary relative
+                  transition-all duration-200
+                  after:content-['✓'] after:absolute after:text-white
+                  after:text-sm after:font-bold after:-top-0.5 after:left-0.5
+                  after:opacity-0 checked:after:opacity-100
                 "
               />
-              <span className="text-base text-heading font-medium">
+              <span className="text-base font-medium">
                 I currently work here
               </span>
             </label>
 
-
-            <div className="col-span-2 flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-base">Description</label>
+            {/* Description */}
+            <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
+              <label className="font-semibold text-sm lg:text-base">
+                Description
+              </label>
               <textarea
                 name="description"
                 value={experience.description}
@@ -231,19 +303,23 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             </div>
           </div>
 
+          {/* Footer */}
           <div className="flex justify-end gap-4">
-            <Button onClick={close}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
+            <Button
+              onClick={close}
+              className="bg-white text-gray-800"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.08)",
               }}
-            >Cancel</Button>
+            >
+              Cancel
+            </Button>
+
             <Button onClick={handleSave} className="bg-secondary text-white">
               Save
             </Button>
           </div>
-
         </div>
       </div>
     </div>

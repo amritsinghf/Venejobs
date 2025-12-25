@@ -64,7 +64,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
         <div className="w-full flex flex-col gap-6">
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl text-heading font-bold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Project size
             </h2>
             <div className="flex flex-col gap-4">
@@ -107,7 +107,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl text-heading font-bold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Deadline
             </h2>
             <div className="flex flex-wrap  gap-4 justify w-full">
@@ -143,7 +143,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
           )}
 
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl text-heading font-bold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               What level of experience will it need?
             </h2>
 

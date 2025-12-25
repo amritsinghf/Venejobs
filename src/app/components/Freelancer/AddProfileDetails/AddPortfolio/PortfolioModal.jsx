@@ -24,11 +24,9 @@ const validatePortfolio = (data) => {
 
       if (!["http:", "https:"].includes(url.protocol)) {
         errors.image_url = "URL must start with http:// or https://";
-      }
-      else if (url.hostname.endsWith(".")) {
+      } else if (url.hostname.endsWith(".")) {
         errors.image_url = "Domain name cannot end with a dot";
-      }
-      else if (!url.hostname.includes(".")) {
+      } else if (!url.hostname.includes(".")) {
         errors.image_url = "Enter a valid domain name";
       }
     } catch {
@@ -39,7 +37,6 @@ const validatePortfolio = (data) => {
   return errors;
 };
 
-
 const InputField = ({
   label,
   name,
@@ -49,14 +46,14 @@ const InputField = ({
   placeholder,
 }) => (
   <div className="flex flex-col gap-2">
-    <label className="font-bold text-base">{label}</label>
+    <label className="font-medium text-base tracking-wide">{label}</label>
     <input
       type="text"
       name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none tracking-wide placeholder:text-sm"
     />
     {error && <p className="text-red-500 text-sm">{error}</p>}
   </div>
@@ -87,7 +84,6 @@ const PortfolioModal = ({
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-
   const handleSave = () => {
     const validationErrors = validatePortfolio(portfolio);
     if (Object.keys(validationErrors).length) {
@@ -104,10 +100,21 @@ const PortfolioModal = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-      <div className="bg-white w-full max-w-[1000px] rounded-2xl max-h-screen overflow-y-auto">
-        <div className="px-6 py-8 flex flex-col gap-6">
-
-          <div className="flex justify-between items-center">
+      <div
+        className="
+          bg-white
+          w-full h-full
+          rounded-none
+          overflow-y-auto
+          flex flex-col
+          md:h-auto
+          md:max-h-[90vh]
+          md:max-w-[800px]
+          md:rounded-2xl
+        "
+      >
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6 flex-1">
+          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
             <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
               {editIndex !== null ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
@@ -138,20 +145,22 @@ const PortfolioModal = ({
               placeholder="https://example.com"
             />
           </div>
+        </div>
 
-          <div className="flex justify-end gap-6 mt-10">
-            <Button onClick={() => setshowForm(false)}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >Cancel</Button>
-            <Button className="bg-secondary text-white" onClick={handleSave}>
-              Save
-            </Button>
-          </div>
-
+        <div className="sticky bottom-0 bg-white px-4 py-4 md:px-6 flex justify-end gap-4">
+          <Button
+            onClick={() => setshowForm(false)}
+            className="bg-white text-gray-800 w-full"
+            style={{
+              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            Cancel
+          </Button>
+          <Button className="bg-secondary text-white w-full" onClick={handleSave}>
+            Save
+          </Button>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
 
   return (
     <div className="flex flex-col w-full gap-6">
-      <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+      <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
         Add Portfolio
       </h2>
 
@@ -47,7 +47,7 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
           }}
         >
           <Image src="/icons/Add.png" alt="Add button" width={40} height={40} />
-          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+          <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
             Add Portfolio
           </h2>
         </div>

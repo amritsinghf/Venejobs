@@ -36,7 +36,7 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
     <div className="flex flex-col w-full">
       {fields.length === 0 ? (
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+          <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
             Add Experience
           </h2>
 

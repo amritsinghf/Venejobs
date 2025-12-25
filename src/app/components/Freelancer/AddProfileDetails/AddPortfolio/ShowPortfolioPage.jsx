@@ -10,7 +10,7 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
           Portfolio History
         </h2>
         <button
@@ -24,7 +24,7 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
       {fields.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+          className="border border-gray-200 p-4 rounded-lg flex md:flex-row justify-between items-center md:items-center gap-4"
         >
           <div className="flex flex-col gap-2">
             <h2 className="font-bold text-lg">{item.title}</h2>

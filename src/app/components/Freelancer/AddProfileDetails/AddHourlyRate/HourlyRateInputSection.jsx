@@ -23,10 +23,10 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-col  justify-between  gap-3">
-          <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-            <div className="flex flex-col gap-6 w-full">
-              <h2 className="text-2xl text-heading font-semibold">
+        <div className="flex flex-col  justify-between gap-4">
+          <div className="flex flex-col xl:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col gap-4 w-full">
+              <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                 Set your hourly rate
               </h2>
               <input
@@ -40,18 +40,19 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
                     message: "Hourly Rate is required",
                   },
                 })}
-                className="border border-gray-200 rounded px-3 py-2"
+                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
               />
-              <div className="min-h-5">
-                {errors.hourly_rate && (
+
+              {errors.hourly_rate && (
+                <div className="min-h-5">
                   <span className="text-red-500 text-sm">
                     {errors.hourly_rate.message}
                   </span>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-            <div className="flex flex-col gap-6 w-full">
-              <h2 className="text-2xl text-heading font-semibold">
+            <div className="flex flex-col gap-4 w-full">
+              <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                 Service fee
               </h2>
 
@@ -63,15 +64,8 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
                 value={`$${serviceFee.toFixed(2)} (10%)`}
                 placeholder="$0.00"
                 {...register("hourlyRate.ServiceFee")}
-                className="border border-gray-200 rounded px-3 py-2"
+                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
               />
-              <div className="min-h-5">
-                {/* {errors.hourlyRate?.ServiceFee && (
-                  <span className="text-red-500 text-sm">
-                    {errors.hourlyRate.ServiceFee.message}
-                  </span>
-                )} */}
-              </div>
             </div>
           </div>
 
@@ -82,7 +76,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
           </p>
           <hr className="text-gray-200" />
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-semibold text-heading">You’ll get</h2>
             <input
               type="text"
@@ -91,7 +85,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
               name=""
               id=""
               placeholder="$0.00"
-              className="border border-gray-200 rounded px-3 py-2"
+              className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
             />
           </div>
         </div>

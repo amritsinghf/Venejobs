@@ -54,7 +54,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
           <div className="flex flex-col gap-4 w-full ">
             <div className="flex flex-col gap-6 w-full">
               <div className="flex flex-col gap-4">
-                <h2 className="text-xl xl:text-2xl text-heading font-bold">
+                <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                   Tell us about your budget.
                 </h2>
                 <p className="text-gray-500 text-sm xl:text-base font-medium tracking-wide">
@@ -128,7 +128,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
               )}
 
               <div className="flex flex-col gap-4">
-                <h2 className="text-xl xl:text-2xl text-heading font-bold">
+                <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                   What’s the Ideal Budget for Your Project?
                 </h2>
                 <p className="text-gray-500 text-sm xl:text-base font-medium tracking-wide">
