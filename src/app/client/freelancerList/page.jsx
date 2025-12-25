@@ -87,26 +87,6 @@ export default function freelancerList() {
           <SvgIcon name="Filter" color="#01237C" />
         </button>
       </div>
-
-      <div className="h-auto flex flex-col lg:flex-row w-full mt-5 lg:mt-6 gap-3">
-        <FilterSidebar
-          showFilters={showFilters}
-          setShowFilters={setShowFilters}
-        />
-        <div className="flex flex-col w-full lg:w-[70%] lg:w-4/5  ml-0 lg:ml-5">
-          {/* Freelancer List */}
-          {freelancers.map((_, i) => (
-            <FreelancerCard key={i} index={i} total={freelancers.length} />
-          ))}
-        </div>
-      </div>
-      <Pagination
-        page={page}
-        totalPage={totalPage}
-        onChange={selectPage}
-        jobs={freelancers}
-      />
     </ClientLayout >
-
   );
 }
