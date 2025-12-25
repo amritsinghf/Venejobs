@@ -1,6 +1,6 @@
 export default function StepperNumber({ currstep }) {
   return (
-    <div className="flex items-center justify-around md:max-w-[350px] w-full">
+    <div className="flex items-center justify-around w-full md:max-w-[550px] ">
       {[...Array(8)].map((_, i) => (
         <div className="flex items-center w-full" key={i}>
           {/* Circle */}

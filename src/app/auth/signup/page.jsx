@@ -56,7 +56,7 @@ export default function signup() {
             <p className="font-normal text-sm">send,spent and save smarter</p>
 
             <div className="flex justify-evenly mt-5 ">
-              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              <Button className="border border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/google.png"
                   alt="google image"
@@ -65,7 +65,7 @@ export default function signup() {
                 />
                 Sign in with Google
               </Button>
-              <Button className="border-1 border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
+              <Button className="border border-gray-300 w-44 p-1 text-gray-600 rounded cursor-pointer flex gap-1">
                 <Image
                   src="/apple.png"
                   alt="google image"

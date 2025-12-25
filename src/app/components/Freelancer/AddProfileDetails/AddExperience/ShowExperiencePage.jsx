@@ -34,7 +34,7 @@ const ShowExperiencePage = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg lg:text-[32px] ">
+        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
           Employment History
         </h2>
         <button
@@ -49,10 +49,10 @@ const ShowExperiencePage = ({
       {fields.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 p-4 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+          className="border border-gray-200 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
-          <div>
-            <h2 className="font-semibold  text-lg lg:text-2xl">
+          <div className="flex flex-col gap-2">
+            <h2 className="font-semibold text-lg lg:text-xl">
               {item.job_title}
             </h2>
             <p className="text-gray-500 text-sm">
@@ -63,13 +63,13 @@ const ShowExperiencePage = ({
             </p>
 
             {item.description && (
-              <p className="text-gray-700 mt-1">{item.description}</p>
+              <p className="text-gray-700">{item.description}</p>
             )}
           </div>
-          <div className="flex gap-2 mt-2 md:mt-0">
+          <div className="flex gap-4">
             <button
               type="button"
-              className="w-10 h-10 md:w-[50px] md:h-[50px] flex items-center justify-center bg-secondary text-white rounded-full"
+              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
               onClick={() => onEdit(index)}
             >
               <SvgIcon name="Editing" size={20} />
@@ -77,7 +77,7 @@ const ShowExperiencePage = ({
 
             <button
               type="button"
-              className="w-10 h-10 md:w-[50px] md:h-[50px] flex items-center justify-center bg-secondary text-white rounded-full"
+              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
               onClick={() => onDelete(index)}
             >
               <SvgIcon name="Delete1" size={20} />
@@ -91,6 +91,10 @@ const ShowExperiencePage = ({
           type="button"
           onClick={prevStep}
           className="bg-white text-paragraph flex items-center gap-2 shadow"
+          style={{
+            boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+            border: "1px solid rgba(0,0,0,0.08)",
+          }}
         >
           <SvgIcon name="PrevButton" /> Back
         </Button>

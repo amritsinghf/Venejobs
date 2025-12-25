@@ -8,7 +8,7 @@ import ShowExperiencePage from "./ShowExperiencePage";
 import useToastStore from "@/app/store/toastStore";
 
 const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
-  const {showError} = useToastStore.getState();
+  const { showError } = useToastStore.getState();
   const { control, trigger } = useFormContext();
 
   const { fields, append, update, remove } = useFieldArray({
@@ -23,7 +23,7 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
     const valid = await trigger("experiences");
 
     if (fields.length === 0) {
-      showError("Please add at least one experience before proceeding.","error")
+      showError("Please add at least one experience before proceeding.", "error")
       return;
     }
 
@@ -41,7 +41,7 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
           </h2>
 
           <div
-            className="border border-dashed border-gray-500 h-[366px] flex flex-col justify-end pl-3 pb-20 cursor-pointer"
+            className="border border-dashed border-gray-500 flex flex-col items-center justify-center gap-4 cursor-pointer h-40 sm:h-48 md:h-56 lg:h-64"
             onClick={() => {
               setEditIndex(null);
               setShowForm(true);
@@ -50,19 +50,24 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
             <Image
               src="/icons/Add.png"
               alt="Add button"
-              width={40}
-              height={40}
+              width={36}
+              height={36}
             />
-            <h2 className="mt-6 font-semibold text-lg lg:text-[32px]">
+            <h2 className="font-semibold text-lg lg:text-xl mt-2 text-center">
               Add experience
             </h2>
           </div>
+
 
           <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button
               type="button"
               onClick={prevStep}
-              className="bg-white text-paragraph flex items-center gap-2 shadow"
+              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
+              style={{
+                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
             >
               <SvgIcon name="PrevButton" /> Back
             </Button>

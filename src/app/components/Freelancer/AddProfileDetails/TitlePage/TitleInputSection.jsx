@@ -36,7 +36,7 @@ const TitleInputSection = ({ handleNext }) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-4 lg:gap-6">
+        <div className="flex flex-col gap-4">
           <h3 className="text-base lg:text-lg text-heading font-bold">
             Example titles
           </h3>
@@ -50,9 +50,9 @@ const TitleInputSection = ({ handleNext }) => {
             <li>UX/UI Designer, Mobile App Developer, Marketing Expert</li>
           </ul>
 
-          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
+          <h3 className="text-base lg:text-lg text-heading font-bold">
             Overview
-          </h2>
+          </h3>
 
           <div className="flex flex-col gap-2">
             <input

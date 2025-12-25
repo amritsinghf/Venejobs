@@ -35,7 +35,7 @@ export default function SignupFormFields({
             </div>
 
             {/* Username */}
-            <div>
+            {/* <div>
                 <div className="relative h-12">
                     <input
                         type="text"
@@ -53,7 +53,7 @@ export default function SignupFormFields({
                         </p>
                     )}
                 </div>
-            </div>
+            </div> */}
 
             {/* Email */}
             <div>

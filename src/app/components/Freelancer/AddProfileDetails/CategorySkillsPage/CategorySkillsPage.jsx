@@ -74,7 +74,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
 
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug">
             Let’s choose your category and showcase your skills
           </h2>
           <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
@@ -104,6 +104,10 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
               type="button"
               onClick={prevStep}
               className="bg-white text-paragraph  flex items-center gap-2 transition-all duration-300 shadow"
+              style={{
+                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
             >
               <SvgIcon name="PrevButton" />
               Back

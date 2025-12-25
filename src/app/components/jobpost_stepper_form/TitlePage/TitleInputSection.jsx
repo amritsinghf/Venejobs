@@ -36,7 +36,7 @@ const TitleInputSection = ({ handleNext }) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-4 lg:gap-6">
+        <div className="flex flex-col gap-4">
           <h3 className="text-base lg:text-lg text-heading font-bold">
             Example titles
           </h3>

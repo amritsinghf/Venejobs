@@ -1,252 +1,173 @@
+import React, { useEffect, useState } from "react";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import React, { useEffect, useState } from "react";
+
+const INITIAL_EXPERIENCE = {
+  job_title: "",
+  company: "",
+  location: "",
+  city: "",
+  start_month: "",
+  start_year: "",
+  end_month: "",
+  end_year: "",
+  description: "",
+  is_current: false,
+};
+
+const validateExperience = (data) => {
+  const errors = {};
+
+  if (!data.job_title) errors.job_title = "Job title is required";
+  if (!data.company) errors.company = "Company name is required";
+  if (!data.location) errors.location = "Location is required";
+  if (!data.city) errors.city = "City is required";
+  if (!data.start_month) errors.start_month = "Start month is required";
+  if (!data.start_year) errors.start_year = "Start year is required";
+  if (!data.description) errors.description = "Description is required";
+
+  if (data.start_month < 1 || data.start_month > 12)
+    errors.start_month = "Month must be between 1 and 12";
+
+  if (!/^\d{4}$/.test(data.start_year))
+    errors.start_year = "Enter a valid 4 digit year";
+
+  if (!data.is_current) {
+    if (!data.end_month) errors.end_month = "End month is required";
+    if (!data.end_year) errors.end_year = "End year is required";
+
+    if (data.end_month < 1 || data.end_month > 12)
+      errors.end_month = "Month must be between 1 and 12";
+
+    if (!/^\d{4}$/.test(data.end_year))
+      errors.end_year = "Enter a valid 4 digit year";
+  }
+
+  return errors;
+};
+
+const InputField = ({
+  label,
+  name,
+  value,
+  onChange,
+  error,
+  placeholder,
+  disabled = false,
+  type = "text",
+}) => (
+  <div className="flex flex-col gap-2">
+    <label className="font-semibold text-sm lg:text-base">{label}</label>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      placeholder={placeholder}
+      inputMode={type === "number" ? "numeric" : undefined}
+      pattern={type === "number" ? "[0-9]*" : undefined}
+      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+    />
+    {error && <p className="text-red-500 text-sm">{error}</p>}
+  </div>
+);
 
 const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
+  const [experience, setExperience] = useState(INITIAL_EXPERIENCE);
   const [errors, setErrors] = useState({});
-  const [experienceTemp, setExperienceTemp] = useState({
-    job_title: "",
-    company: "",
-    location: "",
-    city: "",
-    start_month: "",
-    end_month: "",
-    start_year: "",
-    end_year: "",
-    description: "",
-    is_current: false,
-  });
 
   useEffect(() => {
-    if (editIndex !== null) {
-      setExperienceTemp(fields[editIndex]);
-    } else {
-      setExperienceTemp({
-        job_title: "",
-        company: "",
-        location: "",
-        city: "",
-        start_month: "",
-        end_month: "",
-        start_year: "",
-        end_year: "",
-        description: "",
-        is_current: false,
-      });
-    }
+    setExperience(editIndex !== null ? fields[editIndex] : INITIAL_EXPERIENCE);
   }, [editIndex, fields]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setExperienceTemp((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+
+    const numberFields = [
+      "start_month",
+      "end_month",
+      "start_year",
+      "end_year",
+    ];
+
+    let finalValue = value;
+
+    if (numberFields.includes(name)) {
+      finalValue = value.replace(/[^0-9]/g, "");
+
+      if (name.includes("month")) {
+        if (finalValue.length > 2) return;
+        if (finalValue && Number(finalValue) > 12) return;
+      }
+
+      if (name.includes("year")) {
+        if (finalValue.length > 4) return;
+      }
+    }
+
+    setExperience((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : finalValue,
+    }));
+
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSave = () => {
-    const newErrors = {};
-
-    if (!experienceTemp.job_title) {
-      newErrors.job_title = "Job Title is required";
-    }
-    if (!experienceTemp.company) {
-      newErrors.company = "Company Name is required";
-    }
-    if (!experienceTemp.start_month) {
-      newErrors.start_month = "Start Month is required";
-    }
-    if (!experienceTemp.is_current) {
-      if (!experienceTemp.end_month) {
-        newErrors.end_month = "End Month is required";
-      }
-      if (!experienceTemp.end_year) {
-        newErrors.end_year = "End Year is required";
-      }
-    }
-    if (!experienceTemp.description) {
-      newErrors.description = "Description is required";
-    }
-    if (!experienceTemp.city) {
-      newErrors.city = "City is required";
-    }
-    if (!experienceTemp.location) {
-      newErrors.location = "Location is required";
-    }
-    if (!experienceTemp.start_year) {
-      newErrors.start_year = "Start Year is required";
-    }
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    const validationErrors = validateExperience(experience);
+    if (Object.keys(validationErrors).length) {
+      setErrors(validationErrors);
       return;
     }
 
-    setErrors({});
-    if (editIndex !== null) {
-      update(editIndex, experienceTemp);
-    } else {
-      append(experienceTemp);
-    }
+    editIndex !== null
+      ? update(editIndex, experience)
+      : append(experience);
+
     close();
   };
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[100dvh] md:max-h-none overflow-y-auto">
-        <div
-          className="flex flex-col gap-2
-        px-1 md:px-5 md:py-5"
-        >
-          <div className="flex justify-between items-center ">
-            <h2 className="text-lg lg:text-2xl font-extrabold text-heading mb-3">
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+      <div className="bg-white w-full max-w-[1000px] rounded-2xl max-h-screen overflow-y-auto">
+        <div className="px-6 py-8 flex flex-col gap-6">
+
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold">
               {editIndex !== null ? "Edit Employment" : "Add Employment"}
             </h2>
-            <button
-              type="button"
-              onClick={close}
-              className="absolute right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition"
-            >
+            <button onClick={close} className="cursor-pointer">
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Job Title
-              </label>
-              <input
-                name="job_title"
-                value={experienceTemp.job_title}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Ex: Senior UXUI Designer"
-              />
-              {errors.job_title && (
-                <p className="text-red-500 text-sm">{errors.job_title}</p>
-              )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField label="Job Title" name="job_title" value={experience.job_title} onChange={handleChange} error={errors.job_title} placeholder="Ex: Frontend Developer" />
+            <InputField label="Company Name" name="company" value={experience.company} onChange={handleChange} error={errors.company} placeholder="Ex: Infosys" />
+            <InputField label="Location" name="location" value={experience.location} onChange={handleChange} error={errors.location} placeholder="Ex: India" />
+            <InputField label="City" name="city" value={experience.city} onChange={handleChange} error={errors.city} placeholder="Ex: Gurgaon" />
+
+            <InputField label="Start Month" name="start_month" value={experience.start_month} onChange={handleChange} error={errors.start_month} type="number" placeholder="1-12" />
+            <InputField label="Start Year" name="start_year" value={experience.start_year} onChange={handleChange} error={errors.start_year} type="number" placeholder="2022" />
+
+            <InputField label="End Month" name="end_month" value={experience.end_month} onChange={handleChange} error={errors.end_month} type="number" placeholder="1-12" disabled={experience.is_current} />
+            <InputField label="End Year" name="end_year" value={experience.end_year} onChange={handleChange} error={errors.end_year} type="number" placeholder="2024" disabled={experience.is_current} />
+
+            <div className="flex items-center gap-2">
+              <input type="checkbox" name="is_current" checked={experience.is_current} onChange={handleChange} />
+              <label className="text-sm">I currently work here</label>
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Company Name
-              </label>
-              <input
-                name="company"
-                value={experienceTemp.company}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Ex: Venesjobs"
-              />
-              {errors.company && (
-                <p className="text-red-500 text-sm">{errors.company}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Location
-              </label>
-              <input
-                name="location"
-                value={experienceTemp.location || ""}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Ex: Russia"
-              />
-              {errors.location && (
-                <p className="text-red-500 text-sm">{errors.location}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">City</label>
-              <input
-                name="city"
-                value={experienceTemp.city || ""}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Enter City"
-              />
-              {errors.city && (
-                <p className="text-red-500 text-sm">{errors.city}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Start Month
-              </label>
-              <input
-                name="start_month"
-                value={experienceTemp.start_month || ""}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="From Month"
-              />
-              {errors.start_month && (
-                <p className="text-red-500 text-sm">{errors.start_month}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Start Year
-              </label>
-              <input
-                name="start_year"
-                value={experienceTemp.start_year || ""}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="From Year"
-              />
-              {errors.start_year && (
-                <p className="text-red-500 text-sm">{errors.start_year}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Ended Month
-              </label>
-              <input
-                name="end_month"
-                value={experienceTemp.end_month || ""}
-                onChange={handleChange}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Through Month"
-              />
-              {errors.end_month && (
-                <p className="text-red-500 text-sm">{errors.end_month}</p>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Ended Year
-              </label>
-              <input
-                name="end_year"
-                value={experienceTemp.end_year || ""}
-                onChange={handleChange}
-                disabled={experienceTemp.is_current}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Through Year"
-              />
-              {errors.end_year && (
-                <p className="text-red-500 text-sm">{errors.end_year}</p>
-              )}
-            </div>
-            <div className="flex items-center gap-2 mt-2">
-              <input
-                type="checkbox"
-                name="is_current"
-                checked={experienceTemp.is_current}
-                onChange={handleChange}
-              />
-              <label>I currently work here</label>
-            </div>
+
             <div className="col-span-2 flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-lg">
-                Description
-              </label>
+              <label className="font-semibold text-sm lg:text-base">Description</label>
               <textarea
                 name="description"
-                value={experienceTemp.description || ""}
+                value={experience.description}
                 onChange={handleChange}
                 rows={4}
-                className="border border-gray-200 p-2 rounded"
-                placeholder="Enter description..."
+                placeholder="Describe your role and responsibilities"
+                className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
               />
               {errors.description && (
                 <p className="text-red-500 text-sm">{errors.description}</p>
@@ -254,17 +175,19 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 mt-6">
-            <Button onClick={close} className="px-4 py-2 shadow text-paragraph font-semibold">
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSave}
-              className="px-4 py-2 bg-secondary text-white"
-            >
+          <div className="flex justify-end gap-4">
+            <Button onClick={close}
+              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
+              style={{
+                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >Cancel</Button>
+            <Button onClick={handleSave} className="bg-secondary text-white">
               Save
             </Button>
           </div>
+
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@ import ShowEducationPage from "./ShowEducationPage";
 import useToastStore from "@/app/store/toastStore";
 
 const EducationInputSection = ({ nextStep, prevStep }) => {
-  const {showError} = useToastStore.getState();
-  const { trigger, control,setValue } = useFormContext();
+  const { showError } = useToastStore.getState();
+  const { trigger, control, setValue } = useFormContext();
   const { fields, append, update, remove } = useFieldArray({
     control,
     name: "educations",
@@ -38,21 +38,27 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
       {/* Show Add Panel only if no education added yet */}
       {fields.length === 0 && (
         <>
-        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
-        Add Education
-      </h2>
-        <div
-          className="border border-dashed border-gray-500 h-[366px] flex flex-col justify-end pl-3 pb-20 cursor-pointer"
-          onClick={() => {
-            setEditIndex(null);
-            setshowForm(true);
-          }}
-        >
-          <Image src="/icons/Add.png" alt="Add button" width={40} height={40} />
-          <h2 className="mt-6 font-semibold text-lg lg:text-[32px]">
+          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
             Add Education
           </h2>
-        </div>
+
+          <div
+            className="border border-dashed border-gray-500 flex flex-col items-center justify-center gap-4 cursor-pointer h-40 sm:h-48 md:h-56 lg:h-64"
+            onClick={() => {
+              setEditIndex(null);
+              setshowForm(true);
+            }}
+          >
+            <Image
+              src="/icons/Add.png"
+              alt="Add button"
+              width={36}
+              height={36}
+            />
+            <h2 className="font-semibold text-lg lg:text-xl text-center">
+              Add Education
+            </h2>
+          </div>
         </>
       )}
 

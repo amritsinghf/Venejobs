@@ -43,11 +43,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                 className="border border-gray-200 py-2 px-2 rounded text-paragraph"
               />
               <div className="min-h-5">
-              {errors?.date_of_birth && (
-                <p className="text-red-500 text-sm">
-                  {errors.date_of_birth.message}
-                </p>
-              )}
+                {errors?.date_of_birth && (
+                  <p className="text-red-500 text-sm">
+                    {errors.date_of_birth.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -63,11 +63,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                 className="border border-gray-200 py-2 px-2 rounded text-paragraph"
               />
               <div className="min-h-5">
-              {errors?.country && (
-                <p className="text-red-500 text-sm">
-                  {errors.country.message}
-                </p>
-              )}
+                {errors?.country && (
+                  <p className="text-red-500 text-sm">
+                    {errors.country.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -86,11 +86,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                   className="border border-gray-200 py-2 px-2 rounded text-paragraph"
                 />
                 <div className="min-h-5">
-                {errors?.street_address && (
-                  <p className="text-red-500 text-sm">
-                    {errors.street_address.message}
-                  </p>
-                )}
+                  {errors?.street_address && (
+                    <p className="text-red-500 text-sm">
+                      {errors.street_address.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col gap-4 w-full">
@@ -120,11 +120,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                   className="border border-gray-200 py-2 px-2 rounded text-paragraph"
                 />
                 <div className="min-h-5">
-                {errors?.city && (
-                  <p className="text-red-500 text-sm">
-                    {errors.city.message}
-                  </p>
-                )}
+                  {errors?.city && (
+                    <p className="text-red-500 text-sm">
+                      {errors.city.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -141,11 +141,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                   className="border border-gray-200 py-2 px-2 rounded text-paragraph"
                 />
                 <div className="min-h-5">
-                {errors?.personalDetails?.State && (
-                  <p className="text-red-500 text-sm">
-                    {errors.personalDetails.State.message}
-                  </p>
-                )}
+                  {errors?.personalDetails?.State && (
+                    <p className="text-red-500 text-sm">
+                      {errors.personalDetails.State.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -167,11 +167,11 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                   className="border border-gray-200 py-2 px-2 rounded text-paragraph"
                 />
                 <div className="min-h-5">
-                {errors?.zip_code && (
-                  <p className="text-red-500 text-sm">
-                    {errors.zip_code.message}
-                  </p>
-                )}
+                  {errors?.zip_code && (
+                    <p className="text-red-500 text-sm">
+                      {errors.zip_code.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -190,47 +190,44 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep, currstep }) => {
                 className="border border-gray-200 py-2 px-2 rounded text-paragraph"
               />
               <div className="min-h-5">
-              {errors?.personalDetails?.PhoneNumber && (
-                <p className="text-red-500 text-sm">
-                  {errors.personalDetails.PhoneNumber.message}
-                </p>
-              )}
+                {errors?.personalDetails?.PhoneNumber && (
+                  <p className="text-red-500 text-sm">
+                    {errors.personalDetails.PhoneNumber.message}
+                  </p>
+                )}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 lg:gap-6">
-          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-            <Button
-              type="button"
-              onClick={prevStep}
-              className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              <SvgIcon name="PrevButton" />
-              Back
-            </Button>
+        <div className="flex justify-between gap-10 xl:gap-2 mt-5">
+          <Button
+            type="button"
+            onClick={prevStep}
+            className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300"
+            style={{
+              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            <SvgIcon name="PrevButton" />
+            Back
+          </Button>
 
-            <Button
-              type="submit"
-              disabled={loadingSubmit}
-              className={`bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${
-              loadingSubmit ? "opacity-70 pointer-events-none" : "hover:opacity-90"
-            }`}
-            >
-              {loadingSubmit ? (
-                <Loader size={18} border={3} color="white" />
-              ) : (
-                <>
-                  Let's Finalize <SvgIcon name="NextArrow" />
-                </>
-              )}
-            </Button>
-          </div>
+          <Button
+            type="submit"
+            disabled={loadingSubmit}
+            className={`bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${loadingSubmit ? "opacity-70 pointer-events-none" : "hover:opacity-90"
+              }`}
+          >
+            {loadingSubmit ? (
+              <Loader size={18} border={3} color="white" />
+            ) : (
+              <>
+                Let's Finalize <SvgIcon name="NextArrow" />
+              </>
+            )}
+          </Button>
         </div>
       </div>
     </div>

@@ -1,7 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+
+const INITIAL_EDUCATION = {
+  institution_name: "",
+  degree: "",
+  field_of_study: "",
+  type_of_education: "",
+  start_date: "",
+  end_date: "",
+  description: "",
+};
+
+const validateEducation = (data) => {
+  const errors = {};
+
+  if (!data.institution_name) errors.institution_name = "Institution name is required";
+  if (!data.degree) errors.degree = "Degree is required";
+  if (!data.field_of_study) errors.field_of_study = "Field of study is required";
+  if (!data.type_of_education) errors.type_of_education = "Type of education is required";
+  if (!data.description) errors.description = "Description is required";
+
+  if (!/^\d{4}$/.test(data.start_date))
+    errors.start_date = "Enter valid 4 digit year";
+
+  if (data.end_date && !/^\d{4}$/.test(data.end_date))
+    errors.end_date = "Enter valid 4 digit year";
+
+  return errors;
+};
 
 const EducationModal = ({
   setshowForm,
@@ -11,235 +38,139 @@ const EducationModal = ({
   editIndex,
   fields,
 }) => {
+  const [education, setEducation] = useState(INITIAL_EDUCATION);
   const [errors, setErrors] = useState({});
 
-  const [educationTemp, setEducationTemp] = useState({
-    institution_name: "",
-    degree: "",
-    field_of_study: "",
-    type_of_education: "",
-    start_date: "",
-    end_date: "",
-    description: "",
-  });
-
   useEffect(() => {
-    if (editIndex !== null) {
-      setEducationTemp(fields[editIndex]);
-    } else {
-      setEducationTemp({
-        institution_name: "",
-        degree: "",
-        field_of_study: "",
-        type_of_education: "",
-        start_date: "",
-        end_date: "",
-        description: "",
-      });
-    }
+    setEducation(editIndex !== null ? fields[editIndex] : INITIAL_EDUCATION);
   }, [editIndex, fields]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEducationTemp((prev) => ({ ...prev, [name]: value }));
+
+    const yearFields = ["start_date", "end_date"];
+    let finalValue = value;
+
+    if (yearFields.includes(name)) {
+      finalValue = value.replace(/[^0-9]/g, "");
+      if (finalValue.length > 4) return;
+    }
+
+    setEducation((prev) => ({ ...prev, [name]: finalValue }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSave = () => {
-    const newErrors = {};
-
-    if (!educationTemp.institution_name) {
-      newErrors.institution_name = "Institution Name is required";
-    }
-    if (!educationTemp.degree) {
-      newErrors.degree = "Degree is required";
-    }
-    if (!educationTemp.field_of_study) {
-      newErrors.field_of_study = "Field Of Study is required";
-    }
-    if (!educationTemp.type_of_education) {
-      newErrors.type_of_education = "Type Of Education is required";
-    }
-    if (!educationTemp.description) {
-      newErrors.description = "Description is required";
-    }
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    const validationErrors = validateEducation(education);
+    if (Object.keys(validationErrors).length) {
+      setErrors(validationErrors);
       return;
     }
 
-    setErrors({});
-    if (editIndex !== null) {
-      update(editIndex, educationTemp);
-    } else {
-      append(educationTemp);
-    }
-    close();
+    editIndex !== null
+      ? update(editIndex, education)
+      : append(education);
+
+    setshowForm(false);
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[700px] flex flex-col">
-        <div className="px-3 py-3">
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+      <div className="bg-white w-full max-w-[1000px] rounded-2xl max-h-screen overflow-y-auto">
+        <div className="px-6 py-8 flex flex-col gap-6">
+
           <div className="flex justify-between items-center">
-            <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
+            <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
               {editIndex !== null ? "Edit Education" : "Add Education"}
             </h2>
             <button
-              type="button"
               onClick={() => setshowForm(false)}
-              className="absolute right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
 
-          <div className="flex flex-col justify-between h-[590px]">
-            <div className="flex flex-col gap-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Institution Name */}
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Institution Name</h3>
-                  <input
-                    type="text"
-                    name="institution_name"
-                    value={educationTemp.institution_name}
-                    onChange={handleChange}
-                    placeholder="E.g., University of XYZ"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                  {errors.institution_name && (
-                    <p className="text-red-500 text-sm">
-                      {errors.institution_name}
-                    </p>
-                  )}
-                </div>
+            <Input label="Institution Name" name="institution_name" value={education.institution_name} onChange={handleChange} error={errors.institution_name} placeholder="E.g., University of XYZ" />
 
-                {/* Degree */}
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Degree</h3>
-                  <input
-                    type="text"
-                    name="degree"
-                    value={educationTemp.degree}
-                    onChange={handleChange}
-                    placeholder="E.g., Bachelor of Computer Science"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.degree && (
-                    <p className="text-red-500 text-sm">{errors.degree}</p>
-                  )}
-                </div>
+            <Input label="Degree" name="degree" value={education.degree} onChange={handleChange} error={errors.degree} placeholder="E.g., Bachelor of Computer Science" />
 
-                {/* Field of Study */}
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Field of Study</h3>
-                  <input
-                    type="text"
-                    name="field_of_study"
-                    value={educationTemp.field_of_study}
-                    onChange={handleChange}
-                    placeholder="E.g., Computer Science"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.field_of_study && (
-                    <p className="text-red-500 text-sm">
-                      {errors.field_of_study}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Type of education</h3>
-                  <input
-                    type="text"
-                    name="type_of_education"
-                    value={educationTemp.type_of_education || ""}
-                    onChange={handleChange}
-                    placeholder="Bachelor’s Degree"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.type_of_education && (
-                    <p className="text-red-500 text-sm">
-                      {errors.type_of_education}
-                    </p>
-                  )}
-                </div>
+            <Input label="Field of Study" name="field_of_study" value={education.field_of_study} onChange={handleChange} error={errors.field_of_study} placeholder="E.g., Computer Science" />
 
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">
-                    Start Date
-                  </h3>
-                  <input
-                    type="text"
-                    name="start_date"
-                    value={educationTemp.start_date || ""}
-                    onChange={handleChange}
-                    placeholder="From"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.start_date && (
-                    <p className="text-red-500 text-sm">
-                      {errors.start_date}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">
-                    End Date
-                  </h3>
-                  <input
-                    type="text"
-                    name="end_date"
-                    value={educationTemp.end_date || ""}
-                    onChange={handleChange}
-                    placeholder="Or expected graduation year"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.end_date && (
-                    <p className="text-red-500 text-sm">
-                      {errors.end_date}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="col-span-2 flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  value={educationTemp.description || ""}
-                  onChange={handleChange}
-                  rows={4}
-                  className="border border-gray-200 p-2 rounded"
-                  placeholder="Enter description..."
-                />
-                {errors.description && (
-                  <p className="text-red-500 text-sm">{errors.description}</p>
-                )}
-              </div>
-            </div>
-            <div className="flex justify-end gap-4 mt-6">
-              <Button
-                type="button"
-                className="px-4 py-2 shadow text-paragraph font-semibold"
-                onClick={() => setshowForm(false)}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="button"
-                className="px-4 py-2 bg-secondary text-white rounded"
-                onClick={handleSave}
-              >
-                Save
-              </Button>
-            </div>
+            <Input label="Type of Education" name="type_of_education" value={education.type_of_education} onChange={handleChange} error={errors.type_of_education} placeholder="Bachelor’s Degree" />
+
+            <Input
+              label="Start Year"
+              name="start_date"
+              value={education.start_date}
+              onChange={handleChange}
+              error={errors.start_date}
+              placeholder="2019"
+              type="number"
+            />
+
+            <Input
+              label="End Year"
+              name="end_date"
+              value={education.end_date}
+              onChange={handleChange}
+              error={errors.end_date}
+              placeholder="2023"
+              type="number"
+            />
           </div>
+
+          <div className="flex flex-col gap-2 mt-4">
+            <label className="font-semibold">Description</label>
+            <textarea
+              name="description"
+              value={education.description}
+              onChange={handleChange}
+              rows={4}
+              placeholder="Describe your education, achievements, coursework..."
+              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
+            />
+            {errors.description && (
+              <p className="text-red-500 text-sm">{errors.description}</p>
+            )}
+          </div>
+
+          <div className="flex justify-end gap-4 mt-6">
+            <Button onClick={() => setshowForm(false)}
+              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
+              style={{
+                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >Cancel</Button>
+            <Button className="bg-secondary text-white" onClick={handleSave}>
+              Save
+            </Button>
+          </div>
+
         </div>
       </div>
     </div>
   );
 };
+
+const Input = ({ label, name, value, onChange, error, placeholder, type = "text" }) => (
+  <div className="flex flex-col gap-2">
+    <label className="font-semibold text-sm lg:text-base">{label}</label>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      inputMode={type === "number" ? "numeric" : undefined}
+      pattern={type === "number" ? "[0-9]*" : undefined}
+      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+    />
+    {error && <p className="text-red-500 text-sm">{error}</p>}
+  </div>
+);
 
 export default EducationModal;

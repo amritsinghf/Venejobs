@@ -1,6 +1,6 @@
 const TitleHeader = () => (
     <div className="flex flex-col gap-4 w-full">
-        <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+        <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             Great! Now let’s add a professional title that tells clients what you do best
         </h2>
 
