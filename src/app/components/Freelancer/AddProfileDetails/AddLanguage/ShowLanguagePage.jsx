@@ -12,10 +12,10 @@ const ShowLanguagePage = ({
     <div className="mt-6 space-y-4">
       {fields.map((field, index) => {
         const language = languagesData.find(
-          (l) => l.id === field.language
+          (l) => l.name === field.language
         )?.name;
         const proficiency = proficiencyData.find(
-          (p) => p.id === field.proficiency
+          (p) => p.name === field.proficiency
         )?.name;
 
         return (

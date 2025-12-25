@@ -35,10 +35,7 @@ export default function Page() {
     );
   }
 
-  // Prevent rendering while redirecting
-  if (FreelanceDetails?.freelancerProfile) {
-    return null;
-  }
+  
 
   return (
     <FreelancerLayout>

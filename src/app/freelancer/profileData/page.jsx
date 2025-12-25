@@ -74,7 +74,7 @@ export default function page() {
             <ShowDetailsHeader name={name} country={country} />
 
             <div className="flex flex-col lg:flex-row gap-8 border-b border-gray-200">
-              <LeftPanel />
+              <LeftPanel freelancerProfile={freelancerProfile}/>
               <RightPanel freelancerProfile={freelancerProfile} />
             </div>
             <BottomPanel freelancerProfile={freelancerProfile} />

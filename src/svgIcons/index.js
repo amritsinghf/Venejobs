@@ -78,3 +78,6 @@ export { Verified } from "./Verified";
 export { NotVerified } from "./NotVerified";
 export { Share } from "./Share";
 export { ShareGreen } from "./ShareGreen";
+
+export { PiggyBank } from "./PiggyBank";
+export { Language } from "./Language";

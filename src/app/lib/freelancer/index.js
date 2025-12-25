@@ -7,3 +7,7 @@ export async function SaveFreelanceDetails(data) {
 export async function getFreelanceDetails() {
   return api.get("api/freelancer/profile");
 }
+
+export async function updateFreelanceDetails(data) {
+  return api.patch("api/freelancer/profile",data);
+}

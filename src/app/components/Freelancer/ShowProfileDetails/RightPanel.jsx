@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgIcon from "../../Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
+import TitleEditModal from "../EditProfileModals/TitleEditModal";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -11,6 +12,9 @@ const RightPanel = ({ freelancerProfile }) => {
       year: "numeric",
     });
   };
+
+  const [showTitleModal, setshowTitleModal] = useState(false);
+
   return (
     <div className="flex flex-col gap-10 xl:w-[900px]">
       <div className="flex flex-col gap-4">
@@ -29,7 +33,10 @@ const RightPanel = ({ freelancerProfile }) => {
                 className="w-[18px] h-[18px] lg:w-5 lg:h-5 text-heading"
               />
             </div>
-            <div className="shadow rounded-full px-1 py-1 lg:px-2 lg:py-2">
+            <div
+              className="shadow rounded-full px-1 py-1 lg:px-2 lg:py-2 cursor-pointer"
+              onClick={() => setshowTitleModal(true)}
+            >
               <SvgIcon
                 name="Editing"
                 size={24}
@@ -41,12 +48,6 @@ const RightPanel = ({ freelancerProfile }) => {
 
         <div>
           <p className="text-paragraph text-base">
-            {/* Hello and Welcome to my profile!Looking for a freelancer to work on
-            your next project? As a Google-certified UX/UI Designer with 4+
-            years of expertise, I specialize in creating captivating digital
-            experiences for websites, apps, and dashboards. Whether you need to
-            boost user engagement, streamline navigation, or enhance visual
-            appeal, I've got you covered., I'm here to help... Learn More */}
             {freelancerProfile?.overview}
           </p>
         </div>
@@ -105,9 +106,7 @@ const RightPanel = ({ freelancerProfile }) => {
               </div>
 
               <p className="text-paragraph text-sm lg:text-base">
-                Alishan skills in UX design are exceptional, he follows up the
-                ideas very easily. The design was good and was a very easy
-                process overall, fast work and easy to communicate.
+                {item.description}
               </p>
               <div className="flex flex-col sm:flex-row  lg:items-center gap-8">
                 <div className="flex items-center gap-3">
@@ -115,8 +114,7 @@ const RightPanel = ({ freelancerProfile }) => {
                   <p>4.9</p>
                 </div>
                 <p className="font-semibold text-heading">
-                  {item.start_date} -{" "} {item.end_date} 
-                  
+                  {item.start_date} - {item.end_date}
                 </p>
               </div>
               <hr className="text-gray-200" />
@@ -160,6 +158,13 @@ const RightPanel = ({ freelancerProfile }) => {
           ))}
         </div>
       </div>
+
+      {showTitleModal && (
+        <TitleEditModal
+          setshowTitleModal={setshowTitleModal}
+          freelancerProfile={freelancerProfile}
+        />
+      )}
     </div>
   );
 };

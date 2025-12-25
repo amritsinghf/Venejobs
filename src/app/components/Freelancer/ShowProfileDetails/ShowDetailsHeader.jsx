@@ -1,7 +1,8 @@
 import React from "react";
-import Button from "../../button/Button";
 import Image from "next/image";
 import SvgIcon from "../../Utility/SvgIcon";
+import Link from "next/link";
+import { Routes } from "@/app/routes";
 
 const ShowDetailsHeader = ({ name, country }) => {
   return (
@@ -34,12 +35,12 @@ const ShowDetailsHeader = ({ name, country }) => {
 
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-6">
-          <Button className="bg-secondary w-auto h-auto px-3 py-2 text-white">
+          <Link href={Routes.profile.freelancer.info} className="bg-secondary w-auto h-auto px-3 py-2 md:px-6 md:py-3 text-white rounded">
             Profile Settings
-          </Button>
-          <Button className="text-paragraph shadow w-auto h-auto px-3 py-2">
+          </Link>
+          <Link href={Routes.freelancer.page} className="text-paragraph font-semibold shadow w-auto h-auto px-3 py-2 md:px-6 md:py-3 rounded">
             Find Jobs
-          </Button>
+          </Link>
         </div>
         <div className="hidden lg:flex justify-end items-center gap-4">
           <SvgIcon name="ShareGreen" />
