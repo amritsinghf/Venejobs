@@ -9,10 +9,36 @@ const INITIAL_PORTFOLIO = {
 
 const validatePortfolio = (data) => {
   const errors = {};
-  if (!data.title.trim()) errors.title = "Project title is required";
-  if (!data.image_url.trim()) errors.image_url = "Project URL is required";
+
+  if (!data.title.trim()) {
+    errors.title = "Project title is required";
+  } else if (data.title.trim().length < 3) {
+    errors.title = "Title must be at least 3 characters";
+  }
+
+  if (!data.image_url.trim()) {
+    errors.image_url = "Project URL is required";
+  } else {
+    try {
+      const url = new URL(data.image_url);
+
+      if (!["http:", "https:"].includes(url.protocol)) {
+        errors.image_url = "URL must start with http:// or https://";
+      }
+      else if (url.hostname.endsWith(".")) {
+        errors.image_url = "Domain name cannot end with a dot";
+      }
+      else if (!url.hostname.includes(".")) {
+        errors.image_url = "Enter a valid domain name";
+      }
+    } catch {
+      errors.image_url = "Enter a valid full URL (https://example.com)";
+    }
+  }
+
   return errors;
 };
+
 
 const InputField = ({
   label,
@@ -52,9 +78,15 @@ const PortfolioModal = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPortfolio((prev) => ({ ...prev, [name]: value }));
+
+    setPortfolio((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
+
 
   const handleSave = () => {
     const validationErrors = validatePortfolio(portfolio);

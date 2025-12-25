@@ -14,11 +14,22 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
         </h2>
         <button
           type="button"
-          className="px-2 py-2 bg-secondary text-white w-fit rounded-full"
           onClick={onAddMore}
+          className="
+            px-2 py-2 w-fit
+          bg-secondary text-white
+            rounded-full
+            transition-all duration-300 ease-out
+            hover:scale-105
+          hover:bg-secondary/90
+            hover:shadow-md
+            active:scale-95
+            cursor-pointer
+          "
         >
-          <AddIcon />
+          <AddIcon className="transition-transform duration-300 hover:rotate-90" />
         </button>
+
       </div>
       {fields.map((item, index) => (
         <div
@@ -35,7 +46,17 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
           <div className="flex gap-4">
             <button
               type="button"
-              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
+              className="
+                w-8 h-8 md:w-12 md:h-12
+                flex items-center justify-center
+              bg-secondary text-white
+                rounded-full cursor-pointer
+                transition-all duration-300 ease-out
+                hover:scale-105
+                hover:shadow-lg
+              hover:bg-secondary/90
+                active:scale-95
+              "
               onClick={() => onEdit(index)}
             >
               <SvgIcon name="Editing" size={20} />
@@ -43,7 +64,17 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
 
             <button
               type="button"
-              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
+              className="
+                w-8 h-8 md:w-12 md:h-12
+                flex items-center justify-center
+              bg-secondary text-white
+                rounded-full cursor-pointer
+                transition-all duration-300 ease-out
+                hover:scale-105
+              hover:bg-red-500
+                hover:shadow-lg
+                active:scale-95
+              "
               onClick={() => onDelete(index)}
             >
               <SvgIcon name="Delete1" size={20} />

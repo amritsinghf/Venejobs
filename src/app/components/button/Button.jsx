@@ -31,21 +31,32 @@ export default function Button({
       type={type}
       disabled={disabled || isLoading}
       className={`
-        ${variantClasses[variant]} 
-        ${className}
-        w-36 sm:w-[180px] md:w-52
-        h-12 sm:h-[52px] md:h-13
-        rounded
-        font-semibold tracking-wide 
-        text-sm lg:text-base
-        flex items-center justify-center 
-        cursor-pointer
-        transition-all duration-300
-      `}
+    ${variantClasses[variant]} 
+    ${className}
+
+    w-36 sm:w-[180px] md:w-52
+    h-12 sm:h-[52px] md:h-13
+    rounded
+    font-semibold tracking-wide 
+    text-sm lg:text-base
+    flex items-center justify-center 
+    cursor-pointer
+
+    transition-all duration-300 ease-out
+    hover:scale-105
+    hover:shadow-lg
+    active:scale-95
+
+    disabled:opacity-60
+    disabled:cursor-not-allowed
+    disabled:hover:scale-100
+    disabled:hover:shadow-none
+  `}
       {...props}
     >
       {isLoading ? "Loading..." : children}
       {icon && icon}
     </button>
+
   );
 }

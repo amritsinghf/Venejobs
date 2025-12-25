@@ -15,17 +15,34 @@ const INITIAL_EDUCATION = {
 const validateEducation = (data) => {
   const errors = {};
 
-  if (!data.institution_name) errors.institution_name = "Institution name is required";
-  if (!data.degree) errors.degree = "Degree is required";
-  if (!data.field_of_study) errors.field_of_study = "Field of study is required";
-  if (!data.type_of_education) errors.type_of_education = "Type of education is required";
-  if (!data.description) errors.description = "Description is required";
+  if (!data.institution_name)
+    errors.institution_name = "Institution name is required";
+
+  if (!data.degree)
+    errors.degree = "Degree is required";
+
+  if (!data.field_of_study)
+    errors.field_of_study = "Field of study is required";
+
+  if (!data.type_of_education)
+    errors.type_of_education = "Type of education is required";
+
+  if (!data.description)
+    errors.description = "Description is required";
 
   if (!/^\d{4}$/.test(data.start_date))
     errors.start_date = "Enter valid 4 digit year";
 
   if (data.end_date && !/^\d{4}$/.test(data.end_date))
     errors.end_date = "Enter valid 4 digit year";
+
+  if (
+    data.start_date &&
+    data.end_date &&
+    Number(data.end_date) < Number(data.start_date)
+  ) {
+    errors.end_date = "End year cannot be earlier than start year";
+  }
 
   return errors;
 };
@@ -107,7 +124,7 @@ const EducationModal = ({
               value={education.start_date}
               onChange={handleChange}
               error={errors.start_date}
-              placeholder="2019"
+              placeholder={new Date().getFullYear() - 3}
               type="number"
             />
 
@@ -117,7 +134,7 @@ const EducationModal = ({
               value={education.end_date}
               onChange={handleChange}
               error={errors.end_date}
-              placeholder="2023"
+              placeholder={new Date().getFullYear()}
               type="number"
             />
           </div>
@@ -158,7 +175,7 @@ const EducationModal = ({
 
 const Input = ({ label, name, value, onChange, error, placeholder, type = "text" }) => (
   <div className="flex flex-col gap-2">
-    <label className="font-semibold text-sm lg:text-base">{label}</label>
+    <label className="font-medium text-sm lg:text-base">{label}</label>
     <input
       type={type}
       name={name}

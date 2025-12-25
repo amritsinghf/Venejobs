@@ -57,7 +57,10 @@ const InputField = ({
   type = "text",
 }) => (
   <div className="flex flex-col gap-2">
-    <label className="font-semibold text-sm lg:text-base">{label}</label>
+    <label className="font-medium text-sm lg:text-base">
+      {label}
+    </label>
+
     <input
       type={type}
       name={name}
@@ -67,9 +70,21 @@ const InputField = ({
       placeholder={placeholder}
       inputMode={type === "number" ? "numeric" : undefined}
       pattern={type === "number" ? "[0-9]*" : undefined}
-      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+      className={`
+        w-full py-3.5 px-3 text-sm lg:text-base rounded-md
+        tracking-wide placeholder:text-sm
+        border transition-all duration-200
+        focus:outline-none
+
+        ${disabled
+          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"}
+      `}
     />
-    {error && <p className="text-red-500 text-sm">{error}</p>}
+
+    {error && (
+      <p className="text-red-500 text-sm">{error}</p>
+    )}
   </div>
 );
 
@@ -106,13 +121,31 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
       }
     }
 
+    if (type === "checkbox" && name === "is_current") {
+      setExperience((prev) => ({
+        ...prev,
+        is_current: checked,
+        end_month: checked ? "" : prev.end_month,
+        end_year: checked ? "" : prev.end_year,
+      }));
+
+      setErrors((prev) => ({
+        ...prev,
+        end_month: "",
+        end_year: "",
+      }));
+
+      return;
+    }
+
     setExperience((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : finalValue,
+      [name]: finalValue,
     }));
 
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
+
 
   const handleSave = () => {
     const validationErrors = validateExperience(experience);
@@ -145,19 +178,42 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
             <InputField label="Job Title" name="job_title" value={experience.job_title} onChange={handleChange} error={errors.job_title} placeholder="Ex: Frontend Developer" />
             <InputField label="Company Name" name="company" value={experience.company} onChange={handleChange} error={errors.company} placeholder="Ex: Infosys" />
-            <InputField label="Location" name="location" value={experience.location} onChange={handleChange} error={errors.location} placeholder="Ex: India" />
-            <InputField label="City" name="city" value={experience.city} onChange={handleChange} error={errors.city} placeholder="Ex: Gurgaon" />
+            <InputField label="Location" name="location" value={experience.location} onChange={handleChange} error={errors.location} placeholder="Ex: London" />
+            <InputField label="City" name="city" value={experience.city} onChange={handleChange} error={errors.city} placeholder="Ex: London" />
 
             <InputField label="Start Month" name="start_month" value={experience.start_month} onChange={handleChange} error={errors.start_month} type="number" placeholder="1-12" />
-            <InputField label="Start Year" name="start_year" value={experience.start_year} onChange={handleChange} error={errors.start_year} type="number" placeholder="2022" />
+            <InputField label="Start Year" name="start_year" value={experience.start_year} onChange={handleChange} error={errors.start_year} type="number" placeholder={new Date().getFullYear() - 1} />
 
             <InputField label="End Month" name="end_month" value={experience.end_month} onChange={handleChange} error={errors.end_month} type="number" placeholder="1-12" disabled={experience.is_current} />
-            <InputField label="End Year" name="end_year" value={experience.end_year} onChange={handleChange} error={errors.end_year} type="number" placeholder="2024" disabled={experience.is_current} />
+            <InputField label="End Year" name="end_year" value={experience.end_year} onChange={handleChange} error={errors.end_year} type="number" placeholder={new Date().getFullYear()} disabled={experience.is_current} />
 
-            <div className="flex items-center gap-2">
-              <input type="checkbox" name="is_current" checked={experience.is_current} onChange={handleChange} />
-              <label className="text-sm">I currently work here</label>
-            </div>
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="is_current"
+                checked={experience.is_current}
+                onChange={handleChange}
+                className="appearance-none 
+                  w-5 h-5 border-2 
+                  border-gray-300 
+                  rounded-md checked:bg-primary 
+                  checked:border-primary relative 
+                  transition-all duration-200 
+                  after:content-['✓'] after:absolute 
+                  after:text-white
+                  after:text-sm
+                  after:font-bold
+                  after:-top-0.5
+                  after:left-0.5
+                  after:opacity-0
+                  checked:after:opacity-100
+                "
+              />
+              <span className="text-base text-heading font-medium">
+                I currently work here
+              </span>
+            </label>
+
 
             <div className="col-span-2 flex flex-col gap-2">
               <label className="font-semibold text-sm lg:text-base">Description</label>

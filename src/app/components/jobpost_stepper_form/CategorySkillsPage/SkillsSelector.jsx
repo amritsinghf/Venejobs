@@ -44,7 +44,13 @@ const SkillsSelector = ({
         {categoryName && `Popular skills for ${categoryName}`}
       </h2>
 
-      <div className="flex items-center flex-wrap gap-3 lg:gap-5 w-full">
+      <div
+        className={`
+          flex items-center flex-wrap gap-3 lg:gap-5 w-full
+          transition-all duration-500 ease-out
+          ${skills_data?.length ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+        `}
+      >
         {skills_data?.map((item) => {
           const checkboxId = `skill-${item.id}`;
           return (
