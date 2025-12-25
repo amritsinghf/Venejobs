@@ -15,7 +15,9 @@ const categoryIcons = {
 };
 
 const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
-    const { register } = useFormContext();
+    const { register, watch, setValue } = useFormContext();
+
+    const selectedCategory = watch("category");
 
     return (
         <div className="flex flex-col gap-4">
@@ -31,17 +33,29 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                                 type="radio"
                                 id={item.code}
                                 className="sr-only peer"
-                                value={item.name}
+                                value={item.code}
+                                checked={selectedCategory === item.code}
                                 {...register("category", {
                                     validate: (value) =>
                                         value?.length > 0 || "Select at least one Category",
                                 })}
-                                onChange={() => getskillsbycategory(item.code, item.name)}
+                                onClick={() => {
+                                    if (selectedCategory === item.code) {
+                                        // 🔥 UNSELECT
+                                        setValue("category", "");
+                                        getskillsbycategory(null, "");
+                                    }
+                                }}
+                                onChange={() =>
+                                    getskillsbycategory(item.code, item.name)
+                                }
                             />
 
-
                             <label
-                                htmlFor={item.code} className="flex flex-col py-3 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-primary peer-checked:**:text-white"
+                                htmlFor={item.code}
+                                className="flex flex-col py-3 px-4 items-center justify-center w-full
+                rounded-lg cursor-pointer border border-[#D0D5DD]
+                transition-all peer-checked:bg-primary peer-checked:**:text-white"
                             >
                                 <div className="flex items-center gap-3">
                                     <span className="text-paragraph text-sm lg:text-base">
@@ -53,13 +67,13 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                         </li>
                     ))}
                 </ul>
+
                 {errors.category && (
                     <span className="text-sm text-red-500 font-medium">
                         {errors.category.message}
                     </span>
                 )}
             </div>
-
         </div>
     );
 };

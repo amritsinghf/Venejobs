@@ -22,12 +22,26 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const { category_data, skills_data, getCategories, getSkillsByCategory } =
     jobApiStore();
 
   const getskillsbycategory = async (categoryCode, name) => {
+    if (selectedCategory === categoryCode) {
+      // 🔥 UNSELECT
+      setSelectedCategory(null);
+      setCategoryName("");
+      setSelectedItems([]);
+      setValue("skills", []);
+      return;
+    }
+
+    // ✅ SELECT
+    setSelectedCategory(categoryCode);
     setCategoryName(name);
+    setSelectedItems([]);
+    setValue("skills", []);
     await getSkillsByCategory(categoryCode);
   };
 
@@ -104,10 +118,9 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
         <div className="w-full flex flex-col gap-6">
           <CategorySelector
             category_data={category_data}
-            errors={errors}
+            selectedCategory={selectedCategory}
             getskillsbycategory={getskillsbycategory}
           />
-
           <SkillsSelector
             categoryName={categoryName}
             skills_data={skills_data}

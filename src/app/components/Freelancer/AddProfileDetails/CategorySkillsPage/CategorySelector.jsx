@@ -1,5 +1,4 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
 import ComputerIcon from "@mui/icons-material/Computer";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import CampaignIcon from "@mui/icons-material/Campaign";
@@ -14,9 +13,11 @@ const categoryIcons = {
     writing_translation: <EditNoteIcon fontSize="small" />,
 };
 
-const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
-    const { register } = useFormContext();
-
+const CategorySelector = ({
+    category_data,
+    selectedCategory,
+    getskillsbycategory,
+}) => {
     return (
         <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-bold">
@@ -28,20 +29,20 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                     {category_data?.map((item) => (
                         <li key={item.code} className="text-center">
                             <input
-                                type="radio"
+                                type="checkbox"
                                 id={item.code}
                                 className="sr-only peer"
-                                value={item.name}
-                                // {...register("category", {
-                                //     validate: (value) =>
-                                //         value?.length > 0 || "Select at least one Category",
-                                // })}
-                                onChange={() => getskillsbycategory(item.code, item.name)}
+                                checked={selectedCategory === item.code}
+                                onChange={() =>
+                                    getskillsbycategory(item.code, item.name)
+                                }
                             />
 
-
                             <label
-                                htmlFor={item.code} className="flex flex-col py-3 px-4 items-center justify-center w-full rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-secondary peer-checked:**:text-white"
+                                htmlFor={item.code}
+                                className="flex flex-col py-3 px-4 items-center justify-center w-full
+                rounded-lg cursor-pointer border border-[#D0D5DD]
+                transition-all peer-checked:bg-secondary peer-checked:**:text-white"
                             >
                                 <div className="flex items-center gap-3">
                                     <span className="text-paragraph text-sm lg:text-base">
@@ -53,13 +54,7 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                         </li>
                     ))}
                 </ul>
-                {/* {errors.category && (
-                    <span className="text-sm text-red-500 font-medium">
-                        {errors.category.message}
-                    </span>
-                )} */}
             </div>
-
         </div>
     );
 };
