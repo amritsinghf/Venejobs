@@ -78,3 +78,14 @@ export { Verified } from "./Verified";
 export { NotVerified } from "./NotVerified";
 export { Share } from "./Share";
 export { ShareGreen } from "./ShareGreen";
+
+export { PiggyBank } from "./PiggyBank";
+export { Language } from "./Language";
+export { Dollar } from "./Dollar";
+export { Like } from "./Like";
+export { Archive } from "./Archive";
+export { RightArrowCurve } from "./RightArrowCurve";
+export { LeftArrow } from "./LeftArrow";
+export { Calendar } from "./Calendar";
+export { PriceTag2 } from "./PriceTag2";
+export { WallClock } from "./WallClock";

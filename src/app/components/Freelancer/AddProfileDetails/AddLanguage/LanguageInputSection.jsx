@@ -57,7 +57,7 @@ const LanguageInputSection = ({
     const { name, value } = e.target;
     setlanguageTemp((prev) => ({
       ...prev,
-      [name]: value === "" ? "" : Number(value),
+      [name]: value,
     }));
   };
 
@@ -106,12 +106,12 @@ const LanguageInputSection = ({
             <select
               name="language"
               value={languageTemp.language}
-              className="text-paragraph py-2 border rounded"
               onChange={handleChange}
+              className="text-paragraph py-2 border rounded"
             >
               <option value="">Select language</option>
               {languagesData.map((item) => (
-                <option value={item.id} key={item.id}>
+                <option value={item.name} key={item.id}>
                   {item.name}
                 </option>
               ))}
@@ -130,7 +130,7 @@ const LanguageInputSection = ({
             >
               <option value="">Select proficiency</option>
               {proficiencyData.map((item) => (
-                <option value={item.id} key={item.id}>
+                <option value={item.name} key={item.id}>
                   {item.name}
                 </option>
               ))}

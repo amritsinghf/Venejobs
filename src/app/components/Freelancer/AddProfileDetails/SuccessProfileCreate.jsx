@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Loader from "../../common/Loader";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function SuccessProfileCreate() {
   const [loading, setLoading] = useState(false);
@@ -45,16 +45,15 @@ export default function SuccessProfileCreate() {
 
           {/* Description */}
           <p className="text-paragraph text-center text-sm sm:text-base lg:text-lg max-w-md mb-6">
-           You're all set to start exploring projects, connecting with clients, and building your freelance career.
+            You're all set to start exploring projects, connecting with clients, and building your freelance career.
           </p>
 
           {/* CTA Button */}
           <Link
             href="/freelancer/"
             onClick={handleClick}
-            className={`bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${
-              loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"
-            }`}
+            className={`bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"
+              }`}
           >
             {loading ? (
               <>

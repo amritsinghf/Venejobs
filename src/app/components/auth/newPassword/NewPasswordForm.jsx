@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import userApiStore from "@/app/store/userStore";
 import Button from "../../button/Button";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import NewPasswordInput from "./NewPasswordInput";
 import Loader from "../../common/Loader";
 import useToastStore from "@/app/store/toastStore";

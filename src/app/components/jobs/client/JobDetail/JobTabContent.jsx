@@ -1,10 +1,12 @@
 import JobContent from "./JobContent";
+import ReviewProposal from "./ReviewProposal";
+import InviteFreelancer from "./InviteFreelancer";
 
-export default function JobTabContent({ showData, job }) {
+export default function JobTabContent({ showData }) {
   const contentMap = {
     all: <JobContent />,
-    review: <div>Review Proposals Content</div>,
-    invite: <div>Invite Freelancers Content</div>,
+    review: <ReviewProposal />,
+    invite: <InviteFreelancer />,
     hire: <div>Hire Content</div>,
   };
 

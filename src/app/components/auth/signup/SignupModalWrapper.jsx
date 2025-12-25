@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 export default function SignupModalWrapper({ children, setActiveModal }) {
   const modalRef = useRef(null);

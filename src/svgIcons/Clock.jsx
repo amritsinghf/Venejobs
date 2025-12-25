@@ -1,8 +1,8 @@
 import React from "react";
 
 export const Clock = ({
-  size,
-  color = "currentColor",
+  size = 18,
+  color = "#666666",
   className = "",
 }) => {
   return (

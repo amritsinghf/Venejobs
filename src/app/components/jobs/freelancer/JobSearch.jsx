@@ -1,7 +1,7 @@
 import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 import JobDescription from "../JobDescription";
 import JobFilterSidebar from "../client/JobFilterSidebar";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
@@ -83,9 +83,8 @@ export default function JobSearch() {
           </div>
           <p className="flex flex-row gap-2 md:gap-4 items-center justify-end text-gray-800 text-sm">
             {jobs && jobs.length > 0
-              ? `Showing ${(page - 1) * limit + 1}–${
-                  (page - 1) * limit + jobs.length
-                } of ${totalResults} results`
+              ? `Showing ${(page - 1) * limit + 1}–${(page - 1) * limit + jobs.length
+              } of ${totalResults} results`
               : "No results found"}
             <button className="min-w-10 min-h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-secondary text-white">
               <SvgIcon name="Pagination_List" />

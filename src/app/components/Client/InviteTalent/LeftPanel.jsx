@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../button/Button";
-import SvgIcon from "../../Utility/SvgIcon";
+import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const LeftPanel = () => {
   return (
