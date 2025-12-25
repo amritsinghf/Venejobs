@@ -17,7 +17,7 @@ const BottomPanel = ({ freelancerProfile }) => {
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl lg:text-[32px] font-semibold">
+        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
           Employment history
         </h2>
         {/* <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">

@@ -25,14 +25,14 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
           key={index}
           className="border border-gray-200 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
-          <div>
+          <div className="flex flex-col gap-2">
             <h2 className="font-bold text-lg">{item.institution_name}</h2>
             <p className="text-gray-600">{item.degree}</p>
             <p className="text-gray-600">{item.field_of_study}</p>
             <p className="text-gray-600">{item.type_of_education}</p>
           </div>
 
-          <div className="flex gap-2 mt-2 md:mt-0">
+          <div className="flex gap-4">
             <button
               type="button"
               className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"

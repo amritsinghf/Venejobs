@@ -142,7 +142,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
             <InputField label="Job Title" name="job_title" value={experience.job_title} onChange={handleChange} error={errors.job_title} placeholder="Ex: Frontend Developer" />
             <InputField label="Company Name" name="company" value={experience.company} onChange={handleChange} error={errors.company} placeholder="Ex: Infosys" />
             <InputField label="Location" name="location" value={experience.location} onChange={handleChange} error={errors.location} placeholder="Ex: India" />

@@ -10,12 +10,12 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-semibold text-lg lg:text-[32px]">
+        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
           Portfolio History
         </h2>
         <button
           type="button"
-          className="mt-4 px-2 py-2 bg-secondary text-white w-fit rounded-full"
+          className="px-2 py-2 bg-secondary text-white w-fit rounded-full"
           onClick={onAddMore}
         >
           <AddIcon />
@@ -24,17 +24,17 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
       {fields.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-200 p-4 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+          className="border border-gray-200 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
-          <div>
+          <div className="flex flex-col gap-2">
             <h2 className="font-bold text-lg">{item.title}</h2>
             <p className="text-gray-600">{item.image_url}</p>
           </div>
 
-          <div className="flex gap-2 mt-2 md:mt-0">
+          <div className="flex gap-4">
             <button
               type="button"
-              className="w-10 h-10 md:w-[50px] md:h-[50px] flex items-center justify-center bg-secondary text-white rounded-full"
+              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
               onClick={() => onEdit(index)}
             >
               <SvgIcon name="Editing" size={20} />
@@ -42,7 +42,7 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
 
             <button
               type="button"
-              className="w-10 h-10 md:w-[50px] md:h-[50px] flex items-center justify-center bg-secondary text-white rounded-full"
+              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-secondary text-white rounded-full"
               onClick={() => onDelete(index)}
             >
               <SvgIcon name="Delete1" size={20} />

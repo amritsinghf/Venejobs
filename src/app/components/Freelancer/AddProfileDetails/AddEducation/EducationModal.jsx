@@ -91,7 +91,7 @@ const EducationModal = ({
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
 
             <Input label="Institution Name" name="institution_name" value={education.institution_name} onChange={handleChange} error={errors.institution_name} placeholder="E.g., University of XYZ" />
 
@@ -122,7 +122,7 @@ const EducationModal = ({
             />
           </div>
 
-          <div className="flex flex-col gap-2 mt-4">
+          <div className="col-span-2 flex flex-col gap-2">
             <label className="font-semibold">Description</label>
             <textarea
               name="description"
@@ -137,7 +137,7 @@ const EducationModal = ({
             )}
           </div>
 
-          <div className="flex justify-end gap-4 mt-6">
+          <div className="flex justify-end gap-6 mt-6">
             <Button onClick={() => setshowForm(false)}
               className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
               style={{

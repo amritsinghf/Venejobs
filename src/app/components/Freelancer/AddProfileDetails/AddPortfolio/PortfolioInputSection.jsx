@@ -40,14 +40,14 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
       {/* Show Add Panel only if no education added yet */}
       {fields.length === 0 && (
         <div
-          className="border border-dashed border-gray-500 h-[366px] flex flex-col justify-end pl-3 pb-20 cursor-pointer"
+          className="border border-dashed border-gray-500 flex flex-col items-center justify-center gap-4 cursor-pointer h-40 sm:h-48 md:h-56 lg:h-64"
           onClick={() => {
             setEditIndex(null);
             setshowForm(true);
           }}
         >
           <Image src="/icons/Add.png" alt="Add button" width={40} height={40} />
-          <h2 className="mt-6 font-semibold text-lg lg:text-[32px]">
+          <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
             Add Portfolio
           </h2>
         </div>
