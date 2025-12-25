@@ -14,6 +14,8 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     trigger,
     formState: { errors },
     setValue,
+    setError,
+    clearErrors,
   } = useFormContext();
 
   const [categoryName, setCategoryName] = useState("");
@@ -59,17 +61,32 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   }, []);
 
   useEffect(() => {
-    setValue("skills", selectedItems, { shouldValidate: true });
+    setValue("skills", selectedItems);
   }, [selectedItems]);
 
   const handleNext = async () => {
     setLoading(true);
 
-    const valid = await trigger(["category", "skills"]);
-    if (valid) nextStep();
+    const categoryValid = await trigger("category");
+
+    if (selectedItems.length === 0) {
+      setError("skills", {
+        type: "manual",
+        message: "Please add at least 1 skill",
+      });
+      setLoading(false);
+      return;
+    }
+
+    clearErrors("skills");
+
+    if (categoryValid) {
+      nextStep();
+    }
 
     setLoading(false);
   };
+
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />

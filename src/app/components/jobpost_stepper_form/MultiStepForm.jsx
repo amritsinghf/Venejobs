@@ -15,7 +15,11 @@ const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
   const showError = toastStore.getState().showError;
 
-  const methods = useForm({ mode: "onBlur" });
+  const methods = useForm({
+    mode: "onSubmit",
+    shouldUnregister: false,
+  });
+
   const {
     handleSubmit,
     formState: { errors },

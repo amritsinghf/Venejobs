@@ -14,7 +14,6 @@ const SkillsSelector = ({
   const { register } = useFormContext();
 
   const skillsRegister = register("skills", {
-    required: "Please add at least 1 skill",
     onChange: (e) => handleInputChange(e),
   });
 
