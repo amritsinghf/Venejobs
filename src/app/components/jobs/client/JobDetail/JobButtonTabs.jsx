@@ -1,4 +1,4 @@
-export default function JobTabs({ tabs, tabGap = "6", showData, setshowData }) {
+export default function JobButtonTabs({ tabs, tabGap = "6", showData, setshowData }) {
   return (
     <div className={`flex gap-2 md:gap-${tabGap} justify-start lg:px-6 py-5 flex-wrap md:flex-nowrap`} style={{ boxShadow: "2px 2px 50px 4px #00000005" }}>
       {tabs.map((tab) => {

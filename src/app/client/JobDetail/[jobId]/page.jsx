@@ -5,7 +5,7 @@ import ClientLayout from "@/app/layout/ClientLayout";
 import JobTabContent from "@/app/components/jobs/client/JobDetail/JobTabContent";
 import { useParams } from "next/navigation";
 import jobApiStore from "@/app/store/jobStore";
-import JobTabs from "@/app/components/jobs/client/JobDetail/JobTabs";
+import JobButtonTabs from "@/app/components/jobs/client/JobDetail/JobButtonTabs";
 
 export default function JobDetail() {
   const [showData, setshowData] = useState("all");
@@ -80,7 +80,7 @@ export default function JobDetail() {
           </div>
 
           <div className="flex flex-col gap-4 lg:gap-8">
-            <JobTabs tabs={tabs} showData={showData} setshowData={setshowData} />
+            <JobButtonTabs tabs={tabs} showData={showData} setshowData={setshowData} />
             <JobTabContent showData={showData} />
           </div>
         </div>

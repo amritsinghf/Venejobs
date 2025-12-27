@@ -5,10 +5,10 @@ import Pagination from "@/app/components/Pagination/Pagination";
 
 
 const images = [
-  "/Service-Detail.png",
+  "/service/Service-Detail.png",
   "/home/Group_Home.png",
-  "/Service-Detail.png",
-  "/Service-Detail.png",
+  "/service/Service-Detail.png",
+  "/service/Service-Detail.png",
 ];
 
 const ServiceContent = () => {

@@ -99,13 +99,13 @@ export default function CoverletterDetail() {
               key={i}
               className="flex flex-col gap-6 w-full md:w-auto"
             >
-              <div className="bg-heading border rounded-2xl pb-2 pt-5.5 px-3.5 w-full">
+              <div className="flex justify-center bg-heading border rounded-2xl pb-2 pt-5.5 px-3.5 w-full">
                 <Image
                   src="/FreelanceProjectImage/projectImg.jpg"
                   alt=""
                   width={222}
                   height={190}
-                  className="w-auto md:w-[222px]"
+                  className="w-[340px] md:w-[222px]"
                 />
               </div>
               <h3 className="font-sm text-heading font-semibold ">

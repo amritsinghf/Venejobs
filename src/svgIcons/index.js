@@ -89,3 +89,5 @@ export { LeftArrow } from "./LeftArrow";
 export { Calendar } from "./Calendar";
 export { PriceTag2 } from "./PriceTag2";
 export { WallClock } from "./WallClock";
+export { Upload } from "./Upload";
+export { GreenTick } from "./GreenTick";

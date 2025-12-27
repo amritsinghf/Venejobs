@@ -4,8 +4,7 @@ export default function JobDescription({
     text,
     font,
     paragraphFont = "font-medium leading-relaxed",
-    mobileLines = 6,
-    desktopLines = 3,
+    clampClass = "line-clamp-6 lg:line-clamp-3"
 }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isLong, setIsLong] = useState(false);
@@ -20,15 +19,13 @@ export default function JobDescription({
         }
     }, []);
 
-    const clampClass = !isExpanded
-        ? `line-clamp-${mobileLines} lg:line-clamp-${desktopLines}`
-        : "";
+    const showClampClass = !isExpanded ? clampClass : "";
 
     return (
         <div>
             <p
                 ref={textRef}
-                className={`text-paragraph text-sm lg:text-base ${paragraphFont} transition-all duration-200 ${clampClass}`}
+                className={`text-paragraph text-sm lg:text-base ${paragraphFont} transition-all duration-200 ${showClampClass}`}
             >
                 {text}
             </p>

@@ -3,6 +3,7 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
+import { useState } from "react";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {

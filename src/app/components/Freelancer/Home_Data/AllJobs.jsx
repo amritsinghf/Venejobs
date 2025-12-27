@@ -82,7 +82,7 @@ export default function AllJobs() {
               </h3>
               <JobDescription
                 text={item.description}
-                font="text-paragraph text-sm lg:text-base font-medium"
+                font="text-secondary text-sm lg:text-base font-medium"
               />
             </div>
 
