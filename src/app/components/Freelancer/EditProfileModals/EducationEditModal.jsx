@@ -1,93 +1,41 @@
-import React, { useEffect, useState } from "react";
-import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
+import React, { useEffect } from "react";
+import Button from "../../button/Button";
+import SvgIcon from "../../Utility/SvgIcon";
+import { useForm } from "react-hook-form";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import useToastStore from "@/app/store/toastStore";
+import useEscapeKey from "@/hooks/useEscapeKey";
 
-const INITIAL_EDUCATION = {
-  institution_name: "",
-  degree: "",
-  field_of_study: "",
-  type_of_education: "",
-  start_date: "",
-  end_date: "",
-  description: "",
-};
-
-const validateEducation = (data) => {
-  const errors = {};
-
-  if (!data.institution_name)
-    errors.institution_name = "Institution name is required";
-  if (!data.degree) errors.degree = "Degree is required";
-  if (!data.field_of_study)
-    errors.field_of_study = "Field of study is required";
-  if (!data.type_of_education)
-    errors.type_of_education = "Type of education is required";
-  if (!data.description)
-    errors.description = "Description is required";
-
-  if (!/^\d{4}$/.test(data.start_date))
-    errors.start_date = "Enter valid 4 digit year";
-
-  if (data.end_date && !/^\d{4}$/.test(data.end_date))
-    errors.end_date = "Enter valid 4 digit year";
-
-  if (
-    data.start_date &&
-    data.end_date &&
-    Number(data.end_date) < Number(data.start_date)
-  ) {
-    errors.end_date = "End year cannot be earlier than start year";
-  }
-
-  return errors;
-};
-
-const EducationModal = ({
-  setshowForm,
-  close,
-  append,
-  update,
-  editIndex,
-  fields,
+const EducationEditModal = ({setShowEducationModal,showEducationModal
 }) => {
-  const [education, setEducation] = useState(INITIAL_EDUCATION);
-  const [errors, setErrors] = useState({});
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  useEffect(() => {
-    setEducation(editIndex !== null ? fields[editIndex] : INITIAL_EDUCATION);
-  }, [editIndex, fields]);
+  useEscapeKey(showEducationModal, () => {
+    setShowEducationModal(false);
+  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+//   const { updatePersonalDetails, loading, error } = freelanceApiStore();
+  const { showSuccess, showError } = useToastStore.getState();
 
-    const yearFields = ["start_date", "end_date"];
-    let finalValue = value;
-
-    if (yearFields.includes(name)) {
-      finalValue = value.replace(/[^0-9]/g, "");
-      if (finalValue.length > 4) return;
-    }
-
-    setEducation((prev) => ({ ...prev, [name]: finalValue }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const handleSave = () => {
-    const validationErrors = validateEducation(education);
-    if (Object.keys(validationErrors).length) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    editIndex !== null
-      ? update(editIndex, education)
-      : append(education);
-
-    setshowForm(false);
-  };
+//   const handleSave = async (data) => {
+//     try {
+//       const res = await updatePersonalDetails(data);
+//       if (res.success) {
+//         showSuccess(res.message, "success");
+//       }
+//       console.log(res);
+//     } catch (error) {
+//       showError(error.response.data.message, "error");
+//     }
+//   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+   <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
       <div
         className="
           bg-white
@@ -103,10 +51,10 @@ const EducationModal = ({
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
           <div className="flex justify-between items-center sticky top-0 bg-white z-10">
             <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
-              {editIndex !== null ? "Edit Education" : "Add Education"}
+             Edit Education
             </h2>
             <button
-              onClick={() => setshowForm(false)}
+              onClick={() => setShowEducationModal(false)}
               className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
             >
               <SvgIcon name="CrossButton" size={18} />
@@ -117,45 +65,45 @@ const EducationModal = ({
             <Input
               label="Institution Name"
               name="institution_name"
-              value={education.institution_name}
-              onChange={handleChange}
-              error={errors.institution_name}
+            //   value={education.institution_name}
+            //   onChange={handleChange}
+            //   error={errors.institution_name}
               placeholder="E.g., University of XYZ"
             />
 
             <Input
               label="Degree"
               name="degree"
-              value={education.degree}
-              onChange={handleChange}
-              error={errors.degree}
+            //   value={education.degree}
+            //   onChange={handleChange}
+            //   error={errors.degree}
               placeholder="E.g., Bachelor of Computer Science"
             />
 
             <Input
               label="Field of Study"
               name="field_of_study"
-              value={education.field_of_study}
-              onChange={handleChange}
-              error={errors.field_of_study}
+            //   value={education.field_of_study}
+            //   onChange={handleChange}
+            //   error={errors.field_of_study}
               placeholder="E.g., Computer Science"
             />
 
             <Input
               label="Type of Education"
               name="type_of_education"
-              value={education.type_of_education}
-              onChange={handleChange}
-              error={errors.type_of_education}
+            //   value={education.type_of_education}
+            //   onChange={handleChange}
+            //   error={errors.type_of_education}
               placeholder="Bachelor’s Degree"
             />
 
             <Input
               label="Start Year"
               name="start_date"
-              value={education.start_date}
-              onChange={handleChange}
-              error={errors.start_date}
+            //   value={education.start_date}
+            //   onChange={handleChange}
+            //   error={errors.start_date}
               placeholder={new Date().getFullYear() - 3}
               type="number"
             />
@@ -163,9 +111,9 @@ const EducationModal = ({
             <Input
               label="End Year"
               name="end_date"
-              value={education.end_date}
-              onChange={handleChange}
-              error={errors.end_date}
+            //   value={education.end_date}
+            //   onChange={handleChange}
+            //   error={errors.end_date}
               placeholder={new Date().getFullYear()}
               type="number"
             />
@@ -175,8 +123,8 @@ const EducationModal = ({
             <label className="font-semibold">Description</label>
             <textarea
               name="description"
-              value={education.description}
-              onChange={handleChange}
+            //   value={education.description}
+            //   onChange={handleChange}
               rows={4}
               placeholder="Describe your education, achievements, coursework..."
               className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
@@ -188,7 +136,6 @@ const EducationModal = ({
 
           <div className="flex justify-end gap-6 mt-6">
             <Button
-            type={"button"}
               onClick={() => setshowForm(false)}
               className="bg-white text-gray-800"
               style={{
@@ -198,7 +145,7 @@ const EducationModal = ({
             >
               Cancel
             </Button>
-            <Button type={"button"} className="bg-secondary text-white" onClick={handleSave}>
+            <Button className="bg-secondary text-white">
               Save
             </Button>
           </div>
@@ -233,4 +180,4 @@ const Input = ({
   </div>
 );
 
-export default EducationModal;
+export default EducationEditModal;

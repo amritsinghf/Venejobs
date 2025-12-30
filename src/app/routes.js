@@ -15,6 +15,7 @@ export const Routes = {
     jobdetail:"/freelancer/JobDetail/",
     // jobsearch:"/freelancer/JobSearch/",
     proposal:"/freelancer/Proposal/",
+    profileData:"/freelancer/profileData"
   },
   profile: {
     client:{

@@ -36,7 +36,7 @@ const ShowDetailsHeader = ({ name, country }) => {
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-6">
           <Link
-            href={Routes.profile.freelancer.info}
+            href={Routes.profile.freelancer.home}
             className="bg-secondary w-auto h-auto px-3 py-2 md:px-6 md:py-3 text-white rounded"
           >
             Profile Settings

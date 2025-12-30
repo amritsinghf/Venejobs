@@ -47,6 +47,7 @@ export default function page() {
       router.push(Routes.freelancer.page);
     }
   }, [loadingData, FreelanceDetails, router]);
+  
   return (
     <>
       <FreelancerLayout>

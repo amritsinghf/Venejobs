@@ -29,7 +29,7 @@ const BottomPanel = ({ freelancerProfile }) => {
         </div> */}
       </div>
 
-      {freelancerProfile?.meta?.experiences.map((item, index) => (
+      {freelancerProfile?.experiences.map((item, index) => (
         <div className="flex flex-col gap-4" key={index}>
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
@@ -43,7 +43,7 @@ const BottomPanel = ({ freelancerProfile }) => {
             </div>
             <div className="flex items-center gap-4">
               <div
-                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4"
+                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
                 onClick={() => {
                   setEditExperience({ ...item, index: index });
                   setExperienceModal(true);
@@ -78,6 +78,7 @@ const BottomPanel = ({ freelancerProfile }) => {
         <ExperienceEditModal
           item={editExperience}
           setExperienceModal={setExperienceModal}
+          showExperienceModal={showExperienceModal}
         />
       )}
     </div>

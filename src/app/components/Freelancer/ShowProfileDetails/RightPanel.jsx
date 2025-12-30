@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
+import JobDescription from "../../jobs/JobDescription";
+import PortfolioEditModal from "../EditProfileModals/PortfolioEditModal";
+import EducationEditModal from "../EditProfileModals/EducationEditModal";
+import SkillsEditModal from "../EditProfileModals/SkillsEditModal";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -14,6 +18,12 @@ const RightPanel = ({ freelancerProfile }) => {
   };
 
   const [showTitleModal, setshowTitleModal] = useState(false);
+  const [showPortfolioModal, setShowPortfolioModal] = useState(false);
+  const [showEducationModal, setShowEducationModal] = useState(false);
+  const [showSkillModal, setShowSkillModal] = useState(false);
+
+  const skillscss =
+    "text-sm lg:text-base cursor-pointer border border-gray-200 relative overflow-hidden px-4 py-2 font-medium text-paragraph rounded transition-all duration-300 before:content-[''] before:absolute before:inset-0 before:bg-gray-200 before:-translate-x-full before:transition-transform before:duration-300 before:-z-10 hover:before:translate-x-0 z-10";
 
   return (
     <div className="flex flex-col gap-10 xl:w-[900px]">
@@ -56,7 +66,10 @@ const RightPanel = ({ freelancerProfile }) => {
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between py-4">
           <h2 className="text-2xl text-heading font-semibold">Portfolio</h2>
-          <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">
+          <div
+            className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+            onClick={() => setShowPortfolioModal(true)}
+          >
             <SvgIcon
               name="Editing"
               size={24}
@@ -66,7 +79,7 @@ const RightPanel = ({ freelancerProfile }) => {
         </div>
 
         <div className="flex flex-wrap lg:flex-nowrap items-center gap-12">
-          {freelancerProfile?.meta?.portfolios?.map((item) => (
+          {freelancerProfile?.portfolios?.map((item) => (
             <div className="flex flex-col gap-6" key={item.title}>
               <div className="bg-heading border rounded-2xl">
                 <Image
@@ -86,35 +99,53 @@ const RightPanel = ({ freelancerProfile }) => {
 
       <div className="flex flex-col gap-6">
         <div>
-          <h2 className="text-heading text-2xl font-semibold">Work History</h2>
+          <h2 className="text-heading text-2xl font-semibold">
+            Education History
+          </h2>
         </div>
 
-        <div className="flex flex-col items-center justify-between">
-          {freelancerProfile?.meta?.educations?.map((item) => (
-            <div className="flex flex-col gap-4" key={item.institution_name}>
+        <div className="flex flex-col items-center md:items-start justify-between">
+          {freelancerProfile?.educations?.map((item) => (
+            <div
+              className="flex flex-col gap-4 w-full"
+              key={item.institution_name}
+            >
               <div className="flex justify-between items-center">
                 <h2 className="font-semibold text-base lg:text-lg text-heading">
                   {item.institution_name}
                 </h2>
-                <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">
+                <div
+                  className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+                  onClick={() => setShowEducationModal(true)}
+                >
                   <SvgIcon
-                    name="Share"
+                    name="Editing"
                     size={24}
-                    className="text-secondary w-[18px] h-[18px] lg:w-5 lg:h-5"
+                    className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
                   />
                 </div>
               </div>
 
-              <p className="text-paragraph text-sm lg:text-base">
-                {item.description}
-              </p>
+              <JobDescription
+                text={item.description}
+                font="text-paragraph text-sm lg:text-base font-medium"
+                clampClass="line-clamp-3 lg:line-clamp-2"
+              />
               <div className="flex flex-col sm:flex-row  lg:items-center gap-8">
-                <div className="flex items-center gap-3">
+                {/* <div className="flex items-center gap-3">
                   <img src="/icons/stars2.png" alt="" />
                   <p>4.9</p>
-                </div>
+                </div> */}
                 <p className="font-semibold text-heading">
-                  {item.start_date} - {item.end_date}
+                  {new Date(item.start_date).toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  })}
+                  -
+                  {new Date(item.end_date).toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  })}
                 </p>
               </div>
               <hr className="text-gray-200" />
@@ -131,7 +162,10 @@ const RightPanel = ({ freelancerProfile }) => {
       <div className="flex flex-col gap-6 pb-10">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">Skills</h2>
-          <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">
+          <div
+            className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+            onClick={() => setShowSkillModal(true)}
+          >
             <SvgIcon
               name="Editing"
               size={24}
@@ -140,20 +174,9 @@ const RightPanel = ({ freelancerProfile }) => {
           </div>
         </div>
         <div className="flex gap-6 flex-wrap">
-          {freelancerProfile?.meta?.skills?.map((skill, index) => (
-            <p
-              className="text-sm lg:text-base cursor-pointer border border-gray-200
-                        relative overflow-hidden
-                        px-4 py-2 font-medium text-paragraph rounded
-                        transition-all duration-300
-                        before:content-[''] before:absolute before:inset-0
-                        before:bg-gray-200 before:-translate-x-full before:transition-transform before:duration-300
-                        before:-z-10
-                        hover:before:translate-x-0
-                        z-10"
-              key={index}
-            >
-              {skill}
+          {freelancerProfile?.skills?.map((skill, index) => (
+            <p className={skillscss} key={skill.id}>
+              {skill.skill_name}
             </p>
           ))}
         </div>
@@ -163,6 +186,28 @@ const RightPanel = ({ freelancerProfile }) => {
         <TitleEditModal
           setshowTitleModal={setshowTitleModal}
           freelancerProfile={freelancerProfile}
+          showTitleModal={showTitleModal}
+        />
+      )}
+
+      {showPortfolioModal && (
+        <PortfolioEditModal
+          setShowPortfolioModal={setShowPortfolioModal}
+          showPortfolioModal={showPortfolioModal}
+        />
+      )}
+
+      {showEducationModal && (
+        <EducationEditModal
+          setShowEducationModal={setShowEducationModal}
+          showEducationModal={showEducationModal}
+        />
+      )}
+
+      {showSkillModal && (
+        <SkillsEditModal
+          showSkillModal={showSkillModal}
+          setShowSkillModal={setShowSkillModal}
         />
       )}
     </div>

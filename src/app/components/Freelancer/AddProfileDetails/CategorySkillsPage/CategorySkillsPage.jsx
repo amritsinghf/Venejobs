@@ -31,7 +31,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
       setSelectedCategory(null);
       setCategoryName("");
       setSelectedItems([]);
-      setValue("skills", []);
+      setValue("skills.name", []);
       return;
     }
 
@@ -39,7 +39,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     setSelectedCategory(categoryCode);
     setCategoryName(name);
     setSelectedItems([]);
-    setValue("skills", []);
+    setValue("skills.name", []);
     await getSkillsByCategory(categoryCode);
   };
 
@@ -73,14 +73,14 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   }, []);
 
   useEffect(() => {
-    setValue("skills", selectedItems);
+    setValue("skills.name", selectedItems);
   }, [selectedItems]);
 
   const handleNext = async () => {
     setLoading(true);
 
     if (selectedItems.length === 0) {
-      setError("skills", {
+      setError("skills.name", {
         type: "manual",
         message: "Please add at least 1 skill",
       });
@@ -88,7 +88,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
       return;
     }
 
-    clearErrors("skills");
+    clearErrors("skills.name");
 
     const valid = await trigger();
     if (valid) nextStep();
@@ -106,7 +106,8 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             Let’s choose your category and showcase your skills
           </h2>
           <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
-            Select the work you love to do and highlight your top skills. This helps us match you with the right jobs and clients on Venejobs.
+            Select the work you love to do and highlight your top skills. This
+            helps us match you with the right jobs and clients on Venejobs.
           </p>
         </div>
 

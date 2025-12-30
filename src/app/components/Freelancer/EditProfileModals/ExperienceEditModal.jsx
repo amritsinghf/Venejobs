@@ -1,9 +1,14 @@
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import useEscapeKey from "@/hooks/useEscapeKey";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-const ExperienceEditModal = ({ item, setExperienceModal }) => {
+const ExperienceEditModal = ({
+  item,
+  setExperienceModal,
+  showExperienceModal,
+}) => {
   const {
     register,
     handleSubmit,
@@ -11,6 +16,10 @@ const ExperienceEditModal = ({ item, setExperienceModal }) => {
     reset,
     formState: { errors },
   } = useForm();
+
+  useEscapeKey(showExperienceModal, () => {
+    setExperienceModal(false);
+  });
 
   useEffect(() => {
     if (item) {

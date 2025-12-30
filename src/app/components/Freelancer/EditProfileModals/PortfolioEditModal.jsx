@@ -6,11 +6,7 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
-const TitleEditModal = ({
-  setshowTitleModal,
-  freelancerProfile,
-  showTitleModal,
-}) => {
+const PortfolioEditModal = ({ setShowPortfolioModal, showPortfolioModal }) => {
   const {
     register,
     handleSubmit,
@@ -18,24 +14,23 @@ const TitleEditModal = ({
     formState: { errors },
   } = useForm();
 
-  useEscapeKey(showTitleModal, () => {
-    setshowTitleModal(false);
+  useEscapeKey(showPortfolioModal, () => {
+    setShowPortfolioModal(false);
   });
 
-  const { updatePersonalDetails, loading, error } = freelanceApiStore();
   const { showSuccess, showError } = useToastStore.getState();
 
-  const handleSave = async (data) => {
-    try {
-      const res = await updatePersonalDetails(data);
-      if (res.success) {
-        showSuccess(res.message, "success");
-      }
-      console.log(res);
-    } catch (error) {
-      showError(error.response.data.message, "error");
-    }
-  };
+  //   const handleSave = async (data) => {
+  //     try {
+  //       const res = await updatePersonalDetails(data);
+  //       if (res.success) {
+  //         showSuccess(res.message, "success");
+  //       }
+  //       console.log(res);
+  //     } catch (error) {
+  //       showError(error.response.data.message, "error");
+  //     }
+  //   };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
@@ -47,7 +42,7 @@ const TitleEditModal = ({
             </h2>
             <button
               type="button"
-              onClick={() => setshowTitleModal(false)}
+              onClick={() => setShowPortfolioModal(false)}
               className="absolute right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
@@ -55,15 +50,15 @@ const TitleEditModal = ({
           </div>
 
           <div className="flex flex-col justify-between h-120">
-            <form onSubmit={handleSubmit(handleSave)}>
+            <form>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Professional Title</h3>
+                  <h3 className="font-bold text-base">Title</h3>
                   <input
                     type="text"
-                    value={freelancerProfile?.professional_title}
-                    name="professional_title"
-                    {...register("professional_title", {
+                    // value={freelancerProfile?.professional_title}
+                    name="title"
+                    {...register("title", {
                       required: {
                         value: true,
                         message: "Title is required",
@@ -72,52 +67,28 @@ const TitleEditModal = ({
                     placeholder="Enter your title"
                     className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
                   />
-                  {errors.professional_title && (
-                    <p className="text-red-500 text-sm">
-                      {errors.professional_title}
-                    </p>
+                  {errors.title && (
+                    <p className="text-red-500 text-sm">{errors.title}</p>
                   )}
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Overview</h3>
+                  <h3 className="font-bold text-base">Image URL</h3>
                   <input
                     type="text"
-                    value={freelancerProfile?.overview}
-                    name="overview"
-                    {...register("overview", {
+                    // value={freelancerProfile?.image_url}
+                    name="image_url"
+                    {...register("image_url", {
                       required: {
                         value: true,
-                        message: "Overview is required",
+                        message: "Image url is required",
                       },
                     })}
                     placeholder="Explain yourself in brief"
                     className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
                   />
-                  {errors.overview && (
-                    <p className="text-red-500 text-sm">{errors.overview}</p>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">
-                    Update your hourly rate
-                  </h3>
-                  <input
-                    type="text"
-                    value={freelancerProfile?.hourly_rate}
-                    name="hourly_rate"
-                    {...register("hourly_rate", {
-                      required: {
-                        value: true,
-                        message: "Hourly Rate is required",
-                      },
-                    })}
-                    placeholder="$0.00"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.hourly_rate && (
-                    <p className="text-red-500 text-sm">{errors.hourly_rate}</p>
+                  {errors.image_url && (
+                    <p className="text-red-500 text-sm">{errors.image_url}</p>
                   )}
                 </div>
               </div>
@@ -125,7 +96,7 @@ const TitleEditModal = ({
                 <Button
                   type="button"
                   className="px-4 py-2 shadow text-paragraph font-semibold"
-                  onClick={() => setshowTitleModal(false)}
+                  onClick={() => setShowPortfolioModal(false)}
                 >
                   Cancel
                 </Button>
@@ -144,4 +115,4 @@ const TitleEditModal = ({
   );
 };
 
-export default TitleEditModal;
+export default PortfolioEditModal;

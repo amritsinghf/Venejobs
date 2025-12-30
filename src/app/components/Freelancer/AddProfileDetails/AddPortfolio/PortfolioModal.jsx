@@ -4,7 +4,7 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const INITIAL_PORTFOLIO = {
   title: "",
-  image_url: "",
+  project_url: "",
 };
 
 const validatePortfolio = (data) => {
@@ -16,21 +16,21 @@ const validatePortfolio = (data) => {
     errors.title = "Title must be at least 3 characters";
   }
 
-  if (!data.image_url.trim()) {
-    errors.image_url = "Project URL is required";
+  if (!data.project_url.trim()) {
+    errors.project_url = "Project URL is required";
   } else {
     try {
-      const url = new URL(data.image_url);
+      const url = new URL(data.project_url);
 
       if (!["http:", "https:"].includes(url.protocol)) {
-        errors.image_url = "URL must start with http:// or https://";
+        errors.project_url = "URL must start with http:// or https://";
       } else if (url.hostname.endsWith(".")) {
-        errors.image_url = "Domain name cannot end with a dot";
+        errors.project_url = "Domain name cannot end with a dot";
       } else if (!url.hostname.includes(".")) {
-        errors.image_url = "Enter a valid domain name";
+        errors.project_url = "Enter a valid domain name";
       }
     } catch {
-      errors.image_url = "Enter a valid full URL (https://example.com)";
+      errors.project_url = "Enter a valid full URL (https://example.com)";
     }
   }
 
@@ -138,10 +138,10 @@ const PortfolioModal = ({
 
             <InputField
               label="Project URL"
-              name="image_url"
-              value={portfolio.image_url}
+              name="project_url"
+              value={portfolio.project_url}
               onChange={handleChange}
-              error={errors.image_url}
+              error={errors.project_url}
               placeholder="https://example.com"
             />
           </div>

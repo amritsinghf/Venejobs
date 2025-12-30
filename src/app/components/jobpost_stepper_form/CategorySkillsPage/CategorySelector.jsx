@@ -35,10 +35,10 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                                 className="sr-only peer"
                                 value={item.code}
                                 checked={selectedCategory === item.code}
-                                {...register("category", {
-                                    validate: (value) =>
-                                        value?.length > 0 || "Select at least one Category",
-                                })}
+                                // {...register("category", {
+                                //     validate: (value) =>
+                                //         value?.length > 0 || "Select at least one Category",
+                                // })}
                                 onClick={() => {
                                     if (selectedCategory === item.code) {
                                         // 🔥 UNSELECT
@@ -68,11 +68,11 @@ const CategorySelector = ({ category_data, errors, getskillsbycategory }) => {
                     ))}
                 </ul>
 
-                {errors.category && (
+                {/* {errors.category && (
                     <span className="text-sm text-red-500 font-medium">
                         {errors.category.message}
                     </span>
-                )}
+                )} */}
             </div>
         </div>
     );

@@ -93,7 +93,7 @@ export default function ProfileDropdown() {
                 href={
                   user?.role_id === 2
                     ? Routes.profile.client.info
-                    : Routes.profile.freelancer.info
+                    : Routes.freelancer.profileData
                 }
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
@@ -104,7 +104,7 @@ export default function ProfileDropdown() {
                 href={
                   user?.role_id === 2
                     ? Routes.profile.client.info
-                    : Routes.profile.freelancer.info
+                    : Routes.freelancer.profileData
                 }
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >

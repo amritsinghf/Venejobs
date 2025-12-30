@@ -19,7 +19,7 @@ const ShowExperiencePage = ({
   const { trigger } = useFormContext();
 
   const handleNext = async () => {
-    const valid = await trigger("experience");
+    const valid = await trigger("experiences");
     if (valid) nextStep();
   };
 

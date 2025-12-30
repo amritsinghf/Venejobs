@@ -103,7 +103,7 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
 
       {/* Education Modal */}
       {showForm && (
-        <EducationModal
+        <EducationModal 
           setshowForm={setshowForm}
           close={() => setshowForm(false)}
           append={append}

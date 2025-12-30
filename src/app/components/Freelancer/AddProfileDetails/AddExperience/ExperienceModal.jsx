@@ -73,9 +73,10 @@ const InputField = ({
         tracking-wide placeholder:text-sm
         border transition-all duration-200
         focus:outline-none
-        ${disabled
-          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+        ${
+          disabled
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
         }
       `}
     />
@@ -95,12 +96,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    const numberFields = [
-      "start_month",
-      "end_month",
-      "start_year",
-      "end_year",
-    ];
+    const numberFields = ["start_month", "end_month", "start_year", "end_year"];
 
     let finalValue = value;
 
@@ -121,8 +117,8 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
       setExperience((prev) => ({
         ...prev,
         is_current: checked,
-        end_month: checked ? "" : prev.end_month,
-        end_year: checked ? "" : prev.end_year,
+        end_month: checked ? null : prev.end_month,
+        end_year: checked ? null : prev.end_year,
       }));
 
       setErrors((prev) => ({
@@ -149,9 +145,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
       return;
     }
 
-    editIndex !== null
-      ? update(editIndex, experience)
-      : append(experience);
+    editIndex !== null ? update(editIndex, experience) : append(experience);
 
     close();
   };
@@ -244,9 +238,8 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             <InputField
               label="End Month"
               name="end_month"
-              value={experience.end_month}
+              value={experience.end_month ?? ""}
               onChange={handleChange}
-              error={errors.end_month}
               type="number"
               placeholder="1-12"
               disabled={experience.is_current}
@@ -255,9 +248,8 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             <InputField
               label="End Year"
               name="end_year"
-              value={experience.end_year}
+              value={experience.end_year ?? ""}
               onChange={handleChange}
-              error={errors.end_year}
               type="number"
               placeholder={new Date().getFullYear()}
               disabled={experience.is_current}

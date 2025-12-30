@@ -38,6 +38,7 @@ const MultiStepForm = () => {
   const { SavePersonalDetails } = freelanceApiStore();
 
   const onSubmit = async (data) => {
+    console.log(data)
     try {
       const res = await SavePersonalDetails(data);
       if (res.success) {

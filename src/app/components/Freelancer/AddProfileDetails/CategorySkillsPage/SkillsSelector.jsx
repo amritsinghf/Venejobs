@@ -13,7 +13,7 @@ const SkillsSelector = ({
 }) => {
   const { register } = useFormContext();
 
-  const skillsRegister = register("skills", {
+  const skillsRegister = register("skills.name", {
     onChange: (e) => handleInputChange(e),
   });
 
@@ -80,7 +80,6 @@ const SkillsSelector = ({
             </div>
           );
         })}
-
       </div>
     </div>
   );

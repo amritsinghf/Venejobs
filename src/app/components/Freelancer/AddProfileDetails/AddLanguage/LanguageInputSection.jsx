@@ -108,8 +108,7 @@ const LanguageInputSection = ({
   };
 
   const selectedLanguages = fields.map((item) => item.language);
-
-
+  
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
