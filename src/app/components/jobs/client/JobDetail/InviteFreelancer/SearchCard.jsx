@@ -1,6 +1,5 @@
 import Image from "next/image";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import JobDescription from "../../../JobDescription";
 
 export default function SearchCard() {
   const freelancers = [1, 2];

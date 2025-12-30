@@ -2,7 +2,7 @@ import jobApiStore from "@/app/store/jobStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import JobDescription from "../JobDescription";
+import ReadMoreBtn from "../../button/ReadMoreBtn";
 import JobFilterSidebar from "../client/JobFilterSidebar";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 
@@ -147,7 +147,7 @@ export default function JobSearch() {
                 <h3 className="text-heading font-medium text-lg">
                   Qualifications :
                 </h3>
-                <JobDescription
+                <ReadMoreBtn
                   text={item.description}
                   font="font-medium text-[#5BBB7B]"
                 />

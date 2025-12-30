@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import JobDescription from "../../jobs/JobDescription";
+import ReadMoreBtn from "../../button/ReadMoreBtn";
 
 export default function FreelancerCard({ index, total }) {
 
@@ -61,7 +61,7 @@ export default function FreelancerCard({ index, total }) {
 
       {/* job desc */}
       <div className="flex flex-col gap-3 lg:mt-2">
-        <JobDescription
+        <ReadMoreBtn
           text="We are seeking a talented and experienced UI/UX Designer to join our team and help us create a visually stunning and user-friendly mobile app. The ideal candidate will have a strong portfolio showcasing their ability to design intuitive, modern, and engaging interfaces for mobile applications. This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile."
           font="text-primary text-normal"
         />

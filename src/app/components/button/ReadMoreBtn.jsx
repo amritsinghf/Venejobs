@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function JobDescription({
+export default function ReadMoreBtn({
     text,
     font,
     paragraphFont = "font-medium leading-relaxed",
