@@ -1,9 +1,9 @@
 import React from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Image from "next/image";
+import Skills from "@/app/components/Client/Common/Skills";
 
 const CoverletterRightPanel = () => {
-  const skills = ["Landing Page", "Web Design", "Prototype", "UX/UI Design", "JavaScript"];
   return (
     <div className="w-full lg:w-[35%] flex flex-col gap-6">
       {/* title and image */}
@@ -36,21 +36,7 @@ const CoverletterRightPanel = () => {
           Has 13 relevant skills to your job
         </p>
         {/*category and skills */}
-        <div className="flex items-center gap-3 flex-wrap">
-          {skills.map((skill, index) => (
-            <p className="text-sm lg:text-base cursor-pointer
-                    relative overflow-hidden
-                    bg-[#FAFAFA] px-4 py-2 font-medium text-paragraph rounded-full
-                    transition-all duration-300
-                    before:content-[''] before:absolute before:inset-0
-                    before:bg-gray-200 before:-translate-x-full before:transition-transform before:duration-300
-                    before:-z-10
-                    hover:before:translate-x-0
-                    z-10" key={index}>
-              {skill}
-            </p>
-          ))}
-        </div>
+        <Skills />
       </div>
       {/* buttons [desktop] */}
       <div className="flex flex-col mt-2 gap-8 w-full">

@@ -1,7 +1,7 @@
 import jobApiStore from "@/app/store/jobStore";
 import { useEffect, useState } from "react";
 
-import JobDescription from "../../jobs/JobDescription";
+import ReadMoreBtn from "../../button/ReadMoreBtn";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 
 export default function AllJobs() {
@@ -80,9 +80,9 @@ export default function AllJobs() {
               <h3 className="text-heading font-semibold text-base lg:text-lg">
                 Qualifications
               </h3>
-              <JobDescription
+              <ReadMoreBtn
                 text={item.description}
-                font="text-paragraph text-sm lg:text-base font-medium"
+                font="text-secondary text-sm lg:text-base font-medium"
               />
             </div>
 

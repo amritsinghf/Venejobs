@@ -7,6 +7,7 @@ import JobDescription from "../../jobs/JobDescription";
 import PortfolioEditModal from "../EditProfileModals/PortfolioEditModal";
 import EducationEditModal from "../EditProfileModals/EducationEditModal";
 import SkillsEditModal from "../EditProfileModals/SkillsEditModal";
+import { useState } from "react";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {

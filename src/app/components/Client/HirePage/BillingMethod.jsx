@@ -21,7 +21,7 @@ const BillingMethod = () => {
           <div className="border border-[#4444441A] rounded-md py-4 px-3 md:py-4 md:px-8">
             <div className="flex gap-2  justify-between">
               <div className="flex gap-3 justify-between items-center">
-                <input type="radio" name="" id="" className="w-4.5 h-4.5" />
+                <input type="radio" name="" id="" className="cursor-pointer w-4.5 h-4.5" />
                 <p className="text-heading font-semibold text-base md:text-lg ">
                   MasterCard ending in 0550
                 </p>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Coverletter from "./ProposalDetailDrawer/Coverletter";
-import JobTabs from "../JobTabs";
+import JobButtonTabs from "@/app/components/jobs/client/JobDetail/JobButtonTabs";
 export default function ProposalDetailDrawer({ isOpen, onClose }) {
 
   const [showData, setshowData] = useState("coverLetter");
@@ -37,7 +37,7 @@ export default function ProposalDetailDrawer({ isOpen, onClose }) {
             </button>
           </div>
           <div className="flex flex-col gap-8 lg:gap-10">
-            <JobTabs tabs={tabs} tabGap="4" showData={showData} setshowData={setshowData} />
+            <JobButtonTabs tabs={tabs} tabGap="4" showData={showData} setshowData={setshowData} />
             {tabs.find(tab => tab.id === showData)?.component}
           </div>
         </div>

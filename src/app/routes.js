@@ -1,8 +1,8 @@
 export const Routes = {
   home: "/",
   client: {
-    home:"/client",
-    chat:"/client/chat/"
+    home: "/client",
+    chat: "/client/chat/",
   },
   job_post: {
     home: "/client/jobpost/",
@@ -11,14 +11,14 @@ export const Routes = {
   freelancer: {
     get_started: "/freelancer/addProfileDetails",
     page: "/freelancer/home",
-    chat:"/freelancer/chat/",
-    jobdetail:"/freelancer/JobDetail/",
+    chat: "/freelancer/chat/",
+    jobdetail: "/freelancer/JobDetail/",
     // jobsearch:"/freelancer/JobSearch/",
     proposal:"/freelancer/Proposal/",
     profileData:"/freelancer/profileData"
   },
   profile: {
-    client:{
+    client: {
       home: "/profile/client",
       info: "/profile/client/Info",
       bill: "/profile/client/Bill",
@@ -28,5 +28,9 @@ export const Routes = {
       info: "/profile/freelancer/Info",
       billing: "/profile/freelancer/BillingPage",
     },
+  },
+  service: {
+    home: "/freelancer/AddService/",
+    form: "/freelancer/AddService/form",
   },
 };

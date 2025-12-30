@@ -16,7 +16,7 @@ const ServiceCard = () => {
       <div className="w-full flex flex-wrap gap-4 gap-y-8 justify-center lg:justify-between">
         {services.map((_, i) => (
           <div key={i} index={i} total={services.length} className="flex flex-col gap-4 rounded-2xl w-full md:w-[48%] lg:w-[32%] xl:w-[24%]" style={{ boxShadow: "2px 2px 50px 6px #0000000D" }}>
-            <img src="/service-img.png" alt="Service image" className="rounded-t-2xl w-full lg:w-85" />
+            <img src="/service/service-img.png" alt="Service image" className="rounded-t-2xl w-full lg:w-85" />
             <div className="flex flex-col gap-4 mb-6 px-4">
               {/* title and image */}
               <div className="flex items-center gap-4 w-full md:w-auto">

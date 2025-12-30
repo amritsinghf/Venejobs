@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import JobDescription from "../../../JobDescription";
+import ReadMoreBtn from "../../../../button/ReadMoreBtn";
 
 export default function InvitedFreelancerCard() {
   const freelancers = [1, 2];
@@ -51,7 +51,7 @@ export default function InvitedFreelancerCard() {
           </div>
           <div className="flex flex-col items-start gap-4 w-full md:w-auto">
             {/* job desc */}
-            <JobDescription text="We are seeking a talented and experienced UI/UX Designer to join our team and help us create a visually stunning and user-friendly mobile app. The ideal candidate will have a strong portfolio showcasing their ability to design intuitive, modern, and engaging interfaces for mobile applications. This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile. This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile." paragraphFont="font-normal leading-6.5" font="text-primary text-normal" />
+            <ReadMoreBtn text="We are seeking a talented and experienced UI/UX Designer to join our team and help us create a visually stunning and user-friendly mobile app. The ideal candidate will have a strong portfolio showcasing their ability to design intuitive, modern, and engaging interfaces for mobile applications. This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile. This project involves designing the entire user experience and interface for a mobile.This project involves designing the entire user experience and interface for a mobile." paragraphFont="font-normal leading-6.5" font="text-primary text-normal" />
 
             {/*category and skills */}
             <div className="flex items-center gap-3 flex-wrap">
