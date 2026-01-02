@@ -3,11 +3,10 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
-import JobDescription from "../../jobs/JobDescription";
+// import JobDescription from "../../jobs/JobDescription";
 import PortfolioEditModal from "../EditProfileModals/PortfolioEditModal";
 import EducationEditModal from "../EditProfileModals/EducationEditModal";
 import SkillsEditModal from "../EditProfileModals/SkillsEditModal";
-import { useState } from "react";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -127,11 +126,11 @@ const RightPanel = ({ freelancerProfile }) => {
                 </div>
               </div>
 
-              <JobDescription
+              {/* <JobDescription
                 text={item.description}
                 font="text-paragraph text-sm lg:text-base font-medium"
                 clampClass="line-clamp-3 lg:line-clamp-2"
-              />
+              /> */}
               <div className="flex flex-col sm:flex-row  lg:items-center gap-8">
                 {/* <div className="flex items-center gap-3">
                   <img src="/icons/stars2.png" alt="" />
