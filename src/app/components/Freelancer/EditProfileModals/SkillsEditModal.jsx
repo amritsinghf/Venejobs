@@ -44,6 +44,25 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
     },
   ];
 
+  const { updateSkills, loading, error } = freelanceApiStore();
+
+  const handleSave = async (data) => {
+    const payload = {
+      skills: data.skills.map((skill) => ({
+        name: skill,
+      })),
+    };
+    try {
+      const res = await updateSkills(payload);
+      if (res.success) {
+        showSuccess(res.message, "success");
+        setShowSkillModal(false);
+      }
+    } catch (error) {
+      showError(error.response.data.message, "error");
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
@@ -62,7 +81,7 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
           </div>
 
           <div className="flex flex-col justify-between h-120">
-            <form>
+            <form onSubmit={handleSubmit(handleSave)}>
               <div className="flex flex-col gap-2">
                 <h3 className="font-bold text-base">Skills</h3>
                 <div
@@ -83,10 +102,11 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
                         <input
                           type="checkbox"
                           id={checkboxId}
-                          {...register("skill", {
+                          value={item.skill}
+                          {...register("skills", {
                             validate: (value) =>
                               value.length > 0 ||
-                              "Please select at least one option",
+                              "Please select at least one skill",
                           })}
                           className="sr-only peer"
                         />

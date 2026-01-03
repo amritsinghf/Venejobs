@@ -6,11 +6,16 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
-const LanguageEditModal = ({ setShowLanguageModal, showLanguageModal }) => {
+const LanguageEditModal = ({
+  setShowLanguageModal,
+  showLanguageModal,
+  selectedLanguages,
+}) => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -36,6 +41,11 @@ const LanguageEditModal = ({ setShowLanguageModal, showLanguageModal }) => {
     { id: 4, name: "Native" },
   ];
 
+  useEffect(() => {
+    console.log(selectedLanguages);
+    reset(selectedLanguages);
+  }, [selectedLanguages, reset]);
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 sm:px-4 py-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[95dvh] overflow-hidden">
@@ -52,11 +62,16 @@ const LanguageEditModal = ({ setShowLanguageModal, showLanguageModal }) => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-4 sm:gap-y-6">
-            <select
-              name="language"
-              {...register("gender", { required: true })}
-              className="
+          {selectedLanguages.map((item, index) => {
+            return (
+              <div
+                key={item.id}
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-4 sm:gap-y-6"
+              >
+                <select
+                  name="language"
+                  {...register(`${index}.language`, { required: true })}
+                  className="
               w-full py-3 pl-3 pr-10
               text-sm sm:text-base
               border border-[#D0D5DD]
@@ -65,19 +80,19 @@ const LanguageEditModal = ({ setShowLanguageModal, showLanguageModal }) => {
               text-heading tracking-wide
               appearance-none bg-white
             "
-            >
-              <option value="">Select language</option>
-              {languagesData.map((item) => (
-                <option value={item.name} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
+                >
+                  <option value="">Select language</option>
+                  {languagesData.map((item) => (
+                    <option value={item.name} key={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
 
-            <select
-              name="proficiencylevel"
-              {...register("proficiencylevel", { required: true })}
-              className="
+                <select
+                  name="proficiencylevel"
+                  {...register("proficiencylevel", { required: true })}
+                  className="
               w-full py-3 pl-3 pr-10
               text-sm sm:text-base
               border border-[#D0D5DD]
@@ -86,15 +101,17 @@ const LanguageEditModal = ({ setShowLanguageModal, showLanguageModal }) => {
               text-heading tracking-wide
               appearance-none bg-white
             "
-            >
-              <option value="">Select Proficiency Level</option>
-              {proficiencyData.map((item) => (
-                <option value={item.name} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-          </div>
+                >
+                  <option value="">Select Proficiency Level</option>
+                  {proficiencyData.map((item) => (
+                    <option value={item.name} key={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            );
+          })}
 
           <div className="flex flex-col sm:flex-row justify-end gap-4 sm:gap-6 mt-4 sm:mt-6 pb-2">
             <Button

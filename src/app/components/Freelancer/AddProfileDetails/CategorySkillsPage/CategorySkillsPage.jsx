@@ -31,7 +31,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
       setSelectedCategory(null);
       setCategoryName("");
       setSelectedItems([]);
-      setValue("skills.name", []);
+      setValue("skills", [])
       return;
     }
 
@@ -39,7 +39,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     setSelectedCategory(categoryCode);
     setCategoryName(name);
     setSelectedItems([]);
-    setValue("skills.name", []);
+    setValue("skills", []);
     await getSkillsByCategory(categoryCode);
   };
 
@@ -73,22 +73,26 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   }, []);
 
   useEffect(() => {
-    setValue("skills.name", selectedItems);
-  }, [selectedItems]);
+    const skillsPayload = selectedItems.map((skill) => ({
+      name: skill,
+      level: "Intermediate",
+    }));
+
+    setValue("skills", skillsPayload, { shouldValidate: true });
+  }, [selectedItems, setValue]);
 
   const handleNext = async () => {
     setLoading(true);
 
     if (selectedItems.length === 0) {
-      setError("skills.name", {
+      setError("skills", {
         type: "manual",
         message: "Please add at least 1 skill",
       });
-      setLoading(false);
       return;
     }
 
-    clearErrors("skills.name");
+    clearErrors("skills");
 
     const valid = await trigger();
     if (valid) nextStep();

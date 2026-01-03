@@ -6,31 +6,54 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
-const PortfolioEditModal = ({ setShowPortfolioModal, showPortfolioModal }) => {
+const PortfolioEditModal = ({
+  showPortfolioModal,
+  freelancerProfile,
+  setShowPortfolioModal,
+  portfolio,
+}) => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      id: portfolio.id,
+      title: portfolio.title,
+      project_url: portfolio.project_url,
+    },
+  });
 
   useEscapeKey(showPortfolioModal, () => {
     setShowPortfolioModal(false);
   });
 
   const { showSuccess, showError } = useToastStore.getState();
+  const { updatePortfolio, loading, error } = freelanceApiStore();
 
-  //   const handleSave = async (data) => {
-  //     try {
-  //       const res = await updatePersonalDetails(data);
-  //       if (res.success) {
-  //         showSuccess(res.message, "success");
-  //       }
-  //       console.log(res);
-  //     } catch (error) {
-  //       showError(error.response.data.message, "error");
-  //     }
-  //   };
+  useEffect(() => {
+    reset({
+      id: portfolio.id,
+      title: portfolio.title,
+      project_url: portfolio.project_url,
+    });
+  }, [portfolio, reset]);
+
+  const handleSave = async (data) => {
+    console.log(data);
+    try {
+      const res = await updatePortfolio(data);
+      if (res.success) {
+        showSuccess(res.message, "success");
+        setShowPortfolioModal(false);
+      }
+      console.log(res);
+    } catch (error) {
+      showError(error.response.data.message, "error");
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
@@ -50,13 +73,12 @@ const PortfolioEditModal = ({ setShowPortfolioModal, showPortfolioModal }) => {
           </div>
 
           <div className="flex flex-col justify-between h-120">
-            <form>
+            <form onSubmit={handleSubmit(handleSave)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                   <h3 className="font-bold text-base">Title</h3>
                   <input
                     type="text"
-                    // value={freelancerProfile?.professional_title}
                     name="title"
                     {...register("title", {
                       required: {
@@ -76,19 +98,18 @@ const PortfolioEditModal = ({ setShowPortfolioModal, showPortfolioModal }) => {
                   <h3 className="font-bold text-base">Image URL</h3>
                   <input
                     type="text"
-                    // value={freelancerProfile?.image_url}
-                    name="image_url"
-                    {...register("image_url", {
+                    name="project_url"
+                    {...register("project_url", {
                       required: {
                         value: true,
-                        message: "Image url is required",
+                        message: "Project url is required",
                       },
                     })}
                     placeholder="Explain yourself in brief"
                     className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
                   />
-                  {errors.image_url && (
-                    <p className="text-red-500 text-sm">{errors.image_url}</p>
+                  {errors.project_url && (
+                    <p className="text-red-500 text-sm">{errors.project_url}</p>
                   )}
                 </div>
               </div>

@@ -3,11 +3,10 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import Image from "next/image";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
-import JobDescription from "../../jobs/JobDescription";
 import PortfolioEditModal from "../EditProfileModals/PortfolioEditModal";
 import EducationEditModal from "../EditProfileModals/EducationEditModal";
 import SkillsEditModal from "../EditProfileModals/SkillsEditModal";
-import { useState } from "react";
+import ReadMoreBtn from "../../button/ReadMoreBtn";
 
 const RightPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -20,7 +19,7 @@ const RightPanel = ({ freelancerProfile }) => {
 
   const [showTitleModal, setshowTitleModal] = useState(false);
   const [showPortfolioModal, setShowPortfolioModal] = useState(false);
-  const [showEducationModal, setShowEducationModal] = useState(false);
+  const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const [showSkillModal, setShowSkillModal] = useState(false);
 
   const skillscss =
@@ -67,31 +66,41 @@ const RightPanel = ({ freelancerProfile }) => {
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between py-4">
           <h2 className="text-2xl text-heading font-semibold">Portfolio</h2>
-          <div
+          {/* <div
             className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
-            onClick={() => setShowPortfolioModal(true)}
+            onClick={() => {
+              setSelectedPortfolio(item);
+              setShowPortfolioModal(true);
+            }}
           >
             <SvgIcon
               name="Editing"
               size={24}
               className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="flex flex-wrap lg:flex-nowrap items-center gap-12">
-          {freelancerProfile?.portfolios?.map((item) => (
-            <div className="flex flex-col gap-6" key={item.title}>
-              <div className="bg-heading border rounded-2xl">
-                <Image
-                  src={"/FreelanceProjectImage/projectImg.jpg"}
-                  className="rounded pt-6 pb-2 px-4"
-                  alt=""
-                  height={262}
-                  width={300}
+          {freelancerProfile?.portfolios?.map((item, index) => (
+            <div key={item.id}>
+              <div
+                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+                onClick={() => {
+                  setSelectedPortfolio({ ...item, index: index });
+                  setShowPortfolioModal(true);
+                }}
+              >
+                <SvgIcon
+                  name="Editing"
+                  size={24}
+                  className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
                 />
               </div>
-              <h3 className="font-semibold ">{item.title}</h3>
+              <div className="flex flex-col gap-6">
+                <h3 className="font-semibold ">{item.title}</h3>
+                <h3 className="font-semibold ">{item.project_url}</h3>
+              </div>
             </div>
           ))}
         </div>
@@ -100,58 +109,29 @@ const RightPanel = ({ freelancerProfile }) => {
 
       <div className="flex flex-col gap-6">
         <div>
-          <h2 className="text-heading text-2xl font-semibold">
-            Education History
-          </h2>
+          <h2 className="text-heading text-2xl font-semibold">Work History</h2>
         </div>
 
         <div className="flex flex-col items-center md:items-start justify-between">
-          {freelancerProfile?.educations?.map((item) => (
-            <div
-              className="flex flex-col gap-4 w-full"
-              key={item.institution_name}
-            >
-              <div className="flex justify-between items-center">
-                <h2 className="font-semibold text-base lg:text-lg text-heading">
-                  {item.institution_name}
-                </h2>
-                <div
-                  className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
-                  onClick={() => setShowEducationModal(true)}
-                >
-                  <SvgIcon
-                    name="Editing"
-                    size={24}
-                    className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
-                  />
-                </div>
+          <div className="flex flex-col gap-4 w-full">
+            <div className="flex justify-between items-center">
+              <h2 className="font-semibold text-base lg:text-lg text-heading">
+                No Work History Yet
+              </h2>
+              <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer">
+                <SvgIcon
+                  name="Editing"
+                  size={24}
+                  className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
+                />
               </div>
-
-              <JobDescription
-                text={item.description}
-                font="text-paragraph text-sm lg:text-base font-medium"
-                clampClass="line-clamp-3 lg:line-clamp-2"
-              />
-              <div className="flex flex-col sm:flex-row  lg:items-center gap-8">
-                {/* <div className="flex items-center gap-3">
-                  <img src="/icons/stars2.png" alt="" />
-                  <p>4.9</p>
-                </div> */}
-                <p className="font-semibold text-heading">
-                  {new Date(item.start_date).toLocaleDateString("en-US", {
-                    month: "short",
-                    year: "numeric",
-                  })}
-                  -
-                  {new Date(item.end_date).toLocaleDateString("en-US", {
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
-              <hr className="text-gray-200" />
             </div>
-          ))}
+
+            <div className="flex flex-col sm:flex-row  lg:items-center gap-8">
+              <p className="font-semibold text-heading">-</p>
+            </div>
+            <hr className="text-gray-200" />
+          </div>
         </div>
       </div>
 
@@ -191,17 +171,10 @@ const RightPanel = ({ freelancerProfile }) => {
         />
       )}
 
-      {showPortfolioModal && (
+      {showPortfolioModal && selectedPortfolio && (
         <PortfolioEditModal
           setShowPortfolioModal={setShowPortfolioModal}
-          showPortfolioModal={showPortfolioModal}
-        />
-      )}
-
-      {showEducationModal && (
-        <EducationEditModal
-          setShowEducationModal={setShowEducationModal}
-          showEducationModal={showEducationModal}
+          portfolio={selectedPortfolio}
         />
       )}
 

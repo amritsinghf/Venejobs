@@ -17,20 +17,13 @@ const BottomPanel = ({ freelancerProfile }) => {
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
           Employment history
         </h2>
-        {/* <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">
-          <SvgIcon
-            name="Editing"
-            size={24}
-            className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
-          />
-        </div> */}
       </div>
 
       {freelancerProfile?.experiences.map((item, index) => (
-        <div className="flex flex-col gap-4" key={index}>
+        <div className="flex flex-col gap-4" key={item.id}>
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
               <h2 className="text-lg lg:text-2xl font-semibold text-heading">

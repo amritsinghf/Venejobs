@@ -13,10 +13,9 @@ const SkillsSelector = ({
 }) => {
   const { register } = useFormContext();
 
-  const skillsRegister = register("skills.name", {
-    onChange: (e) => handleInputChange(e),
+  const skillsInputRegister = register("skillsInput", {
+    onChange: handleInputChange,
   });
-
 
   return (
     <div className="flex flex-col gap-4 transition-all">
@@ -27,9 +26,9 @@ const SkillsSelector = ({
       <div className="flex flex-col gap-2">
         <input
           type="text"
-          placeholder="For the best results, add 3-5 skills"
           value={inputValue}
-          {...skillsRegister}
+          onChange={handleInputChange}
+          placeholder="For the best results, add 3-5 skills"
           className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
         />
 
@@ -38,7 +37,6 @@ const SkillsSelector = ({
             {errors.skills.message}
           </span>
         )}
-
       </div>
 
       <h2 className="text-base xl:text-lg text-heading font-medium">
@@ -49,7 +47,11 @@ const SkillsSelector = ({
         className={`
           flex items-center flex-wrap gap-3 lg:gap-5 w-full
           transition-all duration-500 ease-out
-          ${skills_data?.length ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}
+          ${
+            skills_data?.length
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-3"
+          }
         `}
       >
         {skills_data?.map((item) => {
@@ -73,7 +75,11 @@ const SkillsSelector = ({
                   {item.name}
                   <AddIcon
                     fontSize="small"
-                    sx={{ color: selectedItems.includes(item.name) ? "#fff" : "#666" }}
+                    sx={{
+                      color: selectedItems.includes(item.name)
+                        ? "#fff"
+                        : "#666",
+                    }}
                   />
                 </span>
               </label>

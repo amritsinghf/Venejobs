@@ -15,6 +15,7 @@ const TitleEditModal = ({
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -25,13 +26,23 @@ const TitleEditModal = ({
   const { updatePersonalDetails, loading, error } = freelanceApiStore();
   const { showSuccess, showError } = useToastStore.getState();
 
+  useEffect(() => {
+      if (freelancerProfile) {
+        reset({
+          professional_title: freelancerProfile.professional_title,
+          overview: freelancerProfile.overview,
+          hourly_rate: freelancerProfile.hourly_rate,
+        });
+      }
+    }, [freelancerProfile, reset]);
+
   const handleSave = async (data) => {
     try {
       const res = await updatePersonalDetails(data);
       if (res.success) {
         showSuccess(res.message, "success");
+        setshowTitleModal(false);
       }
-      console.log(res);
     } catch (error) {
       showError(error.response.data.message, "error");
     }
@@ -61,7 +72,6 @@ const TitleEditModal = ({
                   <h3 className="font-bold text-base">Professional Title</h3>
                   <input
                     type="text"
-                    value={freelancerProfile?.professional_title}
                     name="professional_title"
                     {...register("professional_title", {
                       required: {
@@ -83,7 +93,6 @@ const TitleEditModal = ({
                   <h3 className="font-bold text-base">Overview</h3>
                   <input
                     type="text"
-                    value={freelancerProfile?.overview}
                     name="overview"
                     {...register("overview", {
                       required: {
@@ -105,7 +114,6 @@ const TitleEditModal = ({
                   </h3>
                   <input
                     type="text"
-                    value={freelancerProfile?.hourly_rate}
                     name="hourly_rate"
                     {...register("hourly_rate", {
                       required: {

@@ -1,5 +1,12 @@
 import { create } from "zustand";
-import { SaveFreelanceDetails, getFreelanceDetails, updateFreelanceDetails } from "../lib/freelancer";
+import {
+  SaveFreelanceDetails,
+  getFreelanceDetails,
+  updateFreelanceBasicprofile,
+  updateFreelanceSkills,
+  updateFreelanceExperience,
+  updateFreelancePortfolio
+} from "../lib/freelancer";
 
 const freelanceApiStore = create((set) => ({
   FreelanceDetails: null,
@@ -53,12 +60,7 @@ const freelanceApiStore = create((set) => ({
   updatePersonalDetails: async (data) => {
     set({ loadingData: true, error: null });
     try {
-      const res = await updateFreelanceDetails(data);
-      set({
-        FreelanceDetails: res.data,
-        loadingData: false,
-        fetched: true,
-      });
+      const res = await updateFreelanceBasicprofile(data);
       return res;
     } catch (err) {
       set({
@@ -66,6 +68,52 @@ const freelanceApiStore = create((set) => ({
           err?.response?.data?.message ||
           err.message ||
           "Update personal data failed",
+        loading: false,
+      });
+      throw err;
+    }
+  },
+  updateSkills: async (data) => {
+    set({ loadingData: true, error: null });
+    try {
+      const res = await updateFreelanceSkills(data);
+      return res;
+    } catch (err) {
+      set({
+        error:
+          err?.response?.data?.message || err.message || "Update skills failed",
+        loading: false,
+      });
+      throw err;
+    }
+  },
+  updateExperience: async (data) => {
+    set({ loadingData: true, error: null });
+    try {
+      const res = await updateFreelanceExperience(data);
+      return res;
+    } catch (err) {
+      set({
+        error:
+          err?.response?.data?.message ||
+          err.message ||
+          "Update experiences failed",
+        loading: false,
+      });
+      throw err;
+    }
+  },
+  updatePortfolio: async (data) => {
+    set({ loadingData: true, error: null });
+    try {
+      const res = await updateFreelancePortfolio(data);
+      return res;
+    } catch (err) {
+      set({
+        error:
+          err?.response?.data?.message ||
+          err.message ||
+          "Update portfolio failed",
         loading: false,
       });
       throw err;

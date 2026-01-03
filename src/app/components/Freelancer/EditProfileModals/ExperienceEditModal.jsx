@@ -1,5 +1,7 @@
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -38,7 +40,21 @@ const ExperienceEditModal = ({
     }
   }, [item, reset]);
 
-  const handleSave = () => {};
+  const { showSuccess, showError } = useToastStore.getState();
+  const { updateExperience, loading, error } = freelanceApiStore();
+
+  const handleSave = async (data) => {
+    try {
+      const res = await updateExperience(data);
+      if (res.success) {
+        showSuccess(res.message, "success");
+        setExperienceModal(false);
+      }
+    } catch (error) {
+      // showError(error, "error");
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[100dvh] md:max-h-none overflow-y-auto">
@@ -197,22 +213,22 @@ const ExperienceEditModal = ({
                 )}
               </div>
             </div>
+            <div className="flex justify-end gap-4 mt-6">
+              <Button
+                type="button"
+                onClick={() => setExperienceModal(false)}
+                className="px-4 py-2 shadow text-paragraph font-semibold"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className="px-4 py-2 bg-secondary text-white"
+              >
+                Edit
+              </Button>
+            </div>
           </form>
-
-          <div className="flex justify-end gap-4 mt-6">
-            <Button
-              onClick={() => setExperienceModal(false)}
-              className="px-4 py-2 shadow text-paragraph font-semibold"
-            >
-              Cancel
-            </Button>
-            <Button
-              // onClick={handleSave}
-              className="px-4 py-2 bg-secondary text-white"
-            >
-              Save
-            </Button>
-          </div>
         </div>
       </div>
     </div>
