@@ -99,13 +99,15 @@ export default function AllJobs() {
           </div>
         ))
       )}
+      {totalPages > 1 && jobs && jobs.length > 0 && (
+        <PaginationFreelance
+          page={page}
+          totalPages={totalPages}
+          totalItems={jobs.length}
+          selectPage={selectPage}
+        />
+      )}
 
-      <PaginationFreelance
-        page={page}
-        totalPages={totalPages}
-        totalItems={jobs?.length || 0}
-        selectPage={selectPage}
-      />
     </div>
   );
 }
