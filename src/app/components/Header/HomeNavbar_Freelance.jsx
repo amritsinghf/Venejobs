@@ -54,10 +54,10 @@ export default function HomeNavbarFreelance() {
   const SidebarLinks = [
     {
       label: "Profile",
-      href:Routes.freelancer.profileData,
-        // user?.role_id === 2
-        //   ? Routes.profile.client.home
-        //   : Routes.profile.freelancer.home,
+      href: Routes.freelancer.profileData,
+      // user?.role_id === 2
+      //   ? Routes.profile.client.home
+      //   : Routes.profile.freelancer.home,
       className: "text-3xl sm:text-2xl text-paragraph px-4 font-medium",
     },
     {
@@ -87,23 +87,22 @@ export default function HomeNavbarFreelance() {
       <div className="w-full  relative ">
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:w-[2000px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto">
           <div className="flex justify-between items-center py-5">
-            <div className="flex gap-3 items-center">
-              {/* <Link href={Routes.freelancer.page}> */}
-                <Image
-                  className="cursor-pointer w-10 md:w-[50px] md:h-[50px]"
-                  src="/logo_freelance.png"
-                  alt="logo image"
-                  height={500}
-                  width={500}
-                  style={{ width: 40, height: 40 }}
-                />
-              {/* </Link> */}
-              <h2 className="text-gray-600  text-lg font-extrabold cursor-pointer">
-                {/* <Link href={Routes.freelancer.page}> */}
+            <Link
+              href="/freelancer/home"
+              className="flex gap-3 items-center cursor-pointer"
+            >
+              <Image
+                className="w-10 md:w-[50px] md:h-[50px]"
+                src="/logo_freelance.png"
+                alt="logo image"
+                height={50}
+                width={50}
+              />
+
+              <h2 className="text-gray-600 text-lg font-extrabold">
                 Venejobs
-                {/* </Link> */}
               </h2>
-            </div>
+            </Link>
 
             <div className="lg:block hidden">
               <nav>

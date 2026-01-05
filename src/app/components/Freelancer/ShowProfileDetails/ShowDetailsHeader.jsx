@@ -37,13 +37,23 @@ const ShowDetailsHeader = ({ name, country }) => {
         <div className="flex items-center gap-6">
           <Link
             href={Routes.profile.freelancer.home}
-            className="bg-secondary w-auto h-auto px-3 py-2 md:px-6 md:py-3 text-white rounded"
+            className="bg-secondary text-white text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
+                        font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+                        rounded transition-all duration-300 gap-2"
           >
             Profile Settings
           </Link>
           <Link
             href={Routes.freelancer.page}
-            className="text-paragraph font-semibold shadow w-auto h-auto px-3 py-2 md:px-6 md:py-3 rounded"
+            className="
+              bg-white text-paragraph text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
+                font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+                rounded transition-all duration-300
+                "
+            style={{
+              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
           >
             Find Jobs
           </Link>
