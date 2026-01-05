@@ -71,7 +71,7 @@ export default function PersonalInfoForm() {
     <>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-1">
-          <h2 className="text-2xl lg:text-3xl xl:text-3xl text-heading font-bold leading-tight">
+          <h2 className="text-xl lg:text-2xl xl:text-2xl text-heading font-bold leading-tight">
             My Info
           </h2>
           <p className="text-gray-500 text-sm font-medium leading-7 lg:leading-8 tracking-wide">

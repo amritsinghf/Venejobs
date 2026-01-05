@@ -18,7 +18,7 @@ export default function Home() {
           <div className="flex flex-col gap-5">
             <div className="rounded-lg p-5 md:px-8 md:py-10 flex flex-col gap-6 border border-[rgba(68,68,68,0.08)]">
               <div className="flex flex-col gap-3 lg:gap-2">
-                <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
+                <h2 className="text-2xl lg:text-2xl xl:text-3xl text-heading font-bold leading-snug">
                   Find Projects That Match Your Passion With Venejobs
                 </h2>
 
@@ -28,8 +28,7 @@ export default function Home() {
                 </p>
               </div>
               <Button
-                className="bg-secondary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 
-              font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
+                className="bg-secondary text-white text-center flex items-center justify-center rounded 
               transition-all duration-300 gap-2"
               >
                 Learn More <SvgIcon name="NextArrow" />
