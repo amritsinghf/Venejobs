@@ -88,43 +88,47 @@ export default function ProfileDropdown() {
           </button>
 
           {showDropdown && (
-            <div className="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5">
-              <Link
-                href={
-                  user?.role_id === 2
-                    ? Routes.profile.client.info
-                    : Routes.freelancer.profileData
-                }
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                {user?.name}
-              </Link>
+            <div className="absolute right-0 mt-3 w-48 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+              {/* User name */}
+              <div className="px-4 py-3 border-b border-gray-100">
+                <p className="text-sm font-semibold text-gray-800 truncate">
+                  {user?.name}
+                </p>
+              </div>
 
-              <Link
-                href={
-                  user?.role_id === 2
-                    ? Routes.profile.client.info
-                    : Routes.freelancer.profileData
-                }
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                Profile
-              </Link>
+              {/* Menu items */}
+              <div className="py-1">
+                <Link
+                  href={
+                    user?.role_id === 2
+                      ? Routes.profile.client.info
+                      : Routes.freelancer.profileData
+                  }
+                  className="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition"
+                >
+                  Profile
+                </Link>
 
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              >
-                Settings
-              </a>
+                <Link
+                  href="#"
+                  className="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition"
+                >
+                  Settings
+                </Link>
+              </div>
 
+              {/* Divider */}
+              <div className="border-t border-gray-100" />
+
+              {/* Logout */}
               <button
                 onClick={() => logout()}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="flex w-full items-center px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition cursor-pointer"
               >
                 Sign out
               </button>
             </div>
+
           )}
         </div>
       </div>
