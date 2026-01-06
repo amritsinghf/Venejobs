@@ -26,25 +26,56 @@ const validateExperience = (data) => {
   if (!data.start_year) errors.start_year = "Start year is required";
   if (!data.description) errors.description = "Description is required";
 
-  if (data.start_month < 1 || data.start_month > 12)
+  if (data.start_month < 1 || data.start_month > 12) {
     errors.start_month = "Month must be between 1 and 12";
+  }
 
-  if (!/^\d{4}$/.test(data.start_year))
+  if (!/^\d{4}$/.test(data.start_year)) {
     errors.start_year = "Enter a valid 4 digit year";
+  }
 
   if (!data.is_current) {
     if (!data.end_month) errors.end_month = "End month is required";
     if (!data.end_year) errors.end_year = "End year is required";
 
-    if (data.end_month < 1 || data.end_month > 12)
+    if (data.end_month < 1 || data.end_month > 12) {
       errors.end_month = "Month must be between 1 and 12";
+    }
 
-    if (!/^\d{4}$/.test(data.end_year))
+    if (!/^\d{4}$/.test(data.end_year)) {
       errors.end_year = "Enter a valid 4 digit year";
+    }
+
+    // ✅ ONLY end year vs start year validation
+    if (
+      data.start_year &&
+      data.end_year &&
+      Number(data.end_year) < Number(data.start_year)
+    ) {
+      errors.end_year = "End year cannot be before start year";
+    }
   }
 
   return errors;
 };
+
+
+const validateDateRange = (data) => {
+  const errors = {};
+
+  if (
+    data.start_year &&
+    data.end_year &&
+    Number(data.end_year) < Number(data.start_year)
+  ) {
+    errors.end_year = "End year cannot be before start year";
+  }
+
+  return errors;
+};
+
+
+
 
 const InputField = ({
   label,
@@ -73,10 +104,9 @@ const InputField = ({
         tracking-wide placeholder:text-sm
         border transition-all duration-200
         focus:outline-none
-        ${
-          disabled
-            ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+        ${disabled
+          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
         }
       `}
     />
@@ -97,9 +127,9 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
     const { name, value, type, checked } = e.target;
 
     const numberFields = ["start_month", "end_month", "start_year", "end_year"];
-
     let finalValue = value;
 
+    // 🔢 number sanitization
     if (numberFields.includes(name)) {
       finalValue = value.replace(/[^0-9]/g, "");
 
@@ -113,29 +143,42 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
       }
     }
 
+    // ✅ CHECKBOX (fixed)
     if (type === "checkbox" && name === "is_current") {
-      setExperience((prev) => ({
-        ...prev,
-        is_current: checked,
-        end_month: checked ? null : prev.end_month,
-        end_year: checked ? null : prev.end_year,
-      }));
+      setExperience((prev) => {
+        const updated = {
+          ...prev,
+          is_current: checked,
+          end_month: checked ? "" : prev.end_month,
+          end_year: checked ? "" : prev.end_year,
+        };
 
-      setErrors((prev) => ({
-        ...prev,
-        end_month: "",
-        end_year: "",
-      }));
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          end_month: "",
+          end_year: "",
+        }));
+
+        return updated;
+      });
 
       return;
     }
 
-    setExperience((prev) => ({
-      ...prev,
-      [name]: finalValue,
-    }));
+    // ✅ ALL OTHER FIELDS (LIVE VALIDATION)
+    setExperience((prev) => {
+      const updated = { ...prev, [name]: finalValue };
 
-    setErrors((prev) => ({ ...prev, [name]: "" }));
+      const dateErrors = validateDateRange(updated);
+
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+        ...dateErrors,
+      }));
+
+      return updated;
+    });
   };
 
   const handleSave = () => {
@@ -250,6 +293,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
               name="end_year"
               value={experience.end_year ?? ""}
               onChange={handleChange}
+              error={errors.end_year}
               type="number"
               placeholder={new Date().getFullYear()}
               disabled={experience.is_current}
