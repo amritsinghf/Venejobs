@@ -6,6 +6,8 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
+
+
 const TitleEditModal = ({
   setshowTitleModal,
   freelancerProfile,
@@ -49,102 +51,111 @@ const TitleEditModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
-        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+      <div className=" bg-white
+          w-full h-full
+          rounded-none
+          overflow-y-auto
+
+          md:h-auto
+          md:max-h-[90vh]
+          md:max-w-[1000px]
+          md:rounded-2xl">
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               Edit
             </h2>
+
             <button
               type="button"
               onClick={() => setshowTitleModal(false)}
-              className="absolute right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
 
+
           <div className="flex flex-col justify-between h-120">
-            <form onSubmit={handleSubmit(handleSave)}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Professional Title</h3>
-                  <input
-                    type="text"
+            <form
+              onSubmit={handleSubmit(handleSave)}
+              className="flex flex-col h-full"
+            >
+              {/* FORM CONTENT (Scrollable) */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                  <InputField
+                    label="Professional Title"
                     name="professional_title"
-                    {...register("professional_title", {
-                      required: {
-                        value: true,
-                        message: "Title is required",
-                      },
-                    })}
                     placeholder="Enter your title"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
+                    value={watch("professional_title") || ""}
+                    error={errors.professional_title?.message}
+                    onChange={(e) =>
+                      reset({ ...watch(), professional_title: e.target.value })
+                    }
                   />
-                  {errors.professional_title && (
-                    <p className="text-red-500 text-sm">
-                      {errors.professional_title}
-                    </p>
-                  )}
-                </div>
 
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Overview</h3>
-                  <input
-                    type="text"
-                    name="overview"
-                    {...register("overview", {
-                      required: {
-                        value: true,
-                        message: "Overview is required",
-                      },
-                    })}
-                    placeholder="Explain yourself in brief"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
-                  />
-                  {errors.overview && (
-                    <p className="text-red-500 text-sm">{errors.overview}</p>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">
-                    Update your hourly rate
-                  </h3>
-                  <input
-                    type="text"
+                  <InputField
+                    label="Update your hourly rate"
                     name="hourly_rate"
-                    {...register("hourly_rate", {
-                      required: {
-                        value: true,
-                        message: "Hourly Rate is required",
-                      },
-                    })}
                     placeholder="$0.00"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
+                    value={watch("hourly_rate") || ""}
+                    error={errors.hourly_rate?.message}
+                    onChange={(e) =>
+                      reset({ ...watch(), hourly_rate: e.target.value })
+                    }
                   />
-                  {errors.hourly_rate && (
-                    <p className="text-red-500 text-sm">{errors.hourly_rate}</p>
-                  )}
+
+                  {/* Overview - Full Width */}
+                  <div className="md:col-span-2">
+                    <InputField
+                      label="Overview"
+                      name="overview"
+                      as="textarea"
+                      rows={5}
+                      placeholder="Explain yourself in brief"
+                      value={watch("overview") || ""}
+                      error={errors.overview?.message}
+                      onChange={(e) =>
+                        reset({ ...watch(), overview: e.target.value })
+                      }
+                    />
+                  </div>
+
                 </div>
               </div>
-              <div className="flex justify-end gap-4 mt-6">
+
+              <div className="flex justify-end gap-4 pt-4 mt-6 bg-white">
                 <Button
                   type="button"
-                  className="px-4 py-2 shadow text-paragraph font-semibold"
                   onClick={() => setshowTitleModal(false)}
+                  style={{
+                    boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                  }}
                 >
                   Cancel
                 </Button>
+
                 <Button
                   type="submit"
-                  className="px-4 py-2 bg-secondary text-white rounded"
+                  disabled={loading}
+                  className="bg-secondary text-white flex items-center justify-center gap-2 min-w-[120px]"
                 >
-                  Edit
+                  {loading ? (
+                    <>
+                      <Loader size={18} border={3} color="white" />
+                    </>
+                  ) : (
+                    "Update"
+                  )}
                 </Button>
+
               </div>
             </form>
+
           </div>
         </div>
       </div>
@@ -153,3 +164,65 @@ const TitleEditModal = ({
 };
 
 export default TitleEditModal;
+
+
+const InputField = ({
+  label,
+  name,
+  value,
+  onChange,
+  error,
+  placeholder,
+  disabled = false,
+  type = "text",
+  as = "input", // 👈 NEW (input | textarea)
+  rows = 4,
+}) => (
+  <div className="flex flex-col gap-2">
+    <label className="font-medium lg:text-base tracking-wide">
+      {label}
+    </label>
+
+    {as === "textarea" ? (
+      <textarea
+        name={name}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        rows={rows}
+        placeholder={placeholder}
+        className={`
+          w-full py-3.5 px-3 text-sm lg:text-base rounded-md
+          tracking-wide placeholder:text-sm resize-none
+          border transition-all duration-200 focus:outline-none
+          ${disabled
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+          }
+        `}
+      />
+    ) : (
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        placeholder={placeholder}
+        inputMode={type === "number" ? "numeric" : undefined}
+        pattern={type === "number" ? "[0-9]*" : undefined}
+        className={`
+          w-full py-3.5 px-3 text-sm lg:text-base rounded-md
+          tracking-wide placeholder:text-sm
+          border transition-all duration-200 focus:outline-none
+          ${disabled
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
+            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+          }
+        `}
+      />
+    )}
+
+    {error && <p className="text-red-500 text-sm">{error}</p>}
+  </div>
+);
