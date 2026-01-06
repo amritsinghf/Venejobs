@@ -68,7 +68,7 @@ const TitlePage = ({ nextStep, currstep }) => {
 
             <div className="flex flex-col gap-5 py-3">
               <h3 className="text-[18px] ">Example titles</h3>
-              <ul className="text-[16px] flex flex-col gap-5 text-paragraph list-disc px-8">
+              <ul className="text-base flex flex-col gap-5 text-paragraph list-disc px-8">
                 <li>
                   UX/UI designer to bring website mockup and prototype to life
                 </li>

@@ -100,7 +100,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               className="w-full max-w-sm  p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
             />
 
-            <p className="text-paragraph text-[16px]">Max file size: 100MB</p>
+            <p className="text-paragraph text-base">Max file size: 100MB</p>
             {errors.attachment && (
               <span className="text-sm text-red-500 font-medium">
                 {errors.attachment.message}
