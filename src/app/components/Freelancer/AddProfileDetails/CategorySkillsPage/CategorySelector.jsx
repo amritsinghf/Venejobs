@@ -1,4 +1,5 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 import ComputerIcon from "@mui/icons-material/Computer";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import CampaignIcon from "@mui/icons-material/Campaign";
@@ -14,53 +15,63 @@ const categoryIcons = {
     writing_translation: <EditNoteIcon fontSize="small" />,
 };
 
-const CategorySelector = ({
-    category_data,
-    selectedCategory,
-    getskillsbycategory,
-    loading,
-}) => {
+const CategorySelector = ({ category_data, getskillsbycategory, loading }) => {
+    const { watch, setValue } = useFormContext();
+    const selectedCategory = watch("category");
+
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
+            <h2 className="text-xl xl:text-2xl font-semibold">
                 Select the Category
             </h2>
 
-            <div className="flex flex-col gap-2">
-                <ul className="flex items-center flex-wrap gap-3 lg:gap-5 w-full">
-                    {loading
-                        ? Array.from({ length: 5 }).map((_, i) => (
-                            <CategorySkeleton key={i} />
-                        ))
-                        : category_data?.map((item) => (
-                            <li key={item.code} className="text-center">
+            <ul className="flex flex-wrap gap-3 lg:gap-5">
+                {loading
+                    ? Array.from({ length: 5 }).map((_, i) => (
+                        <CategorySkeleton key={i} />
+                    ))
+                    : category_data?.map((item) => {
+                        const isSelected = selectedCategory === item.code;
+
+                        return (
+                            <li key={item.code}>
                                 <input
-                                    type="checkbox"
+                                    type="radio"
+                                    name="category"
                                     id={item.code}
-                                    className="sr-only peer"
-                                    checked={selectedCategory === item.code}
-                                    onChange={() =>
-                                        getskillsbycategory(item.code, item.name)
-                                    }
+                                    className="sr-only"
+                                    checked={isSelected}
+                                    onChange={() => {
+                                        setValue("category", item.code);
+                                        getskillsbycategory(item.code, item.name);
+                                    }}
                                 />
 
                                 <label
                                     htmlFor={item.code}
-                                    className="flex flex-col py-3 px-4 items-center justify-center w-full
-                    rounded-lg cursor-pointer border border-[#D0D5DD]
-                    peer-checked:bg-secondary peer-checked:**:text-white"
+                                    className={`
+                      flex py-3 px-4 items-center justify-center
+                      rounded-lg cursor-pointer
+                      border transition-all duration-200
+                      ${isSelected
+                                            ? "bg-secondary border-secondary text-white"
+                                            : "border-[#D0D5DD] hover:border-secondary hover:bg-primary/5"
+                                        }
+                    `}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <span className="text-paragraph text-sm lg:text-base">
+                                        <span className="text-sm lg:text-base">
                                             {item.name}
                                         </span>
-                                        <div>{categoryIcons[item.code]}</div>
+                                        <div className="text-inherit">
+                                            {categoryIcons[item.code]}
+                                        </div>
                                     </div>
                                 </label>
                             </li>
-                        ))}
-                </ul>
-            </div>
+                        );
+                    })}
+            </ul>
         </div>
     );
 };

@@ -21,7 +21,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const [categoryName, setCategoryName] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const {
@@ -33,11 +33,16 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     skillsLoading,
   } = jobApiStore();
 
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   const getskillsbycategory = async (categoryCode, name) => {
     if (selectedCategory === categoryCode) {
       setSelectedCategory(null);
       setCategoryName("");
       setSelectedItems([]);
+      setInputValue("");
       setValue("skills", []);
       return;
     }
@@ -45,22 +50,22 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     setSelectedCategory(categoryCode);
     setCategoryName(name);
     setSelectedItems([]);
+    setInputValue("");
     setValue("skills", []);
     await getSkillsByCategory(categoryCode);
   };
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
-    let updated = [...selectedItems];
 
-    if (checked) {
-      if (!updated.includes(value)) updated.push(value);
-    } else {
-      updated = updated.filter((item) => item !== value);
-    }
+    setSelectedItems((prev) => {
+      const updated = checked
+        ? [...new Set([...prev, value])]
+        : prev.filter((item) => item !== value);
 
-    setSelectedItems(updated);
-    setInputValue(updated.join(", "));
+      setInputValue(updated.join(", "));
+      return updated;
+    });
   };
 
   const handleInputChange = (e) => {
@@ -70,39 +75,45 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
       .filter(Boolean);
 
     setInputValue(e.target.value);
-
     setSelectedItems(typed);
   };
 
   useEffect(() => {
-    getCategories();
-  }, []);
+    const payload = selectedItems.map((skill) => ({
+      name: skill,
+      level: "Intermediate",
+    }));
 
-  useEffect(() => {
-    setValue("skills", selectedItems);
-  }, [selectedItems]);
+    setValue("skills", payload, { shouldValidate: true });
+  }, [selectedItems, setValue]);
 
   const handleNext = async () => {
-    setLoading(true);
+    setButtonLoading(true);
 
-    const categoryValid = await trigger("category");
+    try {
+      if (!selectedCategory) {
+        setError("category", {
+          type: "manual",
+          message: "Please select a category",
+        });
+        return;
+      }
 
-    if (selectedItems.length === 0) {
-      setError("skills", {
-        type: "manual",
-        message: "Please add at least 1 skill",
-      });
-      setLoading(false);
-      return;
+      if (selectedItems.length === 0) {
+        setError("skills", {
+          type: "manual",
+          message: "Please add at least 1 skill",
+        });
+        return;
+      }
+
+      clearErrors(["skills", "category"]);
+
+      const valid = await trigger();
+      if (valid) nextStep();
+    } finally {
+      setButtonLoading(false);
     }
-
-    clearErrors("skills");
-
-    if (categoryValid) {
-      nextStep();
-    }
-
-    setLoading(false);
   };
 
   return (
@@ -126,16 +137,19 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             getskillsbycategory={getskillsbycategory}
             loading={categoryLoading}
           />
-          <SkillsSelector
-            categoryName={categoryName}
-            skills_data={skills_data}
-            selectedItems={selectedItems}
-            handleCheckboxChange={handleCheckboxChange}
-            inputValue={inputValue}
-            handleInputChange={handleInputChange}
-            errors={errors}
-            loading={skillsLoading}
-          />
+
+          {selectedCategory && (
+            <SkillsSelector
+              categoryName={categoryName}
+              skills_data={skills_data}
+              selectedItems={selectedItems}
+              handleCheckboxChange={handleCheckboxChange}
+              inputValue={inputValue}
+              handleInputChange={handleInputChange}
+              errors={errors}
+              loading={skillsLoading}
+            />
+          )}
 
           <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button
@@ -154,11 +168,11 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={handleNext}
-              disabled={loading}
-              className={`bg-primary text-white flex items-center gap-2 justify-center px-7 
-            ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
+              disabled={buttonLoading}
+              className={`bg-primary text-white flex items-center gap-2 justify-center px-7 ${buttonLoading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
             >
-              {loading ? (
+              {buttonLoading ? (
                 <Loader size={18} border={3} color="white" />
               ) : (
                 <>

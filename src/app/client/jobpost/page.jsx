@@ -21,7 +21,7 @@ export default function Jobpost() {
       <ClientLayout>
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
           <div className="flex flex-col gap-5 lg:gap-8">
-            <h1 className="text-3xl lg:text-5xl text-heading font-bold leading-snug w-full lg:max-w-5xl">
+            <h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl leading-10 lg:leading-snug tracking-normal max-w-4xl">
               Welcome back {user?.name}! <br />
               Let’s post your job and find the best Venezuelan talent.
             </h1>

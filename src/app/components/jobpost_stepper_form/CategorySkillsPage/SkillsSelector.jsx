@@ -14,7 +14,6 @@ const SkillsSelector = ({
   loading,
 }) => {
 
-  console.log(loading, "LLLLLLLLLLLLLLLLLLLLLLL")
   const { register } = useFormContext();
 
   // RHF register for input
