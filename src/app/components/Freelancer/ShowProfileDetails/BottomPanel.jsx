@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import useToastStore from "@/app/store/toastStore";
 
 const BottomPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -14,12 +16,40 @@ const BottomPanel = ({ freelancerProfile }) => {
   const [showExperienceModal, setExperienceModal] = useState(false);
   const [editExperience, setEditExperience] = useState(null);
 
+  const { deleteExperience } = freelanceApiStore();
+  const { showSuccess, showError } = useToastStore.getState();
+
+  const handleDelete = async (deleteFn, id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+
+    try {
+      const res = await deleteFn(id);
+      if (res?.success) {
+        showSuccess(res.message || "Deleted successfully", "success");
+      }
+    } catch (error) {
+      showError(
+        error?.response?.data?.message || "Something went wrong",
+        "error"
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
         <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
           Employment history
         </h2>
+        <button
+          onClick={() => {
+            setEditExperience(null);
+            setExperienceModal(true);
+          }}
+          className="text-secondary font-medium cursor-pointer"
+        >
+          + Add
+        </button>
       </div>
 
       {freelancerProfile?.experiences.map((item, index) => (
@@ -38,7 +68,7 @@ const BottomPanel = ({ freelancerProfile }) => {
               <div
                 className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
                 onClick={() => {
-                  setEditExperience({ ...item, index: index });
+                  setEditExperience({ ...item, index });
                   setExperienceModal(true);
                 }}
               >
@@ -48,7 +78,10 @@ const BottomPanel = ({ freelancerProfile }) => {
                   className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
                 />
               </div>
-              <div className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4">
+              <div
+                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+                onClick={() => handleDelete(deleteExperience, item.id)}
+              >
                 <SvgIcon
                   name="Delete1"
                   className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"

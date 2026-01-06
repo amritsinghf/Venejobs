@@ -11,21 +11,40 @@ const ExperienceEditModal = ({
   setExperienceModal,
   showExperienceModal,
 }) => {
+  const isEdit = Boolean(item);
+
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      id: "",
+      job_title: "",
+      company: "",
+      location: "",
+      city: "",
+      start_month: "",
+      start_year: "",
+      end_month: "",
+      end_year: "",
+      is_current: false,
+      description: "",
+      shouldUnregister: true,
+    },
+  });
 
   useEscapeKey(showExperienceModal, () => {
     setExperienceModal(false);
   });
 
   useEffect(() => {
-    if (item) {
+    if (isEdit) {
       reset({
+        id: item.id,
         job_title: item.job_title,
         company: item.company,
         location: item.location,
@@ -37,23 +56,59 @@ const ExperienceEditModal = ({
         is_current: item.is_current,
         description: item.description,
       });
+    } else {
+      reset({
+        id: "",
+        job_title: "",
+        company: "",
+        location: "",
+        city: "",
+        start_month: "",
+        start_year: "",
+        end_month: "",
+        end_year: "",
+        is_current: false,
+        description: "",
+      });
     }
-  }, [item, reset]);
+  }, [item, isEdit, reset]);
 
   const { showSuccess, showError } = useToastStore.getState();
-  const { updateExperience, loading, error } = freelanceApiStore();
+  const { updateExperience, addExperience, loading, error } = freelanceApiStore();
 
   const handleSave = async (data) => {
     try {
-      const res = await updateExperience(data);
+      const res = isEdit
+        ? await updateExperience(data.id, data)
+        : await addExperience(data);
+
       if (res.success) {
-        showSuccess(res.message, "success");
+        showSuccess(
+          isEdit
+            ? "Experience updated successfully"
+            : "Experience added successfully",
+          "success"
+        );
         setExperienceModal(false);
       }
     } catch (error) {
-      // showError(error, "error");
+      showError(
+        error?.response?.data?.message || "Something went wrong",
+        "error"
+      );
     }
   };
+
+  const isCurrent = watch("is_current");
+  useEffect(() => {
+    if (isCurrent) {
+      setValue("end_year", null);
+      setValue("end_month", null);
+    }
+  }, [isCurrent, setValue]);
+
+  const startMonth = watch("start_month");
+  const startYear = watch("start_year");
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
@@ -64,7 +119,7 @@ const ExperienceEditModal = ({
         >
           <div className="flex justify-between items-center ">
             <h2 className="text-lg lg:text-2xl font-extrabold text-heading mb-3">
-              Edit Employment
+              {isEdit ? "Edit Employment" : "Add Employment"}
             </h2>
             <button
               type="button"
@@ -75,7 +130,7 @@ const ExperienceEditModal = ({
             </button>
           </div>
 
-          <form action="" onSubmit={handleSubmit(handleSave)}>
+          <form onSubmit={handleSubmit(handleSave)}>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
               <div className="flex flex-col gap-2">
                 <label className="font-semibold text-sm lg:text-lg">
@@ -164,35 +219,70 @@ const ExperienceEditModal = ({
                   Ended Month
                 </label>
                 <input
-                  name="end_month"
-                  {...register("end_month")}
+                  type="number"
+                  {...register("end_month", {
+                    validate: (value) => {
+                      if (isCurrent) return true;
+                      return value ? true : "End month is required";
+                    },
+                  })}
+                  disabled={isCurrent}
                   className="border border-gray-200 p-2 rounded"
                   placeholder="Through Month"
                 />
-                {errors.end_month && (
+                {errors.end_month && !isCurrent && (
                   <p className="text-red-500 text-sm">{errors.end_month}</p>
                 )}
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-semibold text-sm lg:text-lg">
-                  Ended Year
+                  End Year
                 </label>
+
                 <input
-                  name="end_year"
-                  {...register("end_year")}
-                  disabled={item.is_current}
+                  type="number"
+                  {...register("end_year", {
+                    validate: (endYear) => {
+                      if (isCurrent) return true;
+
+                      const endMonth = watch("end_month");
+
+                      if (!endYear || !endMonth) {
+                        return "End month and year are required";
+                      }
+                      if (!startYear || !startMonth) {
+                        return true;
+                      }
+
+                      const startDate = new Date(
+                        Number(startYear),
+                        Number(startMonth) - 1
+                      );
+
+                      const endDate = new Date(
+                        Number(endYear),
+                        Number(endMonth) - 1
+                      );
+                      if (endDate < startDate) {
+                        return "End date cannot be earlier than start date";
+                      }
+                      return true;
+                    },
+                  })}
+                  disabled={isCurrent}
                   className="border border-gray-200 p-2 rounded"
                   placeholder="Through Year"
                 />
-                {errors.end_year && (
-                  <p className="text-red-500 text-sm">{errors.end_year}</p>
+
+                {errors.end_year && !isCurrent && (
+                  <p className="text-red-500 text-sm">
+                    {errors.end_year.message}
+                  </p>
                 )}
               </div>
               <div className="flex items-center gap-2 mt-2">
                 <input
                   type="checkbox"
-                  name="is_current"
-                  checked={item.is_current}
                   {...register("is_current")}
                 />
                 <label>I currently work here</label>
@@ -225,7 +315,7 @@ const ExperienceEditModal = ({
                 type="submit"
                 className="px-4 py-2 bg-secondary text-white"
               >
-                Edit
+                {isEdit ? "Update" : "Add"}
               </Button>
             </div>
           </form>

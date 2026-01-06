@@ -8,10 +8,11 @@ import useEscapeKey from "@/hooks/useEscapeKey";
 
 const PortfolioEditModal = ({
   showPortfolioModal,
-  freelancerProfile,
   setShowPortfolioModal,
   portfolio,
 }) => {
+  const isEdit = Boolean(portfolio);
+
   const {
     register,
     handleSubmit,
@@ -20,9 +21,8 @@ const PortfolioEditModal = ({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      id: portfolio.id,
-      title: portfolio.title,
-      project_url: portfolio.project_url,
+      title: "",
+      project_url: "",
     },
   });
 
@@ -31,37 +31,53 @@ const PortfolioEditModal = ({
   });
 
   const { showSuccess, showError } = useToastStore.getState();
-  const { updatePortfolio, loading, error } = freelanceApiStore();
+  const { updatePortfolio, addPortfolio, loading, error } = freelanceApiStore();
 
   useEffect(() => {
-    reset({
-      id: portfolio.id,
-      title: portfolio.title,
-      project_url: portfolio.project_url,
-    });
-  }, [portfolio, reset]);
+    if (isEdit) {
+      reset({
+        id: portfolio.id,
+        title: portfolio.title,
+        project_url: portfolio.project_url,
+      });
+    } else {
+      reset({
+        title: "",
+        project_url: "",
+      });
+    }
+  }, [portfolio, isEdit, reset]);
 
   const handleSave = async (data) => {
-    console.log(data);
     try {
-      const res = await updatePortfolio(data);
+      const res = isEdit
+        ? await updatePortfolio(data.id, data)
+        : await addPortfolio(data);
+
       if (res.success) {
-        showSuccess(res.message, "success");
+        showSuccess(
+          isEdit
+            ? "Portfolio updated successfully"
+            : "Portfolio added successfully",
+          "success"
+        );
         setShowPortfolioModal(false);
       }
-      console.log(res);
     } catch (error) {
-      showError(error.response.data.message, "error");
+      showError(
+        error?.response?.data?.message || "Something went wrong",
+        "error"
+      );
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
-        <div className="px-3 py-3">
+        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
           <div className="flex justify-between items-center">
             <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
-              Edit
+              {isEdit ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
             <button
               type="button"
@@ -102,15 +118,27 @@ const PortfolioEditModal = ({
                     {...register("project_url", {
                       required: {
                         value: true,
-                        message: "Project url is required",
+                        message: "Project URL is required",
+                      },
+                      validate: (value) => {
+                        try {
+                          new URL(value);
+                          return true;
+                        } catch {
+                          return "Please enter a valid URL";
+                        }
                       },
                     })}
-                    placeholder="Explain yourself in brief"
+                    placeholder="Enter image URL"
                     className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
                   />
+
                   {errors.project_url && (
-                    <p className="text-red-500 text-sm">{errors.project_url}</p>
+                    <p className="text-red-500 text-sm">
+                      {errors.project_url.message}
+                    </p>
                   )}
+
                 </div>
               </div>
               <div className="flex justify-end gap-4 mt-6">
@@ -125,7 +153,7 @@ const PortfolioEditModal = ({
                   type="submit"
                   className="px-4 py-2 bg-secondary text-white rounded"
                 >
-                  Edit
+                  {isEdit ? "Upadate" : "Add"}
                 </Button>
               </div>
             </form>

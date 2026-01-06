@@ -6,36 +6,93 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
-const EducationEditModal = ({setShowEducationModal,showEducationModal
+const EducationEditModal = ({ setShowEducationModal, showEducationModal, education
 }) => {
+  const isEdit = Boolean(education);
+
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      id: "",
+      institution_name: "",
+      degree: "",
+      field_of_study: "",
+      type_of_education: "",
+      start_date: "",
+      end_date: "",
+      description: "",
+    },
+  });
 
   useEscapeKey(showEducationModal, () => {
     setShowEducationModal(false);
   });
 
-//   const { updatePersonalDetails, loading, error } = freelanceApiStore();
+  const { updateEducation, addEducation, loading, error } = freelanceApiStore();
   const { showSuccess, showError } = useToastStore.getState();
+  const startYear = watch("start_date");
 
-//   const handleSave = async (data) => {
-//     try {
-//       const res = await updatePersonalDetails(data);
-//       if (res.success) {
-//         showSuccess(res.message, "success");
-//       }
-//       console.log(res);
-//     } catch (error) {
-//       showError(error.response.data.message, "error");
-//     }
-//   };
+  useEffect(() => {
+    if (isEdit) {
+      reset({
+        id: education.id,
+        institution_name: education.institution_name,
+        degree: education.degree,
+        field_of_study: education.field_of_study,
+        type_of_education: education.type_of_education,
+        start_date: education.start_date
+          ? new Date(education.start_date).getUTCFullYear()
+          : "",
+        end_date: education.end_date
+          ? new Date(education.end_date).getUTCFullYear()
+          : "",
+        description: education.description,
+      });
+    } else {
+      reset({
+        id: "",
+        institution_name: "",
+        degree: "",
+        field_of_study: "",
+        type_of_education: "",
+        start_date: "",
+        end_date: "",
+        description: "",
+      });
+    }
+  }, [education, isEdit, reset]);
+
+  const handleSave = async (data) => {
+    console.log(data)
+    try {
+      const res = isEdit
+        ? await updateEducation(data.id, data)
+        : await addEducation(data);
+
+      if (res.success) {
+        showSuccess(
+          isEdit
+            ? "Education updated successfully"
+            : "Education added successfully",
+          "success"
+        );
+        setShowEducationModal(false);
+      }
+    } catch (error) {
+      showError(
+        error?.response?.data?.message || "Something went wrong",
+        "error"
+      );
+    }
+  };
 
   return (
-   <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
       <div
         className="
           bg-white
@@ -51,7 +108,7 @@ const EducationEditModal = ({setShowEducationModal,showEducationModal
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
           <div className="flex justify-between items-center sticky top-0 bg-white z-10">
             <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
-             Edit Education
+              {isEdit ? "Edit Education" : "Add Education"}
             </h2>
             <button
               onClick={() => setShowEducationModal(false)}
@@ -60,95 +117,98 @@ const EducationEditModal = ({setShowEducationModal,showEducationModal
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
+          <form onSubmit={handleSubmit(handleSave)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+              <Input
+                label="Institution Name"
+                name="institution_name"
+                register={register}
+                error={errors.institution_name}
+                placeholder="E.g., University of XYZ"
+              />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-            <Input
-              label="Institution Name"
-              name="institution_name"
-            //   value={education.institution_name}
-            //   onChange={handleChange}
-            //   error={errors.institution_name}
-              placeholder="E.g., University of XYZ"
-            />
+              <Input
+                label="Degree"
+                name="degree"
+                register={register}
+                error={errors.degree}
+                placeholder="E.g., Bachelor of Computer Science"
+              />
 
-            <Input
-              label="Degree"
-              name="degree"
-            //   value={education.degree}
-            //   onChange={handleChange}
-            //   error={errors.degree}
-              placeholder="E.g., Bachelor of Computer Science"
-            />
+              <Input
+                label="Field of Study"
+                name="field_of_study"
+                register={register}
+                error={errors.field_of_study}
+                placeholder="E.g., Computer Science"
+              />
 
-            <Input
-              label="Field of Study"
-              name="field_of_study"
-            //   value={education.field_of_study}
-            //   onChange={handleChange}
-            //   error={errors.field_of_study}
-              placeholder="E.g., Computer Science"
-            />
+              <Input
+                label="Type of Education"
+                name="type_of_education"
+                register={register}
+                error={errors.type_of_education}
+                placeholder="Bachelor’s Degree"
+              />
 
-            <Input
-              label="Type of Education"
-              name="type_of_education"
-            //   value={education.type_of_education}
-            //   onChange={handleChange}
-            //   error={errors.type_of_education}
-              placeholder="Bachelor’s Degree"
-            />
+              <Input
+                label="Start Year"
+                name="start_date"
+                register={register}
+                error={errors.start_date}
+                placeholder={new Date().getFullYear() - 3}
+                type="number"
+              />
 
-            <Input
-              label="Start Year"
-              name="start_date"
-            //   value={education.start_date}
-            //   onChange={handleChange}
-            //   error={errors.start_date}
-              placeholder={new Date().getFullYear() - 3}
-              type="number"
-            />
+              <Input
+                label="End Year"
+                name="end_date"
+                register={register}
+                error={errors.end_date}
+                placeholder={new Date().getFullYear()}
+                type="number"
+                rules={{
+                  required: "End year is required",
+                  validate: (value) => {
+                    if (startYear && Number(value) < Number(startYear)) {
+                      return "End year cannot be less than start year";
+                    }
+                    return true;
+                  },
+                }}
+              />
+            </div>
 
-            <Input
-              label="End Year"
-              name="end_date"
-            //   value={education.end_date}
-            //   onChange={handleChange}
-            //   error={errors.end_date}
-              placeholder={new Date().getFullYear()}
-              type="number"
-            />
-          </div>
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold">Description</label>
+              <textarea
+                {...register("description")}
+                rows={4}
+                placeholder="Describe your education, achievements, coursework..."
+                className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
+              />
 
-          <div className="flex flex-col gap-2">
-            <label className="font-semibold">Description</label>
-            <textarea
-              name="description"
-            //   value={education.description}
-            //   onChange={handleChange}
-              rows={4}
-              placeholder="Describe your education, achievements, coursework..."
-              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
-            />
-            {errors.description && (
-              <p className="text-red-500 text-sm">{errors.description}</p>
-            )}
-          </div>
+              {errors.description && (
+                <p className="text-red-500 text-sm">{errors.description}</p>
+              )}
+            </div>
 
-          <div className="flex justify-end gap-6 mt-6">
-            <Button
-              onClick={() => setshowForm(false)}
-              className="bg-white text-gray-800"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              Cancel
-            </Button>
-            <Button className="bg-secondary text-white">
-              Save
-            </Button>
-          </div>
+            <div className="flex justify-end gap-6 mt-6">
+              <Button
+                onClick={() => setShowEducationModal(false)}
+                className="bg-white text-gray-800"
+                style={{
+                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                }}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" className="bg-secondary text-white">
+                {isEdit ? "Upadate" : "Add"}
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -158,8 +218,8 @@ const EducationEditModal = ({setShowEducationModal,showEducationModal
 const Input = ({
   label,
   name,
-  value,
-  onChange,
+  register,
+  rules,
   error,
   placeholder,
   type = "text",
@@ -168,16 +228,15 @@ const Input = ({
     <label className="font-medium lg:text-base tracking-wide">{label}</label>
     <input
       type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
+      {...register(name, rules)}
       placeholder={placeholder}
       inputMode={type === "number" ? "numeric" : undefined}
       pattern={type === "number" ? "[0-9]*" : undefined}
       className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none tracking-wide placeholder:text-sm"
     />
-    {error && <p className="text-red-500 text-sm">{error}</p>}
+    {error && <p className="text-red-500 text-sm">{error.message}</p>}
   </div>
 );
+
 
 export default EducationEditModal;

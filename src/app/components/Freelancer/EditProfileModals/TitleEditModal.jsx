@@ -27,14 +27,14 @@ const TitleEditModal = ({
   const { showSuccess, showError } = useToastStore.getState();
 
   useEffect(() => {
-      if (freelancerProfile) {
-        reset({
-          professional_title: freelancerProfile.professional_title,
-          overview: freelancerProfile.overview,
-          hourly_rate: freelancerProfile.hourly_rate,
-        });
-      }
-    }, [freelancerProfile, reset]);
+    if (freelancerProfile) {
+      reset({
+        professional_title: freelancerProfile.professional_title,
+        overview: freelancerProfile.overview,
+        hourly_rate: freelancerProfile.hourly_rate,
+      });
+    }
+  }, [freelancerProfile, reset]);
 
   const handleSave = async (data) => {
     try {
@@ -51,7 +51,7 @@ const TitleEditModal = ({
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
-        <div className="px-3 py-3">
+        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
           <div className="flex justify-between items-center">
             <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
               Edit
