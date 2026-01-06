@@ -16,7 +16,7 @@ export default function MostPopular() {
             "
       >
         <div className="flex flex-col gap-4 w-full md:w-auto">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             Most Popular
           </h2>
           <p className="text-gray-500 text-sm md:text-base tracking-wide font-medium">

@@ -53,7 +53,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             Next, Define the Scope of Your Project
           </h2>
           <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">

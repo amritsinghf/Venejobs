@@ -16,7 +16,7 @@ export default function HeaderSection({ name }) {
     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
       {/* Left: Welcome Text */}
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+        <h1 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
           Welcome back, {name}
         </h1>
         <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">

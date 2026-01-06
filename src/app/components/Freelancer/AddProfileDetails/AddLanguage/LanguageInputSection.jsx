@@ -274,6 +274,7 @@ const LanguageInputSection = ({
               rounded-lg
               font-semibold
               hover:bg-secondary/90
+              cursor-pointer
             "
           >
             {editIndex !== null ? "Update" : "Add"}

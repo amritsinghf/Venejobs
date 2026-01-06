@@ -10,7 +10,7 @@ export default function HowItWorks() {
             For Clients
           </p>
 
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             How it Works
           </h2>
 
