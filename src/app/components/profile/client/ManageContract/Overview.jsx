@@ -1,4 +1,4 @@
-import SvgIcon from "@/app/components/SvgIcon"
+import SvgIcon from "@/app/components/Utility/SvgIcon"
 import Image from "next/image"
 
 export default function Overview() {
