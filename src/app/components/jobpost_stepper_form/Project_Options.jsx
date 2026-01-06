@@ -5,6 +5,9 @@ import jobApiStore from "@/app/store/jobStore";
 import StepperNumber from "./StepperNumber";
 import SvgIcon from "../Utility/SvgIcon";
 import Loader from "../common/Loader";
+import ProjectSizeSkeleton from "../Skeletons/ProjectSizeSkeleton";
+import DeadlineSkeleton from "../Skeletons/DeadlineSkeleton";
+import ExperienceSkeleton from "../Skeletons/ExperienceSkeleton";
 
 const Project_Options = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -16,6 +19,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     getProjectDuration,
     getExperienceLevels,
   } = jobApiStore();
+
   const [loadingNext, setLoadingNext] = useState(false);
 
   const {
@@ -34,7 +38,6 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     ]);
 
     if (valid) nextStep();
-
     setLoadingNext(false);
   };
 
@@ -44,60 +47,61 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     getExperienceLevels();
   }, []);
 
-  const handlePrev = async () => {
-    prevStep();
-  };
-
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
+
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight ">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-tight">
             Next, Define the Scope of Your Project
           </h2>
           <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
             Think about the scale of your project, the tasks involved, and the
-            estimated time required to bring it to completion.{" "}
+            estimated time required to bring it to completion.
           </p>
         </div>
 
         <div className="w-full flex flex-col gap-6">
+          {/* PROJECT SIZE */}
           <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Project size
             </h2>
+
             <div className="flex flex-col gap-4">
-              {projectSizes?.map((item) => (
-                <div
-                  className="w-full py-3.5 px-6 text-base border border-[#D0D5DD] rounded-lg focus-within:border-primary flex items-center gap-4 cursor-pointer"
-                  key={item.id}
-                >
-                  <input
-                    id={item.code}
-                    type="radio"
-                    value={item.title}
-                    {...register("project_size", {
-                      required: "Please select at least one option",
-                    })}
-                    name="project_size"
-                    className="w-4 h-4 text-primary accent-primary "
-                  />
-
+              {loading
+                ? Array.from({ length: 3 }).map((_, i) => (
+                  <ProjectSizeSkeleton key={i} />
+                ))
+                : projectSizes?.map((item) => (
                   <label
-                    htmlFor={item.code}
-                    className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer"
+                    key={item.id}
+                    className="w-full py-3.5 px-6 text-base border border-[#D0D5DD]
+                                 rounded-lg focus-within:border-primary
+                                 flex items-center gap-4 cursor-pointer"
                   >
-                    <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
-                      {item.title}
-                    </p>
-                    <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
-                      {item.description}
-                    </p>
-                  </label>
-                </div>
-              ))}
+                    <input
+                      id={item.code}
+                      type="radio"
+                      value={item.title}
+                      {...register("project_size", {
+                        required: "Please select at least one option",
+                      })}
+                      name="project_size"
+                      className="w-4 h-4 text-primary accent-primary"
+                    />
 
+                    <div className="flex flex-col gap-1.5 lg:gap-1">
+                      <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
+                        {item.title}
+                      </p>
+                      <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
+                        {item.description}
+                      </p>
+                    </div>
+                  </label>
+                ))}
               {errors.project_size && (
                 <span className="text-sm text-red-500 font-medium">
                   {errors.project_size.message}
@@ -106,50 +110,67 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
             </div>
           </div>
 
+          {/* DEADLINE */}
           <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Deadline
             </h2>
-            <div className="flex flex-wrap  gap-4 justify w-full">
-              {projectDuration?.map((item) => (
-                <div
-                  className="flex items-center rounded-lg cursor-pointer border border-[#D0D5DD] py-3 px-4 gap-3 focus-within:border-primary"
-                  key={item.id}
-                >
-                  <input
-                    id={item.code}
-                    {...register("duration", {
-                      required: "Please select at least one option",
-                    })}
-                    type="radio"
-                    value={item.code}
-                    name="duration"
-                    className="w-4 h-4 text-primary accent-primary "
-                  />
-                  <label
-                    htmlFor={item.code}
-                    className="w-full text-gray-500 text-sm xl:text-base font-medium tracking-wide"
-                  >
-                    {item.label}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </div>
-          {errors.duration && (
-            <span className="text-sm text-red-500 font-medium">
-              {errors.duration.message}
-            </span>
-          )}
 
+            <div className="flex flex-wrap gap-4 w-full">
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                  <DeadlineSkeleton key={i} />
+                ))
+                : projectDuration?.map((item) => (
+                  <label
+                    key={item.id}
+                    className="flex items-center rounded-lg cursor-pointer
+                                 border border-[#D0D5DD]
+                                 py-3 px-4 gap-3
+                                 focus-within:border-primary"
+                  >
+                    <input
+                      id={item.code}
+                      {...register("duration", {
+                        required: "Please select at least one option",
+                      })}
+                      type="radio"
+                      value={item.code}
+                      name="duration"
+                      className="w-4 h-4 text-primary accent-primary"
+                    />
+                    <span className="w-full text-gray-500 text-sm xl:text-base font-medium tracking-wide">
+                      {item.label}
+                    </span>
+                  </label>
+                ))}
+            </div>
+
+            {errors.duration && (
+              <span className="text-sm text-red-500 font-medium">
+                {errors.duration.message}
+              </span>
+            )}
+          </div>
+
+          {/* EXPERIENCE */}
           <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               What level of experience will it need?
             </h2>
 
-            {experienceLevels?.map((item) => (
-              <div key={item.id} className="cursor-pointer">
-                <div className="w-full py-3.5 px-6 text-base border border-[#D0D5DD] rounded-lg focus-within:border-primary flex items-center gap-4">
+            {loading
+              ? Array.from({ length: 3 }).map((_, i) => (
+                <ExperienceSkeleton key={i} />
+              ))
+              : experienceLevels?.map((item) => (
+                <label
+                  key={item.id}
+                  className="cursor-pointer w-full py-3.5 px-6 text-base
+                               border border-[#D0D5DD] rounded-lg
+                               focus-within:border-primary
+                               flex items-center gap-4"
+                >
                   <input
                     id={item.code}
                     type="radio"
@@ -158,22 +179,20 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                       required: "Please select at least one option",
                     })}
                     name="experience_level"
-                    className="w-4 h-4 text-primary accent-primary "
+                    className="w-4 h-4 text-primary accent-primary"
                   />
-                  <label
-                    htmlFor={item.code}
-                    className="flex flex-col gap-1.5 lg:gap-1 cursor-pointer"
-                  >
+
+                  <div className="flex flex-col gap-1.5 lg:gap-1">
                     <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
                       {item.title}
                     </p>
                     <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
                       Looking for someone relatively new to this field
                     </p>
-                  </label>
-                </div>
-              </div>
-            ))}
+                  </div>
+                </label>
+              ))}
+
             {errors.experience_level && (
               <span className="text-sm text-red-500 font-medium">
                 {errors.experience_level.message}
@@ -181,10 +200,11 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
             )}
           </div>
 
+          {/* BUTTONS */}
           <div className="flex justify-between gap-10 xl:gap-2 mt-5">
             <Button
               type="button"
-              onClick={handlePrev}
+              onClick={prevStep}
               className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
@@ -200,7 +220,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
               onClick={handleNext}
               disabled={loadingNext}
               className={`bg-primary text-white flex items-center gap-2 justify-center px-7
-      ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
+              ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
             >
               {loadingNext ? (
                 <Loader size={18} border={3} color="white" />
