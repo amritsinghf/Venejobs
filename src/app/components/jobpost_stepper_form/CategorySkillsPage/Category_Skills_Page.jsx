@@ -24,12 +24,17 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const { category_data, skills_data, getCategories, getSkillsByCategory } =
-    jobApiStore();
+  const {
+    category_data,
+    skills_data,
+    getCategories,
+    getSkillsByCategory,
+    categoryLoading,
+    skillsLoading,
+  } = jobApiStore();
 
   const getskillsbycategory = async (categoryCode, name) => {
     if (selectedCategory === categoryCode) {
-      // 🔥 UNSELECT
       setSelectedCategory(null);
       setCategoryName("");
       setSelectedItems([]);
@@ -37,7 +42,6 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
       return;
     }
 
-    // ✅ SELECT
     setSelectedCategory(categoryCode);
     setCategoryName(name);
     setSelectedItems([]);
@@ -120,6 +124,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             category_data={category_data}
             selectedCategory={selectedCategory}
             getskillsbycategory={getskillsbycategory}
+            loading={categoryLoading}
           />
           <SkillsSelector
             categoryName={categoryName}
@@ -129,6 +134,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
             inputValue={inputValue}
             handleInputChange={handleInputChange}
             errors={errors}
+            loading={skillsLoading}
           />
 
           <div className="flex justify-between gap-10 xl:gap-2 mt-5">

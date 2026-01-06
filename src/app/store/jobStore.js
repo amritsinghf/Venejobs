@@ -75,28 +75,27 @@ const jobApiStore = create((set) => ({
     }
   },
   getCategories: async () => {
-    set({ loading: true, error: null });
+    set({ categoryLoading: true, error: null });
     try {
       const res = await getCategories();
       set({
         category_data: res.data,
-        loading: false,
+        categoryLoading: false,
       });
     } catch (err) {
-      set({ error: err.message, loading: false });
+      set({ error: err.message, categoryLoading: false });
     }
   },
   getSkillsByCategory: async (selectedCategory) => {
-    set({ loading: true, error: null });
+    set({ skillsLoading: true, error: null });
     try {
       const res = await getSkillsByCategory(selectedCategory);
-
       set({
         skills_data: res.data,
-        loading: false,
+        skillsLoading: false,
       });
     } catch (err) {
-      set({ error: err.message, loading: false });
+      set({ error: err.message, skillsLoading: false });
     }
   },
   getProjectSize: async () => {

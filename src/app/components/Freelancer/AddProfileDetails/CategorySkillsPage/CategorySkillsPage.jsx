@@ -19,30 +19,43 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   const [categoryName, setCategoryName] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [loading, setLoading] = useState(false);
+
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
-  const { category_data, skills_data, getCategories, getSkillsByCategory } =
-    jobApiStore();
+  const {
+    category_data,
+    skills_data,
+    getCategories,
+    getSkillsByCategory,
+    categoryLoading,
+    skillsLoading,
+  } = jobApiStore();
 
+  /* ------------------ CATEGORY SELECT ------------------ */
   const getskillsbycategory = async (categoryCode, name) => {
+    // 🔥 UNSELECT
     if (selectedCategory === categoryCode) {
-      // 🔥 UNSELECT
       setSelectedCategory(null);
       setCategoryName("");
       setSelectedItems([]);
-      setValue("skills", [])
+      setValue("skills", []);
       return;
     }
 
-    // ✅ SELECT
-    setSelectedCategory(categoryCode);
-    setCategoryName(name);
-    setSelectedItems([]);
-    setValue("skills", []);
-    await getSkillsByCategory(categoryCode);
+    setSkillsLoading(true);
+    try {
+      setSelectedCategory(categoryCode);
+      setCategoryName(name);
+      setSelectedItems([]);
+      setValue("skills", []);
+      await getSkillsByCategory(categoryCode);
+    } finally {
+      setSkillsLoading(false);
+    }
   };
 
+  /* ------------------ SKILL CHECKBOX ------------------ */
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     let updated = [...selectedItems];
@@ -57,6 +70,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     setInputValue(updated.join(", "));
   };
 
+  /* ------------------ INPUT CHANGE ------------------ */
   const handleInputChange = (e) => {
     const typed = e.target.value
       .split(",")
@@ -64,14 +78,24 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
       .filter(Boolean);
 
     setInputValue(e.target.value);
-
     setSelectedItems(typed);
   };
 
+  /* ------------------ LOAD CATEGORIES ------------------ */
   useEffect(() => {
-    getCategories();
+    const fetchCategories = async () => {
+      setCategoryLoading(true);
+      try {
+        await getCategories();
+      } finally {
+        setCategoryLoading(false);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
+  /* ------------------ SYNC SKILLS TO FORM ------------------ */
   useEffect(() => {
     const skillsPayload = selectedItems.map((skill) => ({
       name: skill,
@@ -81,25 +105,29 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     setValue("skills", skillsPayload, { shouldValidate: true });
   }, [selectedItems, setValue]);
 
+  /* ------------------ NEXT BUTTON ------------------ */
   const handleNext = async () => {
-    setLoading(true);
+    setButtonLoading(true);
 
-    if (selectedItems.length === 0) {
-      setError("skills", {
-        type: "manual",
-        message: "Please add at least 1 skill",
-      });
-      return;
+    try {
+      if (selectedItems.length === 0) {
+        setError("skills", {
+          type: "manual",
+          message: "Please add at least 1 skill",
+        });
+        return;
+      }
+
+      clearErrors("skills");
+
+      const valid = await trigger();
+      if (valid) nextStep();
+    } finally {
+      setButtonLoading(false);
     }
-
-    clearErrors("skills");
-
-    const valid = await trigger();
-    if (valid) nextStep();
-
-    setLoading(false);
   };
 
+  /* ------------------ UI ------------------ */
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
@@ -120,6 +148,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             category_data={category_data}
             selectedCategory={selectedCategory}
             getskillsbycategory={getskillsbycategory}
+            loading={categoryLoading}
           />
 
           {selectedCategory && (
@@ -131,6 +160,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
               inputValue={inputValue}
               handleInputChange={handleInputChange}
               errors={errors}
+              loading={skillsLoading}
             />
           )}
 
@@ -138,7 +168,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={prevStep}
-              className="bg-white text-paragraph  flex items-center gap-2 transition-all duration-300 shadow"
+              className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300 shadow"
               style={{
                 boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.08)",
@@ -151,9 +181,11 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={handleNext}
-              className="bg-secondary text-white flex items-center gap-2 justify-center"
+              disabled={buttonLoading}
+              className={`bg-secondary text-white flex items-center gap-2 justify-center
+                ${buttonLoading ? "opacity-70 cursor-not-allowed" : ""}`}
             >
-              Next <SvgIcon name="NextArrow" />
+              {buttonLoading ? "Loading..." : <>Next <SvgIcon name="NextArrow" /></>}
             </Button>
           </div>
         </div>
