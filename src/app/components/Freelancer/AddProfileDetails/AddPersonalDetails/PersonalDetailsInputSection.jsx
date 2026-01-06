@@ -189,7 +189,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
           <Button
             type="submit"
             disabled={loadingSubmit}
-            className="bg-secondary text-white px-8 py-3 rounded-md flex items-center gap-2 justify-center"
+            className="bg-secondary text-white rounded-md flex items-center gap-2 justify-center"
           >
             {loadingSubmit ? (
               <Loader size={18} border={3} color="white" />

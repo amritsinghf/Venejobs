@@ -78,36 +78,28 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               Upload Your File
             </h2>
             <input
-              id="bordered-radio-2"
+              type="file"
               {...register("attachment", {
-                required: {
-                  value: true,
-                  message: "Please select file",
-                },
                 validate: {
                   isPdf: (files) => {
-                    if (files && files.length > 0) {
-                      const type = files[0].type;
-                      return (
-                        type === "application/pdf" ||
-                        "Only PDF files are allowed."
-                      );
-                    }
-                    return true;
+                    if (!files || files.length === 0) return true;
+                    return (
+                      files[0].type === "application/pdf" ||
+                      "Only PDF files are allowed."
+                    );
+                  },
+                  maxSize: (files) => {
+                    if (!files || files.length === 0) return true;
+                    return (
+                      files[0].size <= 104857600 ||
+                      "File size must be less than 100MB."
+                    );
                   },
                 },
-                maxSize: (files) => {
-                  if (!files || files.length === 0) return true;
-                  return (
-                    files[0].size <= 104857600 ||
-                    "File size must be less than 100MB."
-                  );
-                },
               })}
-              type="file"
-              name="attachment"
               className="w-full max-w-sm  p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
             />
+
             <p className="text-paragraph text-[16px]">Max file size: 100MB</p>
             {errors.attachment && (
               <span className="text-sm text-red-500 font-medium">
