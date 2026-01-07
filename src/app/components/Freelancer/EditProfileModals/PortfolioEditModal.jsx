@@ -74,9 +74,9 @@ const PortfolioEditModal = ({
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
-        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               {isEdit ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
             <button
@@ -92,7 +92,7 @@ const PortfolioEditModal = ({
             <form onSubmit={handleSubmit(handleSave)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Title</h3>
+                  <h3 className="font-medium lg:text-base tracking-wide">Title</h3>
                   <input
                     type="text"
                     name="title"
@@ -103,7 +103,7 @@ const PortfolioEditModal = ({
                       },
                     })}
                     placeholder="Enter your title"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
+                    className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   />
                   {errors.title && (
                     <p className="text-red-500 text-sm">{errors.title}</p>
@@ -111,7 +111,7 @@ const PortfolioEditModal = ({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <h3 className="font-bold text-base">Image URL</h3>
+                  <h3 className="font-medium lg:text-base tracking-wide">Image URL</h3>
                   <input
                     type="text"
                     name="project_url"
@@ -130,7 +130,7 @@ const PortfolioEditModal = ({
                       },
                     })}
                     placeholder="Enter image URL"
-                    className="w-full py-3 px-3 text-sm lg:text-base border border-lightborder focus:border-primary rounded-md focus:outline-none"
+                    className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   />
 
                   {errors.project_url && (
@@ -144,7 +144,10 @@ const PortfolioEditModal = ({
               <div className="flex justify-end gap-4 mt-6">
                 <Button
                   type="button"
-                  className="px-4 py-2 shadow text-paragraph font-semibold"
+                  style={{
+                    boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                  }}
                   onClick={() => setShowPortfolioModal(false)}
                 >
                   Cancel

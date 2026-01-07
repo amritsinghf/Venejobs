@@ -113,12 +113,9 @@ const ExperienceEditModal = ({
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[100dvh] md:max-h-none overflow-y-auto">
-        <div
-          className="flex flex-col gap-2
-        px-1 md:px-5 md:py-5"
-        >
-          <div className="flex justify-between items-center ">
-            <h2 className="text-lg lg:text-2xl font-extrabold text-heading mb-3">
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               {isEdit ? "Edit Employment" : "Add Employment"}
             </h2>
             <button
@@ -133,13 +130,13 @@ const ExperienceEditModal = ({
           <form onSubmit={handleSubmit(handleSave)}>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   Job Title
                 </label>
                 <input
                   name="job_title"
                   {...register("job_title")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Senior UXUI Designer"
                 />
                 {errors.job_title && (
@@ -147,13 +144,13 @@ const ExperienceEditModal = ({
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   Company Name
                 </label>
                 <input
                   name="company"
                   {...register("company")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Venesjobs"
                 />
                 {errors.company && (
@@ -161,13 +158,13 @@ const ExperienceEditModal = ({
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   Location
                 </label>
                 <input
                   name="location"
                   {...register("location")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Russia"
                 />
                 {errors.location && (
@@ -175,39 +172,69 @@ const ExperienceEditModal = ({
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">City</label>
+                <label className="font-medium lg:text-base tracking-wide">City</label>
                 <input
                   name="city"
                   {...register("city")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Enter City"
                 />
                 {errors.city && (
                   <p className="text-red-500 text-sm">{errors.city}</p>
                 )}
               </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+              {/* <div className="flex flex-col gap-2">
+                <label className="font-medium lg:text-base tracking-wide">
                   Start Month
                 </label>
                 <input
                   name="start_month"
                   {...register("start_month")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="From Month"
                 />
                 {errors.start_month && (
                   <p className="text-red-500 text-sm">{errors.start_month}</p>
                 )}
-              </div>
+              </div> */}
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
+                  Start Month
+                </label>
+
+                <input
+                  type="number"
+                  {...register("start_month", {
+                    required: "Start month is required",
+                    min: {
+                      value: 1,
+                      message: "Month must be between 1 and 12",
+                    },
+                    max: {
+                      value: 12,
+                      message: "Month must be between 1 and 12",
+                    },
+                    valueAsNumber: true,
+                  })}
+                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+                  placeholder="From Month"
+                />
+
+                {errors.start_month?.message && (
+                  <p className="text-red-500 text-sm">
+                    {errors.start_month.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="font-medium lg:text-base tracking-wide">
                   Start Year
                 </label>
                 <input
                   name="start_year"
                   {...register("start_year")}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="From Year"
                 />
                 {errors.start_year && (
@@ -215,7 +242,7 @@ const ExperienceEditModal = ({
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   Ended Month
                 </label>
                 <input
@@ -223,19 +250,29 @@ const ExperienceEditModal = ({
                   {...register("end_month", {
                     validate: (value) => {
                       if (isCurrent) return true;
-                      return value ? true : "End month is required";
+
+                      if (!value) return "End month is required";
+
+                      if (value < 1 || value > 12)
+                        return "Month must be between 1 and 12";
+
+                      return true;
                     },
+                    valueAsNumber: true,
                   })}
                   disabled={isCurrent}
-                  className="border border-gray-200 p-2 rounded"
+                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary"
                   placeholder="Through Month"
                 />
-                {errors.end_month && !isCurrent && (
-                  <p className="text-red-500 text-sm">{errors.end_month}</p>
+
+                {errors.end_month?.message && !isCurrent && (
+                  <p className="text-red-500 text-sm">
+                    {errors.end_month.message}
+                  </p>
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   End Year
                 </label>
 
@@ -270,7 +307,7 @@ const ExperienceEditModal = ({
                     },
                   })}
                   disabled={isCurrent}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Through Year"
                 />
 
@@ -288,14 +325,14 @@ const ExperienceEditModal = ({
                 <label>I currently work here</label>
               </div>
               <div className="col-span-2 flex flex-col gap-2">
-                <label className="font-semibold text-sm lg:text-lg">
+                <label className="font-medium lg:text-base tracking-wide">
                   Description
                 </label>
                 <textarea
                   name="description"
                   {...register("description")}
                   rows={4}
-                  className="border border-gray-200 p-2 rounded"
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Enter description..."
                 />
                 {errors.description && (
@@ -307,7 +344,7 @@ const ExperienceEditModal = ({
               <Button
                 type="button"
                 onClick={() => setExperienceModal(false)}
-                className="px-4 py-2 shadow text-paragraph font-semibold"
+                style={{ boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)", }}
               >
                 Cancel
               </Button>

@@ -5,17 +5,22 @@ import { useForm } from "react-hook-form";
 import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
-import AddIcon from "@mui/icons-material/Add";
 
-const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
+const SkillsEditModal = ({ showSkillModal, setShowSkillModal, Selectedskill, freelanceSkills }) => {
+  const isEdit = Boolean(Selectedskill);
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      skill: "",
+    },
+  });
 
-  const { skills, getSkills, updateSkills, loading, error } = freelanceApiStore();
+  const { skills, allSkills, updateSkills, addSkill, loading, error } = freelanceApiStore();
 
   useEscapeKey(showSkillModal, () => {
     setShowSkillModal(false);
@@ -25,34 +30,63 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
 
   useEffect(() => {
     if (showSkillModal) {
-      getSkills();
+      allSkills();
     }
-  }, [showSkillModal, getSkills]);
+  }, [showSkillModal, allSkills]);
 
+  useEffect(() => {
+    if (isEdit && Selectedskill?.skill_name) {
+      setValue("skill", Selectedskill.skill_name);
+    }
+  }, [isEdit, Selectedskill, setValue]);
+
+
+  // available Skills
+  const usedSkillNames = new Set(
+    freelanceSkills?.map(fs => fs.skill_name)
+  );
+  const selectedSkillName = Selectedskill?.skill_name;
+  const availableSkills = skills?.filter(s => {
+    if (isEdit && s.name === selectedSkillName) {
+      return true;
+    }
+    return !usedSkillNames.has(s.name);
+  });
+
+
+  // ADD and UPDATE
   const handleSave = async (data) => {
-    const payload = {
-      skills: data.skills.map((skill) => ({
-        name: skill,
-      })),
-    };
+    if (!data.skill) {
+      showError("Please select a skill");
+      return;
+    }
     try {
-      const res = await updateSkills(payload);
-      if (res.success) {
-        showSuccess(res.message, "success");
+      let res;
+      if (isEdit) {
+        res = await updateSkills(Selectedskill.id, { skill_name: data.skill });
+      } else {
+        res = await addSkill({
+          skill_name: data.skill,
+        });
+      }
+      if (res?.success) {
+        showSuccess(res.message || "Skill saved successfully", "success");
         setShowSkillModal(false);
       }
     } catch (error) {
-      showError(error.response.data.message, "error");
+      showError(
+        error?.response?.data?.message || "Something went wrong"
+      );
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
-        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
-          <div className="flex justify-between items-center">
-            <h2 className="text-lg lg:text-2xl font-extrabold leading-tight text-heading mb-3">
-              Edit Skills
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
+              {isEdit ? "Edit Skills" : "Add Skills"}
             </h2>
             <button
               type="button"
@@ -66,7 +100,7 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
           <div className="flex flex-col justify-between h-120">
             <form onSubmit={handleSubmit(handleSave)}>
               <div className="flex flex-col gap-2">
-                <h3 className="font-bold text-base">Skills</h3>
+                <h3 className="font-medium lg:text-base tracking-wide">Skills</h3>
                 <div
                   className={`
                     flex items-center flex-wrap gap-3 lg:gap-5 w-full
@@ -89,25 +123,24 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
 
                   {!loading && skills?.length > 0 && (
                     <div className="flex items-center flex-wrap gap-3 lg:gap-5 w-full">
-                      {skills.map((item) => {
-                        const checkboxId = `skill-${item.id}`;
+                      {availableSkills.map((item) => {
+                        const selectedSkill = watch("skill") === item.name;
                         return (
                           <div key={item.id}>
                             <input
-                              type="checkbox"
-                              id={checkboxId}
+                              type="radio"
+                              id={`skill-${item.id}`}
                               value={item.name}
-                              {...register("skills", {
-                                validate: (value) =>
-                                  value.length > 0 || "Please select at least one skill",
+                              {...register("skill", {
+                                required: "Please select a skill",
                               })}
                               className="sr-only peer"
                             />
 
                             <label
-                              htmlFor={checkboxId}
-                              className="flex flex-col py-3 px-4 items-center justify-center rounded-lg cursor-pointer border border-[#D0D5DD] transition-all peer-checked:bg-secondary peer-checked:text-white"
-                            >
+                              htmlFor={`skill-${item.id}`}
+                              className={`flex items-center justify-center py-3 px-4 rounded-lg cursor-pointer border transition-all
+                                   ${selectedSkill ? "bg-secondary text-white border-secondary" : "border-[#D0D5DD]"}`}>
                               <span className="text-sm lg:text-base">
                                 {item.name}
                               </span>
@@ -123,7 +156,7 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
               <div className="flex justify-end gap-4 mt-6">
                 <Button
                   type="button"
-                  className="px-4 py-2 shadow text-paragraph font-semibold"
+                  style={{ boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)", }}
                   onClick={() => setShowSkillModal(false)}
                 >
                   Cancel
@@ -132,7 +165,7 @@ const SkillsEditModal = ({ showSkillModal, setShowSkillModal }) => {
                   type="submit"
                   className="px-4 py-2 bg-secondary text-white rounded"
                 >
-                  Edit
+                  {isEdit ? "Upadate" : "Add"}
                 </Button>
               </div>
             </form>

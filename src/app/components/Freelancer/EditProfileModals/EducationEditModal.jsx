@@ -68,7 +68,6 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
   }, [education, isEdit, reset]);
 
   const handleSave = async (data) => {
-    console.log(data)
     try {
       const res = isEdit
         ? await updateEducation(data.id, data)
@@ -106,8 +105,8 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
-            <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               {isEdit ? "Edit Education" : "Add Education"}
             </h2>
             <button
@@ -118,7 +117,7 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
             </button>
           </div>
           <form onSubmit={handleSubmit(handleSave)}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
                 label="Institution Name"
                 name="institution_name"
@@ -179,8 +178,8 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
               />
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold">Description</label>
+            <div className="flex flex-col gap-2 mt-4">
+              <label className="font-medium lg:text-base tracking-wide">Description</label>
               <textarea
                 {...register("description")}
                 rows={4}

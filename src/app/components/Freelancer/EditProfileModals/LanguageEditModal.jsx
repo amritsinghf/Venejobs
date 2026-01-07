@@ -10,6 +10,7 @@ const LanguageEditModal = ({
   setShowLanguageModal,
   showLanguageModal,
   language,
+  freelanceLanguage
 }) => {
   const isEdit = Boolean(language);
 
@@ -51,6 +52,17 @@ const LanguageEditModal = ({
   }, [language, isEdit, reset]);
 
   const handleSave = async (data) => {
+    // prevent duplicates
+    const isDuplicate = freelanceLanguage?.some(
+      (item) =>
+        item.language === data.language &&
+        (!isEdit || item.id !== data.id)
+    );
+    if (isDuplicate) {
+      showError("This language already exists", "error");
+      return;
+    }
+
     try {
       const res = isEdit
         ? await updateLanguage(data.id, data)
@@ -74,41 +86,41 @@ const LanguageEditModal = ({
   };
 
   const languagesData = [
-    { id: 1, name: "English" },
-    { id: 2, name: "Hindi" },
-    { id: 3, name: "Spanish" },
-    { id: 4, name: "French" },
-    { id: 5, name: "German" },
-    { id: 6, name: "Japanese" },
-    { id: 7, name: "Chinese" },
+    { id: 1, language: "English" },
+    { id: 2, language: "Hindi" },
+    { id: 3, language: "Spanish" },
+    { id: 4, language: "French" },
+    { id: 5, language: "German" },
+    { id: 6, language: "Japanese" },
+    { id: 7, language: "Chinese" },
   ];
   const proficiencyData = [
-    { id: 1, name: "Basic" },
-    { id: 2, name: "Conversational" },
-    { id: 3, name: "Fluent" },
-    { id: 4, name: "Native" },
+    { id: 1, proficiency: "Basic" },
+    { id: 2, proficiency: "Conversational" },
+    { id: 3, proficiency: "Fluent" },
+    { id: 4, proficiency: "Native" },
   ];
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 sm:px-4 py-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[95dvh] overflow-hidden">
-        <div className="flex flex-col gap-5 sm:gap-6 px-3 sm:px-5 py-4 sm:py-5 overflow-y-auto">
+        <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
+              {isEdit ? "Edit Language" : "Add Language"}
+            </h2>
+            <button
+              onClick={() => setShowLanguageModal(false)}
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
+            >
+              <SvgIcon name="CrossButton" size={18} />
+            </button>
+          </div>
           <form onSubmit={handleSubmit(handleSave)}>
-            <div className="flex justify-between items-center sticky top-0 bg-white z-10 py-2">
-              <h2 className="text-base sm:text-lg lg:text-2xl font-extrabold text-heading">
-                {isEdit ? "Edit Language" : "Add Language"}
-              </h2>
-              <button
-                onClick={() => setShowLanguageModal(false)}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
-              >
-                <SvgIcon name="CrossButton" size={18} />
-              </button>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Language */}
               <div className="flex flex-col gap-2">
-                <h3 className="font-bold text-base">Language</h3>
+                <h3 className="font-medium lg:text-base tracking-wide">Language</h3>
                 <select
                   {...register("language", {
                     required: "Language is required",
@@ -123,8 +135,8 @@ const LanguageEditModal = ({
                 >
                   <option value="">Select language</option>
                   {languagesData.map((item) => (
-                    <option key={item.id} value={item.name}>
-                      {item.name}
+                    <option key={item.id} value={item.language}>
+                      {item.language}
                     </option>
                   ))}
                 </select>
@@ -136,7 +148,7 @@ const LanguageEditModal = ({
               </div>
               {/* Proficiency */}
               <div className="flex flex-col gap-2">
-                <h3 className="font-bold text-base">Proficiency</h3>
+                <h3 className="font-medium lg:text-base tracking-wide">Proficiency</h3>
                 <select
                   {...register("proficiency", {
                     required: "Proficiency is required",
@@ -151,8 +163,8 @@ const LanguageEditModal = ({
                 >
                   <option value="">Select proficiency</option>
                   {proficiencyData.map((item) => (
-                    <option key={item.id} value={item.name}>
-                      {item.name}
+                    <option key={item.id} value={item.proficiency}>
+                      {item.proficiency}
                     </option>
                   ))}
                 </select>
@@ -163,11 +175,9 @@ const LanguageEditModal = ({
                 )}
               </div>
             </div>
-
             <div className="flex flex-col sm:flex-row justify-end gap-4 sm:gap-6 mt-4 sm:mt-6 pb-2">
               <Button
                 onClick={() => setShowLanguageModal(false)}
-                className="bg-white text-gray-800 w-full sm:w-auto"
                 style={{
                   boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
                   border: "1px solid rgba(0,0,0,0.08)",

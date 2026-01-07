@@ -211,7 +211,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
           {/* Header */}
-          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
             <h2 className="text-xl font-bold">
               {editIndex !== null ? "Edit Employment" : "Add Employment"}
             </h2>

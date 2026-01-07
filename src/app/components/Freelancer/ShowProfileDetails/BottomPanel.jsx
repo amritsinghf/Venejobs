@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import freelanceApiStore from "@/app/store/FreelancerStore";
-import useToastStore from "@/app/store/toastStore";
+import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
+import Swal from "sweetalert2";
 
 const BottomPanel = ({ freelancerProfile }) => {
   const formatMonthYear = (month, year) => {
@@ -16,22 +17,36 @@ const BottomPanel = ({ freelancerProfile }) => {
   const [showExperienceModal, setExperienceModal] = useState(false);
   const [editExperience, setEditExperience] = useState(null);
 
-  const { deleteExperience } = freelanceApiStore();
-  const { showSuccess, showError } = useToastStore.getState();
+  const { freelanceExperience, getExperience, deleteExperience } = freelanceApiStore();
+
+  useEffect(() => {
+    getExperience();
+  }, [getExperience]);
 
   const handleDelete = async (deleteFn, id) => {
-    if (!window.confirm("Are you sure you want to delete this item?")) return;
+    const isConfirmed = await DeleteConfirmation();
+    if (!isConfirmed) return;
 
     try {
       const res = await deleteFn(id);
+
       if (res?.success) {
-        showSuccess(res.message || "Deleted successfully", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: res.message || "Deleted successfully",
+          timer: 1500,
+          showConfirmButton: false,
+        });
       }
     } catch (error) {
-      showError(
-        error?.response?.data?.message || "Something went wrong",
-        "error"
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text:
+          error?.response?.data?.message ||
+          "Something went wrong",
+      });
     }
   };
 
@@ -52,7 +67,7 @@ const BottomPanel = ({ freelancerProfile }) => {
         </button>
       </div>
 
-      {freelancerProfile?.experiences.map((item, index) => (
+      {freelanceExperience?.map((item, index) => (
         <div className="flex flex-col gap-4" key={item.id}>
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
@@ -64,9 +79,9 @@ const BottomPanel = ({ freelancerProfile }) => {
                 {formatMonthYear(item.end_month, item.end_year)}
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <div
-                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => {
                   setEditExperience({ ...item, index });
                   setExperienceModal(true);
@@ -79,7 +94,7 @@ const BottomPanel = ({ freelancerProfile }) => {
                 />
               </div>
               <div
-                className="shadow rounded-full px-1 py-1 lg:px-4 lg:py-4 cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => handleDelete(deleteExperience, item.id)}
               >
                 <SvgIcon

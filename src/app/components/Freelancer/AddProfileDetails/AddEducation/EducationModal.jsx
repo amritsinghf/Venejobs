@@ -101,8 +101,8 @@ const EducationModal = ({
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
-            <h2 className="text-lg lg:text-2xl font-extrabold text-heading">
+          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               {editIndex !== null ? "Edit Education" : "Add Education"}
             </h2>
             <button
@@ -188,7 +188,7 @@ const EducationModal = ({
 
           <div className="flex justify-end gap-6 mt-6">
             <Button
-            type={"button"}
+              type={"button"}
               onClick={() => setshowForm(false)}
               className="bg-white text-gray-800"
               style={{

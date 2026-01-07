@@ -13,12 +13,17 @@ import {
   deleteFreelanceExperience,
   deleteFreelancePortfolio,
   addFreelanceLanguage,
-  addFreelanceEducation,
+  addFreelancerEducation,
   addFreelanceExperience,
   addFreelancePortfolio,
   getAllSkills,
   addFreelanceSkills,
   deleteFreelanceSkill,
+  getFreelancerSkills,
+  getFreelancerPortfolio,
+  getFreelancerLanguage,
+  getFreelancerExperience,
+  getFreelancerEducation,
 } from "../lib/freelancer";
 
 const freelanceApiStore = create((set) => ({
@@ -86,24 +91,24 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
-  updateSkills: async (data) => {
-    set({ loadingData: true, error: null });
+
+  getSkills: async () => {
+    set({ loading: true, error: null });
     try {
-      const res = await updateFreelanceSkills(data);
-      return res;
-    } catch (err) {
+      const res = await getFreelancerSkills();
       set({
-        error:
-          err?.response?.data?.message || err.message || "Update skills failed",
+        freelanceSkills: res.data,
         loading: false,
       });
-      throw err;
+    } catch (err) {
+      set({ error: err.message, loading: false });
     }
   },
   addSkill: async (data) => {
     set({ loadingData: true, error: null });
     try {
       const res = await addFreelanceSkills(data);
+      await getFreelancerSkills().then((r) => set({ freelanceSkills: r.data }));
       return res;
     } catch (err) {
       set({
@@ -114,11 +119,26 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
+  updateSkills: async (id, data) => {
+    set({ loadingData: true, error: null });
+    try {
+      const res = await updateFreelanceSkills(id, data);
+      await getFreelancerSkills().then((r) => set({ freelanceSkills: r.data }));
+      return res;
+    } catch (err) {
+      set({
+        error:
+          err?.response?.data?.message || err.message || "Update skills failed",
+        loading: false,
+      });
+      throw err;
+    }
+  },
   deleteSkill: async (id) => {
     set({ loadingData: true, error: null });
     try {
       const res = await deleteFreelanceSkill(id);
-      console.log(res);
+      await getFreelancerSkills().then((r) => set({ freelanceSkills: r.data }));
       return res;
     } catch (err) {
       set({
@@ -129,10 +149,26 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
+
+  getExperience: async () => {
+    set({ loading: true, error: null });
+    try {
+      const res = await getFreelancerExperience();
+      set({
+        freelanceExperience: res.data,
+        loading: false,
+      });
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  },
   addExperience: async (data) => {
     set({ loadingData: true, error: null });
     try {
       const res = await addFreelanceExperience(data);
+      await getFreelancerExperience().then((r) =>
+        set({ freelanceExperience: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -149,6 +185,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await updateFreelanceExperience(id, data);
+      await getFreelancerExperience().then((r) =>
+        set({ freelanceExperience: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -165,6 +204,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await deleteFreelanceExperience(id);
+      await getFreelancerExperience().then((r) =>
+        set({ freelanceExperience: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -177,10 +219,26 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
+
+  getPortfolio: async () => {
+    set({ loading: true, error: null });
+    try {
+      const res = await getFreelancerPortfolio();
+      set({
+        freelancePortfolio: res.data,
+        loading: false,
+      });
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  },
   addPortfolio: async (data) => {
     set({ loadingData: true, error: null });
     try {
       const res = await addFreelancePortfolio(data);
+      await getFreelancerPortfolio().then((r) =>
+        set({ freelancePortfolio: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -195,7 +253,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await updateFreelancePortfolio(id, data);
-      console.log(res);
+      await getFreelancerPortfolio().then((r) =>
+        set({ freelancePortfolio: r.data })
+      );
       return res;
     } catch (err) {
       console.log(err);
@@ -213,6 +273,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await deleteFreelancePortfolio(id);
+      await getFreelancerPortfolio().then((r) =>
+        set({ freelancePortfolio: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -225,10 +288,27 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
+
+  getLanguage: async () => {
+    set({ loading: true, error: null });
+    try {
+      const res = await getFreelancerLanguage();
+      // console.log("res language", res);
+      set({
+        freelanceLanguage: res.data,
+        loading: false,
+      });
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  },
   addLanguage: async (data) => {
     set({ loadingData: true, error: null });
     try {
       const res = await addFreelanceLanguage(data);
+      await getFreelancerLanguage().then((r) =>
+        set({ freelanceLanguage: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -243,10 +323,11 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await updateFreelanceLanguage(id, data);
-      console.log(res);
+      await getFreelancerLanguage().then((r) =>
+        set({ freelanceLanguage: r.data })
+      );
       return res;
     } catch (err) {
-      console.log(err);
       set({
         error:
           err?.response?.id?.message || err.message || "Update language failed",
@@ -259,6 +340,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await deleteFreelanceLanguage(id);
+      await getFreelancerLanguage().then((r) =>
+        set({ freelanceLanguage: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -271,10 +355,26 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
+
+  getEducation: async () => {
+    set({ loading: true, error: null });
+    try {
+      const res = await getFreelancerEducation();
+      set({
+        freelanceEducation: res.data,
+        loading: false,
+      });
+    } catch (err) {
+      set({ error: err.message, loading: false });
+    }
+  },
   addEducation: async (data) => {
     set({ loadingData: true, error: null });
     try {
-      const res = await addFreelanceEducation(data);
+      const res = await addFreelancerEducation(data);
+      await getFreelancerEducation().then((r) =>
+        set({ freelanceEducation: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -289,10 +389,11 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await updateFreelanceEducation(id, data);
-      console.log(res);
+      await getFreelancerEducation().then((r) =>
+        set({ freelanceEducation: r.data })
+      );
       return res;
     } catch (err) {
-      console.log(err);
       set({
         error:
           err?.response?.id?.message ||
@@ -307,6 +408,9 @@ const freelanceApiStore = create((set) => ({
     set({ loadingData: true, error: null });
     try {
       const res = await deleteFreelanceEducation(id);
+      await getFreelancerEducation().then((r) =>
+        set({ freelanceEducation: r.data })
+      );
       return res;
     } catch (err) {
       set({
@@ -319,7 +423,8 @@ const freelanceApiStore = create((set) => ({
       throw err;
     }
   },
-  getSkills: async () => {
+
+  allSkills: async () => {
     set({ loading: true, error: null });
     try {
       const res = await getAllSkills();
