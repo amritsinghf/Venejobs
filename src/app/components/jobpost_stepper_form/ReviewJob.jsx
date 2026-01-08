@@ -69,7 +69,17 @@ const ReviewJob = ({ prevStep, setStep }) => {
             <h2 className="font-semibold text-lg lg:text-xl text-heading">
               Skills
             </h2>
-            <p className="text-paragraph text-base">{data.skills}</p>
+            <div className="flex flex-wrap gap-2">
+              {data.skills?.map((skill, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-gray-100 rounded text-sm"
+                >
+                  {skill.name} ({skill.level})
+                </span>
+              ))}
+            </div>
+
           </Row>
 
           {/* PROJECT DETAILS */}
@@ -116,9 +126,8 @@ const ReviewJob = ({ prevStep, setStep }) => {
             <Button
               type="submit"
               disabled={loadingSubmit}
-              className={`bg-primary text-white flex items-center gap-2 justify-center ${
-                loadingSubmit ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+              className={`bg-primary text-white flex items-center gap-2 justify-center ${loadingSubmit ? "opacity-70 cursor-not-allowed" : ""
+                }`}
             >
               {loadingSubmit ? (
                 <Loader size={18} border={3} color="white" />
