@@ -112,7 +112,7 @@ const ExperienceEditModal = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-[100dvh] md:max-h-none overflow-y-auto">
+      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-dvh md:max-h-none overflow-y-auto">
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
           <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
             <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
