@@ -23,7 +23,7 @@ const ShowDetailsHeader = ({ name, country }) => {
             <SvgIcon name="ShareGreen" className="flex lg:hidden" />
           </div>
 
-          <div className="flex gap-10">
+          <div className="flex gap-1">
             <p className="text-paragraph text-sm font-medium">{country}</p>
             <p className="text-paragraph text-sm font-medium">
               {" "}

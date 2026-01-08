@@ -67,7 +67,7 @@ const RightPanel = ({ freelancerProfile }) => {
   };
 
   return (
-    <div className="flex flex-col gap-10 xl:w-[900px]">
+    <div className="flex flex-col gap-10 xl:w-full pb-10 ">
 
       {/* ===== SKELETON ===== */}
       {pageLoading ? (

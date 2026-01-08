@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useToastStore from "@/app/store/toastStore";
 import Loader from "../common/Loader";
+import Button from "../button/Button";
 
 export default function PersonalInfoForm() {
   const { user, fetchProfile, updateProfile, UpdateProfilePhoto } =
@@ -49,9 +50,13 @@ export default function PersonalInfoForm() {
       setLoading(true);
 
       const res = await updateProfile(data);
-      const formData = new FormData();
-      formData.append("profile_picture", data.profile_picture[0]);
-      const profileUpdate = await UpdateProfilePhoto(formData);
+
+      // Call profile photo API only if file exists
+      if (data.profile_picture && data.profile_picture.length > 0) {
+        const formData = new FormData();
+        formData.append("profile_picture", data.profile_picture[0]);
+        await UpdateProfilePhoto(formData);
+      }
 
       if (res.success) {
         showSuccess(res.message, "success");
@@ -160,11 +165,7 @@ export default function PersonalInfoForm() {
               placeholder="Username"
               disabled={!isEditable}
               {...register("username", {
-                required: "Username is required",
-                minLength: {
-                  value: 3,
-                  message: "Minimum 3 characters required",
-                },
+
               })}
               className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
             />
@@ -212,21 +213,27 @@ export default function PersonalInfoForm() {
               disabled={!isEditable}
               {...register("phone", {
                 required: "Phone Number is required",
+
                 pattern: {
-                  // Only digits allowed
-                  value: /^[0-9]+$/,
-                  message: "Phone Number must contain only digits",
+                  value: /^\+?[0-9]+$/,
+                  message: "Phone number can contain digits and optional +",
                 },
+
                 validate: {
-                  // Exactly 10 digits
-                  length: (value) =>
-                    value.length === 10 ||
-                    "Phone Number must be exactly 10 digits",
+                  length: (value) => {
+                    const digitsOnly = value.replace(/\D/g, "");
+                    return (
+                      digitsOnly.length >= 10 &&
+                      digitsOnly.length <= 15 ||
+                      "Phone Number must be between 10 and 15 digits"
+                    );
+                  },
                 },
               })}
               placeholder="Mobile Number"
               className="w-full py-3.5 px-3 text-sm lg:text-base border border-lightborder focus:border-primary font-medium rounded-md focus:outline-none text-paragraph tracking-wide placeholder:text-sm"
             />
+
             <div className="min-h-5">
               {errors.phone?.message && (
                 <span className="text-sm text-red-500 block">
@@ -272,10 +279,6 @@ export default function PersonalInfoForm() {
               type="file"
               disabled={!isEditable}
               {...register("profile_picture", {
-                required: {
-                  value: true,
-                  message: "Please select image",
-                },
                 validate: {
                   isImage: (files) => {
                     if (files && files.length > 0) {
@@ -310,9 +313,9 @@ export default function PersonalInfoForm() {
         </div>
 
         {isEditable && (
-          <button
+          <Button
             type="submit"
-            className="border-2 rounded bg-primary text-white px-10 py-2 mt-2 flex items-center justify-center"
+            className=" bg-primary text-white flex items-center justify-center"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
@@ -320,7 +323,7 @@ export default function PersonalInfoForm() {
             ) : (
               "Submit"
             )}
-          </button>
+          </Button>
         )}
       </form>
       <CompanyDetails />

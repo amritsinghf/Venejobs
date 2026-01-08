@@ -12,11 +12,10 @@ export default function Button({
 }) {
   const variantClasses = {
     primary: `
-      text-white bg-black 
-      hover:bg-[#0057ff] hover:text-white
-      transition-colors duration-300
+      text-white bg-black
+      transition-all duration-200 ease-out
+      hover:shadow-md
     `,
-
     secondary: `
       bg-white text-[#0057ff] 
       hover:bg-[#0057ff] hover:text-white
