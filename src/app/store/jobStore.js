@@ -66,19 +66,24 @@ const jobApiStore = create((set) => ({
     }
   },
   fetchAllJob: async (page, limit) => {
+    
     set({ loading: true, error: null });
+
     try {
+      
       const res = await getAllJobs(page, limit);
       set({
         jobs: res.jobs,
         pagenum: res.page + 1,
         totalpagenum: res.totalPages,
         loading: false,
+        hasFetched: true,
       });
     } catch (err) {
       set({ error: err.message, loading: false });
     }
   },
+
   getBudgetData: async () => {
     set({ loading: true, error: null });
     try {
