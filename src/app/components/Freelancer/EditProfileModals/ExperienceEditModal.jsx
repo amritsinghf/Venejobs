@@ -136,7 +136,7 @@ const ExperienceEditModal = ({
                 <input
                   name="job_title"
                   {...register("job_title")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none text-black bg-white border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Senior UXUI Designer"
                 />
                 {errors.job_title && (
@@ -150,7 +150,7 @@ const ExperienceEditModal = ({
                 <input
                   name="company"
                   {...register("company")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Venesjobs"
                 />
                 {errors.company && (
@@ -164,7 +164,7 @@ const ExperienceEditModal = ({
                 <input
                   name="location"
                   {...register("location")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Ex: Russia"
                 />
                 {errors.location && (
@@ -176,7 +176,7 @@ const ExperienceEditModal = ({
                 <input
                   name="city"
                   {...register("city")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Enter City"
                 />
                 {errors.city && (
@@ -216,7 +216,7 @@ const ExperienceEditModal = ({
                     },
                     valueAsNumber: true,
                   })}
-                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary"
                   placeholder="From Month"
                 />
 
@@ -234,7 +234,7 @@ const ExperienceEditModal = ({
                 <input
                   name="start_year"
                   {...register("start_year")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="From Year"
                 />
                 {errors.start_year && (
@@ -261,7 +261,7 @@ const ExperienceEditModal = ({
                     valueAsNumber: true,
                   })}
                   disabled={isCurrent}
-                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary"
                   placeholder="Through Month"
                 />
 
@@ -307,7 +307,7 @@ const ExperienceEditModal = ({
                     },
                   })}
                   disabled={isCurrent}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Through Year"
                 />
 
@@ -332,7 +332,7 @@ const ExperienceEditModal = ({
                   name="description"
                   {...register("description")}
                   rows={4}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
+                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="Enter description..."
                 />
                 {errors.description && (

@@ -60,9 +60,9 @@ const TitleEditModal = ({
           md:h-auto
           md:max-h-[90vh]
           md:max-w-[1000px]
-          md:rounded-2xl">
+          md:rounded-2xl relative">
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+          <div>
             <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
               Edit
             </h2>
@@ -70,7 +70,7 @@ const TitleEditModal = ({
             <button
               type="button"
               onClick={() => setshowTitleModal(false)}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>
@@ -175,7 +175,7 @@ const InputField = ({
   placeholder,
   disabled = false,
   type = "text",
-  as = "input", // 👈 NEW (input | textarea)
+  as = "input",
   rows = 4,
 }) => (
   <div className="flex flex-col gap-2">
@@ -197,7 +197,7 @@ const InputField = ({
           border transition-all duration-200 focus:outline-none
           ${disabled
             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+            : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
           }
         `}
       />
@@ -217,7 +217,7 @@ const InputField = ({
           border transition-all duration-200 focus:outline-none
           ${disabled
             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+            : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
           }
         `}
       />

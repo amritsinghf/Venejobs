@@ -73,7 +73,15 @@ const PortfolioEditModal = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm h-[600px] flex flex-col">
+      <div className="bg-white
+          w-full h-full
+          rounded-none
+          overflow-y-auto
+
+          md:h-auto
+          md:max-h-[90vh]
+          md:max-w-[1000px]
+          md:rounded-2xl relative">
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
           <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
             <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
