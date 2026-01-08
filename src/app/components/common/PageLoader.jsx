@@ -1,5 +1,6 @@
+"use client";
 
-export default PageLoader = () => {
+export default function PageLoader() {
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
             <div className="flex gap-2">
@@ -15,4 +16,4 @@ export default PageLoader = () => {
             </div>
         </div>
     );
-};
+}

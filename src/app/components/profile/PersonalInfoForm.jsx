@@ -1,10 +1,11 @@
+"use client";
+
+import { useForm } from "react-hook-form";
 import userApiStore from "@/app/store/userStore";
 import Image from "next/image";
-import DOBPicker from "../Utility/DatePicker";
 import SvgIcon from "../Utility/SvgIcon";
 import CompanyDetails from "./CompanyDetails";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import useToastStore from "@/app/store/toastStore";
 import Loader from "../common/Loader";
 import Button from "../button/Button";
