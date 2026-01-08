@@ -135,7 +135,7 @@ const LanguageInputSection = ({
 
           {/* ================= Language ================= */}
           <div className="flex flex-col gap-4 w-full">
-            <h2 className="text-xl xl:text-2xl text-heading font-semibold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Language
             </h2>
 
@@ -202,7 +202,7 @@ const LanguageInputSection = ({
 
           {/* ================= Proficiency ================= */}
           <div className="flex flex-col gap-4 w-full">
-            <h2 className="text-xl xl:text-2xl text-heading font-semibold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               Proficiency level
             </h2>
 

@@ -11,7 +11,7 @@ const TitleInputSection = ({ handleNext }) => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
           Write a title for your job post
         </h2>
 

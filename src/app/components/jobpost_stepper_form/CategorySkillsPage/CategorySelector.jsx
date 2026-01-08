@@ -26,7 +26,7 @@ const CategorySelector = ({
 
     return (
         <div className="flex flex-col gap-4">
-            <h2 className="text-xl xl:text-2xl font-semibold">
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                 Select the Category
             </h2>
 

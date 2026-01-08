@@ -77,7 +77,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
           <hr className="text-gray-200" />
 
           <div className="flex flex-col gap-4">
-            <h2 className="text-2xl font-semibold text-heading">You’ll get</h2>
+            <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">You’ll get</h2>
             <input
               type="text"
               disabled
