@@ -153,12 +153,14 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             <Button
               type="button"
               onClick={handleNext}
-              disabled={buttonLoading}
-              className={`bg-secondary text-white flex items-center gap-2 ${buttonLoading ? "opacity-70 cursor-not-allowed" : ""
-                }`}
+              isLoading={buttonLoading}
+              variant="primary"
+              className="bg-secondary text-white flex items-center gap-2"
             >
-              {buttonLoading ? "Loading..." : <>Next <SvgIcon name="NextArrow" /></>}
+              Next
+              <SvgIcon name="NextArrow" />
             </Button>
+
           </div>
         </div>
       </div>

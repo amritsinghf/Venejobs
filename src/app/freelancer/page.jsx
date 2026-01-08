@@ -8,6 +8,7 @@ import FreelancerLayout from "../layout/FreelancerLayout";
 import Loader from "../components/common/Loader";
 import freelanceApiStore from "../store/FreelancerStore";
 import { useRouter } from "next/navigation";
+import PageLoader from "../components/common/PageLoader";
 
 export default function Page() {
   const router = useRouter();
@@ -30,12 +31,12 @@ export default function Page() {
   if (loadingData) {
     return (
       <div className="h-screen flex items-center justify-center">
-        Loading...
+        <PageLoader />
       </div>
     );
   }
 
-  
+
 
   return (
     <FreelancerLayout>

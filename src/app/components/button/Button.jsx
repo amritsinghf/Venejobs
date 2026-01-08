@@ -52,7 +52,7 @@ export default function Button({
   `}
       {...props}
     >
-      {isLoading ? "Loading..." : children}
+      {isLoading ? "" : children}
       {icon && icon}
     </button>
 

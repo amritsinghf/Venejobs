@@ -1,6 +1,6 @@
-"use client";
 import React, { lazy, Suspense } from "react";
 import ClientProfileLayout from "@/app/layout/ClientProfileLayout";
+import PersonalInfoSkeleton from "@/app/components/Skeletons/PersonalInfoSkeleton";
 
 const PersonalInfoForm = lazy(() =>
   import("@/app/components/profile/PersonalInfoForm")
@@ -8,18 +8,10 @@ const PersonalInfoForm = lazy(() =>
 
 export default function Info() {
   return (
-    <>
-      <ClientProfileLayout>
-        <Suspense
-          fallback={
-            <div className="bg-black">
-             loading............!
-            </div>
-          }
-        >
-          <PersonalInfoForm />
-        </Suspense>
-      </ClientProfileLayout>
-    </>
+    <ClientProfileLayout>
+      <Suspense fallback={<PersonalInfoSkeleton />}>
+        <PersonalInfoForm />
+      </Suspense>
+    </ClientProfileLayout>
   );
 }

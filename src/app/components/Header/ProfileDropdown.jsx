@@ -35,7 +35,21 @@ export default function ProfileDropdown() {
     setshowDropdown(false);
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="hidden sm:hidden lg:block">
+        <div className="flex items-center gap-6 md:gap-4">
+          <div className="h-10 w-56 bg-gray-200 rounded-4xl animate-pulse" />
+
+          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
+          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
+
+          <div className="h-10 w-10 bg-gray-300 rounded-full animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="hidden sm:hidden lg:block ">
