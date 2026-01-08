@@ -6,7 +6,39 @@ import freelanceApiStore from "@/app/store/FreelancerStore";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 
-const BottomPanel = ({ freelancerProfile }) => {
+const SkeletonItem = () => (
+  <div className="flex flex-col gap-4 animate-pulse">
+    <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-3 w-full">
+        <div className="h-4 sm:h-5 w-1/3 bg-gray-200 rounded" />
+        <div className="h-3 sm:h-4 w-1/4 bg-gray-200 rounded" />
+      </div>
+      <div className="flex gap-3">
+        <div className="h-4 w-4 bg-gray-200 rounded-full" />
+        <div className="h-4 w-4 bg-gray-200 rounded-full" />
+      </div>
+    </div>
+    <div className="h-3 sm:h-4 w-full bg-gray-200 rounded" />
+    <div className="h-3 sm:h-4 w-5/6 bg-gray-200 rounded" />
+    <hr className="text-gray-200" />
+  </div>
+);
+
+const BottomPanel = () => {
+  const [showExperienceModal, setExperienceModal] = useState(false);
+  const [editExperience, setEditExperience] = useState(null);
+
+  const {
+    freelanceExperience,
+    getExperience,
+    deleteExperience,
+    loading,
+  } = freelanceApiStore();
+
+  useEffect(() => {
+    getExperience();
+  }, [getExperience]);
+
   const formatMonthYear = (month, year) => {
     const date = new Date(year, month - 1);
     return date.toLocaleDateString("en-US", {
@@ -14,14 +46,6 @@ const BottomPanel = ({ freelancerProfile }) => {
       year: "numeric",
     });
   };
-  const [showExperienceModal, setExperienceModal] = useState(false);
-  const [editExperience, setEditExperience] = useState(null);
-
-  const { freelanceExperience, getExperience, deleteExperience } = freelanceApiStore();
-
-  useEffect(() => {
-    getExperience();
-  }, [getExperience]);
 
   const handleDelete = async (deleteFn, id) => {
     const isConfirmed = await DeleteConfirmation();
@@ -29,7 +53,6 @@ const BottomPanel = ({ freelancerProfile }) => {
 
     try {
       const res = await deleteFn(id);
-
       if (res?.success) {
         Swal.fire({
           icon: "success",
@@ -52,69 +75,87 @@ const BottomPanel = ({ freelancerProfile }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
+
+      {/* ===== HEADER ===== */}
+      <div className="flex justify-between items-center">
+        <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading text-heading">
           Employment history
         </h2>
+
         <button
           onClick={() => {
             setEditExperience(null);
             setExperienceModal(true);
           }}
-          className="text-secondary font-medium cursor-pointer"
+          className="text-sm sm:text-base text-secondary font-medium"
         >
           + Add
         </button>
       </div>
 
-      {freelanceExperience?.map((item, index) => (
-        <div className="flex flex-col gap-4" key={item.id}>
-          <div className="flex justify-between items-center">
-            <div className="flex flex-col gap-4">
-              <h2 className="text-lg lg:text-2xl font-semibold text-heading">
-                {item.job_title}
-              </h2>
-              <p className="font-semibold text-heading text-sm lg:text-base">
-                {formatMonthYear(item.start_month, item.start_year)} {"- "}
-                {formatMonthYear(item.end_month, item.end_year)}
-              </p>
-            </div>
-            <div className="flex items-center gap-5">
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  setEditExperience({ ...item, index });
-                  setExperienceModal(true);
-                }}
-              >
-                <SvgIcon
-                  name="Editing"
-                  size={24}
-                  className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
-                />
-              </div>
-              <div
-                className="cursor-pointer"
-                onClick={() => handleDelete(deleteExperience, item.id)}
-              >
-                <SvgIcon
-                  name="Delete1"
-                  className="text-gray-500 w-[18px] h-[18px] lg:w-5 lg:h-5"
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="text-paragraph">{item.description}</p>
-          </div>
-          <hr className="text-gray-200" />
+      {/* ===== CONTENT / SKELETON ===== */}
+      {loading ? (
+        <div className="flex flex-col gap-6">
+          {[...Array(3)].map((_, i) => (
+            <SkeletonItem key={i} />
+          ))}
         </div>
-      ))}
+      ) : (
+        freelanceExperience?.map((item, index) => (
+          <div key={item.id} className="flex flex-col gap-4">
+            <div className="flex justify-between items-start gap-4">
+              <div className="flex flex-col gap-2">
+                <h3 className="text-base sm:text-lg lg:text-[20px] font-medium text-heading">
+                  {item.job_title}
+                </h3>
 
+                <p className="text-sm sm:text-base text-heading font-medium">
+                  {formatMonthYear(item.start_month, item.start_year)} –{" "}
+                  {formatMonthYear(item.end_month, item.end_year)}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => {
+                    setEditExperience({ ...item, index });
+                    setExperienceModal(true);
+                  }}
+                >
+                  <SvgIcon
+                    name="Editing"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                  />
+                </button>
+
+                <button
+                  onClick={() =>
+                    handleDelete(deleteExperience, item.id)
+                  }
+                >
+                  <SvgIcon
+                    name="Delete1"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <p className="text-sm sm:text-base leading-relaxed text-paragraph">
+              {item.description}
+            </p>
+
+            <hr className="text-gray-200" />
+          </div>
+        ))
+      )}
+
+      {/* ===== PAGINATION ===== */}
       <div className="flex justify-end">
         <PaginationFreelance totalPages={5} />
       </div>
 
+      {/* ===== MODAL ===== */}
       {showExperienceModal && (
         <ExperienceEditModal
           item={editExperience}

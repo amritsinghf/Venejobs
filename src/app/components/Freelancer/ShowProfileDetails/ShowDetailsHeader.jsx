@@ -37,12 +37,25 @@ const ShowDetailsHeader = ({ name, country }) => {
         <div className="flex items-center gap-6">
           <Link
             href={Routes.profile.freelancer.home}
-            className="bg-secondary text-white text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
-                        font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-                        rounded transition-all duration-300 gap-2"
+            className="
+    bg-secondary text-white text-center
+    w-40 md:w-44
+    h-12 sm:h-[50px]
+    font-semibold tracking-wide
+    text-sm xl:text-base
+
+    inline-flex items-center justify-center gap-2
+    rounded
+
+    transition-all duration-200 ease-out
+    hover:shadow-md
+    hover:brightness-105
+    active:brightness-95
+  "
           >
             Profile Settings
           </Link>
+
           <Link
             href={Routes.freelancer.page}
             className="

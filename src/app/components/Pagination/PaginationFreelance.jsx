@@ -31,7 +31,7 @@ export default function PaginationFreelance({
               ${
                 active
                   ? "bg-secondary text-white"
-                  : "bg-white text-paragraph hover:bg-gray-100"
+                  : "bg-white text-paragraph hover:bg-secondary hover:text-white"
               }`}
           >
             {i + 1}

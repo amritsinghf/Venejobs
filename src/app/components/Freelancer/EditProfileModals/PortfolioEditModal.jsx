@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import freelanceApiStore from "@/app/store/FreelancerStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
+import InputField from "../../common/InputField";
 
 const PortfolioEditModal = ({
   showPortfolioModal,
@@ -16,7 +17,6 @@ const PortfolioEditModal = ({
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm({
@@ -31,7 +31,7 @@ const PortfolioEditModal = ({
   });
 
   const { showSuccess, showError } = useToastStore.getState();
-  const { updatePortfolio, addPortfolio, loading, error } = freelanceApiStore();
+  const { updatePortfolio, addPortfolio, loading } = freelanceApiStore();
 
   useEffect(() => {
     if (isEdit) {
@@ -73,102 +73,89 @@ const PortfolioEditModal = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
-      <div className="bg-white
-          w-full h-full
-          rounded-none
-          overflow-y-auto
-
-          md:h-auto
-          md:max-h-[90vh]
-          md:max-w-[1000px]
-          md:rounded-2xl relative">
+      <div
+        className="
+          bg-white w-full h-full rounded-none overflow-y-auto
+          md:h-auto md:max-h-[90vh] md:max-w-[900px] md:rounded-2xl relative
+        "
+      >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
-            <h2 className="text-lg lg:text-2xl font-bold leading-snug text-heading">
+          <div className="flex justify-between items-center">
+            <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               {isEdit ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
+
             <button
               type="button"
               onClick={() => setShowPortfolioModal(false)}
-              className="absolute right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition cursor-pointer"
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
 
-          <div className="flex flex-col justify-between h-120">
-            <form onSubmit={handleSubmit(handleSave)}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-medium lg:text-base tracking-wide">Title</h3>
-                  <input
-                    type="text"
-                    name="title"
-                    {...register("title", {
-                      required: {
-                        value: true,
-                        message: "Title is required",
-                      },
-                    })}
-                    placeholder="Enter your title"
-                    className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
-                  />
-                  {errors.title && (
-                    <p className="text-red-500 text-sm">{errors.title}</p>
-                  )}
-                </div>
+          {/* Form */}
+          <form onSubmit={handleSubmit(handleSave)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Title */}
+              <InputField
+                label="Title"
+                name="title"
+                placeholder="Enter your title"
+                register={register}
+                rules={{
+                  required: "Title is required",
+                }}
+                error={errors.title?.message}
+              />
 
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-medium lg:text-base tracking-wide">Image URL</h3>
-                  <input
-                    type="text"
-                    name="project_url"
-                    {...register("project_url", {
-                      required: {
-                        value: true,
-                        message: "Project URL is required",
-                      },
-                      validate: (value) => {
-                        try {
-                          new URL(value);
-                          return true;
-                        } catch {
-                          return "Please enter a valid URL";
-                        }
-                      },
-                    })}
-                    placeholder="Enter image URL"
-                    className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
-                  />
+              {/* Portfolio URL */}
+              <InputField
+                label="Portfolio URL"
+                name="project_url"
+                placeholder="Enter Portfolio URL"
+                register={register}
+                rules={{
+                  required: "Project URL is required",
+                  validate: (value) => {
+                    try {
+                      new URL(value);
+                      return true;
+                    } catch {
+                      return "Please enter a valid URL";
+                    }
+                  },
+                }}
+                error={errors.project_url?.message}
+              />
+            </div>
 
-                  {errors.project_url && (
-                    <p className="text-red-500 text-sm">
-                      {errors.project_url.message}
-                    </p>
-                  )}
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row justify-end gap-4 mt-6">
+              <Button
+                type="button"
+                onClick={() => setShowPortfolioModal(false)}
+                style={{
+                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                }}
+              >
+                Cancel
+              </Button>
 
-                </div>
-              </div>
-              <div className="flex justify-end gap-4 mt-6">
-                <Button
-                  type="button"
-                  style={{
-                    boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                    border: "1px solid rgba(0,0,0,0.08)",
-                  }}
-                  onClick={() => setShowPortfolioModal(false)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  className="px-4 py-2 bg-secondary text-white rounded"
-                >
-                  {isEdit ? "Upadate" : "Add"}
-                </Button>
-              </div>
-            </form>
-          </div>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="bg-secondary text-white"
+              >
+                {loading
+                  ? "Saving..."
+                  : isEdit
+                    ? "Update"
+                    : "Add"}
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

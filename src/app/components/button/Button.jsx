@@ -35,15 +35,14 @@ export default function Button({
     ${className}
 
     w-40 sm:w-[180px] md:w-48
-    h-12 sm:h-[52px] md:h-13
+    h-12 sm:h-[52px] md:h-12
     rounded
     font-semibold tracking-wide 
-    text-sm lg:text-base
+    text-sm lg:text-[15px]
     flex items-center justify-center 
     cursor-pointer
 
-    transition-all duration-300 ease-out
-    hover:scale-105
+    transition-all duration-200 ease-out
     hover:shadow-lg
     active:scale-95
 
