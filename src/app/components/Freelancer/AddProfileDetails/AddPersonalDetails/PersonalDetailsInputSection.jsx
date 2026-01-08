@@ -144,8 +144,6 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
           error={errors?.personalDetails?.PhoneNumber?.message}
         />
 
-
-
         {/* Buttons */}
         <div className="flex justify-between gap-4 pt-4">
           <Button

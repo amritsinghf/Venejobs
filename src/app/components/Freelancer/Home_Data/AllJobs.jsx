@@ -49,7 +49,7 @@ export default function AllJobs() {
         jobs?.map((item) => (
           <div
             key={item.id}
-            className="rounded-xl border border-[rgba(68,68,68,0.08)] bg-white p-6 flex flex-col gap-4 hover:shadow-md transition"
+            className="rounded-xl border border-[rgba(68,68,68,0.08)] bg-white p-6 flex flex-col gap-4 transition"
           >
             {/* Header */}
             <div className="flex justify-between items-start gap-3">

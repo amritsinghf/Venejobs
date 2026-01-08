@@ -204,7 +204,6 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
           overflow-y-auto
 
           md:h-auto
-          md:max-h-[90vh]
           md:max-w-[1000px]
           md:rounded-2xl
           relative
