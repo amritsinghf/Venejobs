@@ -38,17 +38,29 @@ const MultiStepForm = () => {
   const { SavePersonalDetails } = freelanceApiStore();
 
   const onSubmit = async (data) => {
-    console.log(data)
+    console.log("Before:", data);
+
+    const updatedData = {
+      ...data,
+      experiences: data.experiences.map(exp => {
+        if (exp.is_current) {
+          // end_month & end_year remove kar do
+          const { end_month, end_year, ...rest } = exp;
+          return rest;
+        }
+        return exp;
+      })
+    };
+
+    console.log("After:", updatedData);
+
     try {
-      const res = await SavePersonalDetails(data);
+      const res = await SavePersonalDetails(updatedData);
       if (res.success) {
         setshowConfirmMessage(true);
       }
     } catch (error) {
       console.log(error);
-      if (error.response) {
-      } else {
-      }
     }
   };
 

@@ -48,23 +48,22 @@ export default function SuccessProfileCreate() {
             You're all set to start exploring projects, connecting with clients, and building your freelance career.
           </p>
 
-          {/* CTA Button */}
           <Link
             href="/freelancer/"
             onClick={handleClick}
-            className={`bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"
-              }`}
+            className="bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center text-sm sm:text-base min-w-[180px]"
           >
-            {loading ? (
-              <>
+            <span className={loading ? "opacity-0" : "flex gap-2"}>
+              Continue <SvgIcon name="RightArrWhite" />
+            </span>
+
+            {loading && (
+              <span className="absolute">
                 <Loader size={18} border={3} color="white" />
-              </>
-            ) : (
-              <>
-                Continue <SvgIcon name="RightArrWhite" />
-              </>
+              </span>
             )}
           </Link>
+
         </div>
       </div>
     </>
