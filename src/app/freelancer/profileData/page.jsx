@@ -63,11 +63,18 @@ export default function Page() {
       <ShowDetailsWrapper>
         <Suspense fallback={null}>
           <ShowDetailsHeader name={name} country={country} />
+          <div className="flex flex-col lg:flex-row border-b border-gray-200">
+            {/* LEFT */}
+            <div className="w-full lg:w-[30%] lg:border-r border-gray-200">
+              <LeftPanel freelancerProfile={freelancerProfile} />
+            </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 border-b border-gray-200">
-            <LeftPanel freelancerProfile={freelancerProfile} />
-            <RightPanel freelancerProfile={freelancerProfile} />
+            {/* RIGHT */}
+            <div className="w-full lg:w-[70%] lg:pl-6">
+              <RightPanel freelancerProfile={freelancerProfile} />
+            </div>
           </div>
+
 
           <BottomPanel freelancerProfile={freelancerProfile} />
         </Suspense>

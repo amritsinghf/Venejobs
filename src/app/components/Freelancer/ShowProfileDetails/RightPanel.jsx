@@ -67,7 +67,7 @@ const RightPanel = ({ freelancerProfile }) => {
   };
 
   return (
-    <div className="flex flex-col gap-10 xl:w-full pb-10 ">
+    <div className="flex flex-col gap-10 lg:pb-10">
 
       {/* ===== SKELETON ===== */}
       {pageLoading ? (
@@ -95,7 +95,7 @@ const RightPanel = ({ freelancerProfile }) => {
                 <button onClick={() => setshowTitleModal(true)}>
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                   />
                 </button>
               </div>
@@ -146,7 +146,7 @@ const RightPanel = ({ freelancerProfile }) => {
                     >
                       <SvgIcon
                         name="Editing"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                        className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                       />
                     </button>
 
@@ -157,7 +157,7 @@ const RightPanel = ({ freelancerProfile }) => {
                     >
                       <SvgIcon
                         name="Delete1"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                        className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
                       />
                     </button>
                   </div>
@@ -209,37 +209,50 @@ const RightPanel = ({ freelancerProfile }) => {
               {freelanceSkills?.map((skill, index) => (
                 <div
                   key={skill.id}
-                  className={`flex justify-between items-center ${skillscss}`}
+                  className="
+        flex items-center justify-between
+        rounded-lg border border-gray-200
+        bg-white px-4 py-3
+        shadow-sm hover:shadow-md
+        transition-all duration-200
+      "
                 >
-                  <p>{skill.skill_name}</p>
+                  {/* Skill Name */}
+                  <p className="text-sm lg:text-base font-medium text-gray-800 truncate">
+                    {skill.skill_name}
+                  </p>
 
-                  <div className="flex gap-3">
+                  {/* Action Buttons */}
+                  <div className="flex items-center gap-4">
                     <button
                       onClick={() => {
                         setselectedSkill({ ...skill, index });
                         setShowSkillModal(true);
                       }}
+                      className="rounded-md hover:bg-blue-50 transition"
+                      aria-label="Edit Skill"
                     >
                       <SvgIcon
                         name="Editing"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                        className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                       />
                     </button>
 
                     <button
-                      onClick={() =>
-                        handleDelete(deleteSkill, skill.id)
-                      }
+                      onClick={() => handleDelete(deleteSkill, skill.id)}
+                      className="rounded-md hover:bg-red-50 transition"
+                      aria-label="Delete Skill"
                     >
                       <SvgIcon
                         name="Delete1"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                        className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
                       />
                     </button>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </>
       )}

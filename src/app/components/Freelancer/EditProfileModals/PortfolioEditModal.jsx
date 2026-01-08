@@ -54,7 +54,7 @@ const PortfolioEditModal = ({
         ? await updatePortfolio(data.id, data)
         : await addPortfolio(data);
 
-      if (res.success) {
+      if (res?.success) {
         showSuccess(
           isEdit
             ? "Portfolio updated successfully"
@@ -80,7 +80,9 @@ const PortfolioEditModal = ({
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          <div className="flex justify-between items-center">
+
+          {/* ===== HEADER (WITH BORDER-B) ===== */}
+          <div className="flex justify-between items-center border-b border-gray-200 pb-4">
             <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               {isEdit ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
@@ -94,9 +96,10 @@ const PortfolioEditModal = ({
             </button>
           </div>
 
-          {/* Form */}
+          {/* ===== FORM ===== */}
           <form onSubmit={handleSubmit(handleSave)}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
               {/* Title */}
               <InputField
                 label="Title"
@@ -130,7 +133,7 @@ const PortfolioEditModal = ({
               />
             </div>
 
-            {/* Buttons */}
+            {/* ===== BUTTONS ===== */}
             <div className="flex flex-col sm:flex-row justify-end gap-4 mt-6">
               <Button
                 type="button"
@@ -148,11 +151,7 @@ const PortfolioEditModal = ({
                 disabled={loading}
                 className="bg-secondary text-white"
               >
-                {loading
-                  ? "Saving..."
-                  : isEdit
-                    ? "Update"
-                    : "Add"}
+                {loading ? "Saving..." : isEdit ? "Update" : "Add"}
               </Button>
             </div>
           </form>

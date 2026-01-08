@@ -53,7 +53,10 @@ const LeftPanel = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 lg:gap-10 lg:border-r border-gray-200 md:pr-8">
+    <div className="
+  flex flex-col gap-6 lg:gap-10
+  pr-0 lg:pr-6
+">
 
       {/* ===== STATS ===== */}
       <div className="flex flex-col sm:flex-row gap-8 w-full">
@@ -89,7 +92,7 @@ const LeftPanel = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <SvgIcon name="Language" size={22} />
-            <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading text-heading">
+            <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               Language
             </h2>
           </div>
@@ -129,7 +132,7 @@ const LeftPanel = () => {
                 >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                   />
                 </button>
 
@@ -138,7 +141,7 @@ const LeftPanel = () => {
                 >
                   <SvgIcon
                     name="Delete1"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
                   />
                 </button>
               </div>
@@ -152,7 +155,7 @@ const LeftPanel = () => {
       {/* ===== EDUCATION ===== */}
       <div className="flex flex-col gap-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading text-heading">
+          <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
             Education History
           </h2>
 
@@ -191,7 +194,7 @@ const LeftPanel = () => {
                 >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                   />
                 </button>
 
@@ -200,7 +203,7 @@ const LeftPanel = () => {
                 >
                   <SvgIcon
                     name="Delete1"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
                   />
                 </button>
               </div>

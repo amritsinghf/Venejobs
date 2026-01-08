@@ -6,7 +6,7 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 
 const ShowDetailsHeader = ({ name, country }) => {
   return (
-    <div className="flex flex-col gap-8 lg:flex-row lg:items-center justify-between border-b border-gray-200 pb-10">
+    <div className="flex flex-col gap-8 lg:flex-row lg:items-center justify-between border-b border-gray-200 pb-6 lg:pb-10">
       <div className="flex items-center gap-8">
         <Image
           src="/freelancer.jpg"
@@ -73,7 +73,7 @@ const ShowDetailsHeader = ({ name, country }) => {
         </div>
         <div className="hidden lg:flex justify-end items-center gap-4">
           <SvgIcon name="ShareGreen" />
-          <p className="hidden lg:flex text-secondary font-semibold">Share</p>
+          <p className="hidden lg:flex text-secondary font-medium">Share</p>
         </div>
       </div>
     </div>

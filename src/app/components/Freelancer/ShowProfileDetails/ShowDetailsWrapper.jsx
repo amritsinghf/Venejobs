@@ -12,13 +12,13 @@ const ShowDetailsWrapper = ({ children }) => {
         xl:max-w-[1240px]
         2xl:max-w-[1400px]
         mx-auto
-        px-4 sm:px-0
+        sm:px-0
         py-10 lg:py-20
         flex
         flex-col
       "
     >
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6 lg:gap-10">
         {children}
       </div>
     </div>

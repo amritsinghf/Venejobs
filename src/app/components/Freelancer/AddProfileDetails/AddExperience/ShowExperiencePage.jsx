@@ -34,7 +34,7 @@ const ShowExperiencePage = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
           Employment History
         </h2>
         <button

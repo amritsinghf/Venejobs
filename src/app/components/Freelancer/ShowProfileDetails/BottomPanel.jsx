@@ -78,7 +78,7 @@ const BottomPanel = () => {
 
       {/* ===== HEADER ===== */}
       <div className="flex justify-between items-center">
-        <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading text-heading">
+        <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
           Employment history
         </h2>
 
@@ -124,7 +124,7 @@ const BottomPanel = () => {
                 >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
                   />
                 </button>
 
@@ -135,7 +135,7 @@ const BottomPanel = () => {
                 >
                   <SvgIcon
                     name="Delete1"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500"
+                    className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
                   />
                 </button>
               </div>
