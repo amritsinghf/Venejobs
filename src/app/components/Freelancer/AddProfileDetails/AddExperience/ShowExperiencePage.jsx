@@ -62,10 +62,10 @@ const ShowExperiencePage = ({
           className="border border-gray-200 p-4 rounded-lg flex md:flex-row justify-between items-center md:items-center gap-4"
         >
           <div className="flex flex-col gap-2">
-            <h2 className="font-semibold text-lg lg:text-xl">
+            <h2 className="font-semibold text-lg">
               {item.job_title}
             </h2>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 text-sm font-medium">
               {formatMonthYear(item.start_month, item.start_year)} -{" "}
               {item.is_current
                 ? "Currently working"
@@ -73,22 +73,20 @@ const ShowExperiencePage = ({
             </p>
 
             {item.description && (
-              <p className="text-gray-700">{item.description}</p>
+              <p className="text-gray-700 font-medium">{item.description}</p>
             )}
           </div>
-          <div className="flex gap-4">
+          <div className="flex">
             <button
               type="button"
               onClick={() => onEdit(index)}
               className="
                 w-10 h-10
                 flex items-center justify-center
-              bg-secondary text-white
+               text-secondary
                 rounded-full cursor-pointer
                 transition-all duration-300 ease-out
                 hover:scale-105
-                hover:shadow-lg
-              hover:bg-secondary/90
                 active:scale-95
               "
             >
@@ -102,12 +100,10 @@ const ShowExperiencePage = ({
               className="
                 w-10 h-10
                 flex items-center justify-center
-              bg-secondary text-white
+              text-red-500
                 rounded-full cursor-pointer
                 transition-all duration-300 ease-out
                 hover:scale-105
-              hover:bg-red-500
-                hover:shadow-lg
                 active:scale-95
               "
             >

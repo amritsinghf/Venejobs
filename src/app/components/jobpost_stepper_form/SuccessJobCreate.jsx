@@ -44,7 +44,7 @@ export default function SuccessJobCreate() {
           </h2>
 
           {/* Description */}
-          <p className="text-paragraph text-center text-sm sm:text-base lg:text-lg max-w-md mb-6">
+          <p className="text-paragraph text-center text-sm sm:text-base max-w-md mb-6">
             You’ll start receiving proposals soon. You can also browse profiles
             to invite the perfect match.
           </p>

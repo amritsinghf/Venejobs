@@ -4,6 +4,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import SvgIcon from "../Utility/SvgIcon";
 import Button from "../button/Button";
 import Loader from "../common/Loader";
+import jobApiStore from "@/app/store/jobStore";
 
 const Row = ({ title, children, onEdit }) => (
   <div className="flex justify-between border-b border-gray-300 pb-4">
@@ -21,7 +22,7 @@ const Row = ({ title, children, onEdit }) => (
 );
 
 const ReviewJob = ({ prevStep, setStep }) => {
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const loading = jobApiStore((state) => state.loading);
   const { watch } = useFormContext();
   const data = watch();
 
@@ -122,14 +123,13 @@ const ReviewJob = ({ prevStep, setStep }) => {
               Back
             </Button>
 
-            {/* Use normal button here only otherwise job will post */}
             <Button
               type="submit"
-              disabled={loadingSubmit}
-              className={`bg-primary text-white flex items-center gap-2 justify-center ${loadingSubmit ? "opacity-70 cursor-not-allowed" : ""
+              disabled={loading}
+              className={`bg-primary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
             >
-              {loadingSubmit ? (
+              {loading ? (
                 <Loader size={18} border={3} color="white" />
               ) : (
                 <>
@@ -137,6 +137,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
                 </>
               )}
             </Button>
+
           </div>
         </div>
       </div>

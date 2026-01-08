@@ -130,7 +130,7 @@ const LanguageEditModal = ({
               border border-[#D0D5DD]
               rounded-md
               focus:border-secondary focus:outline-none
-              text-heading tracking-wide
+              text-black tracking-wide
               appearance-none bg-white"
                 >
                   <option value="">Select language</option>
@@ -158,7 +158,7 @@ const LanguageEditModal = ({
               border border-[#D0D5DD]
               rounded-md
               focus:border-secondary focus:outline-none
-              text-heading tracking-wide
+              text-black tracking-wide
               appearance-none bg-white"
                 >
                   <option value="">Select proficiency</option>

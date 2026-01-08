@@ -41,7 +41,6 @@ const jobApiStore = create((set) => ({
         loading: false,
       });
 
-      // 🔥 VERY IMPORTANT
       throw error;
     }
   },

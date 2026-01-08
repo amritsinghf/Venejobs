@@ -30,7 +30,7 @@ const InputField = ({
             border transition-all duration-200 focus:outline-none
             ${disabled
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-                            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+                            : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
                         }
           `}
                 />
@@ -46,7 +46,7 @@ const InputField = ({
             border transition-all duration-200 focus:outline-none
             ${disabled
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-                            : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+                            : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
                         }
           `}
                 />

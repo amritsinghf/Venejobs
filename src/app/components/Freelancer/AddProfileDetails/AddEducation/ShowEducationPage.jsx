@@ -9,7 +9,7 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9 leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
           Education History
         </h2>
         <button
@@ -37,24 +37,22 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
           className="border border-gray-200 p-4 rounded-lg flex md:flex-row justify-between items-center md:items-center gap-4"
         >
           <div className="flex flex-col gap-2">
-            <h2 className="font-bold text-lg">{item.institution_name}</h2>
-            <p className="text-gray-600">{item.degree}</p>
-            <p className="text-gray-600">{item.field_of_study}</p>
-            <p className="text-gray-600">{item.type_of_education}</p>
+            <h2 className="font-semibold text-lg">{item.institution_name}</h2>
+            <p className="text-gray-600 font-medium">{item.degree}</p>
+            <p className="text-gray-600 font-medium">{item.field_of_study}</p>
+            <p className="text-gray-600 font-medium">{item.type_of_education}</p>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex">
             <button
               type="button"
               className="
                 w-10 h-10
                 flex items-center justify-center
-              bg-secondary text-white
+               text-secondary
                 rounded-full cursor-pointer
                 transition-all duration-300 ease-out
                 hover:scale-105
-                hover:shadow-lg
-              hover:bg-secondary/90
                 active:scale-95
               "
               onClick={() => onEdit(index)}
@@ -67,12 +65,10 @@ const ShowEducationPage = ({ fields, onEdit, onDelete, onAddMore }) => {
               className="
                 w-10 h-10
                 flex items-center justify-center
-              bg-secondary text-white
+               text-red-500
                 rounded-full cursor-pointer
                 transition-all duration-300 ease-out
                 hover:scale-105
-              hover:bg-red-500
-                hover:shadow-lg
                 active:scale-95
               "
               onClick={() => onDelete(index)}

@@ -111,16 +111,17 @@ const PortfolioModal = ({
           md:max-h-[90vh]
           md:max-w-[800px]
           md:rounded-2xl
+          relative
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6 flex-1">
-          <div className="flex justify-between items-center sticky top-0 bg-white z-10">
+
+
+          <div className="flex justify-between items-center border-b border-gray-200 pb-4">
             <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               {editIndex !== null ? "Edit Portfolio" : "Add Portfolio"}
             </h2>
-            <button
-              onClick={() => setshowForm(false)}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
+            <button onClick={() => setshowForm(false)} className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>

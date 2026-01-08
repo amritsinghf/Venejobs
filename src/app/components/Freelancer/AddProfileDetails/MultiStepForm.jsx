@@ -20,6 +20,9 @@ const MultiStepForm = () => {
   const methods = useForm({
     mode: "onSubmit",
     shouldUnregister: false,
+    defaultValues: {
+      date_of_birth: "",
+    },
   });
   const {
     handleSubmit,

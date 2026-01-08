@@ -106,7 +106,7 @@ const InputField = ({
         focus:outline-none
         ${disabled
           ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-          : "bg-white text-heading border-[#D0D5DD] focus:border-secondary"
+          : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
         }
       `}
     />
@@ -207,15 +207,16 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
           md:max-h-[90vh]
           md:max-w-[1000px]
           md:rounded-2xl
+          relative
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
-          {/* Header */}
-          <div className="relative flex justify-between items-center top-0 bg-white z-10 pb-2">
+          <div className="flex justify-between items-center border-b border-gray-200 pb-4">
             <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               {editIndex !== null ? "Edit Employment" : "Add Employment"}
             </h2>
-            <button onClick={close} className="cursor-pointer">
+            <button onClick={close} className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
+            >
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>

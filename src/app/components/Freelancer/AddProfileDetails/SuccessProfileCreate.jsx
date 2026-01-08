@@ -44,23 +44,28 @@ export default function SuccessProfileCreate() {
           </h2>
 
           {/* Description */}
-          <p className="text-paragraph text-center text-sm sm:text-base lg:text-lg max-w-md mb-6">
+          <p className="text-paragraph text-center text-sm sm:text-base max-w-md mb-6">
             You're all set to start exploring projects, connecting with clients, and building your freelance career.
           </p>
+
 
           <Link
             href="/freelancer/"
             onClick={handleClick}
-            className="bg-secondary text-white px-6 py-3 rounded-md flex items-center justify-center text-sm sm:text-base min-w-[180px]"
+            className={`bg-secondary text-white 
+              px-6 py-3 rounded-md 
+              flex items-center justify-center gap-2 
+              text-sm sm:text-base transition
+              min-w-40 min-h-12
+              ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}
+            `}
           >
-            <span className={loading ? "opacity-0" : "flex gap-2"}>
-              Continue <SvgIcon name="RightArrWhite" />
-            </span>
-
-            {loading && (
-              <span className="absolute">
-                <Loader size={18} border={3} color="white" />
-              </span>
+            {loading ? (
+              <Loader size={18} border={3} color="white" />
+            ) : (
+              <>
+                Continue <SvgIcon name="RightArrWhite" />
+              </>
             )}
           </Link>
 

@@ -1,19 +1,23 @@
+import React, { useState } from "react";
+import { useFormContext, Controller } from "react-hook-form";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+
 import Button from "@/app/components/button/Button";
 import Loader from "@/app/components/common/Loader";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import React, { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import InputField from "@/app/components/common/InputField";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import NumericInputField from "@/app/components/common/NumericInputField";
 
 const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
   const {
     register,
+    control,
     formState: { errors },
   } = useFormContext();
 
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
-
-  const inputClass =
-    "w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm";
+  const { loading } = freelanceApiStore();
 
   return (
     <div className="w-full">
@@ -21,16 +25,29 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
 
         {/* Date of Birth */}
         <div className="flex flex-col gap-2">
-          <h2 className="text-base lg:text-lg font-semibold text-heading">
+          <label className="font-medium lg:text-base tracking-wide">
             Date of Birth
-          </h2>
-          <input
-            type="date"
-            {...register("date_of_birth", {
-              required: "Date of Birth is required",
-            })}
-            className={inputClass}
+          </label>
+
+          <Controller
+            name="date_of_birth"
+            control={control}
+            rules={{ required: "Date of Birth is required" }}
+            render={({ field }) => (
+              <Flatpickr
+                {...field}
+                value={field.value || ""}
+                options={{
+                  dateFormat: "d-m-Y",
+                  maxDate: "today",
+                  disableMobile: true,
+                }}
+                placeholder="Select your DOB"
+                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] rounded-md focus:outline-none focus:border-secondary"
+              />
+            )}
           />
+
           {errors?.date_of_birth && (
             <p className="text-sm text-red-500">
               {errors.date_of_birth.message}
@@ -39,138 +56,95 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
         </div>
 
         {/* Country */}
-        <div className="flex flex-col gap-2">
-          <h2 className="text-base lg:text-lg font-semibold text-heading">
-            Country
-          </h2>
-          <input
-            type="text"
-            placeholder="London"
-            {...register("country", {
-              required: "Country is required",
-            })}
-            className={inputClass}
-          />
-          {errors?.country && (
-            <p className="text-sm text-red-500">
-              {errors.country.message}
-            </p>
-          )}
-        </div>
+        <InputField
+          label="Country"
+          name="country"
+          placeholder="London"
+          register={register}
+          rules={{ required: "Country is required" }}
+          error={errors?.country?.message}
+        />
 
         {/* Street + Apt */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="flex flex-col gap-2">
-            <h2 className="text-base lg:text-lg font-semibold text-heading">
-              Street Address
-            </h2>
-            <input
-              type="text"
-              {...register("street_address", {
-                required: "Street Address is required",
-              })}
-              className={inputClass}
-            />
-            {errors?.street_address && (
-              <p className="text-sm text-red-500">
-                {errors.street_address.message}
-              </p>
-            )}
-          </div>
+          <InputField
+            label="Street Address"
+            name="street_address"
+            placeholder="123 Main Street"
+            register={register}
+            rules={{ required: "Street Address is required" }}
+            error={errors?.street_address?.message}
+          />
 
-          <div className="flex flex-col gap-2">
-            <h2 className="text-base lg:text-lg font-semibold text-heading">
-              Apt / Suite (Optional)
-            </h2>
-            <input
-              type="text"
-              {...register("personalDetails.Apt")}
-              className={inputClass}
-            />
-          </div>
+
+          <InputField
+            label="Apt / Suite (Optional)"
+            name="personalDetails.Apt"
+            register={register}
+            placeholder="Apartment or Suite"
+          />
         </div>
 
         {/* City / State / Zip */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="flex flex-col gap-2">
-            <h2 className="text-base lg:text-lg font-semibold text-heading">
-              City
-            </h2>
-            <input
-              type="text"
-              {...register("city", {
-                required: "City is required",
-              })}
-              className={inputClass}
-            />
-            {errors?.city && (
-              <p className="text-sm text-red-500">
-                {errors.city.message}
-              </p>
-            )}
-          </div>
+          <InputField
+            label="City"
+            name="city"
+            placeholder="London"
+            register={register}
+            rules={{ required: "City is required" }}
+            error={errors?.city?.message}
+          />
 
-          <div className="flex flex-col gap-2">
-            <h2 className="text-base lg:text-lg font-semibold text-heading">
-              State / Province
-            </h2>
-            <input
-              type="text"
-              {...register("personalDetails.State", {
-                required: "State/Province is required",
-              })}
-              className={inputClass}
-            />
-            {errors?.personalDetails?.State && (
-              <p className="text-sm text-red-500">
-                {errors.personalDetails.State.message}
-              </p>
-            )}
-          </div>
+          <InputField
+            label="State / Province"
+            name="personalDetails.State"
+            placeholder="Greater London"
+            register={register}
+            rules={{ required: "State/Province is required" }}
+            error={errors?.personalDetails?.State?.message}
+          />
 
-          <div className="flex flex-col gap-2">
-            <h2 className="text-base lg:text-lg font-semibold text-heading">
-              ZIP / Postal Code
-            </h2>
-            <input
-              type="text"
-              inputMode="numeric"
-              {...register("zip_code", {
-                required: "ZIP/Postal Code is required",
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Numbers only",
-                },
-              })}
-              className={inputClass}
-            />
-            {errors?.zip_code && (
-              <p className="text-sm text-red-500">
-                {errors.zip_code.message}
-              </p>
-            )}
-          </div>
+          <InputField
+            label="ZIP / Postal Code"
+            name="zip_code"
+            maxLength={10}
+            placeholder="SW1A 1AA"
+            register={register}
+            rules={{
+              required: "Postal Code is required",
+              pattern: {
+                value: /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
+                message: "Enter a valid UK postal code",
+              },
+            }}
+            error={errors?.zip_code?.message}
+          />
+
         </div>
 
         {/* Phone */}
-        <div className="flex flex-col gap-2">
-          <h2 className="text-base lg:text-lg font-semibold text-heading">
-            Phone Number
-          </h2>
-          <input
-            type="text"
-            placeholder="+255 123456789"
-            {...register("personalDetails.PhoneNumber", {
-              required: "Phone Number is required",
-            })}
-            className={inputClass}
-          />
-          {errors?.personalDetails?.PhoneNumber && (
-            <p className="text-sm text-red-500">
-              {errors.personalDetails.PhoneNumber.message}
-            </p>
-          )}
-        </div>
+        <NumericInputField
+          label="Phone Number"
+          name="personalDetails.PhoneNumber"
+          placeholder="Enter phone number"
+          maxLength={15}
+          register={register}
+          rules={{
+            required: "Phone Number is required",
+            minLength: {
+              value: 10,
+              message: "Minimum 10 digits required",
+            },
+            maxLength: {
+              value: 15,
+              message: "Maximum 15 digits allowed",
+            },
+          }}
+          error={errors?.personalDetails?.PhoneNumber?.message}
+        />
+
+
 
         {/* Buttons */}
         <div className="flex justify-between gap-4 pt-4">
@@ -188,10 +162,10 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
 
           <Button
             type="submit"
-            disabled={loadingSubmit}
-            className="bg-secondary text-white rounded-md flex items-center gap-2 justify-center"
+            disabled={loading}
+            className="bg-secondary text-white rounded flex items-center gap-2 justify-center"
           >
-            {loadingSubmit ? (
+            {loading ? (
               <Loader size={18} border={3} color="white" />
             ) : (
               <>
@@ -199,6 +173,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
               </>
             )}
           </Button>
+
         </div>
 
       </div>

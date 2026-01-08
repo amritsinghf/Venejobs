@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "flatpickr/dist/flatpickr.min.css";
+
 @theme {
   --color-primary: #01237c;
   --color-secondary: #5bbb7b;
@@ -22,7 +24,7 @@
   }
 }
 
-body{
+body {
   height: 100%;
 }
 
@@ -109,6 +111,16 @@ body{
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.flatpickr-calendar {
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.flatpickr-day.selected {
+  background: #5bbb7b;
+  border-color: #5bbb7b;
 }
