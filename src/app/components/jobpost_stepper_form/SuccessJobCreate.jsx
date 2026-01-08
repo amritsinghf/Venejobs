@@ -49,24 +49,26 @@ export default function SuccessJobCreate() {
             to invite the perfect match.
           </p>
 
-          {/* CTA Button */}
           <Link
             href="/client/"
             onClick={handleClick}
-            className={`bg-primary text-white px-6 py-3 rounded-md flex items-center justify-center gap-2 text-sm sm:text-base transition ${
-              loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"
-            }`}
+            className={`bg-primary text-white 
+              px-6 py-3 rounded-md 
+              flex items-center justify-center gap-2 
+              text-sm sm:text-base transition
+              min-w-40 min-h-12
+              ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}
+            `}
           >
             {loading ? (
-              <>
-                <Loader size={18} border={3} color="white" />
-              </>
+              <Loader size={18} border={3} color="white" />
             ) : (
               <>
                 Continue <SvgIcon name="RightArrWhite" />
               </>
             )}
           </Link>
+
         </div>
       </div>
     </>

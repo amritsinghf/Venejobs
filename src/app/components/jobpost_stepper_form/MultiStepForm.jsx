@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import Swal from "sweetalert2";
 import Project_Options from "./Project_Options";
 import Budget_Options from "./Budget_Options";
 import DescriptionPage from "./DescriptionPage";
@@ -13,6 +14,7 @@ import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
+  const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
 
   const methods = useForm({
@@ -40,7 +42,6 @@ const MultiStepForm = () => {
     try {
       const formData = new FormData();
 
-      // 🔹 Basic fields
       formData.append("title", data.title);
       formData.append("description", data.description);
       formData.append("category", data.category);
@@ -50,27 +51,31 @@ const MultiStepForm = () => {
       formData.append("budget_type", data.budget_type);
       formData.append("budget_amount", Number(data.budget_amount));
 
-      // 🔹 Skills
-      // convert array of objects → JSON string
       if (data.skills?.length) {
         formData.append("skills", JSON.stringify(data.skills));
       }
 
-      // 🔹 Attachment
       if (data.attachment?.length) {
         formData.append("attachment", data.attachment[0]);
       }
 
-      // 🔹 API Call
       const res = await create_job(formData);
 
       if (res?.success) {
+        showSuccess("Job posted successfully 🎉");
         setshowConfirmMessage(true);
       }
     } catch (error) {
-      console.error(error);
+      console.error("JOB CREATE ERROR 👉", error);
+
+      showError(
+        error?.response?.data?.message ||
+        error?.response?.data?.errors?.[0]?.msg ||
+        "Something went wrong. Please try again."
+      );
     }
   };
+
 
 
   const renderStep = () => {

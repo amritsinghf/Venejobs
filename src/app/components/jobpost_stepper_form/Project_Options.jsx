@@ -18,6 +18,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     getProjectSize,
     getProjectDuration,
     getExperienceLevels,
+
   } = jobApiStore();
 
   const [loadingNext, setLoadingNext] = useState(false);
@@ -26,8 +27,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     register,
     formState: { errors },
     trigger,
+    getValues,
+    setError,
+    clearErrors,
   } = useFormContext();
-
   const handleNext = async () => {
     setLoadingNext(true);
 
@@ -37,9 +40,35 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
       "experience_level",
     ]);
 
-    if (valid) nextStep();
+    if (!valid) {
+      setLoadingNext(false);
+      return;
+    }
+
+    const projectSize = getValues("project_size");
+    const duration = getValues("duration");
+
+    // 🔥 BUSINESS RULE
+    if (
+      projectSize?.toLowerCase() === "large" &&
+      duration === "1_2_days"
+    ) {
+      setError("duration", {
+        type: "manual",
+        message: "Large projects cannot have a 1–2 days deadline",
+      });
+
+      setLoadingNext(false);
+      return;
+    }
+
+    // ✅ Clear error if valid
+    clearErrors("duration");
+
+    nextStep();
     setLoadingNext(false);
   };
+
 
   useEffect(() => {
     getProjectSize();

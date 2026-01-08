@@ -24,30 +24,50 @@ const jobApiStore = create((set) => ({
   pagenum: 0,
   totalpagenum: 1,
   loading: false,
+  hasFetched: false,
   error: null,
   create_job: async (formdata) => {
     set({ loading: true, error: null });
+
     try {
       const res = await createJobPost(formdata);
+      set({ loading: false });
       return res;
     } catch (error) {
-      set({ error: error.message, loading: false });
+      set({
+        error:
+          error?.response?.data?.message ||
+          "Failed to create job",
+        loading: false,
+      });
+
+      // 🔥 VERY IMPORTANT
+      throw error;
     }
   },
   fetchJobsByUser: async (page, limit) => {
     set({ loading: true, error: null });
+
     try {
       const res = await getJobByClient(page, limit);
+
       set({
-        jobs: res.jobs,
-        pagenum: res.page + 1,
+        jobs: Array.isArray(res.jobs) ? res.jobs : [],
+        pagenum: res.page,
         totalpagenum: res.totalPages,
         loading: false,
+        hasFetched: true,        // 👈 IMPORTANT
       });
     } catch (err) {
-      set({ error: err.message, loading: false });
+      set({
+        error: err?.message || "Failed to fetch jobs",
+        loading: false,
+        hasFetched: true,        // 👈 EVEN ON ERROR
+      });
     }
   },
+
+
   fetchAllJob: async (page, limit) => {
     set({ loading: true, error: null });
     try {
