@@ -168,7 +168,7 @@ const RightPanel = ({ freelancerProfile }) => {
 
           <hr className="text-gray-200" />
 
-          {/* ===== WORK HISTORY (RESTORED ✅) ===== */}
+          {/* ===== WORK HISTORY ===== */}
           <div className="flex flex-col gap-4">
             <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               Work History
@@ -183,7 +183,7 @@ const RightPanel = ({ freelancerProfile }) => {
 
           {/* ===== PAGINATION ===== */}
           <div className="flex justify-end">
-            <PaginationFreelance totalPages={5} />
+            <PaginationFreelance totalPages={2} />
           </div>
 
           <hr className="text-gray-200" />

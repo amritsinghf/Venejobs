@@ -151,9 +151,11 @@ const BottomPanel = () => {
       )}
 
       {/* ===== PAGINATION ===== */}
-      <div className="flex justify-end">
-        <PaginationFreelance totalPages={5} />
-      </div>
+      {freelanceExperience?.length > 2 && (
+        <div className="flex justify-end">
+          <PaginationFreelance totalPages={5} />
+        </div>
+      )}
 
       {/* ===== MODAL ===== */}
       {showExperienceModal && (
