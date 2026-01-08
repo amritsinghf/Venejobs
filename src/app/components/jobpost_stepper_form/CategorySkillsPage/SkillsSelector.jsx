@@ -49,12 +49,10 @@ const SkillsSelector = ({
         )}
       </div>
 
-      {/* CATEGORY TITLE */}
       <h2 className="text-base xl:text-lg text-heading font-medium">
         {categoryName && `Popular skills for ${categoryName}`}
       </h2>
 
-      {/* SKILLS / SKELETON */}
       <div
         className="flex items-center flex-wrap gap-3 lg:gap-5 w-full
                    transition-all duration-500 ease-out"
