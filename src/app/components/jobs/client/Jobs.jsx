@@ -6,8 +6,10 @@ import JobsList from "./JobsList";
 import Pagination from "@/app/components/Pagination/Pagination";
 
 export default function Jobs() {
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
   const { jobs, totalpagenum, fetchJobsByUser, loading, hasFetched } =
-    jobApiStore(); 
+    jobApiStore();
   const [page, setPage] = useState(1);
   const limit = 10;
 
@@ -15,18 +17,30 @@ export default function Jobs() {
     fetchJobsByUser(page, limit);
   }, [page]);
 
+
   return (
     <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full mx-auto">
-      <JobsList jobs={jobs} loading={loading} />
-
-      {!loading && (
-        <Pagination
-          page={page}
-          totalPages={totalpagenum}
-          onPageChange={setPage}
+      <div className={`${loading ? "opacity-50 pointer-events-none" : ""}`}>
+        <JobsList
           jobs={jobs}
+          loading={loading}
+          hasFetched={hasFetched}
         />
-      )}
+      </div>
+
+
+      <div className="min-h-[72px]">
+        {hasFetched && jobs?.length > 0 && (
+          <Pagination
+            page={page}
+            totalPages={totalpagenum}
+            onPageChange={setPage}
+            jobs={jobs}
+          />
+        )}
+      </div>
+
     </div>
+
   );
 }

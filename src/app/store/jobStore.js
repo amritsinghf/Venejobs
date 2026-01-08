@@ -55,18 +55,16 @@ const jobApiStore = create((set) => ({
         pagenum: res.page,
         totalpagenum: res.totalPages,
         loading: false,
-        hasFetched: true,        // 👈 IMPORTANT
+        hasFetched: true,
       });
     } catch (err) {
       set({
         error: err?.message || "Failed to fetch jobs",
         loading: false,
-        hasFetched: true,        // 👈 EVEN ON ERROR
+        hasFetched: true,
       });
     }
   },
-
-
   fetchAllJob: async (page, limit) => {
     set({ loading: true, error: null });
     try {
