@@ -39,9 +39,8 @@ const MultiStepForm = () => {
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-      data.skills.forEach((skill) => {
-        formData.append("skills[]", skill);
-      });
+
+      // 🔹 Basic fields
       formData.append("title", data.title);
       formData.append("description", data.description);
       formData.append("category", data.category);
@@ -49,22 +48,30 @@ const MultiStepForm = () => {
       formData.append("duration", data.duration);
       formData.append("experience_level", data.experience_level);
       formData.append("budget_type", data.budget_type);
-      formData.append("budget_amount", data.budget_amount);
-      formData.append("attachment", data.attachment[0]);
+      formData.append("budget_amount", Number(data.budget_amount));
 
+      // 🔹 Skills
+      // convert array of objects → JSON string
+      if (data.skills?.length) {
+        formData.append("skills", JSON.stringify(data.skills));
+      }
+
+      // 🔹 Attachment
+      if (data.attachment?.length) {
+        formData.append("attachment", data.attachment[0]);
+      }
+
+      // 🔹 API Call
       const res = await create_job(formData);
-      if (res.success) {
+
+      if (res?.success) {
         setshowConfirmMessage(true);
       }
     } catch (error) {
-      console.log(error);
-      if (error.response) {
-        // showError(error.response.data.message);
-      } else {
-        // showError(error);
-      }
+      console.error(error);
     }
   };
+
 
   const renderStep = () => {
     switch (step) {

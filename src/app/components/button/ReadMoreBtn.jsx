@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export default function ReadMoreBtn({
   text,
   font,
-  paragraphFont = "font-medium leading-relaxed",
+  paragraphFont = " leading-relaxed",
   clampClass = "line-clamp-6 lg:line-clamp-3",
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -25,7 +25,7 @@ export default function ReadMoreBtn({
     <div>
       <p
         ref={textRef}
-        className={`text-paragraph text-sm lg:text-base ${paragraphFont} transition-all duration-200 ${showClampClass}`}
+        className={`text-paragraph text-sm tracking-wide lg:text-base ${paragraphFont} transition-all duration-200 ${showClampClass}`}
       >
         {text}
       </p>
