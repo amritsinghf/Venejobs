@@ -1,19 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import userApiStore from "@/app/store/userStore";
 import DesktopLinks from "@/app/components/profile/freelancer_profile/DesktopLinks";
 import PersonalInfoForm from "@/app/components/profile/PersonalInfoForm";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import MobileView from "./Mobile/page";
 
 export default function Profile() {
-
-  const { user, logout, fetchProfile } = userApiStore();
-
-  useEffect(() => {
-    fetchProfile();
-  }, []);
 
   return (
     <>

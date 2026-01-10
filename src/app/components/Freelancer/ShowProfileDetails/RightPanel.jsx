@@ -9,7 +9,7 @@ import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 import RightPanelSkeleton from "../../Skeletons/RightPanelSkeleton";
 
-const RightPanel = ({ freelancerProfile }) => {
+const RightPanel = () => {
   const [showTitleModal, setshowTitleModal] = useState(false);
   const [showPortfolioModal, setShowPortfolioModal] = useState(false);
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
@@ -19,9 +19,6 @@ const RightPanel = ({ freelancerProfile }) => {
   // 🔥 local loading for skeleton
   const [pageLoading, setPageLoading] = useState(true);
 
-  const skillscss =
-    "text-sm sm:text-base cursor-pointer border border-[#D0D5DD] px-4 py-2 font-medium text-paragraph rounded transition-all duration-200";
-
   const {
     freelanceSkills,
     getSkills,
@@ -29,16 +26,18 @@ const RightPanel = ({ freelancerProfile }) => {
     freelancePortfolio,
     getPortfolio,
     deletePortfolio,
-  } = freelanceApiStore();
+    freelanceBasicprofile,
+    getBasicprofile } = freelanceApiStore();
 
   useEffect(() => {
     const loadData = async () => {
       setPageLoading(true);
-      await Promise.all([getSkills(), getPortfolio()]);
+      await Promise.all([getSkills(), getPortfolio(), getBasicprofile()]);
       setPageLoading(false);
     };
+
     loadData();
-  }, [getSkills, getPortfolio]);
+  }, []);
 
   const handleDelete = async (deleteFn, id) => {
     const isConfirmed = await DeleteConfirmation();
@@ -78,13 +77,13 @@ const RightPanel = ({ freelancerProfile }) => {
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap justify-between items-center gap-4">
               <h2 className="font-semibold text-lg sm:text-xl lg:text-[22px]">
-                {freelancerProfile?.professional_title}
+                {freelanceBasicprofile?.professional_title}
               </h2>
 
               <div className="flex gap-6 items-center">
                 <div className="flex items-center gap-2">
                   <p className="font-semibold text-base sm:text-lg lg:text-xl">
-                    $ {freelancerProfile?.hourly_rate} /hr
+                    $ {freelanceBasicprofile?.hourly_rate} /hr
                   </p>
                   <SvgIcon
                     name="Clock"
@@ -102,7 +101,7 @@ const RightPanel = ({ freelancerProfile }) => {
             </div>
 
             <p className="text-sm sm:text-base leading-relaxed text-paragraph">
-              {freelancerProfile?.overview}
+              {freelanceBasicprofile?.overview}
             </p>
           </div>
 
@@ -258,31 +257,37 @@ const RightPanel = ({ freelancerProfile }) => {
       )}
 
       {/* ===== MODALS ===== */}
-      {showTitleModal && (
-        <TitleEditModal
-          setshowTitleModal={setshowTitleModal}
-          freelancerProfile={freelancerProfile}
-          showTitleModal={showTitleModal}
-        />
-      )}
+      {
+        showTitleModal && (
+          <TitleEditModal
+            setshowTitleModal={setshowTitleModal}
+            freelanceBasicprofile={freelanceBasicprofile}
+            showTitleModal={showTitleModal}
+          />
+        )
+      }
 
-      {showPortfolioModal && (
-        <PortfolioEditModal
-          setShowPortfolioModal={setShowPortfolioModal}
-          showPortfolioModal={showPortfolioModal}
-          portfolio={selectedPortfolio}
-        />
-      )}
+      {
+        showPortfolioModal && (
+          <PortfolioEditModal
+            setShowPortfolioModal={setShowPortfolioModal}
+            showPortfolioModal={showPortfolioModal}
+            portfolio={selectedPortfolio}
+          />
+        )
+      }
 
-      {showSkillModal && (
-        <SkillsEditModal
-          showSkillModal={showSkillModal}
-          setShowSkillModal={setShowSkillModal}
-          Selectedskill={selectedSkill}
-          freelanceSkills={freelanceSkills}
-        />
-      )}
-    </div>
+      {
+        showSkillModal && (
+          <SkillsEditModal
+            showSkillModal={showSkillModal}
+            setShowSkillModal={setShowSkillModal}
+            Selectedskill={selectedSkill}
+            freelanceSkills={freelanceSkills}
+          />
+        )
+      }
+    </div >
   );
 };
 

@@ -2,41 +2,16 @@
 import Link from "next/link";
 import { Routes } from "../routes";
 import userApiStore from "@/app/store/userStore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SvgIcon from "../components/Utility/SvgIcon";
 import FreelancerLayout from "../layout/FreelancerLayout";
 import Loader from "../components/common/Loader";
-import freelanceApiStore from "../store/FreelancerStore";
 import { useRouter } from "next/navigation";
-import PageLoader from "../components/common/PageLoader";
 
 export default function Page() {
-  const router = useRouter();
   const { user } = userApiStore();
-  const { FreelanceDetails, getPersonalDetails, loadingData } =
-    freelanceApiStore();
 
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    getPersonalDetails();
-  }, [getPersonalDetails]);
-
-  useEffect(() => {
-    if (!loadingData && FreelanceDetails?.freelancerProfile) {
-      router.push(Routes.freelancer.page);
-    }
-  }, [loadingData, FreelanceDetails, router]);
-
-  if (loadingData) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <PageLoader />
-      </div>
-    );
-  }
-
-
 
   return (
     <FreelancerLayout>

@@ -112,86 +112,95 @@ const SkillsEditModal = ({
             </button>
           </div>
           {/* BODY */}
-          <form
-            onSubmit={handleSubmit(handleSave)}
-            className="flex flex-col flex-1"
-          >
-            {/* SCROLLABLE CONTENT */}
-            <div className="flex-1 overflow-y-auto">
-              <h3 className="font-medium text-base mb-4">Skills</h3>
 
-              {loading && (
-                <p className="text-sm text-gray-500">Loading skills...</p>
-              )}
-
-              {!loading && error && (
-                <p className="text-sm text-red-500">
-                  Failed to load skills
-                </p>
-              )}
-
-              {!loading && availableSkills?.length > 0 && (
-                <div className="flex flex-wrap gap-3 lg:gap-5">
-                  {availableSkills.map((item) => {
-                    const selected =
-                      watch("skill") === item.name;
-
-                    return (
-                      <div key={item.id}>
-                        <input
-                          type="radio"
-                          id={`skill-${item.id}`}
-                          value={item.name}
-                          {...register("skill", {
-                            required: "Please select a skill",
-                          })}
-                          className="sr-only peer"
-                        />
-
-                        <label
-                          htmlFor={`skill-${item.id}`}
-                          className={`flex items-center justify-center px-4 py-3 rounded-lg cursor-pointer border transition-all
-                          ${selected
-                              ? "bg-secondary text-white border-secondary"
-                              : "border-gray-300 hover:border-secondary"
-                            }
-                        `}
-                        >
-                          <span className="text-sm lg:text-base">
-                            {item.name}
-                          </span>
-                        </label>
-                      </div>
-                    );
-                  })}
+          {/* SCROLLABLE CONTENT */}
+          <div className="flex-1 overflow-y-auto">
+            <h3 className="font-medium text-base mb-4">Skills</h3>
+            <div className="flex flex-col justify-between h-120">
+              {/* No skills available */}
+              {!loading && !error && availableSkills?.length === 0 && (
+                <div className="flex flex-col items-center justify-center h-full text-center">
+                  <p className="text-lg font-medium text-gray-700">
+                    No more skills available
+                  </p>
                 </div>
               )}
-            </div>
+              {availableSkills?.length > 0 && (
+                <form onSubmit={handleSubmit(handleSave)}>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-medium lg:text-base tracking-wide">Skills</h3>
+                    <div
+                      className={`
+                    flex items-center flex-wrap gap-3 lg:gap-5 w-full
+                    transition-all duration-500 ease-out
+                    ${skills?.length
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-3"
+                        }
+                    `}
+                    >
+                      {loading && (
+                        <p className="text-sm text-gray-500">Loading skills...</p>
+                      )}
 
-            {/* FOOTER (BOTTOM RIGHT BUTTONS) */}
-            <div className="flex flex-col sm:flex-row justify-end gap-4 mt-6">
-              <Button
-                type="button"
-                onClick={() => setShowSkillModal(false)}
-                style={{
-                  boxShadow:
-                    "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
-              >
-                Cancel
-              </Button>
+                      {!loading && error && (
+                        <p className="text-sm text-red-500">
+                          Failed to load skills
+                        </p>
+                      )}
 
-              <Button
-                type="submit"
-                className="px-4 py-2 bg-secondary text-white rounded"
-              >
-                {isEdit ? "Update" : "Add"}
-              </Button>
+                      {!loading && skills?.length > 0 && (
+                        <div className="flex items-center flex-wrap gap-3 lg:gap-5 w-full">
+                          {availableSkills.map((item) => {
+                            const selectedSkill = watch("skill") === item.name;
+                            return (
+                              <div key={item.id}>
+                                <input
+                                  type="radio"
+                                  id={`skill-${item.id}`}
+                                  value={item.name}
+                                  {...register("skill", {
+                                    required: "Please select a skill",
+                                  })}
+                                  className="sr-only peer"
+                                />
+
+                                <label
+                                  htmlFor={`skill-${item.id}`}
+                                  className={`flex items-center justify-center py-3 px-4 rounded-lg cursor-pointer border transition-all
+                                   ${selectedSkill ? "bg-secondary text-white border-secondary" : "border-[#D0D5DD]"}`}>
+                                  <span className="text-sm lg:text-base">
+                                    {item.name}
+                                  </span>
+                                </label>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-4 mt-6">
+                    <Button
+                      type="button"
+                      style={{ boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)", }}
+                      onClick={() => setShowSkillModal(false)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="px-4 py-2 bg-secondary text-white rounded"
+                    >
+                      {isEdit ? "Upadate" : "Add"}
+                    </Button>
+                  </div>
+                </form>
+              )}
             </div>
-          </form>
+          </div>
+
         </div>
-
       </div>
     </div>
   );

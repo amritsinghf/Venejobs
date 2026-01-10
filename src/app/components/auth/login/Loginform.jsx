@@ -10,6 +10,8 @@ import LoginModalWrapper from "../login/LoginModalWrapper";
 import LoginHeader from "../login/LoginHeader";
 import LoginFormFields from "../login/LoginFormFields";
 import LoginActions from "../login/LoginActions";
+import freelanceApiStore from "@/app/store/FreelancerStore";
+import { Routes } from "@/app/routes";
 
 export default function Loginform({ setActiveModal, setUserEmail }) {
   const router = useRouter();
@@ -20,6 +22,8 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
   const sendOtp = userApiStore((s) => s.resendOtp);
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
+  const { FreelanceDetails, getPersonalDetails, loadingData } =
+    freelanceApiStore();
 
   const {
     register,
@@ -30,6 +34,7 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
   const handleLogin = async (data) => {
     try {
       const res = await login(data);
+
       if (!res?.success) {
         showError(res?.data?.message || "Login failed", "error");
         return;
@@ -39,32 +44,49 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
 
       showSuccess(res.data.message, "success");
 
-      await axios.post("/api/set-token", { token });
-      localStorage.setItem("token", token);
+      // Save token in parallel
+      await Promise.all([
+        axios.post("/api/set-token", { token }),
+        Promise.resolve(localStorage.setItem("token", token)),
+      ]);
 
-      switch (user?.role_name) {
-        case "freelancer":
-          router.push("/freelancer");
-          break;
-        case "client":
-          router.push("/client");
-          break;
-        case "admin":
-          router.push("/admin");
-          break;
-        default:
-          router.push("/");
+      // Role-based routing
+      if (user?.role_name === "freelancer") {
+        await handleFreelancerRedirect();
+        return;
       }
+
+      if (user?.role_name === "client") {
+        router.push(Routes.client.home);
+        return;
+      }
+
+      if (user?.role_name === "admin") {
+        router.replace("/admin");
+        return;
+      }
+
+      router.replace("/");
     } catch (error) {
       const message = error?.response?.data?.message;
-
-      if (error?.response?.data?.code === "EMAIL_NOT_VERIFIED") {
-        setUserEmail(data.email);
-        setActiveModal("otp_verify");
-        sendOtp({ email: data.email });
-      }
-
       showError(message || "Login error", "error");
+    }
+  };
+
+  const handleFreelancerRedirect = async () => {
+    try {
+      const [profileRes] = await Promise.all([
+        getPersonalDetails(),
+        // add more API calls here if needed
+      ]);
+
+      if (profileRes?.data?.freelancerProfile != null) {
+        router.push(Routes.freelancer.page);
+      } else {
+        router.push(Routes.freelancer.home);
+      }
+    } catch (err) {
+      router.push(Routes.freelancer.home);
     }
   };
 

@@ -28,9 +28,9 @@ const ExperienceEditModal = ({
       location: "",
       city: "",
       start_month: "",
-      start_year: "",
+      start_year: null,
       end_month: "",
-      end_year: "",
+      end_year: null,
       is_current: false,
       description: "",
       shouldUnregister: true,
@@ -64,9 +64,9 @@ const ExperienceEditModal = ({
         location: "",
         city: "",
         start_month: "",
-        start_year: "",
+        start_year: null,
         end_month: "",
-        end_year: "",
+        end_year: null,
         is_current: false,
         description: "",
       });
@@ -183,20 +183,6 @@ const ExperienceEditModal = ({
                   <p className="text-red-500 text-sm">{errors.city}</p>
                 )}
               </div>
-              {/* <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Start Month
-                </label>
-                <input
-                  name="start_month"
-                  {...register("start_month")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-heading border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="From Month"
-                />
-                {errors.start_month && (
-                  <p className="text-red-500 text-sm">{errors.start_month}</p>
-                )}
-              </div> */}
               <div className="flex flex-col gap-2">
                 <label className="font-medium lg:text-base tracking-wide">
                   Start Month
@@ -214,7 +200,6 @@ const ExperienceEditModal = ({
                       value: 12,
                       message: "Month must be between 1 and 12",
                     },
-                    valueAsNumber: true,
                   })}
                   className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary"
                   placeholder="From Month"
@@ -232,7 +217,7 @@ const ExperienceEditModal = ({
                   Start Year
                 </label>
                 <input
-                  name="start_year"
+                  type="number"
                   {...register("start_year")}
                   className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
                   placeholder="From Year"

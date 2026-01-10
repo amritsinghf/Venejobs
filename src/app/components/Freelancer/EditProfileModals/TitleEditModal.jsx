@@ -9,7 +9,7 @@ import InputField from "../../common/InputField";
 
 const TitleEditModal = ({
   setshowTitleModal,
-  freelancerProfile,
+  freelanceBasicprofile,
   showTitleModal,
 }) => {
   const {
@@ -27,14 +27,14 @@ const TitleEditModal = ({
   const { showSuccess, showError } = useToastStore.getState();
 
   useEffect(() => {
-    if (freelancerProfile) {
+    if (freelanceBasicprofile) {
       reset({
-        professional_title: freelancerProfile.professional_title,
-        overview: freelancerProfile.overview,
-        hourly_rate: freelancerProfile.hourly_rate,
+        professional_title: freelanceBasicprofile.professional_title,
+        overview: freelanceBasicprofile.overview,
+        hourly_rate: freelanceBasicprofile.hourly_rate,
       });
     }
-  }, [freelancerProfile, reset]);
+  }, [freelanceBasicprofile, reset]);
 
   const handleSave = async (data) => {
     try {

@@ -9,13 +9,14 @@ export const Routes = {
     form: "/client/jobpost/forms/",
   },
   freelancer: {
+    home: "/freelancer",
     get_started: "/freelancer/addProfileDetails",
     page: "/freelancer/home",
     chat: "/freelancer/chat/",
     jobdetail: "/freelancer/JobDetail/",
     // jobsearch:"/freelancer/JobSearch/",
-    proposal:"/freelancer/Proposal/",
-    profileData:"/freelancer/profileData"
+    proposal: "/freelancer/Proposal/",
+    profileData: "/freelancer/profileData",
   },
   profile: {
     client: {

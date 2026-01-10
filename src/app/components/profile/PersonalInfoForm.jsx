@@ -11,7 +11,8 @@ import Loader from "../common/Loader";
 import Button from "../button/Button";
 
 export default function PersonalInfoForm() {
-  const { user, fetchProfile, updateProfile, UpdateProfilePhoto } =
+  const { user,
+    updateProfile, UpdateProfilePhoto } =
     userApiStore();
   const { showSuccess, showError } = useToastStore();
   const [isEditable, setIsEditable] = useState(false);
@@ -20,10 +21,6 @@ export default function PersonalInfoForm() {
   const handleEditClick = () => {
     setIsEditable((prev) => !prev);
   };
-
-  useEffect(() => {
-    fetchProfile();
-  }, []);
 
   const {
     register,

@@ -100,6 +100,9 @@ const userApiStore = create(
               "Session Expired",
               "Your session has timed out. Please log in again."
             );
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 500);
             return false;
           }
         }

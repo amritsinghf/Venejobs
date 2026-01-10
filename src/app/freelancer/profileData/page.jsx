@@ -48,16 +48,16 @@ export default function Page() {
     }
   }, [loadingData, FreelanceDetails, router]);
 
-  // single loader
-  if (loadingData || !FreelanceDetails) {
-    return (
-      <FreelancerLayout>
-        <ShowDetailsWrapper>
-          <PageLoader />
-        </ShowDetailsWrapper>
-      </FreelancerLayout>
-    );
-  }
+  // single loader 
+  // if (loadingData || !FreelanceDetails) {
+  //   return (
+  //     <FreelancerLayout>
+  //       <ShowDetailsWrapper>
+  //         <PageLoader />
+  //       </ShowDetailsWrapper>
+  //     </FreelancerLayout>
+  //   );
+  // }
 
   return (
     <FreelancerLayout>
@@ -67,17 +67,17 @@ export default function Page() {
           <div className="flex flex-col lg:flex-row border-b border-gray-200">
             {/* LEFT */}
             <div className="w-full lg:w-[30%] lg:border-r border-gray-200">
-              <LeftPanel freelancerProfile={freelancerProfile} />
+              <LeftPanel />
             </div>
 
             {/* RIGHT */}
             <div className="w-full lg:w-[70%] lg:pl-6">
-              <RightPanel freelancerProfile={freelancerProfile} />
+              <RightPanel />
             </div>
           </div>
 
-
-          <BottomPanel freelancerProfile={freelancerProfile} />
+          {/* BOTTOM */}
+          <BottomPanel />
         </Suspense>
       </ShowDetailsWrapper>
     </FreelancerLayout>
