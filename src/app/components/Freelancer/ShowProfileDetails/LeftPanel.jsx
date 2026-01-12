@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import LanguageEditModal from "../EditProfileModals/LanguageEditModal";
 import EducationEditModal from "@/app/components/Freelancer/EditProfileModals/EducationEditModal";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import Swal from "sweetalert2";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 
@@ -11,21 +11,19 @@ const LeftPanel = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [showEducationModal, setShowEducationModal] = useState(false);
   const [selectedEducation, setSelectedEducation] = useState(null);
-
   const {
-    freelanceLanguage,
+    freelancerLanguage,
     getLanguage,
     deleteLanguage,
-    freelanceEducation,
+    freelancerEducation,
     getEducation,
     deleteEducation,
-  } = freelanceApiStore();
+  } = freelancerApiStore();
 
   useEffect(() => {
     getLanguage();
     getEducation();
   }, [getLanguage, getEducation]);
-
   const handleDelete = async (deleteFn, id) => {
     const isConfirmed = await DeleteConfirmation();
     if (!isConfirmed) return;
@@ -109,9 +107,9 @@ const LeftPanel = () => {
         </div>
 
         <div className="flex flex-col gap-6">
-          {freelanceLanguage?.map((item, index) => (
+          {freelancerLanguage?.map((item, index) => (
             <div
-              key={item.id}
+              key={index}
               className="flex justify-between items-start gap-4"
             >
               <div className="flex flex-col gap-1">
@@ -171,9 +169,9 @@ const LeftPanel = () => {
         </div>
 
         <div className="flex flex-col gap-6">
-          {freelanceEducation?.map((item, index) => (
+          {freelancerEducation?.map((item, index) => (
             <div
-              key={item.id}
+              key={index}
               className="flex justify-between items-start gap-4"
             >
               <div className="flex flex-col gap-1">
@@ -218,7 +216,7 @@ const LeftPanel = () => {
           setShowLanguageModal={setShowLanguageModal}
           showLanguageModal={showLanguageModal}
           language={selectedLanguage}
-          freelanceLanguage={freelanceLanguage}
+          freelancerLanguage={freelancerLanguage}
         />
       )}
 

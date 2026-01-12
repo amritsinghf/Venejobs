@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../../button/Button";
 import SvgIcon from "../../Utility/SvgIcon";
 import { useForm } from "react-hook-form";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
@@ -10,7 +10,7 @@ const SkillsEditModal = ({
   showSkillModal,
   setShowSkillModal,
   Selectedskill,
-  freelanceSkills,
+  freelancerSkills,
 }) => {
   const isEdit = Boolean(Selectedskill);
 
@@ -26,8 +26,8 @@ const SkillsEditModal = ({
     },
   });
 
-  const { skills, allSkills, updateSkills, addSkill, loading, error } =
-    freelanceApiStore();
+  const { skills, allSkills, updateSkills, addSkill, freelancerSkillLoading, error } =
+    freelancerApiStore();
 
   const { showSuccess, showError } = useToastStore.getState();
 
@@ -49,7 +49,7 @@ const SkillsEditModal = ({
 
   // Filter available skills
   const usedSkillNames = new Set(
-    freelanceSkills?.map((fs) => fs.skill_name)
+    freelancerSkills?.map((fs) => fs.skill_name)
   );
   const selectedSkillName = Selectedskill?.skill_name;
 
@@ -115,10 +115,10 @@ const SkillsEditModal = ({
 
           {/* SCROLLABLE CONTENT */}
           <div className="flex-1 overflow-y-auto">
-            <h3 className="font-medium text-base mb-4">Skills</h3>
+            {/* <h3 className="font-medium text-base mb-4">Skills</h3> */}
             <div className="flex flex-col justify-between h-120">
               {/* No skills available */}
-              {!loading && !error && availableSkills?.length === 0 && (
+              {!freelancerSkillLoading && !error && availableSkills?.length === 0 && (
                 <div className="flex flex-col items-center justify-center h-full text-center">
                   <p className="text-lg font-medium text-gray-700">
                     No more skills available
@@ -139,17 +139,17 @@ const SkillsEditModal = ({
                         }
                     `}
                     >
-                      {loading && (
-                        <p className="text-sm text-gray-500">Loading skills...</p>
+                      {freelancerSkillLoading && (
+                        <p className="text-sm text-gray-500">freelancerSkillLoading skills...</p>
                       )}
 
-                      {!loading && error && (
+                      {!freelancerSkillLoading && error && (
                         <p className="text-sm text-red-500">
                           Failed to load skills
                         </p>
                       )}
 
-                      {!loading && skills?.length > 0 && (
+                      {!freelancerSkillLoading && skills?.length > 0 && (
                         <div className="flex items-center flex-wrap gap-3 lg:gap-5 w-full">
                           {availableSkills.map((item) => {
                             const selectedSkill = watch("skill") === item.name;

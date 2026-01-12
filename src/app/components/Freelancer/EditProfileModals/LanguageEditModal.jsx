@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "../../button/Button";
 import SvgIcon from "../../Utility/SvgIcon";
 import { useForm } from "react-hook-form";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
@@ -10,7 +10,7 @@ const LanguageEditModal = ({
   setShowLanguageModal,
   showLanguageModal,
   language,
-  freelanceLanguage
+  freelancerLanguage
 }) => {
   const isEdit = Boolean(language);
 
@@ -32,7 +32,7 @@ const LanguageEditModal = ({
     setShowLanguageModal(false);
   });
 
-  const { updateLanguage, addLanguage, loading, error } = freelanceApiStore();
+  const { updateLanguage, addLanguage, freelancerLanguageLoading, error } = freelancerApiStore();
   const { showSuccess, showError } = useToastStore.getState();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const LanguageEditModal = ({
 
   const handleSave = async (data) => {
     // prevent duplicates
-    const isDuplicate = freelanceLanguage?.some(
+    const isDuplicate = freelancerLanguage?.some(
       (item) =>
         item.language === data.language &&
         (!isEdit || item.id !== data.id)

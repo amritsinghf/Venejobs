@@ -10,7 +10,7 @@ import HourlyRatePage from "./AddHourlyRate/HourlyRatePage";
 import PersonalDetailsPage from "./AddPersonalDetails/PersonalDetailsPage";
 import PortfolioPage from "./AddPortfolio/PortfolioPage";
 import SuccessProfileCreate from "./SuccessProfileCreate";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import CategorySkillsPage from "./CategorySkillsPage/CategorySkillsPage";
 
 const MultiStepForm = () => {
@@ -38,7 +38,7 @@ const MultiStepForm = () => {
       setStep(step - 1);
     }
   };
-  const { SavePersonalDetails } = freelanceApiStore();
+  const { SavePersonalDetails } = freelancerApiStore();
 
   const onSubmit = async (data) => {
     console.log("Before:", data);

@@ -1,6 +1,6 @@
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 import React, { useEffect, useState } from "react";
@@ -74,7 +74,7 @@ const ExperienceEditModal = ({
   }, [item, isEdit, reset]);
 
   const { showSuccess, showError } = useToastStore.getState();
-  const { updateExperience, addExperience, loading, error } = freelanceApiStore();
+  const { updateExperience, addExperience, freelancerExperienceLoading, error } = freelancerApiStore();
 
   const handleSave = async (data) => {
     try {

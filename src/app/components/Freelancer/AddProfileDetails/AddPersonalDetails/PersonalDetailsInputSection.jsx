@@ -7,7 +7,7 @@ import Button from "@/app/components/button/Button";
 import Loader from "@/app/components/common/Loader";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import InputField from "@/app/components/common/InputField";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import NumericInputField from "@/app/components/common/NumericInputField";
 
 const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
@@ -17,7 +17,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
     formState: { errors },
   } = useFormContext();
 
-  const { loading } = freelanceApiStore();
+  const { loading } = freelancerApiStore();
 
   return (
     <div className="w-full">

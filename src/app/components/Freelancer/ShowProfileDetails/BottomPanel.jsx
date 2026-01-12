@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 
@@ -29,11 +29,11 @@ const BottomPanel = () => {
   const [editExperience, setEditExperience] = useState(null);
 
   const {
-    freelanceExperience,
+    freelancerExperience,
     getExperience,
     deleteExperience,
-    loading,
-  } = freelanceApiStore();
+    freelancerExperienceLoading,
+  } = freelancerApiStore();
 
   useEffect(() => {
     getExperience();
@@ -94,24 +94,25 @@ const BottomPanel = () => {
       </div>
 
       {/* ===== CONTENT / SKELETON ===== */}
-      {loading ? (
+      {freelancerExperienceLoading ? (
         <div className="flex flex-col gap-6">
           {[...Array(3)].map((_, i) => (
             <SkeletonItem key={i} />
           ))}
         </div>
       ) : (
-        freelanceExperience?.map((item, index) => (
-          <div key={item.id} className="flex flex-col gap-4">
+        freelancerExperience?.map((item, index) => (
+          <div key={index} className="flex flex-col gap-4">
             <div className="flex justify-between items-start gap-4">
               <div className="flex flex-col gap-2">
                 <h3 className="text-base sm:text-lg lg:text-[20px] font-medium text-heading">
                   {item.job_title}
                 </h3>
-
                 <p className="text-sm sm:text-base text-heading font-medium">
                   {formatMonthYear(item.start_month, item.start_year)} –{" "}
-                  {formatMonthYear(item.end_month, item.end_year)}
+                  {item.is_current
+                    ? "Present"
+                    : formatMonthYear(item.end_month, item.end_year)}
                 </p>
               </div>
 
@@ -151,7 +152,7 @@ const BottomPanel = () => {
       )}
 
       {/* ===== PAGINATION ===== */}
-      {freelanceExperience?.length > 2 && (
+      {freelancerExperience?.length > 2 && (
         <div className="flex justify-end">
           <PaginationFreelance totalPages={5} />
         </div>

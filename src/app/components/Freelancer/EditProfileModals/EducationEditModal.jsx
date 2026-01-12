@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../../button/Button";
 import SvgIcon from "../../Utility/SvgIcon";
 import { useForm } from "react-hook-form";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 
@@ -33,7 +33,7 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
     setShowEducationModal(false);
   });
 
-  const { updateEducation, addEducation, loading, error } = freelanceApiStore();
+  const { updateEducation, addEducation, freelancerEducationLoading, error } = freelancerApiStore();
   const { showSuccess, showError } = useToastStore.getState();
   const startYear = watch("start_date");
 

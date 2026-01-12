@@ -4,7 +4,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import ShowDetailsWrapper from "@/app/components/Freelancer/ShowProfileDetails/ShowDetailsWrapper";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { Routes } from "@/app/routes";
 import PageLoader from "@/app/components/common/PageLoader";
 
@@ -26,30 +26,30 @@ export default function Page() {
   const router = useRouter();
 
   const {
-    FreelanceDetails,
+    freelanceDetails,
     getPersonalDetails,
-    loadingData,
-  } = freelanceApiStore();
+    personalDetailLoading,
+  } = freelancerApiStore();
 
-  const { name, country } = FreelanceDetails || {};
-  const { freelancerProfile } = FreelanceDetails || {};
+  const { name, country } = freelanceDetails || {};
+  const { freelancerProfile } = freelanceDetails || {};
 
   // fetch only once
   useEffect(() => {
-    if (!FreelanceDetails) {
+    if (!freelanceDetails || Object.keys(freelanceDetails).length === 0) {
       getPersonalDetails();
     }
-  }, [FreelanceDetails, getPersonalDetails]);
+  }, [freelanceDetails, getPersonalDetails]);
 
   // redirect guard
   useEffect(() => {
-    if (!loadingData && FreelanceDetails?.freelancerProfile === null) {
+    if (!personalDetailLoading && freelanceDetails?.freelancerProfile === null) {
       router.replace(Routes.freelancer.page);
     }
-  }, [loadingData, FreelanceDetails, router]);
+  }, [personalDetailLoading, freelanceDetails, router]);
 
   // single loader 
-  // if (loadingData || !FreelanceDetails) {
+  // if (personalDetailLoading || !freelanceDetails) {
   //   return (
   //     <FreelancerLayout>
   //       <ShowDetailsWrapper>

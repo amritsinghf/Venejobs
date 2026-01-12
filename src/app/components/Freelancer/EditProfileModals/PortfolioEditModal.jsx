@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../../button/Button";
 import SvgIcon from "../../Utility/SvgIcon";
 import { useForm } from "react-hook-form";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 import InputField from "../../common/InputField";
@@ -31,7 +31,7 @@ const PortfolioEditModal = ({
   });
 
   const { showSuccess, showError } = useToastStore.getState();
-  const { updatePortfolio, addPortfolio, loading } = freelanceApiStore();
+  const { updatePortfolio, addPortfolio, freelancerPortfolioLoading } = freelancerApiStore();
 
   useEffect(() => {
     if (isEdit) {
@@ -148,10 +148,10 @@ const PortfolioEditModal = ({
 
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={freelancerPortfolioLoading}
                 className="bg-secondary text-white"
               >
-                {loading ? "Saving..." : isEdit ? "Update" : "Add"}
+                {freelancerPortfolioLoading ? "Saving..." : isEdit ? "Update" : "Add"}
               </Button>
             </div>
           </form>

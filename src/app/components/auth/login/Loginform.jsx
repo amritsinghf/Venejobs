@@ -10,7 +10,7 @@ import LoginModalWrapper from "../login/LoginModalWrapper";
 import LoginHeader from "../login/LoginHeader";
 import LoginFormFields from "../login/LoginFormFields";
 import LoginActions from "../login/LoginActions";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { Routes } from "@/app/routes";
 
 export default function Loginform({ setActiveModal, setUserEmail }) {
@@ -22,8 +22,8 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
   const sendOtp = userApiStore((s) => s.resendOtp);
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
-  const { FreelanceDetails, getPersonalDetails, loadingData } =
-    freelanceApiStore();
+  const { freelanceDetails, getPersonalDetails, personalDetailLoading } =
+    freelancerApiStore();
 
   const {
     register,

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../../button/Button";
 import SvgIcon from "../../Utility/SvgIcon";
 import { useForm } from "react-hook-form";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 import InputField from "../../common/InputField";
@@ -23,7 +23,7 @@ const TitleEditModal = ({
     setshowTitleModal(false);
   });
 
-  const { updatePersonalDetails, loading } = freelanceApiStore();
+  const { updatePersonalDetails, basicProfileLoading } = freelancerApiStore();
   const { showSuccess, showError } = useToastStore.getState();
 
   useEffect(() => {
@@ -132,10 +132,10 @@ const TitleEditModal = ({
 
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={basicProfileLoading}
                 className="bg-secondary text-white"
               >
-                {loading ? "Updating..." : "Update"}
+                {basicProfileLoading ? "Updating..." : "Update"}
               </Button>
             </div>
           </form>

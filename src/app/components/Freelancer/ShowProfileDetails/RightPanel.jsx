@@ -4,7 +4,7 @@ import PaginationFreelance from "../../Pagination/PaginationFreelance";
 import TitleEditModal from "../EditProfileModals/TitleEditModal";
 import PortfolioEditModal from "../EditProfileModals/PortfolioEditModal";
 import SkillsEditModal from "../EditProfileModals/SkillsEditModal";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 import RightPanelSkeleton from "../../Skeletons/RightPanelSkeleton";
@@ -18,16 +18,17 @@ const RightPanel = () => {
 
   // 🔥 local loading for skeleton
   const [pageLoading, setPageLoading] = useState(true);
+  const [skillError, setSkillError] = useState("");
 
   const {
-    freelanceSkills,
+    freelancerSkills,
     getSkills,
     deleteSkill,
-    freelancePortfolio,
+    freelancerPortfolio,
     getPortfolio,
     deletePortfolio,
     freelanceBasicprofile,
-    getBasicprofile } = freelanceApiStore();
+    getBasicprofile } = freelancerApiStore();
 
   useEffect(() => {
     const loadData = async () => {
@@ -125,7 +126,7 @@ const RightPanel = () => {
             </div>
 
             <div className="flex flex-col gap-6">
-              {freelancePortfolio?.map((item, index) => (
+              {freelancerPortfolio?.map((item, index) => (
                 <div key={item.id} className="flex justify-between gap-4">
                   <div>
                     <h3 className="font-medium text-sm sm:text-base">
@@ -195,6 +196,12 @@ const RightPanel = () => {
               </h2>
               <button
                 onClick={() => {
+                  if (freelancerSkills?.length >= 10) {
+                    setSkillError("You can add only 10 skills");
+                    return;
+                  }
+
+                  setSkillError("");
                   setselectedSkill(null);
                   setShowSkillModal(true);
                 }}
@@ -205,7 +212,7 @@ const RightPanel = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {freelanceSkills?.map((skill, index) => (
+              {freelancerSkills?.map((skill, index) => (
                 <div
                   key={skill.id}
                   className="
@@ -251,7 +258,11 @@ const RightPanel = () => {
                 </div>
               ))}
             </div>
-
+            {skillError && (
+              <p className="text-sm text-red-500 mt-1 pl-1">
+                {skillError}
+              </p>
+            )}
           </div>
         </>
       )}
@@ -283,7 +294,7 @@ const RightPanel = () => {
             showSkillModal={showSkillModal}
             setShowSkillModal={setShowSkillModal}
             Selectedskill={selectedSkill}
-            freelanceSkills={freelanceSkills}
+            freelancerSkills={freelancerSkills}
           />
         )
       }

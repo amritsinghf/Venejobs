@@ -5,21 +5,21 @@ import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Routes } from "@/app/routes";
-import freelanceApiStore from "@/app/store/FreelancerStore";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 
 export default function page() {
   const router = useRouter();
-  const { FreelanceDetails, getPersonalDetails, loadingData } =
-    freelanceApiStore();
+  const { freelanceDetails, getPersonalDetails, personalDetailLoading } =
+    freelancerApiStore();
 
   useEffect(() => {
     getPersonalDetails();
   }, [getPersonalDetails]);
   useEffect(() => {
-    if (!loadingData && FreelanceDetails?.freelancerProfile) {
+    if (!personalDetailLoading && freelanceDetails?.freelancerProfile) {
       router.push(Routes.freelancer.page);
     }
-  }, [loadingData, FreelanceDetails, router]);
+  }, [personalDetailLoading, freelanceDetails, router]);
   return (
     <>
       <FreelancerLayout>
