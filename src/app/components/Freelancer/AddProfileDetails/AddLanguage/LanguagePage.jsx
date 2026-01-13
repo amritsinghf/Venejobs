@@ -17,7 +17,7 @@ const LanguagePage = ({ nextStep, currstep, prevStep }) => {
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
 
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
         <LanguageHeader />
         <LanguageInputSection
           nextStep={nextStep}

@@ -80,7 +80,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
 
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             Next, Define the Scope of Your Project
@@ -122,10 +122,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                     />
 
                     <div className="flex flex-col gap-1.5 lg:gap-1">
-                      <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
+                      <p className="select-none text-base text-heading font-semibold tracking-wide">
                         {item.title}
                       </p>
-                      <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
+                      <p className="select-none text-gray-500 text-sm xl:text-[15px] font-medium tracking-wide">
                         {item.description}
                       </p>
                     </div>
@@ -168,7 +168,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                       name="duration"
                       className="w-4 h-4 text-primary accent-primary"
                     />
-                    <span className="w-full text-gray-500 text-sm xl:text-base font-medium tracking-wide">
+                    <span className="w-full text-gray-500 text-sm xl:text-[15px] font-medium tracking-wide">
                       {item.label}
                     </span>
                   </label>
@@ -212,10 +212,10 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
                   />
 
                   <div className="flex flex-col gap-1.5 lg:gap-1">
-                    <p className="select-none text-base xl:text-lg text-heading font-semibold tracking-wide">
+                    <p className="select-none text-base text-heading font-semibold tracking-wide">
                       {item.title}
                     </p>
-                    <p className="select-none text-gray-500 text-sm xl:text-base font-medium tracking-wide">
+                    <p className="select-none text-gray-500 text-sm xl:text-[15px] font-medium tracking-wide">
                       Looking for someone relatively new to this field
                     </p>
                   </div>

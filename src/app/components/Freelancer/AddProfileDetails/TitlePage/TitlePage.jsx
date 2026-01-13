@@ -8,7 +8,7 @@ const TitlePage = ({ nextStep, currstep }) => {
     const { trigger } = useFormContext();
 
     const handleNext = async () => {
-        const valid = await trigger(["title","overview"]);
+        const valid = await trigger(["title", "overview"]);
         if (valid) nextStep();
     };
 
@@ -16,7 +16,7 @@ const TitlePage = ({ nextStep, currstep }) => {
         <div className="flex flex-col gap-6 lg:gap-10">
             <StepperNumber currstep={currstep} />
 
-            <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+            <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
                 <TitleHeader />
                 <TitleInputSection handleNext={handleNext} />
             </div>

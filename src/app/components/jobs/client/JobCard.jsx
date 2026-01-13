@@ -2,6 +2,7 @@ import { useState } from "react";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "../../button/Button";
 import Loader from "../../common/Loader";
+import { getPostedTime } from "@/app/utils/time";
 
 export default function JobCard({ item }) {
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ export default function JobCard({ item }) {
           </h1>
 
           <p className="text-paragraph text-sm lg:text-base font-medium">
-            Posted 4 days ago
+            {getPostedTime(item.created_at)}
           </p>
         </div>
 

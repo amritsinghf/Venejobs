@@ -120,7 +120,7 @@ const Category_Skills_Page = ({ nextStep, prevStep, currstep }) => {
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
 
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
+      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Let’s find the perfect freelancer for your project

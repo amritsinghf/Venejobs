@@ -324,7 +324,7 @@ export default function PersonalInfoForm() {
           </Button>
         )}
       </form>
-      <CompanyDetails />
+      {/* <CompanyDetails /> */}
     </>
   );
 }

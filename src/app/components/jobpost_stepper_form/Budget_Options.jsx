@@ -6,6 +6,7 @@ import SvgIcon from "../Utility/SvgIcon";
 import StepperNumber from "./StepperNumber";
 import Loader from "../common/Loader";
 import BudgetSkeleton from "../Skeletons/BudgetSkeleton";
+import NumericInputField from "../common/NumericInputField";
 
 const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -13,6 +14,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
     formState: { errors },
     trigger,
     watch,
+    setValue
   } = useFormContext();
   const [loadingNext, setLoadingNext] = useState(false);
 
@@ -36,10 +38,16 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   const handlePrev = async () => {
     prevStep();
   };
+
+  useEffect(() => {
+    if (budget_data?.length) {
+      setValue("budget_type", budget_data[0].code);
+    }
+  }, [budget_data]);
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
+      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Set Your Budget with Confidence
@@ -141,10 +149,15 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                   milestones to make the project progress smoothly.
                 </p>
 
-                <div className="flex flex-col gap-2 w-48">
-                  <input
-                    id="bordered-radio-2"
-                    {...register("budget_amount", {
+                <div className="w-48">
+                  <NumericInputField
+                    label="Budget Amount"
+                    name="budget_amount"
+                    placeholder="Enter budget amount"
+                    prefix="$"
+                    register={register}
+                    error={errors?.budget_amount?.message}
+                    rules={{
                       required: {
                         value: true,
                         message: "Please enter budget amount",
@@ -162,19 +175,11 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                         }
                         return true;
                       },
-                    })}
-                    type="text"
-                    placeholder="Enter budget amount"
-                    name="budget_amount"
-                    className="w-full py-3.5 px-3 text-sm lg:text-base font-medium border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    }}
+                    maxLength={10}
                   />
-
-                  {errors.budget_amount && (
-                    <span className="text-sm text-red-500 font-medium">
-                      {errors.budget_amount.message}
-                    </span>
-                  )}
                 </div>
+
               </div>
             </div>
 

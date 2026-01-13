@@ -30,7 +30,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <StepperNumber currstep={currstep} />
-      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
+      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Share the Details of Your Project
@@ -74,9 +74,13 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-semibold text-heading text-lg lg:text-2xl">
-              Upload Your File
+            <h2 className="text-heading text-lg font-semibold lg:text-2xl">
+              Upload Your File{" "}
+              <span className="text-sm font-normal text-gray-500 lg:text-base">
+                (Optional)
+              </span>
             </h2>
+
             <input
               type="file"
               {...register("attachment", {

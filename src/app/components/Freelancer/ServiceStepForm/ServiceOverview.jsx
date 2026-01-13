@@ -114,7 +114,7 @@ const ServiceOverview = ({ nextStep, currstep }) => {
 
                   <label
                     htmlFor={item.id}
-                    className="w-full text-gray-500 text-sm xl:text-base font-medium tracking-wide cursor-pointer"
+                    className="w-full text-gray-500 text-sm xl:text-[15px] font-medium tracking-wide cursor-pointer"
                   >
                     {item.label}
                   </label>

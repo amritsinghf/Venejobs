@@ -33,10 +33,10 @@ export default function Home() {
       <main className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1600px] mx-auto flex flex-col gap-20 lg:gap-30 my-20 lg:my-30">
         <HowItWorks />
 
-        <BrowseCategories />
+        {/* <BrowseCategories />
 
         <FreelancerPromo />
-        <MostPopular />
+        <MostPopular /> */}
       </main>
       <Footer {...footerClientConfig} />
     </>
