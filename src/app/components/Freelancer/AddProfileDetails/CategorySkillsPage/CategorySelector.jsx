@@ -55,7 +55,7 @@ const CategorySelector = ({ category_data, getskillsbycategory, loading }) => {
                       border transition-all duration-200
                       ${isSelected
                                             ? "bg-secondary border-secondary text-white"
-                                            : "border-[#D0D5DD] hover:border-secondary hover:bg-primary/5"
+                                            : "border-[#D0D5DD] hover:border-secondary hover:bg-primary/5 text-heading font-medium"
                                         }
                     `}
                                 >

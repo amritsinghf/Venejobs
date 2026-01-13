@@ -32,7 +32,7 @@ const SkillsSelector = ({
           className="w-full py-3.5 px-3 text-sm lg:text-base
                      border border-[#D0D5DD]
                      focus:border-primary rounded-md
-                     focus:outline-none text-heading
+                     focus:outline-none text-heading font-medium
                      tracking-wide placeholder:text-sm"
         />
 
@@ -76,6 +76,7 @@ const SkillsSelector = ({
                              rounded-lg cursor-pointer
                              border border-[#D0D5DD]
                              transition-all
+                             font-medium text-heading
                              peer-checked:bg-secondary
                              peer-checked:text-white"
                 >

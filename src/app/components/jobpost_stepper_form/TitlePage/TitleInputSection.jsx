@@ -25,7 +25,7 @@ const TitleInputSection = ({ handleNext }) => {
                 message: "Title should be atleast 5 characters long",
               },
             })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+            className="w-full py-3.5 px-3 text-sm lg:text-base font-medium border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
             placeholder="Enter Your Title"
           />
 

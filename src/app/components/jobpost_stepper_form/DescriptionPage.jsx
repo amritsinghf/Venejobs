@@ -61,7 +61,7 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
                   },
                 })}
                 placeholder="Example: I need a virtual assistant to reply to emails, organize files, and follow up on team tasks."
-                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                className="w-full py-3.5 px-3 text-sm lg:text-base font-medium border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
                 cols={40}
                 rows={14}
               ></textarea>

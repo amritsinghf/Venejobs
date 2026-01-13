@@ -9,7 +9,7 @@ export default function PasswordInput({ register, errors, isVisible, toggleVisib
                     type={isVisible ? "text" : "password"}
                     placeholder="Password"
                     {...register("password", { required: "Password is required" })}
-                    className="block py-2.5 pr-10 px-1 w-full h-full text-base border-b border-neutral-300
+                    className="block py-2.5 pr-10 px-1 w-full h-full text-sm lg:text-base font-medium border-b border-neutral-300
                     focus:border-primary focus:outline-none text-heading tracking-wide
                     placeholder:text-sm"
                 />

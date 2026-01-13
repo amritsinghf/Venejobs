@@ -166,7 +166,7 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
                     type="text"
                     placeholder="Enter budget amount"
                     name="budget_amount"
-                    className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
+                    className="w-full py-3.5 px-3 text-sm lg:text-base font-medium border border-[#D0D5DD] focus:border-primary rounded-md focus:outline-none text-heading tracking-wide placeholder:text-sm"
                   />
 
                   {errors.budget_amount && (

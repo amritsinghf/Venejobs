@@ -46,7 +46,7 @@ const CategorySelector = ({
                                     id={item.code}
                                     value={item.code}
                                     {...register("category")}
-                                    checked={isSelected}   
+                                    checked={isSelected}
                                     className="sr-only"
                                     onClick={() => {
                                         if (isSelected) {
@@ -69,7 +69,7 @@ const CategorySelector = ({
 
                       ${isSelected
                                             ? "bg-primary border-primary text-white"
-                                            : "border-[#D0D5DD] hover:border-primary hover:bg-primary/2"
+                                            : "border-[#D0D5DD] hover:border-primary hover:bg-primary/2 text-heading font-medium"
                                         }
                     `}
                                 >
