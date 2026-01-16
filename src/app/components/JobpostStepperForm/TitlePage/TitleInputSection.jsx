@@ -1,13 +1,16 @@
 import { useFormContext } from "react-hook-form";
-import Button from "../../button/Button";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
+import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
+// import { watch } from "fs";
 
-const TitleInputSection = ({ handleNext }) => {
+const TitleInputSection = ({ onNext,
+  isFirstStep,
+  fromReview,
+  onReviewBack, }) => {
   const {
     register,
+    watch,
     formState: { errors },
   } = useFormContext();
-
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
@@ -50,13 +53,13 @@ const TitleInputSection = ({ handleNext }) => {
           </ul>
 
           <div className="flex justify-end mt-5">
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="bg-primary text-white border flex items-center gap-2 justify-center"
-            >
-              Next <SvgIcon name="NextArrow" />
-            </Button>
+
+            <StepNavigation
+              isFirstStep={isFirstStep}
+              onNext={onNext}
+              showReviewBack={fromReview}
+              onReviewBack={onReviewBack}
+            />
           </div>
         </div>
       </div>

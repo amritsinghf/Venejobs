@@ -4,8 +4,7 @@ import jobApiStore from "@/app/store/jobStore";
 import CategorySelector from "./CategorySelector";
 import SkillsSelector from "./SkillsSelector";
 import StepperNumber from "../StepperNumber";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
-import Button from "@/app/components/button/Button";
+import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 
 const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   const {
@@ -17,11 +16,6 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     formState: { errors },
   } = useFormContext();
 
-  const selectedCategory = watch("category");
-
-  const [categoryName, setCategoryName] = useState("");
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [inputValue, setInputValue] = useState("");
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const {
@@ -38,10 +32,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
   }, []);
 
   const handleCategoryChange = useCallback(
-    async (categoryCode, name) => {
-      setCategoryName(name || "");
-      setSelectedItems([]);
-      setInputValue("");
+    async (categoryCode) => {
       setValue("skills", []);
 
       if (!categoryCode) return;
@@ -51,56 +42,16 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
     [getSkillsByCategory, setValue]
   );
 
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-
-    setSelectedItems((prev) => {
-      const updated = checked
-        ? [...new Set([...prev, value])]
-        : prev.filter((item) => item !== value);
-
-      setInputValue(updated.join(", "));
-      return updated;
-    });
-  };
-
-  const handleInputChange = (e) => {
-    const typed = e.target.value
-      .split(",")
-      .map((v) => v.trim())
-      .filter(Boolean);
-
-    setInputValue(e.target.value);
-    setSelectedItems(typed);
-  };
-
-  useEffect(() => {
-    setValue(
-      "skills",
-      selectedItems.map((skill) => ({
-        name: skill,
-        level: "Intermediate",
-      })),
-      { shouldValidate: true }
-    );
-  }, [selectedItems, setValue]);
+  const selectedCategory = watch("category");
+  const categoryName =
+    category_data?.find((cat) => cat.code === selectedCategory)?.name || "";
 
   const handleNext = async () => {
     setButtonLoading(true);
 
     try {
-      if (!selectedItems.length) {
-        setError("skills", {
-          type: "manual",
-          message: "Please add at least 1 skill",
-        });
-        return;
-      }
-
-      clearErrors("skills");
-
-      const isValid = await trigger();
-      if (isValid) nextStep();
+      const valid = await trigger(["category", "skills"]);
+      if (valid) nextStep();
     } finally {
       setButtonLoading(false);
     }
@@ -131,37 +82,16 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
             <SkillsSelector
               categoryName={categoryName}
               skills_data={skills_data}
-              selectedItems={selectedItems}
-              handleCheckboxChange={handleCheckboxChange}
-              inputValue={inputValue}
-              handleInputChange={handleInputChange}
               errors={errors}
               loading={skillsLoading}
             />
           )}
 
-          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-            <Button
-              type="button"
-              onClick={prevStep}
-              className="bg-white text-paragraph flex items-center gap-2 shadow"
-            >
-              <SvgIcon name="PrevButton" />
-              Back
-            </Button>
-
-            <Button
-              type="button"
-              onClick={handleNext}
-              isLoading={buttonLoading}
-              variant="primary"
-              className="bg-secondary text-white flex items-center gap-2"
-            >
-              Next
-              <SvgIcon name="NextArrow" />
-            </Button>
-
-          </div>
+          <StepNavigation
+            onNext={handleNext}
+            onBack={prevStep}
+            loading={buttonLoading}
+          />
         </div>
       </div>
     </div>

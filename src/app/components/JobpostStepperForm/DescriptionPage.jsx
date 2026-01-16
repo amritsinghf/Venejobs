@@ -1,12 +1,10 @@
-import Link from "next/link";
 import { useFormContext } from "react-hook-form";
-import Button from "../button/Button";
 import StepperNumber from "./StepperNumber";
-import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
-import Loader from "../common/Loader";
+import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
+import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
 
-const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
+const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
   const {
     register,
     formState: { errors },
@@ -14,23 +12,22 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
   } = useFormContext();
   const [loadingNext, setLoadingNext] = useState(false);
 
-  const handleNext = async () => {
+  const validateFields = async (callback) => {
     setLoadingNext(true);
 
     const valid = await trigger(["description", "attachment"]);
-    if (valid) nextStep();
+
+    if (valid) {
+      callback();
+    }
 
     setLoadingNext(false);
   };
 
-  const handlePrev = async () => {
-    prevStep();
-  };
-
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
-      <StepperNumber currstep={currstep} />
-      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row w-full">
+      <StepperNumber currstep={JobFormStep.description} />
+      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Share the Details of Your Project
@@ -84,6 +81,10 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
             <input
               type="file"
               {...register("attachment", {
+                required: {
+                  value: true,
+                  message: "Please Upload Your File ",
+                },
                 validate: {
                   isPdf: (files) => {
                     if (!files || files.length === 0) return true;
@@ -111,36 +112,16 @@ const DescriptionPage = ({ nextStep, prevStep, currstep }) => {
               </span>
             )}
           </div>
-          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-            <Button
-              type="button"
-              onClick={handlePrev}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              <SvgIcon name="PrevButton" />
-              Back
-            </Button>
 
-            <Button
-              type="button"
-              onClick={handleNext}
-              disabled={loadingNext}
-              className={`bg-primary text-white w-[150px] p-3 border flex items-center gap-2 justify-center
-      ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
-            >
-              {loadingNext ? (
-                <Loader size={18} border={3} color="white" />
-              ) : (
-                <>
-                  Next <SvgIcon name="NextArrow" />
-                </>
-              )}
-            </Button>
-          </div>
+          <StepNavigation
+            onNext={() => validateFields(nextStep)}
+            onBack={prevStep}
+            showReviewBack={fromReview}
+            onReviewBack={() =>
+              validateFields(() => setStep(JobFormStep.review))
+            }
+            loading={loadingNext}
+          />
         </div>
       </div>
     </div>

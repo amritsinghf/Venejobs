@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import HomeNavbarFreelance from "../components/Header/HomeNavbar_Freelance";
+import HomeNavbarFreelance from "../components/Header/HomeNavbarFreelance";
 import userApiStore from "../store/userStore";
 import Footer from "../components/Footer/Footer";
 import { footerFreelanceConfig } from "../utils/footer/footerFreelanceConfig";

@@ -1,8 +1,7 @@
-import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
+import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 import { useFormContext } from "react-hook-form";
 
-const TitleInputSection = ({ handleNext }) => {
+const TitleInputSection = ({ isFirstStep, handleNext }) => {
   const {
     register,
     formState: { errors },
@@ -75,15 +74,10 @@ const TitleInputSection = ({ handleNext }) => {
             )}
           </div>
 
-          <div className="flex justify-end mt-5">
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="bg-secondary text-white border flex items-center gap-2 justify-center"
-            >
-              Next <SvgIcon name="NextArrow" />
-            </Button>
-          </div>
+          <StepNavigation
+            isFirstStep={isFirstStep}
+            onNext={handleNext}
+          />
         </div>
       </div>
     </div>

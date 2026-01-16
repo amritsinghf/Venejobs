@@ -22,6 +22,7 @@ const MultiStepForm = () => {
     shouldUnregister: false,
     defaultValues: {
       date_of_birth: "",
+      skills: [],
     },
   });
   const {
@@ -45,6 +46,10 @@ const MultiStepForm = () => {
 
     const updatedData = {
       ...data,
+      skills: data.skills.map((skill) => ({
+        name: skill,
+        level: "Intermediate",
+      })),
       experiences: data.experiences.map(exp => {
         if (exp.is_current) {
           // end_month & end_year remove kar do

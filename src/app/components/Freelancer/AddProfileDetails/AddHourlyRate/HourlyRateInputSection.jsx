@@ -1,5 +1,4 @@
-import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
+import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -84,28 +83,11 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
           </div>
         </div>
 
-        <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-          <Button
-            type="button"
-            onClick={prevStep}
-            className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300"
-            style={{
-              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            <SvgIcon name="PrevButton" />
-            Back
-          </Button>
-
-          <Button
-            type="button"
-            onClick={handleNext}
-            className="bg-secondary text-white border flex items-center gap-2 justify-center"
-          >
-            Next <SvgIcon name="NextArrow" />
-          </Button>
-        </div>
+        {/* Navigation buttons */}
+        <StepNavigation
+          onNext={handleNext}
+          onBack={prevStep}
+        />
       </div>
     </div>
   );

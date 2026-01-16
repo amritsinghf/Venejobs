@@ -1,5 +1,5 @@
 "use client";
-// import AllJobs from "@/app/components/Home_Data/AllJobs";
+// import AllJobs from "@/app/components/HomeData/AllJobs";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "@/app/components/button/Button";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
@@ -7,7 +7,7 @@ import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import React, { lazy, Suspense } from "react";
 
 const AllJobs = lazy(() =>
-  import("../../components/Freelancer/Home_Data/AllJobs")
+  import("../../components/Freelancer/HomeData/AllJobs")
 );
 
 export default function Home() {

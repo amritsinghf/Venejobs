@@ -2,45 +2,46 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import SkillsSkeleton from "../../Skeletons/SkillsSkeleton";
+import jobApiStore from "@/app/store/jobStore";
 
-const SkillsSelector = ({
-  categoryName,
-  skills_data,
-  selectedItems,
-  handleCheckboxChange,
-  inputValue,
-  handleInputChange,
-  errors,
-  loading,
-}) => {
+const SkillsSelector = () => {
+  const { register, watch, formState: { errors } } = useFormContext();
+  const selectedCategory = watch("category");
+  const selectedSkills = watch("skills") || [];
 
-  const { register } = useFormContext();
+  const { skills_data, skillsLoading, category_data, } =
+    jobApiStore();
 
-  // RHF register for input
+  const categoryName =
+    category_data?.find((cat) => cat.code === selectedCategory)?.name || "";
+
   const skillsRegister = register("skills", {
-    onChange: (e) => handleInputChange(e),
-  });
+    validate: (value) =>
+      value.length > 0 || "Please select at least one option"
+  })
 
   return (
     <div className="flex flex-col gap-4">
-      {/* TITLE */}
+      {/* title */}
       <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
         Search skills or add your own
       </h2>
 
-      {/* INPUT */}
       <div className="flex flex-col gap-2">
-        <input
-          type="text"
-          placeholder="For the best results, add 3-5 skills"
-          value={inputValue}
-          {...skillsRegister}
-          className="w-full py-3.5 px-3 text-sm lg:text-base
-                     border border-[#D0D5DD]
-                     focus:border-primary rounded-md
-                     focus:outline-none text-heading font-medium
-                     tracking-wide placeholder:text-sm"
-        />
+        <div
+          className={`
+      w-full py-3.5 px-3 text-sm lg:text-base
+      border border-[#D0D5DD] rounded-md
+      tracking-wide
+      ${selectedSkills.length === 0 ? 'text-gray-400' : 'text-heading'}
+    `}
+          role="textbox"
+          aria-readonly="true"
+        >
+          {selectedSkills.length > 0
+            ? selectedSkills.join(', ')
+            : 'For the best results, add 3–5 skills'}
+        </div>
 
         {errors.skills && (
           <span className="text-sm text-red-500 font-medium">
@@ -57,23 +58,21 @@ const SkillsSelector = ({
         className="flex items-center flex-wrap gap-3 lg:gap-5 w-full
                    transition-all duration-500 ease-out"
       >
-        {loading ? (
+        {skillsLoading ? (
           <SkillsSkeleton />
         ) : (
           skills_data?.map((item) => {
             const checkboxId = `skill-${item.id}`;
-
             return (
               <div key={item.id}>
                 <input
                   type="checkbox"
                   id={checkboxId}
                   value={item.name}
-                  checked={selectedItems.includes(item.name)}
-                  onChange={handleCheckboxChange}
+                  checked={selectedSkills.includes(item.name)}
+                  {...skillsRegister}
                   className="sr-only peer"
                 />
-
                 <label
                   htmlFor={checkboxId}
                   className="flex py-3 px-4 items-center justify-center
@@ -89,7 +88,7 @@ const SkillsSelector = ({
                     <AddIcon
                       fontSize="small"
                       sx={{
-                        color: selectedItems.includes(item.name)
+                        color: selectedSkills.includes(item.name)
                           ? "#fff"
                           : "#666",
                       }}

@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import { useFormContext } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import SkillsSkeleton from "@/app/components/Skeletons/SkillsSkeleton";
@@ -6,35 +6,41 @@ import SkillsSkeleton from "@/app/components/Skeletons/SkillsSkeleton";
 const SkillsSelector = ({
   categoryName,
   skills_data,
-  selectedItems,
-  handleCheckboxChange,
-  inputValue,
-  handleInputChange,
   errors,
   loading,
 }) => {
-  const { register } = useFormContext();
+  const { register, watch } = useFormContext();
+
+  const skillsRegister = register("skills", {
+    validate: (value) =>
+      value.length > 0 || "Please select at least one skill"
+  })
+
+  const selectedSkills = watch("skills") || [];
 
   return (
     <div className="flex flex-col gap-4 transition-all">
-      {/* TITLE */}
+      {/* title */}
       <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
         Search skills or add your own
       </h2>
 
-      {/* INPUT */}
+      {/* DISPLAY Skills */}
       <div className="flex flex-col gap-2">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="For the best results, add 3-5 skills"
-          className="w-full py-3.5 px-3 text-sm lg:text-base
-                     border border-[#D0D5DD]
-                     focus:border-primary rounded-md
-                     focus:outline-none text-heading font-medium
-                     tracking-wide placeholder:text-sm"
-        />
+        <div
+          className={`
+      w-full py-3.5 px-3 text-sm lg:text-base
+      border border-[#D0D5DD] rounded-md
+      text-heading tracking-wide
+      ${selectedSkills.length === 0 ? 'text-gray-400' : ''}
+    `}
+          role="textbox"
+          aria-readonly="true"
+        >
+          {selectedSkills.length > 0
+            ? selectedSkills.join(', ')
+            : 'For the best results, add 3–5 skills'}
+        </div>
 
         {errors.skills && (
           <span className="text-sm text-red-500 font-medium">
@@ -65,8 +71,8 @@ const SkillsSelector = ({
                   type="checkbox"
                   id={checkboxId}
                   value={item.name}
-                  checked={selectedItems.includes(item.name)}
-                  onChange={handleCheckboxChange}
+                  checked={selectedSkills.includes(item.name)}
+                  {...skillsRegister}
                   className="sr-only peer"
                 />
 
@@ -85,7 +91,7 @@ const SkillsSelector = ({
                     <AddIcon
                       fontSize="small"
                       sx={{
-                        color: selectedItems.includes(item.name)
+                        color: selectedSkills.includes(item.name)
                           ? "#fff"
                           : "#666",
                       }}

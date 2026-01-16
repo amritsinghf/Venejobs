@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
-import SvgIcon from "../Utility/SvgIcon";
 import StepperNumber from "./StepperNumber";
-import Loader from "../common/Loader";
 import BudgetSkeleton from "../Skeletons/BudgetSkeleton";
 import NumericInputField from "../common/NumericInputField";
+import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
+import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
 
-const Budget_Options = ({ nextStep, prevStep, currstep }) => {
+const BudgetOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
   const {
     register,
     formState: { errors },
@@ -20,11 +19,11 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
 
   const priceType = watch("budget_type");
 
-  const handleNext = async () => {
+  const validateFields = async (callback) => {
     setLoadingNext(true);
 
     const valid = await trigger(["budget_type", "budget_amount"]);
-    if (valid) nextStep();
+    if (valid) callback();
 
     setLoadingNext(false);
   };
@@ -46,8 +45,8 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   }, [budget_data]);
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
-      <StepperNumber currstep={currstep} />
-      <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
+      <StepperNumber currstep={JobFormStep.budgetOptions} />
+      <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
             Set Your Budget with Confidence
@@ -183,36 +182,16 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
               </div>
             </div>
 
-            <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-              <Button
-                type="button"
-                onClick={handlePrev}
-                className="bg-white text-gray-800  flex items-center gap-2 transition-all duration-300"
-                style={{
-                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
-              >
-                <SvgIcon name="PrevButton" />
-                Back
-              </Button>
+            <StepNavigation
+              onNext={() => validateFields(nextStep)}
+              onBack={prevStep}
+              showReviewBack={fromReview}
+              onReviewBack={() =>
+                validateFields(() => setStep(JobFormStep.review))
+              }
+              loading={loadingNext}
+            />
 
-              <Button
-                type="button"
-                onClick={handleNext}
-                disabled={loadingNext}
-                className={`bg-primary text-white flex items-center gap-2 justify-center px-7
-      ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
-              >
-                {loadingNext ? (
-                  <Loader size={18} border={3} color="white" />
-                ) : (
-                  <>
-                    Next <SvgIcon name="NextArrow" />
-                  </>
-                )}
-              </Button>
-            </div>
           </div>
         </div>
       </div>
@@ -220,4 +199,4 @@ const Budget_Options = ({ nextStep, prevStep, currstep }) => {
   );
 };
 
-export default Budget_Options;
+export default BudgetOptions;

@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import SvgIcon from "../Utility/SvgIcon";
-import Button from "../button/Button";
-import Loader from "../common/Loader";
 import jobApiStore from "@/app/store/jobStore";
+import StepNavigation from "./StepNavigation";
+import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
 
 const Row = ({ title, children, onEdit }) => (
   <div className="flex justify-between border-b border-gray-300 pb-4">
@@ -21,10 +20,16 @@ const Row = ({ title, children, onEdit }) => (
   </div>
 );
 
-const ReviewJob = ({ prevStep, setStep }) => {
+const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
   const loading = jobApiStore((state) => state.loading);
   const { watch } = useFormContext();
   const data = watch();
+
+  // edit handler
+  const handleEdit = (step) => {
+    setFromReview(true);
+    setStep(step);
+  };
 
   // Format deadline
   const parts = data.duration?.split("_") ?? [];
@@ -33,6 +38,17 @@ const ReviewJob = ({ prevStep, setStep }) => {
       ? "Ongoing"
       : `${parts[0]} to ${parts[1]} ${parts[2]}`;
 
+  function formatCategory(value) {
+    if (!value) return "";
+
+    return value
+      .split("_")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+
+  console.log(data);
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <div className="flex flex-col gap-4">
@@ -46,13 +62,13 @@ const ReviewJob = ({ prevStep, setStep }) => {
         </p>
 
         <div className="h-auto px-4 lg:px-10 py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">
-          {/* TITLE */}
-          <Row title="Title" onEdit={() => setStep(1)}>
+          {/* title */}
+          <Row title="Title" onEdit={() => handleEdit(JobFormStep.title)}>
             <p className="text-paragraph text-base">{data.title}</p>
           </Row>
 
-          {/* DESCRIPTION */}
-          <Row title="Description" onEdit={() => setStep(5)}>
+          {/* description */}
+          <Row title="Description" onEdit={() => handleEdit(JobFormStep.description)}>
             <p className="text-paragraph text-base max-w-[900px] break-all">
               {data.description}
             </p>
@@ -64,8 +80,8 @@ const ReviewJob = ({ prevStep, setStep }) => {
           </Row>
 
           {/* CATEGORY + SKILLS */}
-          <Row title="Category" onEdit={() => setStep(2)}>
-            <p className="text-paragraph text-base">{data.category}</p>
+          <Row title="Category" onEdit={() => handleEdit(JobFormStep.categorySkills)}>
+            <p className="text-paragraph text-base"> {formatCategory(data.category)}</p>
 
             <h2 className="font-semibold text-lg lg:text-xl text-heading">
               Skills
@@ -76,7 +92,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
                   key={index}
                   className="px-3 py-1 bg-gray-100 rounded text-sm"
                 >
-                  {skill.name} ({skill.level})
+                  {skill} ("Intermediate")
                 </span>
               ))}
             </div>
@@ -84,7 +100,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
           </Row>
 
           {/* PROJECT DETAILS */}
-          <Row title="Project size" onEdit={() => setStep(3)}>
+          <Row title="Project size" onEdit={() => handleEdit(JobFormStep.projectOptions)}>
             <p className="text-paragraph text-base">{data.project_size}</p>
 
             <h2 className="font-semibold text-lg lg:text-xl text-heading">
@@ -99,7 +115,7 @@ const ReviewJob = ({ prevStep, setStep }) => {
           </Row>
 
           {/* BUDGET */}
-          <Row title="Budget Type" onEdit={() => setStep(4)}>
+          <Row title="Budget Type" onEdit={() => handleEdit(JobFormStep.budgetOptions)}>
             <p className="text-paragraph text-base">{data.budget_type}</p>
 
             <h2 className="font-semibold text-lg lg:text-xl text-heading">
@@ -109,36 +125,12 @@ const ReviewJob = ({ prevStep, setStep }) => {
           </Row>
 
           {/* BUTTONS */}
-          <div className="flex justify-between w-full mt-5 gap-10 xl:gap-5">
-            <Button
-              type="button"
-              onClick={prevStep}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              <SvgIcon name="PrevButton" />
-              Back
-            </Button>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              className={`bg-primary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
-                }`}
-            >
-              {loading ? (
-                <Loader size={18} border={3} color="white" />
-              ) : (
-                <>
-                  Post This Job <SvgIcon name="NextArrow" />
-                </>
-              )}
-            </Button>
-
-          </div>
+          <StepNavigation
+            isLastStep
+            onBack={prevStep}
+            loading={loading}
+            submitLabel="Post This Job"
+          />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import userApiStore from "@/app/store/userStore";
-import DesktopLinks from "@/app/components/profile/client_profile/DesktopLinks";
+import DesktopLinks from "@/app/components/profile/ClientProfile/DesktopLinks";
 import PersonalInfoForm from "@/app/components/profile/PersonalInfoForm";
 import ClientLayout from "@/app/layout/ClientLayout";
 import Page from "./Mobile/page";

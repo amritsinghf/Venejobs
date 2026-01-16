@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DesktopLinks from "../components/profile/client_profile/DesktopLinks";
+import DesktopLinks from "../components/profile/ClientProfile/DesktopLinks";
 import { Routes } from "../routes";
 import ClientLayout from "./ClientLayout";
 import SvgIcon from "../components/Utility/SvgIcon";

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ComputerIcon from "@mui/icons-material/Computer";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
@@ -6,6 +6,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import SettingsIcon from "@mui/icons-material/Settings";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CategorySkeleton from "../../Skeletons/CategorySkeleton";
+import jobApiStore from "@/app/store/jobStore";
 
 const categoryIcons = {
     it_programming: <ComputerIcon fontSize="small" />,
@@ -15,15 +16,29 @@ const categoryIcons = {
     writing_translation: <EditNoteIcon fontSize="small" />,
 };
 
-const CategorySelector = ({
-    category_data,
-    errors,
-    getskillsbycategory,
-    loading,
-}) => {
-    const { register, watch, setValue } = useFormContext();
+const CategorySelector = () => {
+    const { register, watch, setValue, formState: { errors } } = useFormContext();
     const selectedCategory = watch("category");
+    const { category_data, getCategories, getSkillsByCategory, categoryLoading } =
+        jobApiStore();
 
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+    const getskillsbycategory = async (item) => {
+        // Deselect category
+        if (selectedCategory === item.code) {
+            setValue("category", "");
+            setValue("skills", []);
+            return;
+        }
+
+        // Select category
+        setValue("category", item.code);
+        setValue("skills", []);
+        await getSkillsByCategory(item.code);
+    };
     return (
         <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
@@ -31,7 +46,7 @@ const CategorySelector = ({
             </h2>
 
             <ul className="flex flex-wrap gap-3 lg:gap-5">
-                {loading
+                {categoryLoading
                     ? Array.from({ length: 5 }).map((_, i) => (
                         <CategorySkeleton key={i} />
                     ))
@@ -45,18 +60,11 @@ const CategorySelector = ({
                                     type="radio"
                                     id={item.code}
                                     value={item.code}
-                                    {...register("category")}
+                                    {...register("category", { required: "Please select a category" })}
                                     checked={isSelected}
                                     className="sr-only"
                                     onClick={() => {
-                                        if (isSelected) {
-                                            setValue("category", "");
-                                            getskillsbycategory(null, "");
-                                        }
-                                    }}
-                                    onChange={() => {
-                                        setValue("category", item.code);
-                                        getskillsbycategory(item.code, item.name);
+                                        getskillsbycategory(item)
                                     }}
                                 />
 

@@ -1,5 +1,5 @@
 "use client";
-import DesktopLinks from "@/app/components/profile/freelancer_profile/DesktopLinks";
+import DesktopLinks from "@/app/components/profile/FreelancerProfile/DesktopLinks";
 import PersonalInfoForm from "@/app/components/profile/PersonalInfoForm";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
 import MobileView from "./Mobile/page";

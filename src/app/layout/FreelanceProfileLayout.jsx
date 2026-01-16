@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DesktopLinks from "../components/profile/freelancer_profile/DesktopLinks";
+import DesktopLinks from "../components/profile/FreelancerProfile/DesktopLinks";
 import FreelancerLayout from "./FreelancerLayout";
 import { Routes } from "../routes";
 import SvgIcon from "../components/Utility/SvgIcon";

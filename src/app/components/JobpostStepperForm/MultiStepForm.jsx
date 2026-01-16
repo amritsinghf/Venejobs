@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import Swal from "sweetalert2";
-import Project_Options from "./Project_Options";
-import Budget_Options from "./Budget_Options";
+import ProjectOptions from "./ProjectOptions";
+import BudgetOptions from "./BudgetOptions";
 import DescriptionPage from "./DescriptionPage";
 import ReviewJob from "./ReviewJob";
 import SuccessJobCreate from "./SuccessJobCreate";
@@ -11,6 +10,7 @@ import toastStore from "@/app/store/toastStore";
 import jobApiStore from "@/app/store/jobStore";
 import TitlePage from "./TitlePage/TitlePage";
 import Category_Skills_Page from "./CategorySkillsPage/Category_Skills_Page";
+import { JobFormStep } from "./JobFormStep";
 
 const MultiStepForm = () => {
   const [showConfirmMessage, setshowConfirmMessage] = useState(false);
@@ -20,6 +20,9 @@ const MultiStepForm = () => {
   const methods = useForm({
     mode: "onSubmit",
     shouldUnregister: false,
+    defaultValues: {
+      skills: [],
+    },
   });
 
   const {
@@ -27,14 +30,13 @@ const MultiStepForm = () => {
     formState: { errors },
   } = methods;
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(JobFormStep.title);
+  const [fromReview, setFromReview] = useState(false);
 
   const nextStep = () => setStep(step + 1);
 
   const prevStep = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
+    setStep((prev) => Math.max(prev - 1, JobFormStep.title));
   };
   const { create_job, loading } = jobApiStore();
 
@@ -52,7 +54,12 @@ const MultiStepForm = () => {
       formData.append("budget_amount", Number(data.budget_amount));
 
       if (data.skills?.length) {
-        formData.append("skills", JSON.stringify(data.skills));
+        const skillsPayload = data.skills.map((skill) => ({
+          name: skill,
+          level: "Intermediate", // static level for skill
+        }));
+
+        formData.append("skills", JSON.stringify(skillsPayload));
       }
 
       if (data.attachment?.length) {
@@ -76,48 +83,66 @@ const MultiStepForm = () => {
     }
   };
 
-
-
   const renderStep = () => {
     switch (step) {
-      case 1:
-        return <TitlePage nextStep={nextStep} currstep={step} />;
-      case 2:
+      case JobFormStep.title:
+        return (
+          <TitlePage
+            nextStep={nextStep}
+            setStep={setStep}
+            fromReview={fromReview}
+          />
+        );
+      case JobFormStep.categorySkills:
         return (
           <Category_Skills_Page
             nextStep={nextStep}
             prevStep={prevStep}
-            currstep={step}
+            setStep={setStep}
+            fromReview={fromReview}
           />
         );
-      case 3:
+      case JobFormStep.projectOptions:
         return (
-          <Project_Options
+          <ProjectOptions
             nextStep={nextStep}
             prevStep={prevStep}
-            currstep={step}
+            setStep={setStep}
+            fromReview={fromReview}
           />
         );
-      case 4:
+      case JobFormStep.budgetOptions:
         return (
-          <Budget_Options
+          <BudgetOptions
             nextStep={nextStep}
             prevStep={prevStep}
-            currstep={step}
+            setStep={setStep}
+            fromReview={fromReview}
           />
         );
-      case 5:
+      case JobFormStep.description:
         return (
           <DescriptionPage
             nextStep={nextStep}
             prevStep={prevStep}
-            currstep={step}
+            setStep={setStep}
+            fromReview={fromReview}
           />
         );
-      case 6:
-        return <ReviewJob prevStep={prevStep} setStep={setStep} />;
+      case JobFormStep.review:
+        return (
+          <ReviewJob
+            prevStep={prevStep}
+            setStep={setStep}
+            setFromReview={setFromReview}
+          />
+        );
       default:
-        return <TitlePage nextStep={nextStep} prevStep={prevStep} />;
+        return <TitlePage
+          nextStep={nextStep}
+          prevStep={prevStep}
+          fromReview={fromReview}
+        />;
     }
   };
 

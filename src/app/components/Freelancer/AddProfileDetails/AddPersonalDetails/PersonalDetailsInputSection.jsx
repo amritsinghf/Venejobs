@@ -3,12 +3,10 @@ import { useFormContext, Controller } from "react-hook-form";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-import Button from "@/app/components/button/Button";
-import Loader from "@/app/components/common/Loader";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
 import InputField from "@/app/components/common/InputField";
 import freelancerApiStore from "@/app/store/freelancerApiStore";
 import NumericInputField from "@/app/components/common/NumericInputField";
+import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 
 const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
   const {
@@ -145,34 +143,12 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
         />
 
         {/* Buttons */}
-        <div className="flex justify-between gap-4 pt-4">
-          <Button
-            type="button"
-            onClick={prevStep}
-            className="bg-white text-paragraph flex items-center gap-2"
-            style={{
-              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            <SvgIcon name="PrevButton" /> Back
-          </Button>
-
-          <Button
-            type="submit"
-            disabled={loading}
-            className="bg-secondary text-white rounded flex items-center gap-2 justify-center"
-          >
-            {loading ? (
-              <Loader size={18} border={3} color="white" />
-            ) : (
-              <>
-                Let’s Finalize <SvgIcon name="NextArrow" />
-              </>
-            )}
-          </Button>
-
-        </div>
+        <StepNavigation
+          isLastStep
+          onBack={prevStep}
+          loading={loading}
+          submitLabel="Let’s Finalize"
+        />
 
       </div>
     </div>

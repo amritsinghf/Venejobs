@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import Button from "../button/Button";
 import jobApiStore from "@/app/store/jobStore";
 import StepperNumber from "./StepperNumber";
-import SvgIcon from "../Utility/SvgIcon";
-import Loader from "../common/Loader";
 import ProjectSizeSkeleton from "../Skeletons/ProjectSizeSkeleton";
 import DeadlineSkeleton from "../Skeletons/DeadlineSkeleton";
 import ExperienceSkeleton from "../Skeletons/ExperienceSkeleton";
+import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
+import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
 
-const Project_Options = ({ nextStep, prevStep, currstep }) => {
+const ProjectOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
   const {
     projectSizes,
     projectDuration,
@@ -31,7 +30,8 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     setError,
     clearErrors,
   } = useFormContext();
-  const handleNext = async () => {
+
+  const validateFields = async (callback) => {
     setLoadingNext(true);
 
     const valid = await trigger([
@@ -65,7 +65,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
     // ✅ Clear error if valid
     clearErrors("duration");
 
-    nextStep();
+    callback();
     setLoadingNext(false);
   };
 
@@ -78,7 +78,7 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
 
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
-      <StepperNumber currstep={currstep} />
+      <StepperNumber currstep={JobFormStep.projectOptions} />
 
       <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
@@ -230,40 +230,20 @@ const Project_Options = ({ nextStep, prevStep, currstep }) => {
           </div>
 
           {/* BUTTONS */}
-          <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-            <Button
-              type="button"
-              onClick={prevStep}
-              className="bg-white text-gray-800 flex items-center gap-2 transition-all duration-300"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
-            >
-              <SvgIcon name="PrevButton" />
-              Back
-            </Button>
+          <StepNavigation
+            onNext={() => validateFields(nextStep)}
+            onBack={prevStep}
+            showReviewBack={fromReview}
+            onReviewBack={() =>
+              validateFields(() => setStep(JobFormStep.review))
+            }
+            loading={loadingNext}
+          />
 
-            <Button
-              type="button"
-              onClick={handleNext}
-              disabled={loadingNext}
-              className={`bg-primary text-white flex items-center gap-2 justify-center px-7
-              ${loadingNext ? "opacity-70 cursor-not-allowed" : ""}`}
-            >
-              {loadingNext ? (
-                <Loader size={18} border={3} color="white" />
-              ) : (
-                <>
-                  Next <SvgIcon name="NextArrow" />
-                </>
-              )}
-            </Button>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Project_Options;
+export default ProjectOptions;

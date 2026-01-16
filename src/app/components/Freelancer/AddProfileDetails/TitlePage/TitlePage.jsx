@@ -18,7 +18,10 @@ const TitlePage = ({ nextStep, currstep }) => {
 
             <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
                 <TitleHeader />
-                <TitleInputSection handleNext={handleNext} />
+                <TitleInputSection
+                    isFirstStep
+                    handleNext={handleNext}
+                />
             </div>
         </div>
     );

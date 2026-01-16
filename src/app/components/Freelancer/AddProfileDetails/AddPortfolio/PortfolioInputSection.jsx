@@ -1,14 +1,13 @@
-import Button from "@/app/components/button/Button";
-import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import ShowPorfolioPage from "./ShowPortfolioPage";
 import PortfolioModal from "./PortfolioModal";
 import useToastStore from "@/app/store/toastStore";
+import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 
 const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
-  const {showError} = useToastStore.getState();
+  const { showError } = useToastStore.getState();
   const { trigger, control, getValues } = useFormContext();
   const { fields, append, update, remove } = useFieldArray({
     control,
@@ -22,7 +21,7 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
     const valid = await trigger("portfolios");
 
     if (fields.length === 0) {
-      showError("Please add at least one portfolio before proceeding.","error")
+      showError("Please add at least one portfolio before proceeding.", "error")
       return;
     }
 
@@ -70,27 +69,10 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
       )}
 
       {/* Navigation buttons */}
-      <div className="flex justify-between gap-10 xl:gap-2 mt-5">
-        <Button
-          type="button"
-          onClick={prevStep}
-          className="bg-white text-paragraph flex items-center gap-2 transition-all duration-300"
-          style={{
-            boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-            border: "1px solid rgba(0,0,0,0.08)",
-          }}
-        >
-          <SvgIcon name="PrevButton" />
-          Back
-        </Button>
-        <Button
-          type="button"
-          onClick={handleNext}
-          className="bg-secondary text-white border flex items-center gap-2 justify-center"
-        >
-          Next <SvgIcon name="NextArrow" />
-        </Button>
-      </div>
+      <StepNavigation
+        onNext={handleNext}
+        onBack={prevStep}
+      />
 
       {/* Education Modal */}
       {showForm && (
