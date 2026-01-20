@@ -40,11 +40,11 @@ const TitleInputSection = ({ onNext,
         </div>
 
         <div className="flex flex-col gap-4">
-          <h3 className="text-base lg:text-lg text-heading font-bold">
+          <h3 className="text-base lg:text-lg text-heading font-medium">
             Example titles
           </h3>
 
-          <ul className="flex flex-col text-gray-500 text-base font-medium gap-4 list-disc pl-6 tracking-wide">
+          <ul className="flex flex-col text-gray-500 text-base font-normal gap-4 list-disc pl-6 tracking-wide">
             <li>
               UX/UI designer to bring website mockup and prototype to life
             </li>

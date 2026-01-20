@@ -81,10 +81,9 @@ export default function Page() {
                 href={item.href}
                 onClick={() => setActiveTab(item.href)}
                 className={`flex items-center justify-start w-full p-4 border border-[#F2F2F2] rounded-lg transition 
-                  ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-blue-gray-50 text-paragraph"
+                  ${isActive
+                    ? "bg-primary text-white"
+                    : "hover:bg-blue-gray-50 text-paragraph"
                   }
                 `}
               >
@@ -102,7 +101,7 @@ export default function Page() {
           >
             <SvgIcon name="Question" size={19} />
             <span className="ml-4 text-base font-medium tracking-wide text-paragraph">
-              Help & Suppor
+              Help & Support
             </span>
           </Link>
 

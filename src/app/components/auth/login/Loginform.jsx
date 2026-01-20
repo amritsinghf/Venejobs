@@ -66,7 +66,7 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
         return;
       }
 
-      router.replace("/");
+      router.replace(Routes.home);
     } catch (error) {
       const message = error?.response?.data?.message;
       showError(message || "Login error", "error");

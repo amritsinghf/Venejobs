@@ -12,7 +12,7 @@ export default function ActiveContracts() {
 
     const contracts = [1, 2];
     return (
-        <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full">
+        <div className="rounded-[20px] border border-[rgba(68,68,68,0.08)] w-full">
 
             {/* Contract List */}
             {contracts.map((_, i) => (

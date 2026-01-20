@@ -6,6 +6,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { login } from "@/app/lib/auth/auth.api";
 import Button from "@/app/components/button/Button";
+import { Routes } from "@/app/routes";
 
 export default function signin() {
   const [formData, setformData] = useState({ email: "", password: "" });
@@ -100,7 +101,7 @@ export default function signin() {
 
               <p className="mt-5">
                 Dont have an account?{" "}
-                <Link href={"../auth/signup"}>
+                <Link href={Routes.auth.signup}>
                   <b>Sign up</b>
                 </Link>
               </p>

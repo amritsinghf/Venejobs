@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import { Routes } from "@/app/routes";
 
 export default function ContractTerms({ onNext }) {
   const {
@@ -206,7 +207,7 @@ export default function ContractTerms({ onNext }) {
         </div>
       </div>
       <div className="flex items-center pt-2 md:pt-0 gap-4 w-full">
-        <Link href="/client/HirePayment"
+        <Link href={Routes.client.hirePayment}
           className="bg-primary text-center font-semibold p-3 w-[120px] xl:w-[180px] xl:py-4 rounded text-white text-xs md:text-base cursor-pointer">
           Send Offer
         </Link>

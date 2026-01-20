@@ -29,7 +29,7 @@ export default function ContractCard() {
             </p>
 
             <div className="flex flex-row items-center">
-              <p className="text-heading text-sm lg:text-base font-medium">
+              <p className="text-paragraph text-sm lg:text-base font-medium">
                 Started Date:&nbsp;
               </p>
               <p className="text-paragraph text-base font-medium">11-01-0001</p>
@@ -38,7 +38,7 @@ export default function ContractCard() {
         </div>
 
         {/* Amounts */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 lg:gap-30 w-full lg:w-auto">
+        <div className="flex flex-row items-start sm:items-center gap-5 lg:gap-8 w-full lg:w-auto">
           <div className="flex flex-col gap-2">
             <h3 className="text-heading font-semibold text-sm md:text-lg">
               Contract Amount :

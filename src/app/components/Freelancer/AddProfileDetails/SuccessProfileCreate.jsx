@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Loader from "../../common/Loader";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import { Routes } from "@/app/routes";
 
 export default function SuccessProfileCreate() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ export default function SuccessProfileCreate() {
     setLoading(true);
 
     setTimeout(() => {
-      window.location.href = "/freelancer/";
+      window.location.href = Routes.freelancer.home;
     }, 800);
   };
   return (
@@ -49,8 +50,7 @@ export default function SuccessProfileCreate() {
           </p>
 
 
-          <Link
-            href="/freelancer/"
+          <Link href={Routes.freelancer.home}
             onClick={handleClick}
             className={`bg-secondary text-white 
               px-6 py-3 rounded-md 

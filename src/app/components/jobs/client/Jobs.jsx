@@ -19,7 +19,7 @@ export default function Jobs() {
 
 
   return (
-    <div className="rounded-lg border border-[rgba(68,68,68,0.08)] w-full mx-auto">
+    <div className="rounded-[20px] border border-[rgba(68,68,68,0.08)] w-full mx-auto">
       <div className={`${loading ? "opacity-50 pointer-events-none" : ""}`}>
         <JobsList
           jobs={jobs}

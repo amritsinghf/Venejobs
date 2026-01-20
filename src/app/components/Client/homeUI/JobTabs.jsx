@@ -30,8 +30,8 @@ export default function JobTabs({ tabs, showData, setshowData }) {
               onClick={() => setshowData(index)}
             >
               <p
-                className={`font-semibold cursor-pointer text-sm md:text-base tracking-wide pb-2
-                                ${showData === index ? "text-blue-900" : "text-paragraph"}`}
+                className={`cursor-pointer text-sm md:text-base tracking-wide pb-2
+                                ${showData === index ? "text-blue-900 font-bold" : "text-paragraph font-medium "}`}
               >
                 {tab.label}
               </p>

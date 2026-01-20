@@ -96,7 +96,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
             <div className="flex justify-end mt-5 px-2 md:px-6 pb-4">
                 <button
                     type="button"
-                    className="text-heading hover:text-primary text-normal flex items-center gap-2 cursor-pointer"
+                    className="text-[#858585] hover:text-primary font-semibold text-normal flex items-center gap-2 cursor-pointer"
                     onClick={() => setActiveModal("signin")}
                 >
                     <ArrowBackIcon className="text-gray-500" style={{ fontSize: "16px" }} />

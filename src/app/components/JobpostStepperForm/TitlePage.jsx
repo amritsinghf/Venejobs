@@ -30,10 +30,10 @@ const TitlePage = ({ nextStep, currstep }) => {
       <StepperNumber currstep={currstep} />
       <div className="flex gap-10 flex-col lg:flex-row ">
         <div className="mt-6 flex flex-col gap-4  w-full  lg:px-0 lg:mt-10">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-[44px] font-semibold leading-tight text-heading">
             Let's start with a strong title.
           </h2>
-          <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
+          <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
             This helps your job post stand out to the right candidates. It’s the
             first thing they’ll see, so make it count!
           </p>
@@ -83,9 +83,8 @@ const TitlePage = ({ nextStep, currstep }) => {
                 <Button
                   type="button"
                   onClick={handleNext}
-                  className={`bg-primary text-white flex items-center gap-2 justify-center ${
-                    loading ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
+                  className={`bg-primary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
+                    }`}
                 >
                   {loading ? (
                     <Loader size={18} border={3} color="white" />

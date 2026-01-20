@@ -10,6 +10,7 @@ import toastStore from "@/app/store/toastStore";
 import userApiStore from "@/app/store/userStore";
 import Button from "../../button/Button";
 import Loader from "../../common/Loader";
+import { Routes } from "@/app/routes";
 
 export default function OtpForm({
   email,
@@ -75,10 +76,10 @@ export default function OtpForm({
           const role = res.data.user.role_name;
           router.push(
             role === "freelancer"
-              ? "/freelancer"
+              ? Routes.freelancer.home
               : role === "client"
-              ? "/client"
-              : "/admin"
+                ? Routes.client.home
+                : "/admin"
           );
         } else {
           showError(res.message);

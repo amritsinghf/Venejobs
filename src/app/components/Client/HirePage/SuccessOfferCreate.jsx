@@ -3,6 +3,7 @@ import Link from "next/link";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../../common/Loader";
+import { Routes } from "@/app/routes";
 
 export default function SuccessOfferCreate({ onClose }) {
 
@@ -13,7 +14,7 @@ export default function SuccessOfferCreate({ onClose }) {
     setLoading(true);
 
     setTimeout(() => {
-      window.location.href = "/client/";
+      window.location.href = Routes.client.home;
     }, 800);
   };
   return (
@@ -54,8 +55,7 @@ export default function SuccessOfferCreate({ onClose }) {
             {/* CTA Button */}
             <div className="flex flex-row gap-2 md:gap-10">
               <button className="flex items-center justify-center gap-3 bg-white font-semibold p-2 w-[120px] xl:w-[180px] xl:py-4 rounded text-paragraph text-xs md:text-base cursor-pointer border border-[#FAFAFA]" style={{ boxShadow: "2px 2px 50px 5px #0000000D" }} onClick={onClose}><SvgIcon size={18} name="LeftArrow" color="#666666" />Back</button>
-              <Link
-                href="/client/"
+              <Link href={Routes.client.home}
                 onClick={handleClick}
                 className={`bg-primary text-white px-6 py-3 rounded flex items-center justify-center gap-3 w-[120px] xl:w-[180px] text-sm sm:text-base transition ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}`}
               >

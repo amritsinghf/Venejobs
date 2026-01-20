@@ -48,7 +48,7 @@ const BudgetOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
       <StepperNumber currstep={JobFormStep.budgetOptions} />
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-[44px] font-semibold leading-tight text-heading">
             Set Your Budget with Confidence
           </h2>
           <p className="text-paragraph text-base lg:text-[18px]">

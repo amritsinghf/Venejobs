@@ -18,7 +18,7 @@ export default function BrowseCategories() {
             "
       >
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-heading">
+          <h2 className="text-2xl lg:text-3xl xl:text-[44px] font-semibold leading-tight text-heading">
             Browse talent by category
           </h2>
 

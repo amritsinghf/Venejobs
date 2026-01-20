@@ -3,6 +3,7 @@ import Link from "next/link";
 import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../common/Loader";
+import { Routes } from "@/app/routes";
 
 export default function SuccessJobCreate() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ export default function SuccessJobCreate() {
     setLoading(true);
 
     setTimeout(() => {
-      window.location.href = "/client/";
+      window.location.href = Routes.client.home;
     }, 800);
   };
   return (
@@ -50,7 +51,7 @@ export default function SuccessJobCreate() {
           </p>
 
           <Link
-            href="/client/"
+            href={Routes.client.home}
             onClick={handleClick}
             className={`bg-primary text-white 
               px-6 py-3 rounded-md 

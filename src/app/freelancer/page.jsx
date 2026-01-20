@@ -29,7 +29,7 @@ export default function Page() {
           <Link
             href={Routes.freelancer.get_started}
             onClick={() => setLoading(true)}
-            className={`bg-secondary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 
+            className={`bg-secondary text-white text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15 
               font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
               transition-all duration-300 gap-2
             ${loading ? "opacity-60 cursor-not-allowed" : ""}`}

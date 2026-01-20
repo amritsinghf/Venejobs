@@ -21,12 +21,12 @@ export default function Jobpost() {
       <ClientLayout>
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
           <div className="flex flex-col gap-5 lg:gap-8">
-            <h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl leading-10 lg:leading-snug tracking-normal max-w-4xl">
+            <h1 className="text-heading font-bold text-3xl lg:text-4xl xl:text-[64px] leading-10 lg:leading-snug tracking-normal max-w-4xl">
               Welcome back {user?.name}! <br />
               Let’s post your job and find the best Venezuelan talent.
             </h1>
 
-            <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide w-full lg:max-w-5xl">
+            <p className="text-gray-500 text-base xl:text-lg 2xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide w-full lg:max-w-5xl">
               Post your job and connect with exceptional Venezuelan talent. From
               creative minds to skilled professionals, find the perfect match to
               achieve outstanding results.
@@ -35,7 +35,8 @@ export default function Jobpost() {
             <Link
               href={Routes.job_post.form}
               onClick={handleClick}
-              className={`bg-primary text-white text-center w-[180px] md:w-44 h-12 sm:h-[50px] lg:h-13 
+              className={`bg-primary text-white text-center w-40 sm:w-[180px] md:w-45
+    h-[50px] sm:h-[52px] md:h-15 
               font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
               transition-all duration-300 gap-2
               ${loading ? "opacity-60 cursor-not-allowed" : ""}`}

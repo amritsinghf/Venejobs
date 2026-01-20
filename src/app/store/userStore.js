@@ -13,6 +13,7 @@ import {
   verifyResetCode,
 } from "../lib/auth/auth.api";
 import useToastStore from "./toastStore";
+import { Routes } from "@/app/routes";
 
 const userApiStore = create(
   persist(
@@ -98,10 +99,10 @@ const userApiStore = create(
             const { showError } = useToastStore.getState();
             showError(
               "Session Expired",
-              "Your session has timed out. Please log in again."
+              "Your session has timed out. Please log in again.",
             );
             setTimeout(() => {
-              window.location.href = "/";
+              window.location.href = Routes.home;
             }, 500);
             return false;
           }
@@ -244,8 +245,8 @@ const userApiStore = create(
     }),
     {
       name: "user-store",
-    }
-  )
+    },
+  ),
 );
 
 export default userApiStore;

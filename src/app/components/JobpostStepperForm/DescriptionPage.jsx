@@ -29,10 +29,10 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
       <StepperNumber currstep={JobFormStep.description} />
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-[44px] font-semibold leading-tight text-heading">
             Share the Details of Your Project
           </h2>
-          <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
+          <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
             Provide a clear overview of your project, including your goals,
             requirements, and expectations, to attract the right talent.
           </p>
@@ -73,9 +73,6 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
           <div className="flex flex-col gap-4">
             <h2 className="text-heading text-lg font-semibold lg:text-2xl">
               Upload Your File{" "}
-              <span className="text-sm font-normal text-gray-500 lg:text-base">
-                (Optional)
-              </span>
             </h2>
 
             <input

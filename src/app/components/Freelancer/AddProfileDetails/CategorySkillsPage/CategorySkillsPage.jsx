@@ -66,7 +66,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug">
             Let’s choose your category and showcase your skills
           </h2>
-          <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
+          <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
             Select the work you love to do and highlight your top skills.
           </p>
         </div>

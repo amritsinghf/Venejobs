@@ -16,10 +16,10 @@ export default function HeaderSection({ name }) {
     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
       {/* Left: Welcome Text */}
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
+        <h1 className="text-2xl lg:text-3xl xl:text-[44px] text-heading font-bold leading-snug">
           Welcome back, {name}
         </h1>
-        <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide">
+        <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
           Here's what's happening with your projects today. Ready to find top
           talent?
         </p>
@@ -32,7 +32,7 @@ export default function HeaderSection({ name }) {
           href={Routes.job_post.home}
           onClick={() => handleClick("post")}
           className={`
-                        bg-primary text-white text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
+                        bg-primary text-white text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15
                         font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
                         rounded transition-all duration-300 gap-2
                         ${loadingBtn === "post"
@@ -55,7 +55,7 @@ export default function HeaderSection({ name }) {
           href=""
           onClick={() => handleClick("talent")}
           className={`
-                        bg-white text-paragraph text-center w-40 md:w-44 h-12 sm:h-[50px] lg:h-13 
+                        bg-white text-paragraph text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15 
                         font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
                         rounded transition-all duration-300
                         ${loadingBtn === "talent"
@@ -65,7 +65,7 @@ export default function HeaderSection({ name }) {
                     `}
           style={{
             boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-            border: "1px solid rgba(0,0,0,0.08)",
+            border: "1px solid #FAFAFA",
           }}
         >
           {loadingBtn === "talent" ? (

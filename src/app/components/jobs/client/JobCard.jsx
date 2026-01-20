@@ -29,13 +29,13 @@ export default function JobCard({ item }) {
         </div>
 
         <div className="hidden lg:flex flex-col md:flex-row justify-start md:items-center gap-5 sm:gap-20">
-          <span className="hidden lg:flex text-paragraph font-medium text-base">
+          <span className="hidden lg:flex text-paragraph font-semibold text-base">
             Proposals (2)
           </span>
-          <span className="hidden lg:flex text-paragraph font-medium text-base">
+          <span className="hidden lg:flex text-paragraph font-semibold text-base">
             Message (1)
           </span>
-          <span className="hidden lg:flex text-paragraph font-medium text-base">
+          <span className="hidden lg:flex text-paragraph font-semibold text-base">
             Shortlist (2)
           </span>
 

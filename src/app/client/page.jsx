@@ -20,7 +20,7 @@ export default function Home() {
           <HeaderSection name={name} />
 
           <div className="flex flex-col gap-6 lg:gap-10">
-            <h2 className="text-2xl lg:text-3xl text-heading font-bold leading-9">
+            <h2 className="text-2xl lg:text-[32px] text-heading font-semibold leading-9">
               Your Job Posts & Active Contracts
             </h2>
 

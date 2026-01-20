@@ -4,11 +4,12 @@ import SvgIcon from "../Utility/SvgIcon";
 import jobApiStore from "@/app/store/jobStore";
 import StepNavigation from "./StepNavigation";
 import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
+import Button from "@/app/components/button/Button";
 
 const Row = ({ title, children, onEdit }) => (
   <div className="flex justify-between border-b border-gray-300 pb-4">
     <div className="flex flex-col gap-4">
-      <h2 className="font-semibold text-lg lg:text-xl text-heading">{title}</h2>
+      <h2 className="font-semibold text-lg lg:text-2xl text-heading">{title}</h2>
       {children}
     </div>
 
@@ -51,29 +52,39 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
   console.log(data);
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
-      <div className="flex flex-col gap-4">
-        <h2 className="text-2xl lg:text-3xl text-heading font-bold leading-9">
-          Review your Job details
-        </h2>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col gap-8">
+            <h2 className="text-2xl lg:text-[44px] text-heading font-semibold leading-9">
+              Review your Job details
+            </h2>
 
-        <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 tracking-wide">
-          Take a moment to double-check your job details to ensure everything is
-          correct.
-        </p>
+            <p className="text-paragraph text-base md:text-lg xl:text-lg font-normal leading-7 tracking-wide">
+              Take a moment to double-check your job details to ensure everything is
+              correct.
+            </p>
+          </div>
+          <Button
+            type="submit"
+            className="bg-primary text-white flex items-center gap-2 justify-center"
+          >
+            Post job post
+          </Button>
+        </div>
 
-        <div className="h-auto px-4 lg:px-10 py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">
+        <div className="h-auto px-4 lg:px-10 py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium mt-8 border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">
           {/* title */}
           <Row title="Title" onEdit={() => handleEdit(JobFormStep.title)}>
-            <p className="text-paragraph text-base">{data.title}</p>
+            <p className="text-paragraph text-base md:text-lg">{data.title}</p>
           </Row>
 
           {/* description */}
           <Row title="Description" onEdit={() => handleEdit(JobFormStep.description)}>
-            <p className="text-paragraph text-base max-w-[900px] break-all">
+            <p className="text-paragraph text-base md:text-lg max-w-[900px] break-all">
               {data.description}
             </p>
 
-            <h2 className="font-semibold text-lg lg:text-xl text-heading">
+            <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Attachments
             </h2>
             <p>{data?.attachment?.[0]?.name || "No file attached"}</p>
@@ -81,9 +92,9 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
 
           {/* CATEGORY + SKILLS */}
           <Row title="Category" onEdit={() => handleEdit(JobFormStep.categorySkills)}>
-            <p className="text-paragraph text-base"> {formatCategory(data.category)}</p>
+            <p className="text-paragraph text-base md:text-lg"> {formatCategory(data.category)}</p>
 
-            <h2 className="font-semibold text-lg lg:text-xl text-heading">
+            <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Skills
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -101,27 +112,27 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
 
           {/* PROJECT DETAILS */}
           <Row title="Project size" onEdit={() => handleEdit(JobFormStep.projectOptions)}>
-            <p className="text-paragraph text-base">{data.project_size}</p>
+            <p className="text-paragraph text-base md:text-lg">{data.project_size}</p>
 
-            <h2 className="font-semibold text-lg lg:text-xl text-heading">
+            <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Deadline
             </h2>
-            <p className="text-paragraph text-base">{final_deadline}</p>
+            <p className="text-paragraph text-base md:text-lg">{final_deadline}</p>
 
-            <h2 className="font-semibold text-lg lg:text-xl text-heading">
+            <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Experience Level
             </h2>
-            <p className="text-paragraph text-base">{data.experience_level}</p>
+            <p className="text-paragraph text-base md:text-lg">{data.experience_level}</p>
           </Row>
 
           {/* BUDGET */}
           <Row title="Budget Type" onEdit={() => handleEdit(JobFormStep.budgetOptions)}>
-            <p className="text-paragraph text-base">{data.budget_type}</p>
+            <p className="text-paragraph text-base md:text-lg">{data.budget_type}</p>
 
-            <h2 className="font-semibold text-lg lg:text-xl text-heading">
+            <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Budget Amount
             </h2>
-            <p className="text-paragraph text-base">{data.budget_amount}</p>
+            <p className="text-paragraph text-base md:text-lg">{data.budget_amount}</p>
           </Row>
 
           {/* BUTTONS */}
