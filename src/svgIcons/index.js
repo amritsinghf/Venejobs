@@ -91,3 +91,4 @@ export { PriceTag2 } from "./PriceTag2";
 export { WallClock } from "./WallClock";
 export { Upload } from "./Upload";
 export { GreenTick } from "./GreenTick";
+export { BusinessSector } from "./BusinessSector";

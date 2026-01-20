@@ -3,20 +3,45 @@
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Button from "@/app/components/button/Button";
 import FreelancerLayout from "@/app/layout/FreelancerLayout";
+import { Routes } from "@/app/routes";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
+import { useRouter } from "next/navigation";
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 
-const AllJobs = lazy(() =>
-  import("../../components/Freelancer/HomeData/AllJobs")
+const AllJobs = lazy(
+  () => import("../../components/Freelancer/HomeData/AllJobs"),
 );
 
 export default function Home() {
+  const router = useRouter();
+
+  const { freelanceDetails, getPersonalDetails, personalDetailLoading } =
+    freelancerApiStore();
+
+  // fetch only once
+  useEffect(() => {
+    if (!freelanceDetails || Object.keys(freelanceDetails).length === 0) {
+      getPersonalDetails();
+    }
+  }, [freelanceDetails, getPersonalDetails]);
+
+  // redirect guard
+  useEffect(() => {
+    if (
+      !personalDetailLoading &&
+      freelanceDetails?.freelancerProfile === null
+    ) {
+      router.replace(Routes.freelancer.home);
+    }
+  }, [personalDetailLoading, freelanceDetails, router]);
+
   return (
     <>
       <FreelancerLayout>
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
           <div className="flex flex-col gap-5">
-            <div className="rounded-lg p-5 md:px-8 md:py-10 flex flex-col gap-6 border border-[rgba(68,68,68,0.08)]">
+            <div className="rounded-lg p-5 md:px-8 md:py-10 flex flex-col gap-6 border border-[rgba(68,68,68,0.08)] bg-[#F8F8FD]">
               <div className="flex flex-col gap-3 lg:gap-2">
                 <h2 className="text-2xl lg:text-2xl xl:text-3xl text-heading font-bold leading-snug">
                   Find Projects That Match Your Passion With Venejobs
@@ -35,36 +60,29 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="w-full">
-              <label htmlFor="search" className="sr-only">
-                Search
-              </label>
-
-              <div className="relative w-full max-w-md sm:max-w-lg">
-                {/* Icon */}
-                <span className="absolute inset-y-0 left-0 flex items-center pl-1 text-gray-400">
-                  <SvgIcon name="Search_Icon" />
-                </span>
-
-                {/* Input */}
-                <input
-                  type="search"
-                  id="searchInJob"
-                  placeholder="Search jobs, skills, companies"
-                  className="
-                  w-full
-                  py-2.5
-                  pl-8 pr-2
-                  text-sm sm:text-base
-                  font-medium text-heading
-                  border-b border-[#D0D5DD]
-                  bg-transparent
-                  placeholder:text-sm placeholder:text-gray-400
-                  focus:outline-none
-                  focus:border-primary
-                  transition
-                "
-                />
+            <div className="max-w-[1040px]  h-auto  w-full  flex  mt-10 flex-col">
+              <div className="">
+                <label
+                  htmlFor="search"
+                  className="block mb-2.5 text-sm font-medium text-heading sr-only "
+                >
+                  Search
+                </label>
+                <div className="relative ">
+                  <span className="absolute inset-y-0 px-4 py-2 flex items-center  ">
+                    <SvgIcon name="Search_Icon" size={18}/>
+                  </span>
+                  <input
+                    type="search"
+                    id="search"
+                    className="block w-full pl-12 pr-4 py-1 md:py-3 
+                    rounded-4xl  text-gray-900 
+                    border border-lightborder focus:border-secondary outline-none
+                    placeholder:text-gray-400 shadow md:text-lg font-medium"
+                    placeholder="Search"
+                    required
+                  />
+                </div>
               </div>
             </div>
             <Suspense fallback={null}>

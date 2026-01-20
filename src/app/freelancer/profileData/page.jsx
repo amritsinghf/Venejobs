@@ -9,27 +9,25 @@ import { Routes } from "@/app/routes";
 import PageLoader from "@/app/components/common/PageLoader";
 
 /* Lazy imports */
-const ShowDetailsHeader = lazy(() =>
-  import("@/app/components/Freelancer/ShowProfileDetails/ShowDetailsHeader")
+const ShowDetailsHeader = lazy(
+  () =>
+    import("@/app/components/Freelancer/ShowProfileDetails/ShowDetailsHeader"),
 );
-const LeftPanel = lazy(() =>
-  import("@/app/components/Freelancer/ShowProfileDetails/LeftPanel")
+const LeftPanel = lazy(
+  () => import("@/app/components/Freelancer/ShowProfileDetails/LeftPanel"),
 );
-const RightPanel = lazy(() =>
-  import("@/app/components/Freelancer/ShowProfileDetails/RightPanel")
+const RightPanel = lazy(
+  () => import("@/app/components/Freelancer/ShowProfileDetails/RightPanel"),
 );
-const BottomPanel = lazy(() =>
-  import("@/app/components/Freelancer/ShowProfileDetails/BottomPanel")
+const BottomPanel = lazy(
+  () => import("@/app/components/Freelancer/ShowProfileDetails/BottomPanel"),
 );
 
 export default function Page() {
   const router = useRouter();
 
-  const {
-    freelanceDetails,
-    getPersonalDetails,
-    personalDetailLoading,
-  } = freelancerApiStore();
+  const { freelanceDetails, getPersonalDetails, personalDetailLoading } =
+    freelancerApiStore();
 
   const { name, country } = freelanceDetails || {};
   const { freelancerProfile } = freelanceDetails || {};
@@ -43,12 +41,15 @@ export default function Page() {
 
   // redirect guard
   useEffect(() => {
-    if (!personalDetailLoading && freelanceDetails?.freelancerProfile === null) {
+    if (
+      !personalDetailLoading &&
+      freelanceDetails?.freelancerProfile === null
+    ) {
       router.replace(Routes.freelancer.page);
     }
   }, [personalDetailLoading, freelanceDetails, router]);
 
-  // single loader 
+  // single loader
   // if (personalDetailLoading || !freelanceDetails) {
   //   return (
   //     <FreelancerLayout>
@@ -83,4 +84,3 @@ export default function Page() {
     </FreelancerLayout>
   );
 }
-
