@@ -28,13 +28,13 @@ export default function DesktopLinks() {
   const Links = [
     {
       label: "Contact Info",
-      href: Routes.profile.freelancer.info,
+      href: Routes.freelancer.profile.info,
       icon: "Preview",
       active: true,
     },
     {
       label: "Billing & Payments",
-      href: Routes.profile.freelancer.billing,
+      href: Routes.freelancer.profile.billing,
       icon: "CreditCard",
     },
     {

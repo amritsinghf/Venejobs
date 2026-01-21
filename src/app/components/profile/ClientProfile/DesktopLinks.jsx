@@ -18,12 +18,12 @@ export default function DesktopLinks() {
   const Links = [
     {
       label: "My Info",
-      href: Routes.profile.client.info || "#",
+      href: Routes.client.profile.info || "#",
       icon: "Preview",
     },
     {
       label: "Billing & Payments",
-      href: Routes.profile.client.bill || "#",
+      href: Routes.client.profile.bill || "#",
       icon: "CreditCard",
     },
     {

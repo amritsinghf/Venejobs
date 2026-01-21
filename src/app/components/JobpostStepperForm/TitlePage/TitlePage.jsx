@@ -4,6 +4,7 @@ import TitleHeader from "./TitleHeader";
 import TitleInputSection from "./TitleInputSection";
 import StepperNumber from "../StepperNumber";
 import { JobFormStep } from "../JobFormStep";
+import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
 
 const TitlePage = ({ nextStep, setStep, fromReview }) => {
     const { trigger } = useFormContext();
@@ -22,10 +23,13 @@ const TitlePage = ({ nextStep, setStep, fromReview }) => {
 
             <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row">
                 <TitleHeader />
-                <TitleInputSection
-                    onNext={() => validateFields(nextStep)}
+                <TitleInputSection />
+            </div>
+            <div>
+                <StepNavigation
                     isFirstStep
-                    fromReview={fromReview}
+                    onNext={() => validateFields(nextStep)}
+                    showReviewBack={fromReview}
                     onReviewBack={() =>
                         validateFields(() => setStep(JobFormStep.review))
                     }

@@ -33,7 +33,7 @@ export default function Jobpost() {
             </p>
 
             <Link
-              href={Routes.job_post.form}
+              href={Routes.client.job_post.form}
               onClick={handleClick}
               className={`bg-primary text-white text-center w-40 sm:w-[180px] md:w-45
     h-[50px] sm:h-[52px] md:h-15 

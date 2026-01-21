@@ -7,7 +7,7 @@ import { JobFormStep } from "@/app/components/JobpostStepperForm/JobFormStep";
 import Button from "@/app/components/button/Button";
 
 const Row = ({ title, children, onEdit }) => (
-  <div className="flex justify-between border-b border-gray-300 pb-4">
+  <div className="flex justify-between border-b border-[#DEDEDE] pb-4 px-4 lg:px-10">
     <div className="flex flex-col gap-4">
       <h2 className="font-semibold text-lg lg:text-2xl text-heading">{title}</h2>
       {children}
@@ -15,7 +15,7 @@ const Row = ({ title, children, onEdit }) => (
 
     {onEdit && (
       <div onClick={onEdit} className="cursor-pointer">
-        <SvgIcon name="Edit" size={22} className="text-blue-900" />
+        <SvgIcon name="PostEditBold" className="text-blue-900" />
       </div>
     )}
   </div>
@@ -48,8 +48,6 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
       .join(" ");
   }
 
-
-  console.log(data);
   return (
     <div className="flex flex-col gap-6 lg:gap-10">
       <div className="flex flex-col gap-8">
@@ -60,19 +58,17 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
             </h2>
 
             <p className="text-paragraph text-base md:text-lg xl:text-lg font-normal leading-7 tracking-wide">
-              Take a moment to double-check your job details to ensure everything is
-              correct.
+              Take a moment to double-check your job details to ensure everything is clear and ready for the right talent to apply.
             </p>
           </div>
           <Button
             type="submit"
             className="bg-primary text-white flex items-center gap-2 justify-center"
-          >
-            Post job post
+          >Post job post<SvgIcon name="NextArrow" />
           </Button>
         </div>
 
-        <div className="h-auto px-4 lg:px-10 py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium mt-8 border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">
+        <div className="h-auto py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium mt-8 border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">
           {/* title */}
           <Row title="Title" onEdit={() => handleEdit(JobFormStep.title)}>
             <p className="text-paragraph text-base md:text-lg">{data.title}</p>
@@ -87,7 +83,26 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
             <h2 className="font-semibold text-lg lg:text-2xl text-heading">
               Attachments
             </h2>
-            <p>{data?.attachment?.[0]?.name || "No file attached"}</p>
+            {data?.attachment?.length > 0 ? (
+              <div className="flex items-center gap-2 border border-[#44444414] rounded-md px-3 py-2">
+                <div className="bg-gray-200 p-2 md:p-3 rounded-full">
+                  <SvgIcon name="File" size={32} />
+                </div>
+
+                <div className="flex flex-col">
+                  <h3 className="text-heading text-xs md:text-sm">
+                    {data.attachment[0].name}
+                  </h3>
+                  <p className="text-paragraph text-[10px] md:text-xs">
+                    {(data.attachment[0].size / 1024 / 1024).toFixed(2)} MB
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p className="text-paragraph text-sm">
+                No file attached
+              </p>
+            )}
           </Row>
 
           {/* CATEGORY + SKILLS */}
@@ -98,16 +113,10 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
               Skills
             </h2>
             <div className="flex flex-wrap gap-2">
-              {data.skills?.map((skill, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-gray-100 rounded text-sm"
-                >
-                  {skill} ("Intermediate")
-                </span>
-              ))}
+              <p className="text-paragraph text-base md:text-lg">
+                {data.skills?.map(skill => `${skill} (Intermediate)`).join(", ")}
+              </p>
             </div>
-
           </Row>
 
           {/* PROJECT DETAILS */}
@@ -134,14 +143,15 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
             </h2>
             <p className="text-paragraph text-base md:text-lg">{data.budget_amount}</p>
           </Row>
-
-          {/* BUTTONS */}
-          <StepNavigation
-            isLastStep
-            onBack={prevStep}
-            loading={loading}
-            submitLabel="Post This Job"
-          />
+          <div className="px-4 lg:px-10">
+            {/* BUTTONS */}
+            <StepNavigation
+              isLastStep
+              onBack={prevStep}
+              loading={loading}
+              submitLabel="Post This Job"
+            />
+          </div>
         </div>
       </div>
     </div>

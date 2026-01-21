@@ -38,7 +38,7 @@ export default function HomeNavbar() {
     },
     {
       label: "Post a Job",
-      href: Routes.job_post.form,
+      href: Routes.client.job_post.form,
       icon: "",
     },
     {
@@ -63,8 +63,8 @@ export default function HomeNavbar() {
       label: "Profile",
       href:
         user?.role_id === 2
-          ? Routes.profile.client.home
-          : Routes.profile.freelancer.home,
+          ? Routes.client.profile.home
+          : Routes.freelancer.profile.home,
     },
     {
       label: "Find Talent",

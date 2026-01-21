@@ -36,7 +36,7 @@ const ShowDetailsHeader = ({ name, country }) => {
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-6">
           <Link
-            href={Routes.profile.freelancer.home}
+            href={Routes.freelancer.profile.home}
             className="
     bg-secondary text-white text-center
     w-40 md:w-44

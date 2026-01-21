@@ -228,19 +228,19 @@ const ProjectOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
               </span>
             )}
           </div>
-
-          {/* BUTTONS */}
-          <StepNavigation
-            onNext={() => validateFields(nextStep)}
-            onBack={prevStep}
-            showReviewBack={fromReview}
-            onReviewBack={() =>
-              validateFields(() => setStep(JobFormStep.review))
-            }
-            loading={loadingNext}
-          />
-
         </div>
+      </div>
+      <div>
+        {/* BUTTONS */}
+        <StepNavigation
+          onNext={() => validateFields(nextStep)}
+          onBack={prevStep}
+          showReviewBack={fromReview}
+          onReviewBack={() =>
+            validateFields(() => setStep(JobFormStep.review))
+          }
+          loading={loadingNext}
+        />
       </div>
     </div>
   );

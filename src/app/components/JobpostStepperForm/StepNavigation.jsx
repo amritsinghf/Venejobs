@@ -77,6 +77,7 @@ const StepNavigation = ({
           ) : (
             submitLabel
           )}
+          <SvgIcon name="NextArrow" />
         </Button>
       )}
     </div>

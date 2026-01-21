@@ -1,14 +1,8 @@
 import { useFormContext } from "react-hook-form";
-import StepNavigation from "@/app/components/JobpostStepperForm/StepNavigation";
-// import { watch } from "fs";
 
-const TitleInputSection = ({ onNext,
-  isFirstStep,
-  fromReview,
-  onReviewBack, }) => {
+const TitleInputSection = () => {
   const {
     register,
-    watch,
     formState: { errors },
   } = useFormContext();
   return (
@@ -51,16 +45,6 @@ const TitleInputSection = ({ onNext,
             <li>Video editor needed to create whiteboard explainer video</li>
             <li>Remote assistant to handle scheduling & customer support</li>
           </ul>
-
-          <div className="flex justify-end mt-5">
-
-            <StepNavigation
-              isFirstStep={isFirstStep}
-              onNext={onNext}
-              showReviewBack={fromReview}
-              onReviewBack={onReviewBack}
-            />
-          </div>
         </div>
       </div>
     </div>

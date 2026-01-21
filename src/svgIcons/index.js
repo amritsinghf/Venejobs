@@ -74,6 +74,7 @@ export { PersonWSetting } from "./PersonWSetting";
 export { Location } from "./Location";
 export { PostEdit } from "./PostEdit";
 export { Editing } from "./Editing";
+export { PostEditBold } from "./PostEditBold";
 export { Verified } from "./Verified";
 export { NotVerified } from "./NotVerified";
 export { Share } from "./Share";

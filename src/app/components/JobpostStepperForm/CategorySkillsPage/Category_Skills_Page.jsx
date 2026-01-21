@@ -48,17 +48,19 @@ const Category_Skills_Page = ({ nextStep, prevStep, setStep, fromReview }) => {
           {selectedCategory && (
             <SkillsSelector />
           )}
-
-          <StepNavigation
-            onNext={() => validateFields(nextStep)}
-            onBack={prevStep}
-            showReviewBack={fromReview}
-            onReviewBack={() =>
-              validateFields(() => setStep(JobFormStep.review))
-            }
-            loading={buttonLoading}
-          />
         </div>
+
+      </div>
+      <div>
+        <StepNavigation
+          onNext={() => validateFields(nextStep)}
+          onBack={prevStep}
+          showReviewBack={fromReview}
+          onReviewBack={() =>
+            validateFields(() => setStep(JobFormStep.review))
+          }
+          loading={buttonLoading}
+        />
       </div>
     </div>
   );

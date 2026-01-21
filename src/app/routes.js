@@ -4,11 +4,19 @@ export const Routes = {
     home: "/client",
     chat: "/client/chat/",
     hirePayment: "/client/HirePayment/",
+
+    job_post: {
+      home: "/client/jobpost/",
+      form: "/client/jobpost/forms/",
+    },
+
+    profile: {
+      home: "/profile/client",
+      info: "/profile/client/Info",
+      bill: "/profile/client/Bill",
+    },
   },
-  job_post: {
-    home: "/client/jobpost/",
-    form: "/client/jobpost/forms/",
-  },
+
   freelancer: {
     home: "/freelancer",
     get_started: "/freelancer/addProfileDetails",
@@ -18,23 +26,19 @@ export const Routes = {
     // jobsearch:"/freelancer/JobSearch/",
     proposal: "/freelancer/Proposal/",
     profileData: "/freelancer/profileData",
-  },
-  profile: {
-    client: {
-      home: "/profile/client",
-      info: "/profile/client/Info",
-      bill: "/profile/client/Bill",
-    },
-    freelancer: {
+
+    profile: {
       home: "/profile/freelancer",
       info: "/profile/freelancer/Info",
       billing: "/profile/freelancer/BillingPage",
     },
+
+    service: {
+      home: "/freelancer/AddService/",
+      form: "/freelancer/AddService/form",
+    },
   },
-  service: {
-    home: "/freelancer/AddService/",
-    form: "/freelancer/AddService/form",
-  },
+
   auth: {
     signup: "/auth/signup/",
   },

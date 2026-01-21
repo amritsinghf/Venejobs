@@ -16,7 +16,7 @@ export default function FreelanceProfileLayout({ children }) {
             <div className="border border-[#F2F2F2] p-7 rounded-2xl flex flex-col w-full gap-6 ">
               <div className="flex justify-start lg:hidden">
                 <Link
-                  href={Routes.profile.freelancer.home}
+                  href={Routes.freelancer.profile.home}
                   className="bg-secondary text-white px-4 py-1 rounded flex items-center gap-2"
                 >
                   <SvgIcon name="PrevButton" color="white" /> Back

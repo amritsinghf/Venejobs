@@ -30,12 +30,12 @@ export default function MobileView() {
     {
       label: "Contact Info",
       icon: "Preview",
-      href: Routes.profile.freelancer.info,
+      href: Routes.freelancer.profile.info,
     },
     {
       label: "Billing & Payments",
       icon: "CreditCard",
-      href: Routes.profile.freelancer.billing,
+      href: Routes.freelancer.profile.billing,
     },
     {
       label: "Notification",
@@ -96,9 +96,8 @@ export default function MobileView() {
                 <div
                   key={item.label}
                   role="button"
-                  className={`flex items-center w-full py-6 h-[45px] border border-gray-200 rounded ${
-                    isActive ? "bg-secondary text-white" : "text-paragraph"
-                  }`}
+                  className={`flex items-center w-full py-6 h-[45px] border border-gray-200 rounded ${isActive ? "bg-secondary text-white" : "text-paragraph"
+                    }`}
                   onClick={() => setActiveTab(item.label)}
                 >
                   <Link

@@ -17,11 +17,11 @@ export default function Page() {
   const { showSuccess, showError } = toastStore.getState();
 
   const menuItems = [
-    { label: "My Info", icon: "Preview", href: Routes.profile.client.info },
+    { label: "My Info", icon: "Preview", href: Routes.client.profile.info },
     {
       label: "Billing & Payments",
       icon: "CreditCard",
-      href: Routes.profile.client.bill,
+      href: Routes.client.profile.bill,
     },
     { label: "Notification", icon: "Notify", href: "/notifications" },
     { label: "Subscription Setting", icon: "Premium", href: "/subscription" },

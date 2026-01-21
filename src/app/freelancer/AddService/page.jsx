@@ -28,7 +28,7 @@ const AddService = () => {
             </p>
 
             <Link
-              href={Routes.service.form}
+              href={Routes.freelancer.service.form}
               onClick={handleClick}
               className={`bg-secondary text-white text-center w-auto md:w-76
               font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded py-4.5 mt-4

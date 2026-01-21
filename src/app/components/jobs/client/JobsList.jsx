@@ -29,7 +29,7 @@ export default function JobsList({ jobs, loading, hasFetched }) {
             You haven't created any job posts yet.
           </p>
           <Link
-            href={Routes.job_post.home}
+            href={Routes.client.job_post.home}
             className="inline-block mt-5 bg-primary text-white px-5 py-2 rounded-md"
           >
             Post a Job

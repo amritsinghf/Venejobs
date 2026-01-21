@@ -16,7 +16,7 @@ export default function ClientProfileLayout({ children }) {
             <div className="border border-[#F2F2F2] p-7 rounded-2xl flex flex-col w-full gap-6 ">
               <div className="flex justify-start lg:hidden">
                 <Link
-                  href={Routes.profile.client.home}
+                  href={Routes.client.profile.home}
                   className="text-paragraph flex items-center gap-3 hover:text-primary"
                 >
                   <SvgIcon name="PrevButton" color="white" /> Back

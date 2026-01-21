@@ -29,7 +29,7 @@ export default function HeaderSection({ name }) {
       <div className="flex items-center justify-end gap-4 md:gap-6 lg:gap-8">
         {/* Post Job */}
         <Link
-          href={Routes.job_post.home}
+          href={Routes.client.job_post.home}
           onClick={() => handleClick("post")}
           className={`
                         bg-primary text-white text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15

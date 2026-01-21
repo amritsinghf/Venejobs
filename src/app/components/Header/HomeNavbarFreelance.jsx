@@ -56,8 +56,8 @@ export default function HomeNavbarFreelance() {
       label: "Profile",
       href: Routes.freelancer.profileData,
       // user?.role_id === 2
-      //   ? Routes.profile.client.home
-      //   : Routes.profile.freelancer.home,
+      //   ? Routes.client.profile.home
+      //   : Routes.freelancer.profile.home,
       className: "text-3xl sm:text-2xl text-paragraph px-4 font-medium",
     },
     {

@@ -115,7 +115,7 @@ export default function ProfileDropdown() {
                 <Link
                   href={
                     user?.role_id === 2
-                      ? Routes.profile.client.info
+                      ? Routes.client.profile.info
                       : Routes.freelancer.profileData
                   }
                   className="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition"

@@ -81,8 +81,7 @@ const BudgetOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
                       htmlFor={item.id}
                       className="flex justify-between items-start gap-4 bg-neutral-primary-soft 
                  border border-[#D0D5DD] rounded-lg p-5 hover:bg-neutral-secondary-medium 
-                 cursor-pointer w-full h-full"
-                    >
+                 cursor-pointer w-full h-full transition-all has-checked:bg-[#5BBB7B0D]">
                       {/* Left Content */}
                       <div className="flex flex-col gap-3 w-full">
                         <svg
@@ -181,19 +180,19 @@ const BudgetOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
 
               </div>
             </div>
-
-            <StepNavigation
-              onNext={() => validateFields(nextStep)}
-              onBack={prevStep}
-              showReviewBack={fromReview}
-              onReviewBack={() =>
-                validateFields(() => setStep(JobFormStep.review))
-              }
-              loading={loadingNext}
-            />
-
           </div>
         </div>
+      </div>
+      <div>
+        <StepNavigation
+          onNext={() => validateFields(nextStep)}
+          onBack={prevStep}
+          showReviewBack={fromReview}
+          onReviewBack={() =>
+            validateFields(() => setStep(JobFormStep.review))
+          }
+          loading={loadingNext}
+        />
       </div>
     </div>
   );
