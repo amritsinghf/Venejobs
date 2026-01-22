@@ -28,22 +28,22 @@ export default function DesktopLinks() {
     },
     {
       label: "Notification",
-      href: Routes.profile.client.notification || "#",
+      href: "#",
       icon: "Notify",
     },
     {
       label: "Subscription Setting",
-      href: Routes.profile.client.subscription || "#",
+      href: "#",
       icon: "Premium",
     },
     {
       label: "Security Settings",
-      href: Routes.profile.client.security || "#",
+      href: "#",
       icon: "Setting",
     },
     {
       label: "Legal & Compliance",
-      href: Routes.profile.client.legal || "#",
+      href: "#",
       icon: "leagal_doc",
     },
   ];

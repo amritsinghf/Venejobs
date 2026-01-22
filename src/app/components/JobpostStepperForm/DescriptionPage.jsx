@@ -89,7 +89,7 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
             <input
               type="file"
               {...register("attachment", {
-                required: attachment.length === 0 && {
+                required: !attachment?.length && {
                   value: true,
                   message: "Please Upload Your File ",
                 },
