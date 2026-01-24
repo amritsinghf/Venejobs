@@ -7,16 +7,18 @@ import Image from "next/image";
 import { login } from "@/app/lib/auth/auth.api";
 import Button from "@/app/components/button/Button";
 import { Routes } from "@/app/routes";
+import useToastStore from "@/app/store/toastStore";
 
 export default function signin() {
   const [formData, setformData] = useState({ email: "", password: "" });
+  const showError = useToastStore.getState().showError;
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       const res = await login(formData);
     } catch (error) {
-      console.log(error);
+      showError(error)
     }
   };
 

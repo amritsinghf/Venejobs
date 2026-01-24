@@ -308,7 +308,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
                 onChange={handleChange}
                 className="
                   appearance-none w-5 h-5 border-2 border-gray-300 rounded-md
-                  checked:bg-primary checked:border-primary relative
+                  checked:bg-secondary checked:border-secondary relative
                   transition-all duration-200
                   after:content-['✓'] after:absolute after:text-white
                   after:text-sm after:font-bold after:-top-0.5 after:left-0.5

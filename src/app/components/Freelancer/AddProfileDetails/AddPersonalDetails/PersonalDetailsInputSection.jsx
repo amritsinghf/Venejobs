@@ -15,8 +15,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
     formState: { errors },
   } = useFormContext();
 
-  const { loading } = freelancerApiStore();
-
+  const { personalDetailLoading } = freelancerApiStore();
   return (
     <div className="w-full">
       <div className="flex flex-col gap-5">
@@ -146,7 +145,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
         <StepNavigation
           isLastStep
           onBack={prevStep}
-          loading={loading}
+          loading={personalDetailLoading}
           submitLabel="Let’s Finalize"
         />
 

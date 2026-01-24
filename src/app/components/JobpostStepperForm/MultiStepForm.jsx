@@ -73,7 +73,7 @@ const MultiStepForm = () => {
         setshowConfirmMessage(true);
       }
     } catch (error) {
-      console.error("JOB CREATE ERROR 👉", error);
+      showError("JOB CREATE ERROR 👉", error);
 
       showError(
         error?.response?.data?.message ||

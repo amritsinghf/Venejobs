@@ -5,9 +5,10 @@ import ServicePricing from "@/app/components/Freelancer/ServiceStepForm/ServiceP
 import ServiceOverview from "@/app/components/Freelancer/ServiceStepForm/ServiceOverview";
 import ServiceDescription from "@/app/components/Freelancer/ServiceStepForm/ServiceDescription";
 import ServiceGallery from "@/app/components/Freelancer/ServiceStepForm/ServiceGallery";
+import useToastStore from "@/app/store/toastStore";
 
 const ServiceForm = () => {
-
+  const showError = useToastStore.getState().showError;
   const methods = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -42,7 +43,6 @@ const ServiceForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      // console.log(data)
       const formData = new FormData();
 
       formData.append("service_title", data.service_title);
@@ -62,7 +62,7 @@ const ServiceForm = () => {
       });
       formData.append("service_description", data.service_description);
     } catch (error) {
-      console.log(error);
+      showError(error);
     }
   };
 

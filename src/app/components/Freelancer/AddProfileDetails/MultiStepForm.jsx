@@ -40,10 +40,7 @@ const MultiStepForm = () => {
     }
   };
   const { SavePersonalDetails } = freelancerApiStore();
-
   const onSubmit = async (data) => {
-    console.log("Before:", data);
-
     const updatedData = {
       ...data,
       skills: data.skills.map((skill) => ({
@@ -60,15 +57,14 @@ const MultiStepForm = () => {
       })
     };
 
-    console.log("After:", updatedData);
-
     try {
       const res = await SavePersonalDetails(updatedData);
       if (res.success) {
         setshowConfirmMessage(true);
       }
     } catch (error) {
-      console.log(error);
+      showError(error)
+
     }
   };
 
