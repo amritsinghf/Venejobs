@@ -31,7 +31,7 @@ export default function HomeNavbarFreelance() {
   const NavLinks = [
     {
       label: "Find Work",
-      href: "",
+      href: Routes.freelancer.page,
       icon: "",
     },
     {
@@ -62,7 +62,7 @@ export default function HomeNavbarFreelance() {
     },
     {
       label: "Find Work",
-      href: "",
+      href: Routes.freelancer.page,
       icon: "",
     },
     {
