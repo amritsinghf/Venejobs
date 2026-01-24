@@ -59,7 +59,7 @@ const ShowDetailsHeader = ({ name, country }) => {
           <Link
             href={Routes.freelancer.page}
             className="
-              bg-white text-paragraph text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15 
+              bg-white text-paragraph text-center w-40 sm:w-[180px] md:min-w-50 h-[50px] sm:h-[52px] md:h-15 
                 font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
                 rounded transition-all duration-300
                 "

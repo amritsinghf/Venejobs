@@ -30,7 +30,9 @@ export default function JobsList({ jobs, loading, hasFetched }) {
           </p>
           <Link
             href={Routes.client.job_post.home}
-            className="inline-block mt-5 bg-primary text-white px-5 py-2 rounded-md"
+            className=" mt-5 bg-primary text-white w-40 sm:min-w-[190px] md:min-w-50 mx-auto
+    h-[50px] sm:h-[52px] md:h-14  font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
+              transition-all duration-300 gap-2"
           >
             Post a Job
           </Link>

@@ -15,10 +15,11 @@ export default function HeaderSection({ name }) {
   return (
     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
       {/* Left: Welcome Text */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <h1 className="text-2xl lg:text-3xl xl:text-[44px] text-heading font-bold leading-snug">
-          Welcome back, {name}
+          Welcome, {name ? name.charAt(0).toUpperCase() + name.slice(1) : ""}
         </h1>
+
         <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
           Here's what's happening with your projects today. Ready to find top
           talent?
@@ -32,15 +33,14 @@ export default function HeaderSection({ name }) {
           href={Routes.client.job_post.home}
           onClick={() => handleClick("post")}
           className={`
-                        bg-primary text-white text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15
-                        font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-                        rounded transition-all duration-300 gap-2
-                        ${loadingBtn === "post"
-              ? "opacity-60 cursor-not-allowed"
-              : ""
-            }
-                    `}
+    bg-primary text-white text-center w-40 sm:min-w-[190px] md:min-w-50 h-[50px] sm:h-[52px] md:h-14
+    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+    rounded transition-all duration-200 ease-out gap-2
+    active:scale-95 hover:scale-[1.02]
+    ${loadingBtn === "post" ? "opacity-60 cursor-not-allowed" : ""}
+  `}
         >
+
           {loadingBtn === "post" ? (
             <Loader size={18} border={3} color="white" />
           ) : (
@@ -55,14 +55,15 @@ export default function HeaderSection({ name }) {
           href=""
           onClick={() => handleClick("talent")}
           className={`
-                        bg-white text-paragraph text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15 
-                        font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-                        rounded transition-all duration-300
-                        ${loadingBtn === "talent"
-              ? "opacity-60 cursor-not-allowed"
-              : ""
-            }
-                    `}
+    bg-white text-paragraph text-center w-40 sm:w-[190px] md:min-w-50 h-[50px] sm:h-[52px] md:h-14
+    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+    rounded transition-all duration-200 ease-out
+    hover:scale-[1.02] active:scale-95
+    hover:shadow-md active:shadow-sm
+    ${loadingBtn === "talent"
+              ? "opacity-60 cursor-not-allowed pointer-events-none"
+              : ""}
+  `}
           style={{
             boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
             border: "1px solid #FAFAFA",
@@ -74,6 +75,7 @@ export default function HeaderSection({ name }) {
             "Find Talent"
           )}
         </Link>
+
       </div>
     </div>
   );

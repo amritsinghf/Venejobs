@@ -16,9 +16,13 @@ export default function Page() {
   return (
     <FreelancerLayout>
       <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto my-10 lg:my-20">
-        <div className="flex-1 flex flex-col gap-6 lg:gap-7">
+        <div className="flex flex-col gap-5 lg:gap-6">
           <h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl leading-10 lg:leading-snug tracking-normal max-w-4xl">
-            Welcome back, {user?.name}! <br />
+            Welcome,{" "}
+            {user?.name
+              ? user.name.charAt(0).toUpperCase() + user.name.slice(1)
+              : ""}
+            ! <br />
             Find the best freelance jobs on Venezuelan and boost your career.
           </h1>
 
@@ -29,14 +33,26 @@ export default function Page() {
           <Link
             href={Routes.freelancer.get_started}
             onClick={() => setLoading(true)}
-            className={`bg-secondary text-white text-center w-40 sm:w-[180px] md:w-45 h-[50px] sm:h-[52px] md:h-15 
-              font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
-              transition-all duration-300 gap-2
-            ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+            className={`
+    bg-secondary text-white text-center w-40 sm:min-w-[180px] md:min-w-50
+    h-[50px] sm:h-[52px] md:h-14
+    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+    rounded transition-all duration-200 ease-out gap-2
+    hover:scale-[1.02] active:scale-95
+    hover:shadow-lg active:shadow-md
+    ${loading ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
+  `}
           >
-            {loading ? <Loader size={18} /> : "Get Started"}
-            <SvgIcon name="RightArrWhite" />
+            {loading ? (
+              <Loader size={18} />
+            ) : (
+              <>
+                Get Started
+                <SvgIcon name="RightArrWhite" />
+              </>
+            )}
           </Link>
+
         </div>
       </div>
     </FreelancerLayout>
