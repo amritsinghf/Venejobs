@@ -59,10 +59,13 @@ const ShowDetailsHeader = ({ name, country }) => {
           <Link
             href={Routes.freelancer.page}
             className="
-              bg-white text-paragraph text-center w-40 sm:w-[180px] md:min-w-50 h-[50px] sm:h-[52px] md:h-15 
-                font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-                rounded transition-all duration-300
-                "
+    bg-white text-paragraph text-center w-40 sm:min-w-[190px] md:min-w-50
+    h-[50px] sm:h-[52px] md:h-14 
+    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
+    rounded transition-all duration-200 ease-out
+    hover:scale-[1.02] active:scale-95
+    hover:shadow-md active:shadow-sm
+  "
             style={{
               boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
               border: "1px solid rgba(0,0,0,0.08)",
@@ -70,6 +73,7 @@ const ShowDetailsHeader = ({ name, country }) => {
           >
             Find Jobs
           </Link>
+
         </div>
         <div className="hidden lg:flex justify-end items-center gap-4">
           <SvgIcon name="ShareGreen" />
