@@ -28,7 +28,7 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
         >
           <div className="flex flex-col gap-2">
             <h2 className="font-semibold  text-lg">{item.title}</h2>
-            <p className="text-gray-600">{item.image_url}</p>
+            <p className="text-gray-600">{item.project_url}</p>
           </div>
 
           <div className="flex">

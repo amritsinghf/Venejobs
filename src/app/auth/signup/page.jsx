@@ -19,8 +19,6 @@ export default function signup() {
     e.preventDefault();
 
     const res = await signupapi(formData);
-
-    console.log(res);
   };
 
   const handleChange = (e) => {
