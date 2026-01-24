@@ -41,6 +41,7 @@ const MultiStepForm = () => {
   };
   const { SavePersonalDetails } = freelancerApiStore();
   const onSubmit = async (data) => {
+
     const updatedData = {
       ...data,
       skills: data.skills.map((skill) => ({

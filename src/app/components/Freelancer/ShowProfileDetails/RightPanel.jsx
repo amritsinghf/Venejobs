@@ -77,7 +77,7 @@ const RightPanel = () => {
           {/* ===== PROFILE HEADER ===== */}
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap justify-between items-center gap-4">
-              <h2 className="font-semibold text-lg sm:text-xl lg:text-[22px]">
+              <h2 className="font-semibold text-lg sm:text-xl lg:text-[20px]">
                 {freelanceBasicprofile?.professional_title}
               </h2>
 

@@ -182,10 +182,12 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
   };
 
   const handleSave = () => {
+
     const validationErrors = validateExperience(experience);
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
       return;
+
     }
 
     editIndex !== null ? update(editIndex, experience) : append(experience);
@@ -352,7 +354,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
               Cancel
             </Button>
 
-            <Button onClick={handleSave} className="bg-secondary text-white">
+            <Button type="button" onClick={handleSave} className="bg-secondary text-white">
               Save
             </Button>
           </div>
