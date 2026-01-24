@@ -16,7 +16,7 @@ export default function ProfileDropdown() {
   const user_logout = userApiStore((s) => s.logout);
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
-  console.log(user, ">>>>>>>>>>")
+
   const logout = () => {
     try {
       user_logout();

@@ -151,7 +151,7 @@ const EducationModal = ({
             />
 
             <Input
-              label="Start Year"
+              label="From"
               name="start_date"
               value={education.start_date}
               onChange={handleChange}
@@ -161,7 +161,7 @@ const EducationModal = ({
             />
 
             <Input
-              label="End Year"
+              label="To"
               name="end_date"
               value={education.end_date}
               onChange={handleChange}

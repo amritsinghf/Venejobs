@@ -20,7 +20,7 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
   const validateFields = async (callback) => {
     setLoadingNext(true);
 
-    const valid = await trigger(["description", "attachment"]);
+    const valid = await trigger(["description"]);
     if (valid) {
       callback();
     }
@@ -43,7 +43,7 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
       <StepperNumber currstep={JobFormStep.description} />
       <div className="flex gap-6 lg:gap-25 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
-          <h2 className="text-2xl lg:text-3xl xl:text-[44px] font-semibold leading-tight text-heading">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-semibold leading-tight text-heading">
             Share the Details of Your Project
           </h2>
           <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
@@ -89,20 +89,16 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
             <input
               type="file"
               {...register("attachment", {
-                required: !attachment?.length && {
-                  value: true,
-                  message: "Please Upload Your File ",
-                },
                 validate: {
                   isPdf: (files) => {
-                    if (!files || files.length === 0) return true;
+                    if (!files || files.length === 0) return true; // optional
                     return (
                       files[0].type === "application/pdf" ||
                       "Only PDF files are allowed."
                     );
                   },
                   maxSize: (files) => {
-                    if (!files || files.length === 0) return true;
+                    if (!files || files.length === 0) return true; // optional
                     return (
                       files[0].size <= 104857600 ||
                       "File size must be less than 100MB."
@@ -110,7 +106,7 @@ const DescriptionPage = ({ nextStep, prevStep, setStep, fromReview }) => {
                   },
                 },
               })}
-              className="w-full max-w-sm  p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
+              className="w-full max-w-sm p-4 border-2 border-dashed border-blue-400 rounded-lg text-blue-900 bg-blue-50 hover:bg-blue-100 cursor-pointer transition duration-300 flex flex-col items-center justify-center"
             />
             {attachment && attachment.length > 0 && (
               <div className="flex items-center justify-between gap-3 border border-[#44444414] rounded-md px-3 py-2">

@@ -82,7 +82,7 @@ const ProjectOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
 
       <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row">
         <div className="flex flex-col gap-4 w-full">
-          <h2 className="text-2xl lg:text-3xl xl:text-[44px] text-heading font-bold leading-snug">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl text-heading font-bold leading-snug">
             Next, Define the Scope of Your Project
           </h2>
           <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">
@@ -168,7 +168,7 @@ const ProjectOptions = ({ nextStep, prevStep, setStep, fromReview }) => {
                       name="duration"
                       className="w-4 h-4 text-primary accent-primary"
                     />
-                    <span className="w-full text-heading text-sm xl:text-lg font-medium tracking-wide">
+                    <span className="w-full text-heading text-sm xl:text-base font-medium tracking-wide">
                       {item.label}
                     </span>
                   </label>

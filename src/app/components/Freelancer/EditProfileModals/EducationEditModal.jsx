@@ -151,7 +151,7 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
               />
 
               <Input
-                label="Start Year"
+                label="From"
                 name="start_date"
                 register={register}
                 error={errors.start_date}

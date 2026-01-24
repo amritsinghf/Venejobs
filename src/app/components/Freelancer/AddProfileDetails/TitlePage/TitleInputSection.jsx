@@ -49,7 +49,7 @@ const TitleInputSection = ({ isFirstStep, handleNext }) => {
             <li>UX/UI Designer, Mobile App Developer, Marketing Expert</li>
           </ul>
 
-          <h3 className="text-base lg:text-lg text-heading font-bold">
+          {/* <h3 className="text-base lg:text-lg text-heading font-bold">
             Overview
           </h3>
 
@@ -72,7 +72,7 @@ const TitleInputSection = ({ isFirstStep, handleNext }) => {
                 {errors.overview.message}
               </span>
             )}
-          </div>
+          </div> */}
 
           <StepNavigation
             isFirstStep={isFirstStep}

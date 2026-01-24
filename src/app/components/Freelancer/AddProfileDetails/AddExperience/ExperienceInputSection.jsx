@@ -21,14 +21,11 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
   const handleNext = async () => {
     const valid = await trigger("experiences");
 
-    if (fields.length === 0) {
-      showError("Please add at least one experience before proceeding.", "error")
-      return;
-    }
-
-    if (valid) {
-      nextStep();
-    }
+    // if (fields.length === 0) {
+    //   showError("Please add at least one experience before proceeding.", "error")
+    //   return;
+    // }
+    nextStep()
   };
 
   return (

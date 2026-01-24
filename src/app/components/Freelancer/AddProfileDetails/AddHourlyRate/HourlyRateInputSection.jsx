@@ -41,7 +41,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
               />
             </div>
 
-            <div className="flex flex-col gap-4 w-full">
+            {/* <div className="flex flex-col gap-4 w-full">
               <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
                 Service fee
               </h2>
@@ -55,7 +55,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
                 border border-[#D0D5DD] rounded-md
                 bg-gray-100 text-heading tracking-wide"
               />
-            </div>
+            </div> */}
           </div>
 
           <p className="text-paragraph text-sm md:text-base">
@@ -66,7 +66,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
 
           <hr className="text-gray-200" />
 
-          <div className="flex flex-col gap-4">
+          {/* <div className="flex flex-col gap-4">
             <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
               You’ll get
             </h2>
@@ -80,7 +80,7 @@ const HourlyRateInputSection = ({ nextStep, prevStep }) => {
               border border-[#D0D5DD] rounded-md
               bg-gray-100 text-heading tracking-wide"
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Navigation buttons */}

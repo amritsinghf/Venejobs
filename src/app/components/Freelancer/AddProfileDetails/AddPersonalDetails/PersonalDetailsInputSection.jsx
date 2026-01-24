@@ -111,7 +111,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
             rules={{
               required: "Postal Code is required",
               pattern: {
-                value: /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
+                value: /^(GIR ?0AA|[A-Z]{1,2}\d{1,2}[A-Z]? ?\d[A-Z]{2})$/i,
                 message: "Enter a valid UK postal code",
               },
             }}

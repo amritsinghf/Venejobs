@@ -214,7 +214,7 @@ const ExperienceEditModal = ({
 
               <div className="flex flex-col gap-2">
                 <label className="font-medium lg:text-base tracking-wide">
-                  Start Year
+                  From
                 </label>
                 <input
                   type="number"
