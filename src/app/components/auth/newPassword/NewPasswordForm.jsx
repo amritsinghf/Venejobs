@@ -50,7 +50,7 @@ export default function NewPasswordForm({ email, setActiveModal }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 py-10 px-2 md:px-6"
+      className="space-y-6 py-10 px-2 md:px-4"
     >
       <NewPasswordInput
         register={register("password", {
@@ -82,8 +82,7 @@ export default function NewPasswordForm({ email, setActiveModal }) {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 gap-2"
-          variant="primary"
+          variant="primaryOutlined"
         >
           {isSubmitting ? (
             <Loader size={18} border={3} color="white" />
@@ -94,6 +93,7 @@ export default function NewPasswordForm({ email, setActiveModal }) {
             </>
           )}
         </Button>
+
       </div>
     </form>
   );

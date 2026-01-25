@@ -23,7 +23,7 @@ export default function OtpModal({ children, setActiveModal, email }) {
 
         {/* Title */}
         <div className="text-center px-4 sm:px-5 py-4 sm:py-6">
-          <h2 className="mt-6 sm:mt-10 mb-2 sm:mb-3 text-2xl sm:text-3xl font-extrabold leading-tight text-heading">
+          <h2 className="mt-6 sm:mt-10 mb-2 sm:mb-3 text-2xl md:text-3xl font-extrabold leading-tight text-heading">
             Verify your email
           </h2>
 

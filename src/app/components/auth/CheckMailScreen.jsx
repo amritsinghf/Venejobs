@@ -41,7 +41,7 @@ export default function CheckMailScreen({ setActiveModal }) {
               </div>
 
               <div>
-                <h2 className="mt-10 mb-3 text-3xl font-extrabold leading-tight text-center text-heading">
+                <h2 className="mt-10 mb-3 text-2xl font-extrabold leading-tight text-center text-heading">
                   Check your email
                 </h2>
 
@@ -57,17 +57,15 @@ export default function CheckMailScreen({ setActiveModal }) {
                 <Button
                   onClick={handleVerify}
                   disabled={loading}
-                  className=" bg-primary text-white border border-[#FAFAFA] gap-3 disabled:opacity-70 px-2"
-                  variant="primary"
+                  variant="primaryOutlined"
                 >
                   {loading ? (
-                    <>
-                      <Loader size={18} border={3} color="white" />
-                    </>
+                    <Loader size={18} border={3} color="white" />
                   ) : (
-                    <>Verify Your OTP</>
+                    "Verify Your OTP"
                   )}
                 </Button>
+
               </div>
             </div>
           </div>

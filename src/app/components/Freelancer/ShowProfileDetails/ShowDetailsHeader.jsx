@@ -1,12 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Routes } from "@/app/routes";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import Button from "@/app/components/button/Button";
 
 const ShowDetailsHeader = ({ name, country }) => {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col gap-8 lg:flex-row lg:items-center justify-between border-b border-gray-200 pb-6 lg:pb-10">
+      {/* Left */}
       <div className="flex items-center gap-8">
         <Image
           src="/freelancer.jpg"
@@ -26,58 +31,35 @@ const ShowDetailsHeader = ({ name, country }) => {
           <div className="flex gap-1">
             <p className="text-paragraph text-sm font-medium">{country}</p>
             <p className="text-paragraph text-sm font-medium">
-              {" "}
               – 8:10 am local time
             </p>
           </div>
         </div>
       </div>
 
+      {/* Right */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-6">
-          <Link
-            href={Routes.freelancer.profile.home}
-            className="
-    bg-secondary text-white text-center
-    w-40 md:w-44
-    h-12 sm:h-[50px]
-    font-semibold tracking-wide
-    text-sm xl:text-base
-
-    inline-flex items-center justify-center gap-2
-    rounded
-
-    transition-all duration-200 ease-out
-    hover:shadow-md
-    hover:brightness-105
-    active:brightness-95
-  "
+          <Button
+            variant="secondaryFilled"
+            onClick={() => router.push(Routes.freelancer.profile.home)}
           >
             Profile Settings
-          </Link>
+          </Button>
 
-          <Link
-            href={Routes.freelancer.page}
-            className="
-    bg-white text-paragraph text-center w-40 sm:min-w-[190px] md:min-w-50
-    h-[50px] sm:h-[52px] md:h-14 
-    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-    rounded transition-all duration-200 ease-out
-    hover:scale-[1.02] active:scale-95
-    hover:shadow-md active:shadow-sm
-  "
-            style={{
-              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
+          {/* Find Jobs */}
+          <Button
+            variant="lightCard"
+            className="shadow-[2px_2px_50px_5px_rgba(0,0,0,0.05)]"
+            onClick={() => router.push(Routes.freelancer.page)}
           >
             Find Jobs
-          </Link>
-
+          </Button>
         </div>
+
         <div className="hidden lg:flex justify-end items-center gap-4">
           <SvgIcon name="ShareGreen" />
-          <p className="hidden lg:flex text-secondary font-medium">Share</p>
+          <p className="text-secondary font-medium">Share</p>
         </div>
       </div>
     </div>

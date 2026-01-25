@@ -7,9 +7,11 @@ import SvgIcon from "../components/Utility/SvgIcon";
 import FreelancerLayout from "../layout/FreelancerLayout";
 import Loader from "../components/common/Loader";
 import { useRouter } from "next/navigation";
+import Button from "../components/button/Button";
 
 export default function Page() {
   const { user } = userApiStore();
+  const router = useRouter(); // ✅ hook inside component
 
   const [loading, setLoading] = useState(false);
 
@@ -29,29 +31,19 @@ export default function Page() {
           <p className="text-gray-500 text-base 2xl:text-lg font-medium leading-7 lg:leading-8 tracking-wide w-full lg:max-w-5xl">
             Explore high-quality projects from top clients on Venezuelan.
           </p>
-
-          <Link
-            href={Routes.freelancer.get_started}
-            onClick={() => setLoading(true)}
-            className={`
-    bg-secondary text-white text-center w-40 sm:min-w-[180px] md:min-w-50
-    h-[50px] sm:h-[52px] md:h-14
-    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-    rounded transition-all duration-200 ease-out gap-2
-    hover:scale-[1.02] active:scale-95
-    hover:shadow-lg active:shadow-md
-    ${loading ? "opacity-60 cursor-not-allowed pointer-events-none" : ""}
-  `}
+          <Button
+            variant="secondaryFilled"
+            isLoading={loading}
+            icon={!loading && <SvgIcon name="RightArrWhite" />}
+            onClick={() => {
+              setLoading(true);
+              router.push(Routes.freelancer.get_started);
+            }}
           >
-            {loading ? (
-              <Loader size={18} />
-            ) : (
-              <>
-                Get Started
-                <SvgIcon name="RightArrWhite" />
-              </>
-            )}
-          </Link>
+            Get Started
+          </Button>
+
+
 
         </div>
       </div>

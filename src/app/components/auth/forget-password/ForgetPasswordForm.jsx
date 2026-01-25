@@ -81,8 +81,7 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-primary text-white border border-[#FAFAFA] disabled:opacity-70 px-2"
-                        variant="primary"
+                        variant="primaryOutlined"
                     >
                         {loading ? (
                             <Loader size={18} border={3} color="white" />
@@ -90,19 +89,37 @@ export default function ForgetPasswordForm({ setActiveModal, setUserEmail }) {
                             "Reset Password"
                         )}
                     </Button>
+
                 </div>
             </form>
 
             <div className="flex justify-end mt-5 px-2 md:px-6 pb-4">
                 <button
                     type="button"
-                    className="text-[#858585] hover:text-primary font-semibold text-normal flex items-center gap-2 cursor-pointer"
                     onClick={() => setActiveModal("signin")}
+                    className="
+      group
+      text-[#858585]
+      font-semibold
+      text-normal
+      flex items-center gap-2
+      cursor-pointer
+      transition-colors duration-200
+      hover:text-primary
+    "
                 >
-                    <ArrowBackIcon className="text-gray-500" style={{ fontSize: "16px" }} />
+                    <ArrowBackIcon
+                        className="
+        text-gray-500
+        transition-colors duration-200
+        group-hover:text-primary
+      "
+                        style={{ fontSize: "16px" }}
+                    />
                     Back to Login
                 </button>
             </div>
+
         </>
     );
 }

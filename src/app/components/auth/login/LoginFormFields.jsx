@@ -20,7 +20,7 @@ export default function LoginFormFields({
                                 message: "Enter a valid email address",
                             },
                         })}
-                        className="block py-2.5 px-1 w-full h-full text-sm lg:text-base font-medium border-b border-neutral-300 
+                        className="block py-2.5 px-1 w-full h-full text-sm lg:text-base border-b border-neutral-300 
                         focus:border-primary focus:outline-none text-heading tracking-wide placeholder:text-sm"
                     />
                 </div>

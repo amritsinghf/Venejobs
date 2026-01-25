@@ -32,11 +32,11 @@ export default function SuccessPassScreen({ setActiveModal }) {
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl font-extrabold leading-tight text-center text-heading mb-3">
+          <h2 className="text-2xl font-extrabold leading-tight text-center text-heading mb-3">
             Password Reset
           </h2>
 
-          <p className="text-center text-gray-500 text-sm lg:text-base leading-6 tracking-wide">
+          <p className="text-center text-gray-500 text-sm lg:text-sm leading-6 tracking-wide">
             Your password has been successfully reset. Click below to log in
             magically.
           </p>
@@ -45,12 +45,12 @@ export default function SuccessPassScreen({ setActiveModal }) {
           <div className="flex justify-center mt-12">
             <Button
               onClick={() => setActiveModal("signin")}
-              className="bg-primary text-white gap-2"
-              variant="primary"
+              variant="primaryOutlined"
             >
               Back to Login
               <SvgIcon name="RightArrWhite" />
             </Button>
+
           </div>
         </div>
       </div>
