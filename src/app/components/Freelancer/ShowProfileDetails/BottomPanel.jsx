@@ -87,7 +87,7 @@ const BottomPanel = () => {
             setEditExperience(null);
             setExperienceModal(true);
           }}
-          className="text-sm sm:text-base text-secondary font-medium"
+          className="text-[14px] sm:text-[15px] font-medium text-secondary hover:underline cursor-pointer"
         >
           + Add
         </button>

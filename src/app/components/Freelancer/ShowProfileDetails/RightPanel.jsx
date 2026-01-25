@@ -94,7 +94,7 @@ const RightPanel = () => {
 
                 <button
                   onClick={() => setshowTitleModal(true)}
-                  className=" transition"
+                  className="cursor-pointer transition"
                 >
                   <SvgIcon
                     name="Editing"
@@ -105,7 +105,7 @@ const RightPanel = () => {
             </div>
 
             {/* Overview */}
-            <p className="text-[13px] sm:text-[14px] md:text-[15px] 
+            <p className="text-[14px] sm:text-[15px] md:text-[15px] 
                 font-normal leading-relaxed text-gray-600">
               {freelanceBasicprofile?.overview}
             </p>
@@ -129,8 +129,8 @@ const RightPanel = () => {
                   setSelectedPortfolio(null);
                   setShowPortfolioModal(true);
                 }}
-                className="text-[13px] sm:text-[14px] 
-                 font-medium text-secondary hover:underline"
+                className="text-[14px] sm:text-[15px] 
+                 font-medium text-secondary hover:underline cursor-pointer"
               >
                 + Add
               </button>
@@ -149,7 +149,7 @@ const RightPanel = () => {
                       {item.title}
                     </h3>
 
-                    <p className="text-[13px] sm:text-[14px] 
+                    <p className="text-[14px] sm:text-[15px] 
                         text-gray-500 break-all">
                       {item.project_url}
                     </p>
@@ -157,7 +157,7 @@ const RightPanel = () => {
 
                   {/* Actions */}
                   <div className="flex gap-3">
-                    <button className="p-1 hover:bg-gray-100 rounded transition"
+                    <button className="cursor-pointer transition"
                       onClick={() => {
                         setSelectedPortfolio({ ...item, index });
                         setShowPortfolioModal(true);
@@ -170,7 +170,7 @@ const RightPanel = () => {
                     </button>
 
                     <button
-                      className="p-1 hover:bg-red-50 rounded transition"
+                      className="transition cursor-pointer"
                       onClick={() => handleDelete(deletePortfolio, item.id)}
                     >
                       <SvgIcon
@@ -194,7 +194,7 @@ const RightPanel = () => {
               Work History
             </h2>
 
-            <p className="text-[13px] sm:text-[14px] 
+            <p className="text-[14px] sm:text-[15px] 
                 font-normal text-gray-500">
               No work history yet
             </p>
@@ -228,8 +228,8 @@ const RightPanel = () => {
                   setselectedSkill(null);
                   setShowSkillModal(true);
                 }}
-                className="text-[13px] sm:text-[14px] 
-                 font-medium text-secondary hover:underline"
+                className="text-[14px] sm:text-[15px] 
+                 font-medium text-secondary hover:underline cursor-pointer"
               >
                 + Add
               </button>
@@ -249,19 +249,19 @@ const RightPanel = () => {
         "
                 >
                   {/* Skill Name */}
-                  <p className="text-[13px] sm:text-[14px] 
+                  <p className="text-[14px] sm:text-[15px] 
                       font-normal text-gray-700 truncate">
                     {skill.skill_name}
                   </p>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-4">
                     <button
                       onClick={() => {
                         setselectedSkill({ ...skill, index });
                         setShowSkillModal(true);
                       }}
-                      className=" transition"
+                      className="transition cursor-pointer"
                       aria-label="Edit Skill"
                     >
                       <SvgIcon
@@ -272,7 +272,7 @@ const RightPanel = () => {
 
                     <button
                       onClick={() => handleDelete(deleteSkill, skill.id)}
-                      className="transition"
+                      className="transition cursor-pointer"
                       aria-label="Delete Skill"
                     >
                       <SvgIcon

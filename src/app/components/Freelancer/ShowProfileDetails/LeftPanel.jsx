@@ -103,7 +103,7 @@ const LeftPanel = () => {
               setSelectedLanguage(null);
               setShowLanguageModal(true);
             }}
-            className="text-[13px] sm:text-[14px] 
+            className="text-[14px] sm:text-[15px] 
                  font-medium text-secondary hover:underline cursor-pointer"
           >
             + Add
@@ -175,7 +175,7 @@ const LeftPanel = () => {
               setSelectedEducation(null);
               setShowEducationModal(true);
             }}
-            className="text-[13px] sm:text-[14px] 
+            className="text-[14px] sm:text-[15px] 
                  font-medium text-secondary hover:underline cursor-pointer"
           >
             + Add
