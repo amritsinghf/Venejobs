@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import InputField from "@/app/components/common/InputField";
 
 const INITIAL_PORTFOLIO = {
   title: "",
@@ -36,28 +37,6 @@ const validatePortfolio = (data) => {
 
   return errors;
 };
-
-const InputField = ({
-  label,
-  name,
-  value,
-  onChange,
-  error,
-  placeholder,
-}) => (
-  <div className="flex flex-col gap-2">
-    <label className="font-medium text-base tracking-wide">{label}</label>
-    <input
-      type="text"
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none tracking-wide placeholder:text-sm"
-    />
-    {error && <p className="text-red-500 text-sm">{error}</p>}
-  </div>
-);
 
 const PortfolioModal = ({
   setshowForm,
@@ -146,6 +125,7 @@ const PortfolioModal = ({
               placeholder="https://example.com"
             />
           </div>
+
         </div>
 
         <div className="sticky bottom-0 bg-white px-4 py-4 md:px-6 flex justify-end gap-4">

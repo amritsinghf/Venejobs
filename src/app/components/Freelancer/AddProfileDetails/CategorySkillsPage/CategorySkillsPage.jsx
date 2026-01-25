@@ -63,7 +63,7 @@ const CategorySkillsPage = ({ nextStep, prevStep, currstep }) => {
 
       <div className="flex gap-6 lg:gap-15 flex-col lg:flex-row w-full">
         <div className="w-full flex flex-col gap-4">
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl 3xl:text-5xl font-bold leading-snug">
             Let’s choose your category and showcase your skills
           </h2>
           <p className="text-gray-500 text-base xl:text-lg font-normal leading-7 lg:leading-8 tracking-wide">

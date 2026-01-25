@@ -5,6 +5,8 @@ const InputField = ({
     name,
     register,
     rules,
+    value,
+    onChange,
     error,
     placeholder,
     type = "text",
@@ -12,21 +14,31 @@ const InputField = ({
     rows = 4,
     disabled = false,
 }) => {
+    const commonProps = register
+        ? register(name, rules)
+        : {
+            name,
+            value,
+            onChange,
+        };
+
     return (
         <div className="flex flex-col gap-2">
-            <label className="font-medium lg:text-base tracking-wide">
-                {label}
-            </label>
+            {label && (
+                <label className="font-medium lg:text-base tracking-wide">
+                    {label}
+                </label>
+            )}
 
             {as === "textarea" ? (
                 <textarea
-                    {...register(name, rules)}
+                    {...commonProps}
                     rows={rows}
                     disabled={disabled}
                     placeholder={placeholder}
                     className={`
             w-full py-3.5 px-3 text-sm lg:text-base rounded-md
-            tracking-wide placeholder:text-sm resize-none
+            tracking-wider placeholder:text-sm resize-none
             border transition-all duration-200 focus:outline-none
             ${disabled
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
@@ -37,12 +49,12 @@ const InputField = ({
             ) : (
                 <input
                     type={type}
-                    {...register(name, rules)}
+                    {...commonProps}
                     disabled={disabled}
                     placeholder={placeholder}
                     className={`
             w-full py-3.5 px-3 text-sm lg:text-base rounded-md
-            tracking-wide placeholder:text-sm
+            tracking-wider placeholder:text-sm
             border transition-all duration-200 focus:outline-none
             ${disabled
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import freelancerApiStore from "@/app/store/freelancerApiStore";
 import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
+import InputField from "../../common/InputField";
 
 const EducationEditModal = ({ setShowEducationModal, showEducationModal, education
 }) => {
@@ -118,56 +119,70 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
           </div>
           <form onSubmit={handleSubmit(handleSave)}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
+
+              <InputField
                 label="Institution Name"
                 name="institution_name"
                 register={register}
-                error={errors.institution_name}
+                rules={{ required: "Institution name is required" }}
+                error={errors?.institution_name?.message}
                 placeholder="E.g., University of XYZ"
               />
 
-              <Input
+              <InputField
                 label="Degree"
                 name="degree"
                 register={register}
-                error={errors.degree}
+                rules={{ required: "Degree is required" }}
+                error={errors?.degree?.message}
                 placeholder="E.g., Bachelor of Computer Science"
               />
 
-              <Input
+              <InputField
                 label="Field of Study"
                 name="field_of_study"
                 register={register}
-                error={errors.field_of_study}
+                rules={{ required: "Field of study is required" }}
+                error={errors?.field_of_study?.message}
                 placeholder="E.g., Computer Science"
               />
 
-              <Input
+              <InputField
                 label="Type of Education"
                 name="type_of_education"
                 register={register}
-                error={errors.type_of_education}
+                rules={{ required: "Type of education is required" }}
+                error={errors?.type_of_education?.message}
                 placeholder="Bachelor’s Degree"
               />
 
-              <Input
+              <InputField
                 label="From"
                 name="start_date"
-                register={register}
-                error={errors.start_date}
-                placeholder={new Date().getFullYear() - 3}
                 type="number"
+                register={register}
+                rules={{
+                  required: "Start year is required",
+                  pattern: {
+                    value: /^\d{4}$/,
+                    message: "Enter valid 4 digit year",
+                  },
+                }}
+                error={errors?.start_date?.message}
+                placeholder={new Date().getFullYear() - 3}
               />
 
-              <Input
+              <InputField
                 label="End Year"
                 name="end_date"
-                register={register}
-                error={errors.end_date}
-                placeholder={new Date().getFullYear()}
                 type="number"
+                register={register}
                 rules={{
                   required: "End year is required",
+                  pattern: {
+                    value: /^\d{4}$/,
+                    message: "Enter valid 4 digit year",
+                  },
                   validate: (value) => {
                     if (startYear && Number(value) < Number(startYear)) {
                       return "End year cannot be less than start year";
@@ -175,25 +190,29 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
                     return true;
                   },
                 }}
+                error={errors?.end_date?.message}
+                placeholder={new Date().getFullYear()}
               />
             </div>
 
-            <div className="flex flex-col gap-2 mt-4">
-              <label className="font-medium lg:text-base tracking-wide">Description</label>
-              <textarea
-                {...register("description")}
+            {/* ✅ Description */}
+            <div className="mt-4">
+              <InputField
+                label="Description"
+                name="description"
+                as="textarea"
                 rows={4}
+                register={register}
+                rules={{ required: "Description is required" }}
+                error={errors?.description?.message}
                 placeholder="Describe your education, achievements, coursework..."
-                className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
               />
-
-              {errors.description && (
-                <p className="text-red-500 text-sm">{errors.description}</p>
-              )}
             </div>
 
+            {/* Footer */}
             <div className="flex justify-end gap-6 mt-6">
               <Button
+                type="button"
                 onClick={() => setShowEducationModal(false)}
                 className="bg-white text-gray-800"
                 style={{
@@ -203,39 +222,18 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
               >
                 Cancel
               </Button>
+
               <Button type="submit" className="bg-secondary text-white">
-                {isEdit ? "Upadate" : "Add"}
+                {isEdit ? "Update" : "Add"}
               </Button>
             </div>
           </form>
+
         </div>
       </div>
     </div>
   );
 };
-
-const Input = ({
-  label,
-  name,
-  register,
-  rules,
-  error,
-  placeholder,
-  type = "text",
-}) => (
-  <div className="flex flex-col gap-2">
-    <label className="font-medium lg:text-base tracking-wide">{label}</label>
-    <input
-      type={type}
-      {...register(name, rules)}
-      placeholder={placeholder}
-      inputMode={type === "number" ? "numeric" : undefined}
-      pattern={type === "number" ? "[0-9]*" : undefined}
-      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none tracking-wide placeholder:text-sm"
-    />
-    {error && <p className="text-red-500 text-sm">{error.message}</p>}
-  </div>
-);
 
 
 export default EducationEditModal;

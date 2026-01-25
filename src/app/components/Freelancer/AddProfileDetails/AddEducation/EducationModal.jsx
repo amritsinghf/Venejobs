@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import InputField from "@/app/components/common/InputField";
 
 const INITIAL_EDUCATION = {
   institution_name: "",
@@ -112,9 +113,8 @@ const EducationModal = ({
               <SvgIcon name="CrossButton" size={18} />
             </button>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-            <Input
+            <InputField
               label="Institution Name"
               name="institution_name"
               value={education.institution_name}
@@ -123,7 +123,7 @@ const EducationModal = ({
               placeholder="E.g., University of XYZ"
             />
 
-            <Input
+            <InputField
               label="Degree"
               name="degree"
               value={education.degree}
@@ -132,7 +132,7 @@ const EducationModal = ({
               placeholder="E.g., Bachelor of Computer Science"
             />
 
-            <Input
+            <InputField
               label="Field of Study"
               name="field_of_study"
               value={education.field_of_study}
@@ -141,7 +141,7 @@ const EducationModal = ({
               placeholder="E.g., Computer Science"
             />
 
-            <Input
+            <InputField
               label="Type of Education"
               name="type_of_education"
               value={education.type_of_education}
@@ -150,26 +150,27 @@ const EducationModal = ({
               placeholder="Bachelor’s Degree"
             />
 
-            <Input
+            <InputField
               label="From"
               name="start_date"
+              type="number"
               value={education.start_date}
               onChange={handleChange}
               error={errors.start_date}
               placeholder={new Date().getFullYear() - 3}
-              type="number"
             />
 
-            <Input
+            <InputField
               label="To"
               name="end_date"
+              type="number"
               value={education.end_date}
               onChange={handleChange}
               error={errors.end_date}
               placeholder={new Date().getFullYear()}
-              type="number"
             />
           </div>
+
 
           <div className="flex flex-col gap-2">
             <label className="font-semibold">Description</label>
@@ -179,7 +180,7 @@ const EducationModal = ({
               onChange={handleChange}
               rows={4}
               placeholder="Describe your education, achievements, coursework..."
-              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
+              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide font-medium"
             />
             {errors.description && (
               <p className="text-red-500 text-sm">{errors.description}</p>
@@ -208,29 +209,5 @@ const EducationModal = ({
   );
 };
 
-const Input = ({
-  label,
-  name,
-  value,
-  onChange,
-  error,
-  placeholder,
-  type = "text",
-}) => (
-  <div className="flex flex-col gap-2">
-    <label className="font-medium lg:text-base tracking-wide">{label}</label>
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      inputMode={type === "number" ? "numeric" : undefined}
-      pattern={type === "number" ? "[0-9]*" : undefined}
-      className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none tracking-wide placeholder:text-sm"
-    />
-    {error && <p className="text-red-500 text-sm">{error}</p>}
-  </div>
-);
 
 export default EducationModal;

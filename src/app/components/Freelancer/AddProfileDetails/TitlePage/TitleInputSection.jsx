@@ -1,3 +1,4 @@
+import InputField from "@/app/components/common/InputField";
 import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
 import { useFormContext } from "react-hook-form";
 
@@ -14,26 +15,21 @@ const TitleInputSection = ({ isFirstStep, handleNext }) => {
           Tell us what you do best
         </h2>
 
-        <div className="flex flex-col gap-2">
-          <input
-            type="text"
-            {...register("professional_title", {
-              required: "Title required",
-              minLength: {
-                value: 5,
-                message: "Title should be atleast 5 characters long",
-              },
-            })}
-            className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] focus:border-secondary rounded-md focus:outline-none text-black tracking-wide placeholder:text-sm"
-            placeholder="Enter Your Title"
-          />
+        <InputField
+          label="Professional Title"
+          name="professional_title"
+          placeholder="Enter Your Title"
+          register={register}
+          rules={{
+            required: "Title required",
+            minLength: {
+              value: 5,
+              message: "Title should be atleast 5 characters long",
+            },
+          }}
+          error={errors?.professional_title?.message}
+        />
 
-          {errors.professional_title && (
-            <span className="text-sm text-red-500 font-medium">
-              {errors.professional_title.message}
-            </span>
-          )}
-        </div>
 
         <div className="flex flex-col gap-4">
           <h3 className="text-base lg:text-lg text-heading font-bold">

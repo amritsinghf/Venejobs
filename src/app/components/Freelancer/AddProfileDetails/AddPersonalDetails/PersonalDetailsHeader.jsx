@@ -3,7 +3,7 @@ import React from 'react'
 const PersonalDetailsHeader = () => {
   return (
     <div className="flex flex-col gap-4 w-full">
-      <h2 className="text-2xl lg:text-3xl xl:text-[44px] text-heading font-bold leading-snug">
+      <h2 className="text-2xl lg:text-3xl xl:text-4xl 3xl:text-5xl text-heading font-bold leading-snug">
         You're almost there! Let’s finalize your profile.
       </h2>
 

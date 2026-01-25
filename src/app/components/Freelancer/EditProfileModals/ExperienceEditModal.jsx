@@ -5,6 +5,7 @@ import useToastStore from "@/app/store/toastStore";
 import useEscapeKey from "@/hooks/useEscapeKey";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import InputField from "../../common/InputField";
 
 const ExperienceEditModal = ({
   item,
@@ -128,219 +129,161 @@ const ExperienceEditModal = ({
           </div>
 
           <form onSubmit={handleSubmit(handleSave)}>
-            <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Job Title
-                </label>
-                <input
-                  name="job_title"
-                  {...register("job_title")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none text-black bg-white border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="Ex: Senior UXUI Designer"
-                />
-                {errors.job_title && (
-                  <p className="text-red-500 text-sm">{errors.job_title}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Company Name
-                </label>
-                <input
-                  name="company"
-                  {...register("company")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="Ex: Venesjobs"
-                />
-                {errors.company && (
-                  <p className="text-red-500 text-sm">{errors.company}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Location
-                </label>
-                <input
-                  name="location"
-                  {...register("location")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="Ex: Russia"
-                />
-                {errors.location && (
-                  <p className="text-red-500 text-sm">{errors.location}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">City</label>
-                <input
-                  name="city"
-                  {...register("city")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="Enter City"
-                />
-                {errors.city && (
-                  <p className="text-red-500 text-sm">{errors.city}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Start Month
-                </label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                <input
-                  type="number"
-                  {...register("start_month", {
-                    required: "Start month is required",
-                    min: {
-                      value: 1,
-                      message: "Month must be between 1 and 12",
-                    },
-                    max: {
-                      value: 12,
-                      message: "Month must be between 1 and 12",
-                    },
-                  })}
-                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary"
-                  placeholder="From Month"
-                />
+              <InputField
+                label="Job Title"
+                name="job_title"
+                register={register}
+                rules={{ required: "Job title is required" }}
+                error={errors?.job_title?.message}
+                placeholder="Ex: Senior UXUI Designer"
+              />
 
-                {errors.start_month?.message && (
-                  <p className="text-red-500 text-sm">
-                    {errors.start_month.message}
-                  </p>
-                )}
-              </div>
+              <InputField
+                label="Company Name"
+                name="company"
+                register={register}
+                rules={{ required: "Company name is required" }}
+                error={errors?.company?.message}
+                placeholder="Ex: Venesjobs"
+              />
 
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  From
-                </label>
-                <input
-                  type="number"
-                  {...register("start_year")}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="From Year"
-                />
-                {errors.start_year && (
-                  <p className="text-red-500 text-sm">{errors.start_year}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Ended Month
-                </label>
-                <input
-                  type="number"
-                  {...register("end_month", {
-                    validate: (value) => {
-                      if (isCurrent) return true;
+              <InputField
+                label="Location"
+                name="location"
+                register={register}
+                rules={{ required: "Location is required" }}
+                error={errors?.location?.message}
+                placeholder="Ex: Russia"
+              />
 
-                      if (!value) return "End month is required";
+              <InputField
+                label="City"
+                name="city"
+                register={register}
+                rules={{ required: "City is required" }}
+                error={errors?.city?.message}
+                placeholder="Enter City"
+              />
 
-                      if (value < 1 || value > 12)
-                        return "Month must be between 1 and 12";
+              <InputField
+                label="Start Month"
+                name="start_month"
+                type="number"
+                register={register}
+                rules={{
+                  required: "Start month is required",
+                  min: { value: 1, message: "Month must be between 1 and 12" },
+                  max: { value: 12, message: "Month must be between 1 and 12" },
+                }}
+                error={errors?.start_month?.message}
+                placeholder="From Month"
+              />
 
-                      return true;
-                    },
-                    valueAsNumber: true,
-                  })}
-                  disabled={isCurrent}
-                  className="w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary"
-                  placeholder="Through Month"
-                />
+              <InputField
+                label="Start Year"
+                name="start_year"
+                type="number"
+                register={register}
+                rules={{ required: "Start year is required" }}
+                error={errors?.start_year?.message}
+                placeholder="From Year"
+              />
 
-                {errors.end_month?.message && !isCurrent && (
-                  <p className="text-red-500 text-sm">
-                    {errors.end_month.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  End Year
-                </label>
+              <InputField
+                label="End Month"
+                name="end_month"
+                type="number"
+                register={register}
+                rules={{
+                  validate: (value) => {
+                    if (isCurrent) return true;
+                    if (!value) return "End month is required";
+                    if (value < 1 || value > 12)
+                      return "Month must be between 1 and 12";
+                    return true;
+                  },
+                }}
+                disabled={isCurrent}
+                error={errors?.end_month?.message}
+                placeholder="Through Month"
+              />
 
-                <input
-                  type="number"
-                  {...register("end_year", {
-                    validate: (endYear) => {
-                      if (isCurrent) return true;
+              <InputField
+                label="End Year"
+                name="end_year"
+                type="number"
+                register={register}
+                rules={{
+                  validate: (endYear) => {
+                    if (isCurrent) return true;
 
-                      const endMonth = watch("end_month");
+                    const endMonth = watch("end_month");
+                    if (!endYear || !endMonth)
+                      return "End month and year are required";
 
-                      if (!endYear || !endMonth) {
-                        return "End month and year are required";
-                      }
-                      if (!startYear || !startMonth) {
-                        return true;
-                      }
+                    if (!startYear || !startMonth) return true;
 
-                      const startDate = new Date(
-                        Number(startYear),
-                        Number(startMonth) - 1
-                      );
+                    const startDate = new Date(
+                      Number(startYear),
+                      Number(startMonth) - 1
+                    );
+                    const endDate = new Date(
+                      Number(endYear),
+                      Number(endMonth) - 1
+                    );
 
-                      const endDate = new Date(
-                        Number(endYear),
-                        Number(endMonth) - 1
-                      );
-                      if (endDate < startDate) {
-                        return "End date cannot be earlier than start date";
-                      }
-                      return true;
-                    },
-                  })}
-                  disabled={isCurrent}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
-                  placeholder="Through Year"
-                />
+                    if (endDate < startDate)
+                      return "End date cannot be earlier than start date";
 
-                {errors.end_year && !isCurrent && (
-                  <p className="text-red-500 text-sm">
-                    {errors.end_year.message}
-                  </p>
-                )}
-              </div>
-              <div className="flex items-center gap-2 mt-2">
-                <input
-                  type="checkbox"
-                  {...register("is_current")}
-                />
+                    return true;
+                  },
+                }}
+                disabled={isCurrent}
+                error={errors?.end_year?.message}
+                placeholder="Through Year"
+              />
+
+              {/* Checkbox (leave as-is or later make common) */}
+              <div className="flex items-center gap-2 mt-2 md:col-span-2">
+                <input type="checkbox" {...register("is_current")} />
                 <label>I currently work here</label>
               </div>
-              <div className="col-span-2 flex flex-col gap-2">
-                <label className="font-medium lg:text-base tracking-wide">
-                  Description
-                </label>
-                <textarea
+
+              {/* Description */}
+              <div className="md:col-span-2">
+                <InputField
+                  label="Description"
                   name="description"
-                  {...register("description")}
+                  as="textarea"
                   rows={4}
-                  className=" w-full py-3.5 px-3 text-sm lg:text-base rounded-md tracking-wide placeholder:text-sm border transition-all duration-200 focus:outline-none bg-white text-black border-[#D0D5DD] focus:border-secondary  "
+                  register={register}
+                  rules={{ required: "Description is required" }}
+                  error={errors?.description?.message}
                   placeholder="Enter description..."
                 />
-                {errors.description && (
-                  <p className="text-red-500 text-sm">{errors.description}</p>
-                )}
               </div>
             </div>
+
             <div className="flex justify-end gap-4 mt-6">
               <Button
                 type="button"
                 onClick={() => setExperienceModal(false)}
-                style={{ boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)", }}
+                style={{
+                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                }}
               >
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                className="px-4 py-2 bg-secondary text-white"
-              >
+
+              <Button type="submit" className="px-4 py-2 bg-secondary text-white">
                 {isEdit ? "Update" : "Add"}
               </Button>
             </div>
           </form>
+
         </div>
       </div>
     </div>

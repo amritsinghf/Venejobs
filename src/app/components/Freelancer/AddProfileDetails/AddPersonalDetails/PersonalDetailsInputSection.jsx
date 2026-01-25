@@ -40,7 +40,7 @@ const PersonalDetailsInputSection = ({ nextStep, prevStep }) => {
                   disableMobile: true,
                 }}
                 placeholder="Select your DOB"
-                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] rounded-md focus:outline-none focus:border-secondary"
+                className="w-full py-3.5 px-3 text-sm lg:text-base border border-[#D0D5DD] rounded-md focus:outline-none focus:border-secondary font-medium"
               />
             )}
           />

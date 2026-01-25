@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
+import InputField from "@/app/components/common/InputField";
 
 const INITIAL_EXPERIENCE = {
   job_title: "",
@@ -74,46 +75,6 @@ const validateDateRange = (data) => {
   return errors;
 };
 
-
-
-
-const InputField = ({
-  label,
-  name,
-  value,
-  onChange,
-  error,
-  placeholder,
-  disabled = false,
-  type = "text",
-}) => (
-  <div className="flex flex-col gap-2">
-    <label className="font-medium lg:text-base tracking-wide">{label}</label>
-
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      placeholder={placeholder}
-      inputMode={type === "number" ? "numeric" : undefined}
-      pattern={type === "number" ? "[0-9]*" : undefined}
-      className={`
-        w-full py-3.5 px-3 text-sm lg:text-base rounded-md
-        tracking-wide placeholder:text-sm
-        border transition-all duration-200
-        focus:outline-none
-        ${disabled
-          ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
-          : "bg-white text-black border-[#D0D5DD] focus:border-secondary"
-        }
-      `}
-    />
-
-    {error && <p className="text-red-500 text-sm">{error}</p>}
-  </div>
-);
 
 const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
   const [experience, setExperience] = useState(INITIAL_EXPERIENCE);
@@ -212,11 +173,15 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
         "
       >
         <div className="px-4 py-6 md:px-6 md:py-8 flex flex-col gap-6">
+          {/* Header */}
           <div className="flex justify-between items-center border-b border-gray-200 pb-4">
             <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
               {editIndex !== null ? "Edit Employment" : "Add Employment"}
             </h2>
-            <button onClick={close} className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
+
+            <button
+              onClick={close}
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 cursor-pointer"
             >
               <SvgIcon name="CrossButton" size={18} />
             </button>
@@ -288,6 +253,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
               type="number"
               placeholder="1-12"
               disabled={experience.is_current}
+              error={errors.end_month}
             />
 
             <InputField
@@ -302,42 +268,38 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             />
 
             {/* Checkbox */}
-            <label className="flex items-center gap-3 cursor-pointer">
+            <label className="flex items-center gap-3 cursor-pointer md:col-span-2">
               <input
                 type="checkbox"
                 name="is_current"
                 checked={experience.is_current}
                 onChange={handleChange}
                 className="
-                  appearance-none w-5 h-5 border-2 border-gray-300 rounded-md
-                  checked:bg-secondary checked:border-secondary relative
-                  transition-all duration-200
-                  after:content-['✓'] after:absolute after:text-white
-                  after:text-sm after:font-bold after:-top-0.5 after:left-0.5
-                  after:opacity-0 checked:after:opacity-100
-                "
+          appearance-none w-5 h-5 border-2 border-gray-300 rounded-md
+          checked:bg-secondary checked:border-secondary relative
+          transition-all duration-200
+          after:content-['✓'] after:absolute after:text-white
+          after:text-sm after:font-bold after:-top-0.5 after:left-0.5
+          after:opacity-0 checked:after:opacity-100
+        "
               />
               <span className="text-base font-medium">
                 I currently work here
               </span>
             </label>
 
-            {/* Description */}
-            <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
-              <label className="font-semibold text-sm lg:text-base">
-                Description
-              </label>
-              <textarea
+            {/* ✅ Description using COMMON InputField */}
+            <div className="md:col-span-2">
+              <InputField
+                label="Description"
                 name="description"
+                as="textarea"
+                rows={4}
                 value={experience.description}
                 onChange={handleChange}
-                rows={4}
+                error={errors.description}
                 placeholder="Describe your role and responsibilities"
-                className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
               />
-              {errors.description && (
-                <p className="text-red-500 text-sm">{errors.description}</p>
-              )}
             </div>
           </div>
 
@@ -354,11 +316,16 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
               Cancel
             </Button>
 
-            <Button type="button" onClick={handleSave} className="bg-secondary text-white">
+            <Button
+              type="button"
+              onClick={handleSave}
+              className="bg-secondary text-white"
+            >
               Save
             </Button>
           </div>
         </div>
+
       </div>
     </div>
   );
