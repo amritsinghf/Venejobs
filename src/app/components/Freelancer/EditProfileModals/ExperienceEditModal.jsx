@@ -270,18 +270,19 @@ const ExperienceEditModal = ({
               <Button
                 type="button"
                 onClick={() => setExperienceModal(false)}
-                style={{
-                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
+                variant="lightCard"
               >
                 Cancel
               </Button>
 
-              <Button type="submit" className="px-4 py-2 bg-secondary text-white">
+              <Button
+                type="submit"
+                variant="secondaryFilled"
+              >
                 {isEdit ? "Update" : "Add"}
               </Button>
             </div>
+
           </form>
 
         </div>

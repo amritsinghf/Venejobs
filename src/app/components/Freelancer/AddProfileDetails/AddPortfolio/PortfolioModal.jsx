@@ -131,17 +131,20 @@ const PortfolioModal = ({
         <div className="sticky bottom-0 bg-white px-4 py-4 md:px-6 flex justify-end gap-4">
           <Button
             onClick={() => setshowForm(false)}
-            className="bg-white text-gray-800 w-full"
-            style={{
-              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
+            variant="lightCard"
+            className="w-full"
           >
             Cancel
           </Button>
-          <Button className="bg-secondary text-white w-full" onClick={handleSave}>
+
+          <Button
+            onClick={handleSave}
+            variant="secondaryFilled"
+            className="w-full"
+          >
             Save
           </Button>
+
         </div>
       </div>
     </div>

@@ -138,10 +138,7 @@ const PortfolioEditModal = ({
               <Button
                 type="button"
                 onClick={() => setShowPortfolioModal(false)}
-                style={{
-                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
+                variant="lightCard"
               >
                 Cancel
               </Button>
@@ -149,10 +146,15 @@ const PortfolioEditModal = ({
               <Button
                 type="submit"
                 disabled={freelancerPortfolioLoading}
-                className="bg-secondary text-white"
+                variant="secondaryFilled"
               >
-                {freelancerPortfolioLoading ? "Saving..." : isEdit ? "Update" : "Add"}
+                {freelancerPortfolioLoading
+                  ? "Saving..."
+                  : isEdit
+                    ? "Update"
+                    : "Add"}
               </Button>
+
             </div>
           </form>
         </div>

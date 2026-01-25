@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import SvgIcon from "../Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "../common/Loader";
 import { Routes } from "@/app/routes";
+import Button from "../button/Button";
 
 export default function SuccessJobCreate() {
   const [loading, setLoading] = useState(false);
@@ -49,26 +49,20 @@ export default function SuccessJobCreate() {
             You’ll start receiving proposals soon. You can also browse profiles
             to invite the perfect match.
           </p>
-
-          <Link
-            href={Routes.client.home}
+          <Button
             onClick={handleClick}
-            className={`bg-primary text-white 
-              px-6 py-3 rounded-md 
-              flex items-center justify-center gap-2 
-              text-sm sm:text-base transition
-              min-w-40 min-h-12
-              ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}
-            `}
+            disabled={loading}
+            variant="primaryOutlined"
           >
             {loading ? (
               <Loader size={18} border={3} color="white" />
             ) : (
               <>
-                Continue <SvgIcon name="RightArrWhite" />
+                Continue
+                <SvgIcon name="RightArrWhite" />
               </>
             )}
-          </Link>
+          </Button>
 
         </div>
       </div>

@@ -183,18 +183,20 @@ const SkillsEditModal = ({
                   <div className="flex justify-end gap-4 mt-6">
                     <Button
                       type="button"
-                      style={{ boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)", }}
                       onClick={() => setShowSkillModal(false)}
+                      variant="lightCard"
                     >
                       Cancel
                     </Button>
+
                     <Button
                       type="submit"
-                      className="px-4 py-2 bg-secondary text-white rounded"
+                      variant="secondaryFilled"
                     >
-                      {isEdit ? "Upadate" : "Add"}
+                      {isEdit ? "Update" : "Add"}
                     </Button>
                   </div>
+
                 </form>
               )}
             </div>

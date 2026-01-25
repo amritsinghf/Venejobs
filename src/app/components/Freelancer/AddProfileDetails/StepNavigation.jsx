@@ -22,11 +22,7 @@ const StepNavigation = ({
           <Button
             type="button"
             onClick={onBack}
-            className="bg-white text-paragraph flex items-center gap-2 shadow"
-            style={{
-              boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
+            variant="lightCard"
           >
             <SvgIcon name="PrevButton" />
             Back
@@ -40,8 +36,7 @@ const StepNavigation = ({
           type="button"
           onClick={onNext}
           disabled={loading}
-          className={`bg-secondary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+          variant="secondaryFilled"
         >
           {loading ? (
             <Loader size={18} border={3} color="white" />
@@ -56,8 +51,7 @@ const StepNavigation = ({
         <Button
           type="submit"
           disabled={loading}
-          className={`bg-secondary text-white flex items-center gap-2 justify-center ${loading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+          variant="secondaryFilled"
         >
           {loading ? (
             <Loader size={18} border={3} color="white" />
@@ -66,6 +60,7 @@ const StepNavigation = ({
           )}
         </Button>
       )}
+
     </div>
   );
 };

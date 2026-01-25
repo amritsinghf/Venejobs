@@ -75,9 +75,12 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
           </div>
           <Button
             type="submit"
-            className="bg-primary text-white flex items-center gap-2 justify-center"
-          >Post job post<SvgIcon name="NextArrow" />
+            variant="primaryOutlined"
+          >
+            Post job post
+            <SvgIcon name="NextArrow" />
           </Button>
+
         </div>
 
         <div className="h-auto py-10 flex flex-col gap-10 hover:bg-neutral-secondary-medium mt-8 border-default rounded shadow-[2px_2px_50px_4px_rgba(0,0,0,0.05)]">

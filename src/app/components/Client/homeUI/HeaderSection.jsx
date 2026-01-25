@@ -2,11 +2,14 @@
 import Link from "next/link";
 import { Routes } from "@/app/routes.js";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import Loader from "../../common/Loader";
+import Button from "../../button/Button";
 
 export default function HeaderSection({ name }) {
   const [loadingBtn, setLoadingBtn] = useState(null);
+  const router = useRouter();
 
   const handleClick = (type) => {
     setLoadingBtn(type);
@@ -28,53 +31,38 @@ export default function HeaderSection({ name }) {
 
       {/* Right: Buttons */}
       <div className="flex items-center justify-end gap-4 md:gap-6 lg:gap-8">
-        {/* Post Job */}
-        <Link
-          href={Routes.client.job_post.home}
-          onClick={() => handleClick("post")}
-          className={`
-    bg-primary text-white text-center w-40 sm:min-w-[190px] md:min-w-50 h-[50px] sm:h-[52px] md:h-14
-    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-    rounded transition-all duration-200 ease-out gap-2
-    active:scale-95 hover:scale-[1.02]
-    ${loadingBtn === "post" ? "opacity-60 cursor-not-allowed" : ""}
-  `}
+        <Button
+          onClick={() => {
+            handleClick("post");
+            router.push(Routes.client.job_post.home);
+          }}
+          disabled={loadingBtn === "post"}
+          variant="primaryOutlined"
         >
-
           {loadingBtn === "post" ? (
             <Loader size={18} border={3} color="white" />
           ) : (
             <>
-              Post a Job <SvgIcon name="RightArrWhite" />
+              Post a Job
+              <SvgIcon name="RightArrWhite" />
             </>
           )}
-        </Link>
+        </Button>
+
 
         {/* Find Talent */}
-        <Link
-          href=""
+        <Button
           onClick={() => handleClick("talent")}
-          className={`
-    bg-white text-paragraph text-center w-40 sm:w-[190px] md:min-w-50 h-[50px] sm:h-[52px] md:h-14
-    font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center 
-    rounded transition-all duration-200 ease-out
-    hover:scale-[1.02] active:scale-95
-    hover:shadow-md active:shadow-sm
-    ${loadingBtn === "talent"
-              ? "opacity-60 cursor-not-allowed pointer-events-none"
-              : ""}
-  `}
-          style={{
-            boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-            border: "1px solid #FAFAFA",
-          }}
+          disabled={loadingBtn === "talent"}
+          variant="lightCard"
         >
           {loadingBtn === "talent" ? (
             <Loader size={18} border={3} color="black" />
           ) : (
             "Find Talent"
           )}
-        </Link>
+        </Button>
+
 
       </div>
     </div>

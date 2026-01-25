@@ -180,7 +180,7 @@ const EducationModal = ({
               onChange={handleChange}
               rows={4}
               placeholder="Describe your education, achievements, coursework..."
-              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide font-medium"
+              className="border border-[#D0D5DD] rounded-md p-3 focus:border-secondary outline-0 placeholder:text-sm tracking-wide"
             />
             {errors.description && (
               <p className="text-red-500 text-sm">{errors.description}</p>

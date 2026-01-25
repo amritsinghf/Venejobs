@@ -4,6 +4,7 @@ import { useState } from "react";
 import Loader from "../../common/Loader";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { Routes } from "@/app/routes";
+import Button from "../../button/Button";
 
 export default function SuccessProfileCreate() {
   const [loading, setLoading] = useState(false);
@@ -50,24 +51,21 @@ export default function SuccessProfileCreate() {
           </p>
 
 
-          <Link href={Routes.freelancer.home}
+          <Button
             onClick={handleClick}
-            className={`bg-secondary text-white 
-              px-6 py-3 rounded-md 
-              flex items-center justify-center gap-2 
-              text-sm sm:text-base transition
-              min-w-40 min-h-12
-              ${loading ? "opacity-70 pointer-events-none" : "hover:opacity-90"}
-            `}
+            disabled={loading}
+            variant="secondaryFilled"
           >
             {loading ? (
               <Loader size={18} border={3} color="white" />
             ) : (
               <>
-                Continue <SvgIcon name="RightArrWhite" />
+                Continue
+                <SvgIcon name="RightArrWhite" />
               </>
             )}
-          </Link>
+          </Button>
+
 
         </div>
       </div>

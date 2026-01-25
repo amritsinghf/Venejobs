@@ -307,11 +307,7 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
           <div className="flex justify-end gap-4">
             <Button
               onClick={close}
-              className="bg-white text-gray-800"
-              style={{
-                boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.08)",
-              }}
+              variant="lightCard"
             >
               Cancel
             </Button>
@@ -319,11 +315,12 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             <Button
               type="button"
               onClick={handleSave}
-              className="bg-secondary text-white"
+              variant="secondaryFilled"
             >
               Save
             </Button>
           </div>
+
         </div>
 
       </div>

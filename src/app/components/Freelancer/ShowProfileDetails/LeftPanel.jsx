@@ -87,10 +87,13 @@ const LeftPanel = () => {
 
       {/* ===== LANGUAGE ===== */}
       <div className="flex flex-col gap-6">
+        {/* Header */}
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <SvgIcon name="Language" size={22} />
-            <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
+            <SvgIcon name="Language" size={20} />
+
+            <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+                     font-medium text-gray-900">
               Language
             </h2>
           </div>
@@ -100,12 +103,14 @@ const LeftPanel = () => {
               setSelectedLanguage(null);
               setShowLanguageModal(true);
             }}
-            className="text-sm sm:text-base text-secondary font-medium"
+            className="text-[13px] sm:text-[14px] 
+                 font-medium text-secondary hover:underline cursor-pointer"
           >
             + Add
           </button>
         </div>
 
+        {/* Language List */}
         <div className="flex flex-col gap-6">
           {freelancerLanguage?.map((item, index) => (
             <div
@@ -113,33 +118,39 @@ const LeftPanel = () => {
               className="flex justify-between items-start gap-4"
             >
               <div className="flex flex-col gap-1">
-                <h3 className="font-medium text-sm sm:text-base text-heading">
+                <h3 className="text-sm sm:text-base 
+                         font-medium text-heading">
                   {item.language}
                 </h3>
-                <p className="text-sm sm:text-base text-paragraph">
+
+                <p className="text-sm sm:text-base 
+                        font-normal text-paragraph">
                   {item.proficiency}
                 </p>
               </div>
 
+              {/* Actions */}
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => {
                     setSelectedLanguage({ ...item, index });
                     setShowLanguageModal(true);
                   }}
+                  className="transition"
                 >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
+                    className="w-4 h-4 text-gray-500 hover:text-secondary cursor-pointer"
                   />
                 </button>
 
                 <button
                   onClick={() => handleDelete(deleteLanguage, item.id)}
+                  className="transition"
                 >
                   <SvgIcon
                     name="Delete1"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
+                    className="w-4 h-4 text-red-400 hover:text-red-500 cursor-pointer"
                   />
                 </button>
               </div>
@@ -148,12 +159,14 @@ const LeftPanel = () => {
         </div>
       </div>
 
+
       <hr className="text-gray-200" />
 
       {/* ===== EDUCATION ===== */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
+        {/* Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
+          <h2 className="text-[15px] sm:text-[16px] md:text-[17px] font-medium text-gray-900">
             Education History
           </h2>
 
@@ -162,46 +175,54 @@ const LeftPanel = () => {
               setSelectedEducation(null);
               setShowEducationModal(true);
             }}
-            className="text-sm sm:text-base text-secondary font-medium"
+            className="text-[13px] sm:text-[14px] 
+                 font-medium text-secondary hover:underline cursor-pointer"
           >
             + Add
           </button>
         </div>
 
-        <div className="flex flex-col gap-6">
+        {/* Education List */}
+        <div className="flex flex-col gap-4">
           {freelancerEducation?.map((item, index) => (
             <div
               key={index}
-              className="flex justify-between items-start gap-4"
+              className="flex justify-between items-start gap-3"
             >
-              <div className="flex flex-col gap-1">
-                <h3 className="font-medium text-sm sm:text-base lg:text-lg text-heading">
+              <div className="flex flex-col gap-0.5 max-w-[85%]">
+                <h3 className="text-sm sm:text-base 
+                         font-medium text-heading">
                   {item.institution_name}
                 </h3>
-                <p className="text-sm sm:text-base text-paragraph font-normal">
+
+                <p className="text-sm sm:text-base 
+                        font-normal text-paragraph">
                   {item.degree}
                 </p>
               </div>
 
+              {/* Actions */}
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => {
                     setSelectedEducation({ ...item, index });
                     setShowEducationModal(true);
                   }}
+                  className="transition"
                 >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
+                    className="w-4 h-4 text-gray-500 hover:text-secondary cursor-pointer"
                   />
                 </button>
 
                 <button
                   onClick={() => handleDelete(deleteEducation, item.id)}
+                  className="transition"
                 >
                   <SvgIcon
                     name="Delete1"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
+                    className="w-4 h-4 text-red-400 hover:text-red-500 cursor-pointer"
                   />
                 </button>
               </div>
@@ -209,6 +230,7 @@ const LeftPanel = () => {
           ))}
         </div>
       </div>
+
 
       {/* ===== MODALS ===== */}
       {showLanguageModal && (

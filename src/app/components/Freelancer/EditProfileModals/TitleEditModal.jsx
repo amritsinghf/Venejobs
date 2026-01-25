@@ -122,10 +122,7 @@ const TitleEditModal = ({
               <Button
                 type="button"
                 onClick={() => setshowTitleModal(false)}
-                style={{
-                  boxShadow: "2px 2px 50px 5px rgba(0,0,0,0.05)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                }}
+                variant="lightCard"
               >
                 Cancel
               </Button>
@@ -133,10 +130,11 @@ const TitleEditModal = ({
               <Button
                 type="submit"
                 disabled={basicProfileLoading}
-                className="bg-secondary text-white"
+                variant="secondaryFilled"
               >
                 {basicProfileLoading ? "Updating..." : "Update"}
               </Button>
+
             </div>
           </form>
         </div>

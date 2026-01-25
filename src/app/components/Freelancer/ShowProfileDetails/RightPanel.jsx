@@ -75,70 +75,89 @@ const RightPanel = () => {
       ) : (
         <>
           {/* ===== PROFILE HEADER ===== */}
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-wrap justify-between items-center gap-4">
-              <h2 className="font-semibold text-lg sm:text-xl lg:text-[20px]">
+          <div className="flex flex-col gap-3 sm:gap-4">
+            {/* Title + Rate */}
+            <div className="flex flex-wrap justify-between items-start gap-3">
+              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] 
+                   font-medium text-gray-900 leading-snug">
                 {freelanceBasicprofile?.professional_title}
               </h2>
 
-              <div className="flex gap-6 items-center">
-                <div className="flex items-center gap-2">
-                  <p className="font-semibold text-base sm:text-lg lg:text-xl">
-                    $ {freelanceBasicprofile?.hourly_rate} /hr
-                  </p>
-                  <SvgIcon
-                    name="Clock"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-heading"
-                  />
-                </div>
+              <div className="flex items-center gap-4">
+                <p className="text-[14px] sm:text-[15px] md:text-[16px] 
+                    font-medium text-gray-800 whitespace-nowrap">
+                  ${freelanceBasicprofile?.hourly_rate}
+                  <span className="text-[13px] font-normal text-gray-500 ml-1">
+                    /hr
+                  </span>
+                </p>
 
-                <button onClick={() => setshowTitleModal(true)}>
+                <button
+                  onClick={() => setshowTitleModal(true)}
+                  className=" transition"
+                >
                   <SvgIcon
                     name="Editing"
-                    className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
+                    className="w-4 h-4 text-gray-500 hover:text-secondary"
                   />
                 </button>
               </div>
             </div>
 
-            <p className="text-sm sm:text-base leading-relaxed text-paragraph">
+            {/* Overview */}
+            <p className="text-[13px] sm:text-[14px] md:text-[15px] 
+                font-normal leading-relaxed text-gray-600">
               {freelanceBasicprofile?.overview}
             </p>
           </div>
+
+
 
           <hr className="text-gray-200" />
 
           {/* ===== PORTFOLIO ===== */}
           <div className="flex flex-col gap-4">
+            {/* Header */}
             <div className="flex justify-between items-center">
-              <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
+              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+                   font-medium text-gray-900">
                 Portfolio
               </h2>
+
               <button
                 onClick={() => {
                   setSelectedPortfolio(null);
                   setShowPortfolioModal(true);
                 }}
-                className="text-sm sm:text-base text-secondary font-medium"
+                className="text-[13px] sm:text-[14px] 
+                 font-medium text-secondary hover:underline"
               >
                 + Add
               </button>
             </div>
 
-            <div className="flex flex-col gap-6">
+            {/* Portfolio List */}
+            <div className="flex flex-col gap-5">
               {freelancerPortfolio?.map((item, index) => (
-                <div key={item.id} className="flex justify-between gap-4">
-                  <div>
-                    <h3 className="font-medium text-sm sm:text-base">
+                <div
+                  key={item.id}
+                  className="flex justify-between items-start gap-4"
+                >
+                  <div className="max-w-[85%]">
+                    <h3 className="text-[14px] sm:text-[15px] 
+                         font-medium text-gray-800 leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-paragraph break-all">
+
+                    <p className="text-[13px] sm:text-[14px] 
+                        text-gray-500 break-all">
                       {item.project_url}
                     </p>
                   </div>
 
-                  <div className="flex gap-4">
-                    <button
+                  {/* Actions */}
+                  <div className="flex gap-3">
+                    <button className="p-1 hover:bg-gray-100 rounded transition"
                       onClick={() => {
                         setSelectedPortfolio({ ...item, index });
                         setShowPortfolioModal(true);
@@ -146,18 +165,17 @@ const RightPanel = () => {
                     >
                       <SvgIcon
                         name="Editing"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
+                        className="w-4 h-4 text-gray-500 hover:text-secondary"
                       />
                     </button>
 
                     <button
-                      onClick={() =>
-                        handleDelete(deletePortfolio, item.id)
-                      }
+                      className="p-1 hover:bg-red-50 rounded transition"
+                      onClick={() => handleDelete(deletePortfolio, item.id)}
                     >
                       <SvgIcon
                         name="Delete1"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
+                        className="w-4 h-4 text-red-400 hover:text-red-500"
                       />
                     </button>
                   </div>
@@ -166,19 +184,22 @@ const RightPanel = () => {
             </div>
           </div>
 
+
           <hr className="text-gray-200" />
 
           {/* ===== WORK HISTORY ===== */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
+            <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+                 font-medium text-gray-900">
               Work History
             </h2>
 
-            <p className="text-sm sm:text-base text-heading font-medium">
-              No Work History Yet
+            <p className="text-[13px] sm:text-[14px] 
+                font-normal text-gray-500">
+              No work history yet
             </p>
 
-            <hr className="text-gray-200" />
+            <hr className="border-gray-200" />
           </div>
 
           {/* ===== PAGINATION ===== */}
@@ -189,81 +210,89 @@ const RightPanel = () => {
           <hr className="text-gray-200" />
 
           {/* ===== SKILLS ===== */}
-          <div className="flex flex-col gap-6 pb-10">
+          <div className="flex flex-col gap-5 pb-10">
+            {/* Header */}
             <div className="flex justify-between items-center">
-              <h2 className="text-lg sm:text-xl lg:text-[22px] font-semibold text-heading">
+              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+                   font-medium text-gray-900">
                 Skills
               </h2>
+
               <button
                 onClick={() => {
                   if (freelancerSkills?.length >= 10) {
                     setSkillError("You can add only 10 skills");
                     return;
                   }
-
                   setSkillError("");
                   setselectedSkill(null);
                   setShowSkillModal(true);
                 }}
-                className="text-sm sm:text-base text-secondary font-medium"
+                className="text-[13px] sm:text-[14px] 
+                 font-medium text-secondary hover:underline"
               >
                 + Add
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Skills Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {freelancerSkills?.map((skill, index) => (
                 <div
                   key={skill.id}
                   className="
-        flex items-center justify-between
-        rounded-lg border border-gray-200
-        bg-white px-4 py-3
-        shadow-sm hover:shadow-md
-        transition-all duration-200
-      "
+          flex items-center justify-between
+          rounded-md border border-gray-200
+          bg-white px-3 py-2.5
+          transition-colors
+          hover:border-gray-300
+        "
                 >
                   {/* Skill Name */}
-                  <p className="text-sm lg:text-base font-medium text-gray-800 truncate">
+                  <p className="text-[13px] sm:text-[14px] 
+                      font-normal text-gray-700 truncate">
                     {skill.skill_name}
                   </p>
 
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-4">
+                  {/* Actions */}
+                  <div className="flex items-center gap-2">
                     <button
                       onClick={() => {
                         setselectedSkill({ ...skill, index });
                         setShowSkillModal(true);
                       }}
-                      className="rounded-md hover:bg-blue-50 transition"
+                      className=" transition"
                       aria-label="Edit Skill"
                     >
                       <SvgIcon
                         name="Editing"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-secondary"
+                        className="w-4 h-4 text-gray-500 hover:text-secondary"
                       />
                     </button>
 
                     <button
                       onClick={() => handleDelete(deleteSkill, skill.id)}
-                      className="rounded-md hover:bg-red-50 transition"
+                      className="transition"
                       aria-label="Delete Skill"
                     >
                       <SvgIcon
                         name="Delete1"
-                        className="w-4 h-4 lg:w-5 lg:h-5 text-red-500"
+                        className="w-4 h-4 text-red-400 hover:text-red-500"
                       />
                     </button>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Error */}
             {skillError && (
-              <p className="text-sm text-red-500 mt-1 pl-1">
+              <p className="text-[13px] text-red-500 mt-1 pl-1">
                 {skillError}
               </p>
             )}
           </div>
+
         </>
       )}
 

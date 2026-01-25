@@ -46,9 +46,11 @@ export default function Home() {
               Explore hand-picked freelance jobs tailored to your skills.
             </p>
 
-            <Button className="bg-secondary text-white flex gap-2">
-              Learn More <SvgIcon name="NextArrow" />
+            <Button variant="secondaryFilled">
+              Learn More
+              <SvgIcon name="NextArrow" />
             </Button>
+
           </div>
 
           {/* 🔍 Dynamic Search */}

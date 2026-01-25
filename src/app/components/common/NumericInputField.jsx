@@ -10,6 +10,7 @@ const NumericInputField = ({
     maxLength = 10,
     disabled = false,
     prefix,
+    focusBorder = "secondary",
 }) => {
     return (
         <div className="flex flex-col gap-2">
@@ -19,7 +20,7 @@ const NumericInputField = ({
 
             <div className="relative">
                 {prefix && (
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm lg:text-base">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
                         {prefix}
                     </span>
                 )}
@@ -43,7 +44,7 @@ const NumericInputField = ({
             ${prefix ? "pl-8" : "px-3"}
             ${disabled
                             ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-                            : "border-[#D0D5DD] bg-white text-black focus:border-secondary"
+                            : `border-[#D0D5DD] bg-white text-black focus:border-${focusBorder}`
                         }
           `}
                 />
@@ -54,5 +55,4 @@ const NumericInputField = ({
     );
 };
 
-
-export default NumericInputField;
+export default NumericInputField

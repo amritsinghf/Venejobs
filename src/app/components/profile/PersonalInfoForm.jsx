@@ -313,7 +313,7 @@ export default function PersonalInfoForm() {
         {isEditable && (
           <Button
             type="submit"
-            className=" bg-primary text-white flex items-center justify-center"
+            variant="primaryOutlined"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

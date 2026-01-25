@@ -1,14 +1,16 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Routes } from "@/app/routes.js";
 import userApiStore from "@/app/store/userStore";
 import ClientLayout from "@/app/layout/ClientLayout";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import { useState } from "react";
 import Loader from "@/app/components/common/Loader";
+import Button from "@/app/components/button/Button";
 
 export default function Jobpost() {
   const { user } = userApiStore();
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
 
@@ -32,23 +34,24 @@ export default function Jobpost() {
               achieve outstanding results.
             </p>
 
-            <Link
-              href={Routes.client.job_post.form}
-              onClick={handleClick}
-              className={`bg-primary text-white text-center w-40 sm:min-w-[180px] md:min-w-50
-    h-[50px] sm:h-[52px] md:h-14
-              font-semibold tracking-wide text-sm xl:text-base flex items-center justify-center rounded 
-              transition-all duration-300 gap-2
-              ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+            <Button
+              onClick={() => {
+                handleClick();
+                router.push(Routes.client.job_post.form);
+              }}
+              disabled={loading}
+              variant="primaryOutlined"
             >
               {loading ? (
                 <Loader size={18} border={3} color="white" />
               ) : (
                 <>
-                  Post a Job <SvgIcon name="RightArrWhite" />
+                  Post a Job
+                  <SvgIcon name="RightArrWhite" />
                 </>
               )}
-            </Link>
+            </Button>
+
           </div>
         </div>
       </ClientLayout>
