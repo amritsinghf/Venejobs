@@ -8,6 +8,7 @@ import SvgIcon from "../Utility/SvgIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import Link from "next/link";
 import Image from "next/image";
+import SearchInput from "../common/SearchInput";
 
 export default function ProfileDropdown() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function ProfileDropdown() {
   const user_logout = userApiStore((s) => s.logout);
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
+  const [search, setSearch] = useState("");
 
   const logout = () => {
     try {
@@ -58,18 +60,14 @@ export default function ProfileDropdown() {
           <span className="absolute inset-y-0 px-4  flex items-center ">
             <SvgIcon name="Search_Icon" />
           </span>
-          <input
-            type="search"
-            id="search"
-            className="
-            block w-full pl-10 pr-4 py-2 
-            rounded-4xl text-sm text-gray-900 font-medium 
-            border border-lightborder focus:border-primary outline-none
-            placeholder:text-gray-400
-    "
-            placeholder="Search"
-            required
-          />
+          <div className="w-56">
+            <SearchInput
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search"
+              className=""
+            />
+          </div>
         </div>
         <SvgIcon name="Question" />
 

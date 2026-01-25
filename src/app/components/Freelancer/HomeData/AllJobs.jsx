@@ -126,11 +126,11 @@ export default function AllJobs() {
               alt="Logo of company"
               className="h-[30px] w-[30px] md:w-[38px] md:h-8"
             />
-            <h2 className=" text-[#3B3A40]">Adobe</h2>
+            <h2 className="font-semibold text-heading">Adobe</h2>
           </div>
           <div className="flex flex-col gap-3">
             <div className="flex justify-between items-center ">
-              <h2 className="font-semibold text-lg md:text-2xl max-w-[700px]">
+              <h2 className="font-semibold text-lg md:text-xl max-w-[700px]">
                 {item.title}
               </h2>
               <p className="text-paragraph text-sm text-nowrap">
@@ -140,15 +140,15 @@ export default function AllJobs() {
 
             {/* budget and industry */}
             <div className="flex flex-wrap items-center justify-between">
-              <p className="font-semibold">
+              <p className="font-medium">
                 {formatBudgetType(item.budget_type)} - {item?.experience_level}{" "}
                 - Est. Budget:{" "}
-                <span className="text-paragraph font-semibold"> {item.budget_amount}</span>
+                <span className="text-paragraph font-medium"> {item.budget_amount}</span>
               </p>
 
               <div className="flex flex-col md:flex-row md:gap-8 md:items-center">
                 <div className="text-paragraph text-sm flex items-center gap-3">
-                  <SvgIcon name="BusinessSector" size="18"/>
+                  <SvgIcon name="BusinessSector" size="18" />
                   <p className="font-medium text-sm text-paragraph">
                     {item.category
                       .split("_")
@@ -160,7 +160,7 @@ export default function AllJobs() {
                 </div>
 
                 <div className="text-paragraph text-sm flex items-center gap-3">
-                  <SvgIcon name="Clock" size="16"/>
+                  <SvgIcon name="Clock" size="16" />
                   <p className="font-medium text-sm text-paragraph">{item.project_size}</p>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function AllJobs() {
           <hr className="text-gray-200" />
 
           <div className="flex flex-col gap-3 mt-4">
-            <h3 className="font-semibold text-lg">Qualifications :</h3>
+            <h3 className="font-semibold text-base">Qualifications :</h3>
             <div className="text-paragraph">
               <ReadMoreBtn
                 text={item.description}
@@ -186,7 +186,7 @@ export default function AllJobs() {
               >
                 <p className="font-semibold text-paragraph">
 
-                {skill.name}
+                  {skill.name}
                 </p>
                 {/* For exact ui comment out below */}
                 {/* <span className="ml-1 text-gray-500">({skill.level})</span> */}
