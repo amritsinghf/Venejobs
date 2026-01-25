@@ -25,7 +25,7 @@ export default function ReadMoreBtn({
     <div>
       <p
         ref={textRef}
-        className={`text-paragraph text-sm tracking-wide lg:text-base ${paragraphFont} transition-all duration-200 ${showClampClass}`}
+        className={`text-paragraph text-sm tracking-wide lg:text-base ${paragraphFont} transition-all duration-200 ${showClampClass} font-medium`}
       >
         {text}
       </p>

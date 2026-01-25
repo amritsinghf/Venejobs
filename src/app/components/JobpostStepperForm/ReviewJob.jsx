@@ -64,12 +64,12 @@ const ReviewJob = ({ prevStep, setStep, setFromReview }) => {
     <div className="flex flex-col gap-6 lg:gap-10">
       <div className="flex flex-col gap-8">
         <div className="flex flex-row justify-between">
-          <div className="flex flex-col gap-5">
-            <h2 className="text-2xl lg:text-4xl text-heading font-semibold leading-9">
+          <div className="flex flex-col gap-2.5">
+            <h2 className="text-xl lg:text-2xl text-heading font-semibold leading-9">
               Review your Job details
             </h2>
 
-            <p className="text-paragraph text-base md:text-lg xl:text-lg font-normal leading-7 tracking-wide">
+            <p className="text-paragraph text-base xl:text-[17px] font-normal leading-7 tracking-wide">
               Take a moment to double-check your job details to ensure everything is clear and ready for the right talent to apply.
             </p>
           </div>
