@@ -113,7 +113,6 @@ const TitleEditModal = ({
                   rules={{
                     required: "Overview is required",
                   }}
-                  error={errors.overview?.message}
                 />
               </div>
             </div>

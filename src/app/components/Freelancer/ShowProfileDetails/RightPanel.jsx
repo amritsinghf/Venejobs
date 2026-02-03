@@ -8,6 +8,7 @@ import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 import RightPanelSkeleton from "../../Skeletons/RightPanelSkeleton";
+import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
 
 const RightPanel = () => {
   const [showTitleModal, setshowTitleModal] = useState(false);
@@ -15,6 +16,8 @@ const RightPanel = () => {
   const [selectedPortfolio, setSelectedPortfolio] = useState(null);
   const [showSkillModal, setShowSkillModal] = useState(false);
   const [selectedSkill, setselectedSkill] = useState(null);
+  const [showExperienceModal, setExperienceModal] = useState(false);
+  const [editExperience, setEditExperience] = useState(null);
 
   // 🔥 local loading for skeleton
   const [pageLoading, setPageLoading] = useState(true);
@@ -28,12 +31,16 @@ const RightPanel = () => {
     getPortfolio,
     deletePortfolio,
     freelanceBasicprofile,
+    freelancerExperience,
+    getExperience,
+    deleteExperience,
+    freelancerExperienceLoading,
     getBasicprofile } = freelancerApiStore();
 
   useEffect(() => {
     const loadData = async () => {
       setPageLoading(true);
-      await Promise.all([getSkills(), getPortfolio(), getBasicprofile()]);
+      await Promise.all([getSkills(), getPortfolio(), getBasicprofile(), getExperience()]);
       setPageLoading(false);
     };
 
@@ -64,6 +71,14 @@ const RightPanel = () => {
           "Something went wrong",
       });
     }
+  };
+
+  const formatMonthYear = (month, year) => {
+    const date = new Date(year, month - 1);
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
   };
 
   return (
@@ -189,23 +204,87 @@ const RightPanel = () => {
 
           {/* ===== WORK HISTORY ===== */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+            <div className="flex items-center justify-between">
+              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
                  font-medium text-gray-900">
-              Work History
-            </h2>
+                Work History
+              </h2>
 
-            <p className="text-[14px] sm:text-[15px] 
-                font-normal text-gray-500">
-              No work history yet
-            </p>
+              <button
+                onClick={() => {
+                  setEditExperience(null);
+                  setExperienceModal(true);
+                }}
+                className="text-[14px] sm:text-[15px] 
+                 font-medium text-secondary hover:underline cursor-pointer"
+              >
+                + Add
+              </button>
+            </div>
 
-            <hr className="border-gray-200" />
+            {freelancerExperienceLoading ? (
+              <div className="flex flex-col gap-6">
+                {[...Array(3)].map((_, i) => (
+                  <SkeletonItem key={i} />
+                ))}
+              </div>
+            ) : (
+              freelancerExperience?.map((item, index) => (
+                <div key={index} className="flex flex-col gap-4">
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-base sm:text-lg font-medium text-heading">
+                        {item.job_title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-heading font-medium">
+                        {formatMonthYear(item.start_month, item.start_year)} –{" "}
+                        {item.is_current
+                          ? "Present"
+                          : formatMonthYear(item.end_month, item.end_year)}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => {
+                          setEditExperience({ ...item, index });
+                          setExperienceModal(true);
+                        }}
+                      >
+                        <SvgIcon
+                          name="Editing"
+                          className="w-4 h-4 lg:w-4.5 lg:h-4.5 text-secondary cursor-pointer"
+                        />
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          handleDelete(deleteExperience, item.id)
+                        }
+                      >
+                        <SvgIcon
+                          name="Delete1"
+                          className="w-4 h-4 lg:w-4.5 lg:h-4.5 text-red-500 cursor-pointer"
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  <p className="text-sm sm:text-base leading-relaxed text-paragraph">
+                    {item.description}
+                  </p>
+
+                  {/* <hr className="text-gray-200" /> */}
+                </div>
+              ))
+            )}
+
           </div>
 
           {/* ===== PAGINATION ===== */}
-          <div className="flex justify-end">
+          {/* <div className="flex justify-end">
             <PaginationFreelance totalPages={2} />
-          </div>
+          </div> */}
 
           <hr className="text-gray-200" />
 
@@ -327,6 +406,17 @@ const RightPanel = () => {
           />
         )
       }
+
+
+      {/* ===== MODAL ===== */}
+      {showExperienceModal && (
+        <ExperienceEditModal
+          item={editExperience}
+          setExperienceModal={setExperienceModal}
+          showExperienceModal={showExperienceModal}
+        />
+      )}
+
     </div >
   );
 };
