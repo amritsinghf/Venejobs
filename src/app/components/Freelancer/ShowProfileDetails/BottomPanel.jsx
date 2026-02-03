@@ -5,24 +5,7 @@ import SvgIcon from "@/app/components/Utility/SvgIcon";
 import freelancerApiStore from "@/app/store/freelancerApiStore";
 import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
-
-const SkeletonItem = () => (
-  <div className="flex flex-col gap-4 animate-pulse">
-    <div className="flex justify-between items-center">
-      <div className="flex flex-col gap-3 w-full">
-        <div className="h-4 sm:h-5 w-1/3 bg-gray-200 rounded" />
-        <div className="h-3 sm:h-4 w-1/4 bg-gray-200 rounded" />
-      </div>
-      <div className="flex gap-3">
-        <div className="h-4 w-4 bg-gray-200 rounded-full" />
-        <div className="h-4 w-4 bg-gray-200 rounded-full" />
-      </div>
-    </div>
-    <div className="h-3 sm:h-4 w-full bg-gray-200 rounded" />
-    <div className="h-3 sm:h-4 w-5/6 bg-gray-200 rounded" />
-    <hr className="text-gray-200" />
-  </div>
-);
+import WorkHistoryPageSkeleton from "../../Skeletons/WorkHistorSkeleton";
 
 const BottomPanel = () => {
   const [showExperienceModal, setExperienceModal] = useState(false);
@@ -97,7 +80,7 @@ const BottomPanel = () => {
       {freelancerExperienceLoading ? (
         <div className="flex flex-col gap-6">
           {[...Array(3)].map((_, i) => (
-            <SkeletonItem key={i} />
+            <WorkHistoryPageSkeleton key={i} />
           ))}
         </div>
       ) : (

@@ -91,6 +91,13 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
     }
   };
 
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 60 }, (_, i) => currentYear - i);
+
+  const endYearOptions = startYear
+    ? years.filter((year) => year >= startYear)
+    : years;
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
       <div
@@ -159,30 +166,23 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
               <InputField
                 label="From"
                 name="start_date"
-                type="number"
+                as="select"
                 register={register}
-                rules={{
-                  required: "Start year is required",
-                  pattern: {
-                    value: /^\d{4}$/,
-                    message: "Enter valid 4 digit year",
-                  },
-                }}
+                value={watch("start_date")}
+                rules={{ required: "Start year is required" }}
+                options={years}
                 error={errors?.start_date?.message}
-                placeholder={new Date().getFullYear() - 3}
+                placeholder="From Year"
               />
 
               <InputField
-                label="End Year"
+                label="To"
                 name="end_date"
-                type="number"
+                as="select"
                 register={register}
+                value={watch("end_date")}
                 rules={{
                   required: "End year is required",
-                  pattern: {
-                    value: /^\d{4}$/,
-                    message: "Enter valid 4 digit year",
-                  },
                   validate: (value) => {
                     if (startYear && Number(value) < Number(startYear)) {
                       return "End year cannot be less than start year";
@@ -190,9 +190,11 @@ const EducationEditModal = ({ setShowEducationModal, showEducationModal, educati
                     return true;
                   },
                 }}
+                options={endYearOptions}
                 error={errors?.end_date?.message}
-                placeholder={new Date().getFullYear()}
+                placeholder="To Year"
               />
+
             </div>
 
             {/* ✅ Description */}

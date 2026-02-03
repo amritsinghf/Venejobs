@@ -87,6 +87,14 @@ const EducationModal = ({
     setshowForm(false);
   };
 
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 60 }, (_, i) => currentYear - i);
+
+  const endYearOptions = education.start_date
+    ? years.filter((y) => y >= education.start_date)
+    : years;
+
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
       <div
@@ -153,22 +161,25 @@ const EducationModal = ({
             <InputField
               label="From"
               name="start_date"
-              type="number"
+              as="select"
               value={education.start_date}
               onChange={handleChange}
               error={errors.start_date}
-              placeholder={new Date().getFullYear() - 3}
+              options={years}
+              placeholder="From Year"
             />
 
             <InputField
               label="To"
               name="end_date"
-              type="number"
+              as="select"
               value={education.end_date}
               onChange={handleChange}
               error={errors.end_date}
-              placeholder={new Date().getFullYear()}
+              options={endYearOptions}
+              placeholder="To Year"
             />
+
           </div>
 
 

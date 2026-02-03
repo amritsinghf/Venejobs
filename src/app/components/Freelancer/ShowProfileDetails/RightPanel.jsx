@@ -9,6 +9,7 @@ import { DeleteConfirmation } from "@/app/components/common/DeleteConfirmation";
 import Swal from "sweetalert2";
 import RightPanelSkeleton from "../../Skeletons/RightPanelSkeleton";
 import ExperienceEditModal from "../EditProfileModals/ExperienceEditModal";
+import WorkHistoryPageSkeleton from "../../Skeletons/WorkHistorSkeleton";
 
 const RightPanel = () => {
   const [showTitleModal, setshowTitleModal] = useState(false);
@@ -225,7 +226,7 @@ const RightPanel = () => {
             {freelancerExperienceLoading ? (
               <div className="flex flex-col gap-6">
                 {[...Array(3)].map((_, i) => (
-                  <SkeletonItem key={i} />
+                  <WorkHistoryPageSkeleton key={i} />
                 ))}
               </div>
             ) : (

@@ -47,7 +47,6 @@ const validateExperience = (data) => {
       errors.end_year = "Enter a valid 4 digit year";
     }
 
-    // ✅ ONLY end year vs start year validation
     if (
       data.start_year &&
       data.end_year &&
@@ -156,6 +155,21 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
     close();
   };
 
+  const currentYear = new Date().getFullYear();
+
+  const years = Array.from({ length: 50 }, (_, i) => currentYear - i);
+  const months = Array.from({ length: 12 }, (_, i) => i + 1);
+
+  const endMonthOptions =
+    experience.start_year && experience.end_year &&
+      experience.start_year === experience.end_year
+      ? months.filter((m) => m >= experience.start_month)
+      : months;
+
+  const endYearOptions = experience.start_year
+    ? years.filter((y) => y >= experience.start_year)
+    : years;
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
       {/* Modal Container */}
@@ -226,46 +240,51 @@ const ExperienceModal = ({ close, append, update, editIndex, fields }) => {
             />
 
             <InputField
-              label="Start Month"
+              label="From"
               name="start_month"
+              as="select"
               value={experience.start_month}
               onChange={handleChange}
               error={errors.start_month}
-              type="number"
-              placeholder="1-12"
+              options={months}
+              placeholder="From Month"
             />
 
             <InputField
-              label="Start Year"
+              label="To"
+              name="end_month"
+              as="select"
+              value={experience.end_month}
+              onChange={handleChange}
+              error={errors.end_month}
+              options={endMonthOptions}
+              disabled={experience.is_current}
+              placeholder="Through Month"
+            />
+
+            <InputField
+              label="From"
               name="start_year"
+              as="select"
               value={experience.start_year}
               onChange={handleChange}
               error={errors.start_year}
-              type="number"
-              placeholder={new Date().getFullYear() - 1}
+              options={years}
+              placeholder="From Year"
             />
 
             <InputField
-              label="End Month"
-              name="end_month"
-              value={experience.end_month ?? ""}
-              onChange={handleChange}
-              type="number"
-              placeholder="1-12"
-              disabled={experience.is_current}
-              error={errors.end_month}
-            />
-
-            <InputField
-              label="End Year"
+              label="To"
               name="end_year"
-              value={experience.end_year ?? ""}
+              as="select"
+              value={experience.end_year}
               onChange={handleChange}
               error={errors.end_year}
-              type="number"
-              placeholder={new Date().getFullYear()}
+              options={endYearOptions}
               disabled={experience.is_current}
+              placeholder="Through Year"
             />
+
 
             {/* Checkbox */}
             <label className="flex items-center gap-3 cursor-pointer md:col-span-2">

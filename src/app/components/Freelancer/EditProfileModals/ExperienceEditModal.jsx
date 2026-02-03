@@ -1,3 +1,4 @@
+import monthSelectPlugin from "flatpickr/dist/plugins/monthSelect";
 import Button from "@/app/components/button/Button";
 import SvgIcon from "@/app/components/Utility/SvgIcon";
 import freelancerApiStore from "@/app/store/freelancerApiStore";
@@ -111,6 +112,20 @@ const ExperienceEditModal = ({
   const startMonth = watch("start_month");
   const startYear = watch("start_year");
 
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 50 }, (_, i) => currentYear - i);
+  const months = Array.from({ length: 12 }, (_, i) => i + 1);
+
+  const endYearOptions = startYear
+    ? years.filter((year) => year >= startYear)
+    : years;
+
+  const endMonthOptions =
+    startYear && watch("end_year") && startYear === watch("end_year")
+      ? months.filter((m) => m >= startMonth)
+      : months;
+
+
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-2 pt-2">
       <div className="relative bg-white w-full max-w-[1120px] rounded-xl shadow-sm flex flex-col max-h-dvh md:max-h-none overflow-y-auto">
@@ -168,53 +183,55 @@ const ExperienceEditModal = ({
               />
 
               <InputField
-                label="Start Month"
+                label="From"
                 name="start_month"
-                type="number"
+                as="select"
                 register={register}
-                rules={{
-                  required: "Start month is required",
-                  min: { value: 1, message: "Month must be between 1 and 12" },
-                  max: { value: 12, message: "Month must be between 1 and 12" },
-                }}
+                value={watch("start_month")}
+                rules={{ required: "Start month is required" }}
+                options={months}
                 error={errors?.start_month?.message}
                 placeholder="From Month"
               />
 
               <InputField
-                label="Start Year"
-                name="start_year"
-                type="number"
-                register={register}
-                rules={{ required: "Start year is required" }}
-                error={errors?.start_year?.message}
-                placeholder="From Year"
-              />
-
-              <InputField
-                label="End Month"
+                label="To"
                 name="end_month"
-                type="number"
+                as="select"
                 register={register}
+                value={watch("end_month")}
                 rules={{
                   validate: (value) => {
                     if (isCurrent) return true;
                     if (!value) return "End month is required";
-                    if (value < 1 || value > 12)
-                      return "Month must be between 1 and 12";
                     return true;
                   },
                 }}
+                options={endMonthOptions}
                 disabled={isCurrent}
                 error={errors?.end_month?.message}
                 placeholder="Through Month"
               />
 
+
               <InputField
-                label="End Year"
-                name="end_year"
-                type="number"
+                label="From"
+                name="start_year"
+                as="select"
                 register={register}
+                value={watch("start_year")}
+                rules={{ required: "Start year is required" }}
+                options={years}
+                error={errors?.start_year?.message}
+                placeholder="From Year"
+              />
+
+              <InputField
+                label="To"
+                name="end_year"
+                as="select"
+                register={register}
+                value={watch("end_year")}
                 rules={{
                   validate: (endYear) => {
                     if (isCurrent) return true;
@@ -240,10 +257,12 @@ const ExperienceEditModal = ({
                     return true;
                   },
                 }}
+                options={endYearOptions}
                 disabled={isCurrent}
                 error={errors?.end_year?.message}
                 placeholder="Through Year"
               />
+
 
               {/* Checkbox (leave as-is or later make common) */}
               <div className="flex items-center gap-2 mt-2 md:col-span-2">
