@@ -11,7 +11,7 @@ import Button from "../components/button/Button";
 
 export default function Page() {
   const { user } = userApiStore();
-  const router = useRouter(); // ✅ hook inside component
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
 
@@ -42,9 +42,6 @@ export default function Page() {
           >
             Get Started
           </Button>
-
-
-
         </div>
       </div>
     </FreelancerLayout>

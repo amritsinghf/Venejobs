@@ -64,8 +64,10 @@ const PortfolioModal = ({
   };
 
   const handleSave = () => {
+
     const validationErrors = validatePortfolio(portfolio);
-    if (Object.keys(validationErrors).length) {
+
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
@@ -76,6 +78,7 @@ const PortfolioModal = ({
 
     setshowForm(false);
   };
+
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
@@ -141,6 +144,7 @@ const PortfolioModal = ({
             onClick={handleSave}
             variant="secondaryFilled"
             className="w-full"
+            type="button"
           >
             Save
           </Button>

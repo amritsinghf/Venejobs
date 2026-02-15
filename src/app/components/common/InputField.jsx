@@ -63,7 +63,7 @@ const InputField = ({
                         disabled={disabled}
                         className={`
         ${commonClass}
-        ${(!value || value === "")
+        ${!register && (!value || value === "")
                                 ? "text-gray-400 text-sm"
                                 : "text-black text-base"}
       `}

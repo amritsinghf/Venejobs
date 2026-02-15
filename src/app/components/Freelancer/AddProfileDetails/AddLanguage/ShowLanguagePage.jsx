@@ -26,10 +26,10 @@ const ShowLanguagePage = ({
               group relative
               flex gap-4
               sm:flex-row sm:items-center justify-between
-              rounded-2xl border border-gray-100 bg-white
+              rounded-lg border border-gray-300 bg-white
               p-4 sm:p-5
-              shadow-sm transition-all duration-300
-              hover:shadow-lg hover:-translate-y-px
+              transition-all duration-300
+              hover:-translate-y-px
             "
           >
             {/* Content */}
@@ -41,7 +41,8 @@ const ShowLanguagePage = ({
               <span
                 className="
                   mt-1 inline-flex items-center
-                  rounded-full bg-secondary/10
+                  rounded-lg bg-secondary/10
+                 border border-gray-300
                   px-3 py-0.5
                   text-sm font-medium text-secondary
                 "

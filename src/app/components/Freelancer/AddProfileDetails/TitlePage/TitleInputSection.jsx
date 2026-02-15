@@ -11,7 +11,7 @@ const TitleInputSection = ({ isFirstStep, handleNext }) => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-4 w-full">
-        <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
+        <h2 className="text-xl xl:text-2xl text-heading font-bold leading-9">
           Tell us what you do best
         </h2>
 
