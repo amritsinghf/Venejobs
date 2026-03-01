@@ -43,7 +43,7 @@ export default function HomeNavbarFreelance() {
     if (completed) {
       router.push(Routes.freelancer.page);
     } else {
-      router.push(Routes.freelancer.get_started);
+      router.push(Routes.freelancer.home);
     }
   };
 

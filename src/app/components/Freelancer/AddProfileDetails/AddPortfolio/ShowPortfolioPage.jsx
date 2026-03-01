@@ -27,8 +27,8 @@ const ShowPorfolioPage = ({ fields, onEdit, onDelete, onAddMore }) => {
           className="border border-gray-200 p-4 rounded-lg flex md:flex-row justify-between items-center md:items-center gap-4"
         >
           <div className="flex flex-col gap-2">
-            <h2 className="font-semibold  text-lg">{item.title}</h2>
-            <p className="text-gray-600">{item.project_url}</p>
+            <h2 className="font-semibold text-base md:text-lg">{item.title}</h2>
+            <p className="text-gray-600 text-sm md:text-base">{item.project_url}</p>
           </div>
 
           <div className="flex">

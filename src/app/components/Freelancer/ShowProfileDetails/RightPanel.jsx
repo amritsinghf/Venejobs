@@ -38,8 +38,6 @@ const RightPanel = () => {
     freelancerExperienceLoading,
     getBasicprofile } = freelancerApiStore();
 
-  console.log(freelancePortfolio, ">>>>>>>>>>>>")
-
   useEffect(() => {
     const loadData = async () => {
       setPageLoading(true);

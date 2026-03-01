@@ -80,8 +80,6 @@ export default function Loginform({ setActiveModal, setUserEmail }) {
         // add more API calls here if needed
       ]);
 
-      console.log("kjdlfhaskjdhfkajsdfh")
-
       if (profileRes?.data?.freelancerProfile != null) {
         router.push(Routes.freelancer.page);
       } else {

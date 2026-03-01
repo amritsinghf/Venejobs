@@ -49,7 +49,7 @@ const ExperienceInputSection = ({ nextStep, prevStep, currstep }) => {
               width={36}
               height={36}
             />
-            <h2 className="font-semibold text-lg lg:text-xl mt-2 text-center">
+            <h2 className="font-semibold text-lg lg:text-xl text-center text-heading">
               Add experience
             </h2>
           </div>

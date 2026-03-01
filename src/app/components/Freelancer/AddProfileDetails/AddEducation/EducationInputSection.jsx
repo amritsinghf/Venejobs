@@ -54,7 +54,7 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
               width={36}
               height={36}
             />
-            <h2 className="font-semibold text-lg lg:text-xl text-center">
+            <h2 className="font-semibold text-lg lg:text-xl text-center text-heading">
               Add Education
             </h2>
           </div>

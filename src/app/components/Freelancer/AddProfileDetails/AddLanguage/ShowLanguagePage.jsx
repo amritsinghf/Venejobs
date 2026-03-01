@@ -8,6 +8,7 @@ const ShowLanguagePage = ({
   handleEdit,
   handleDelete,
 }) => {
+  console.log("sadjkfhsadkjfh")
   return (
     <div className="mt-6 space-y-4">
       {fields.map((field, index) => {

@@ -282,13 +282,19 @@ const LanguageInputSection = ({
           </button>
         </div>
 
-        <ShowLanguagePage
-          fields={fields}
-          languagesData={languagesData}
-          proficiencyData={proficiencyData}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
+        {
+          languagesData &&
+          proficiencyData &&
+          fields?.length > 0 && (
+            <ShowLanguagePage
+              fields={fields}
+              languagesData={languagesData}
+              proficiencyData={proficiencyData}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          )
+        }
 
         {/* Navigation buttons */}
         {/* <StepNavigation

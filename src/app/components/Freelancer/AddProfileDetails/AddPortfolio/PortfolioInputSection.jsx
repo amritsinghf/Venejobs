@@ -46,7 +46,7 @@ const PorfolioInputSection = ({ nextStep, prevStep, currstep }) => {
           }}
         >
           <Image src="/icons/Add.png" alt="Add button" width={40} height={40} />
-          <h2 className="text-xl xl:text-2xl text-heading font-semibold leading-9">
+          <h2 className="font-semibold text-lg lg:text-xl text-center text-heading">
             Add Portfolio
           </h2>
         </div>
