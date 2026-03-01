@@ -15,6 +15,7 @@ const freelancerPortfolio = (set) => ({
     set({ freelancerPortfolioLoading: true, error: null });
     try {
       const res = await getFreelancerPortfolio();
+      console.log(res, "rrrrrrrrrrrrrrrrrrrrr")
       set({
         freelancePortfolio: res.data,
         freelancerPortfolioLoading: false,

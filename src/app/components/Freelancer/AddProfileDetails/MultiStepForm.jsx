@@ -115,22 +115,22 @@ const MultiStepForm = () => {
             currstep={step}
           />
         );
-      case 7:
-        return (
-          <HourlyRatePage
-            nextStep={nextStep}
-            prevStep={prevStep}
-            currstep={step}
-          />
-        );
-      case 8:
-        return (
-          <PersonalDetailsPage
-            nextStep={nextStep}
-            prevStep={prevStep}
-            currstep={step}
-          />
-        );
+      // case 7:
+      //   return (
+      //     <HourlyRatePage
+      //       nextStep={nextStep}
+      //       prevStep={prevStep}
+      //       currstep={step}
+      //     />
+      //   );
+      // case 8:
+      //   return (
+      //     <PersonalDetailsPage
+      //       nextStep={nextStep}
+      //       prevStep={prevStep}
+      //       currstep={step}
+      //     />
+      //   );
       default:
         return <TitlePage nextStep={nextStep} prevStep={prevStep} />;
     }

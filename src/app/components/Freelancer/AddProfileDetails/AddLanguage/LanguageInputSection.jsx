@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import ShowLanguagePage from "./ShowLanguagePage";
 import StepNavigation from "@/app/components/Freelancer/AddProfileDetails/StepNavigation";
+import freelancerApiStore from "@/app/store/freelancerApiStore";
 
 const LanguageInputSection = ({
   nextStep,
@@ -126,6 +127,7 @@ const LanguageInputSection = ({
 
 
   const selectedLanguages = fields.map((item) => item.language);
+  const { personalDetailLoading } = freelancerApiStore();
 
   return (
     <div className="flex flex-col w-full">
@@ -289,9 +291,16 @@ const LanguageInputSection = ({
         />
 
         {/* Navigation buttons */}
-        <StepNavigation
+        {/* <StepNavigation
           onNext={handleNext}
           onBack={prevStep}
+        /> */}
+
+        <StepNavigation
+          isLastStep
+          onBack={prevStep}
+          loading={personalDetailLoading}
+          submitLabel="Let’s Finalize"
         />
       </div>
     </div>

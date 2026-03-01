@@ -18,19 +18,19 @@ const EducationInputSection = ({ nextStep, prevStep }) => {
   const [editIndex, setEditIndex] = useState(null);
 
   const handleNext = async () => {
-    const valid = await trigger("educations");
+    // const valid = await trigger("educations");
 
-    if (fields.length === 0) {
-      showError(
-        "Please add at least one education before proceeding.",
-        "error"
-      );
-      return;
-    }
+    // if (fields.length === 0) {
+    //   showError(
+    //     "Please add at least one education before proceeding.",
+    //     "error"
+    //   );
+    //   return;
+    // }
 
-    if (valid) {
-      nextStep();
-    }
+    // if (valid) {
+    // }
+    nextStep();
   };
   return (
     <div className="flex flex-col w-full gap-6">

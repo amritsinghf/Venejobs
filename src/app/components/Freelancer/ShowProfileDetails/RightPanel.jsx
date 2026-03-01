@@ -28,7 +28,7 @@ const RightPanel = () => {
     freelancerSkills,
     getSkills,
     deleteSkill,
-    freelancerPortfolio,
+    freelancePortfolio,
     getPortfolio,
     deletePortfolio,
     freelanceBasicprofile,
@@ -37,6 +37,8 @@ const RightPanel = () => {
     deleteExperience,
     freelancerExperienceLoading,
     getBasicprofile } = freelancerApiStore();
+
+  console.log(freelancePortfolio, ">>>>>>>>>>>>")
 
   useEffect(() => {
     const loadData = async () => {
@@ -94,8 +96,7 @@ const RightPanel = () => {
           <div className="flex flex-col gap-3 sm:gap-4">
             {/* Title + Rate */}
             <div className="flex flex-wrap justify-between items-start gap-3">
-              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] 
-                   font-medium text-gray-900 leading-snug">
+              <h2 className="text-sm sm:text-base md:text-lg font-medium text-gray-900 leading-snug">
                 {freelanceBasicprofile?.professional_title}
               </h2>
 
@@ -135,7 +136,7 @@ const RightPanel = () => {
           <div className="flex flex-col gap-4">
             {/* Header */}
             <div className="flex justify-between items-center">
-              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+              <h2 className="text-sm sm:text-base md:text-lg
                    font-medium text-gray-900">
                 Portfolio
               </h2>
@@ -154,7 +155,7 @@ const RightPanel = () => {
 
             {/* Portfolio List */}
             <div className="flex flex-col gap-5">
-              {freelancerPortfolio?.map((item, index) => (
+              {freelancePortfolio?.map((item, index) => (
                 <div
                   key={item.id}
                   className="flex justify-between items-start gap-4"
@@ -206,7 +207,7 @@ const RightPanel = () => {
           {/* ===== WORK HISTORY ===== */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+              <h2 className="text-sm sm:text-base md:text-lg 
                  font-medium text-gray-900">
                 Work History
               </h2>
@@ -293,7 +294,7 @@ const RightPanel = () => {
           <div className="flex flex-col gap-5 pb-10">
             {/* Header */}
             <div className="flex justify-between items-center">
-              <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+              <h2 className="text-sm sm:text-base md:text-lg 
                    font-medium text-gray-900">
                 Skills
               </h2>

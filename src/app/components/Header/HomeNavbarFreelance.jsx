@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import ProfileDropdown from "./ProfileDropdown";
@@ -8,15 +9,19 @@ import SvgIcon from "../Utility/SvgIcon";
 import { useRouter } from "next/navigation";
 import toastStore from "../../store/toastStore";
 import userApiStore from "../../store/userStore";
-
+import freelancerApiStore from "../../store/freelancerApiStore";
 import HomeNavbarMobileFreelance from "../navbar/HomeNavbarMobileFreelance";
 
 export default function HomeNavbarFreelance() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+
   const showSuccess = toastStore.getState().showSuccess;
   const showError = toastStore.getState().showError;
-  const { user, loading, error, fetchProfile, logout } = userApiStore();
+
+  const { user, logout } = userApiStore();
+  const { freelanceDetails } = freelancerApiStore();
+
   const user_logout = () => {
     try {
       logout();
@@ -28,26 +33,36 @@ export default function HomeNavbarFreelance() {
     }
   };
 
+  // Logo navigation logic
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+
+    const completed =
+      freelanceDetails?.freelancerProfile?.profile_completed;
+
+    if (completed) {
+      router.push(Routes.freelancer.page);
+    } else {
+      router.push(Routes.freelancer.get_started);
+    }
+  };
+
   const NavLinks = [
     {
       label: "Find Work",
       href: Routes.freelancer.page,
-      icon: "",
     },
     {
       label: "Deliver Work",
       href: "",
-      icon: "",
     },
     {
       label: "Manage Finances",
       href: "",
-      icon: "",
     },
     {
       label: "Message",
       href: "",
-      icon: "",
     },
   ];
 
@@ -55,39 +70,36 @@ export default function HomeNavbarFreelance() {
     {
       label: "Profile",
       href: Routes.freelancer.profileData,
-      // user?.role_id === 2
-      //   ? Routes.client.profile.home
-      //   : Routes.freelancer.profile.home,
       className: "text-3xl sm:text-2xl text-paragraph px-4 font-medium",
     },
     {
       label: "Find Work",
       href: Routes.freelancer.page,
-      icon: "",
     },
     {
       label: "Deliver Work",
       href: "",
-      icon: "",
     },
     {
       label: "Manage Finances",
       href: "",
-      icon: "",
     },
     {
       label: "Message",
       href: "",
-      icon: "",
     },
   ];
 
   return (
     <>
-      <div className="w-full  relative ">
+      <div className="w-full relative">
         <div className="w-full max-w-[90%] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1240px] 2xl:max-w-[1400px] mx-auto">
           <div className="flex justify-between items-center py-5">
-            <Link href={Routes.freelancer.home}
+
+            {/* Logo */}
+            <Link
+              href="#"
+              onClick={handleLogoClick}
               className="flex gap-3 items-center cursor-pointer"
             >
               <Image
@@ -103,6 +115,7 @@ export default function HomeNavbarFreelance() {
               </h2>
             </Link>
 
+            {/* Desktop Nav */}
             <div className="lg:block hidden">
               <nav>
                 <ul className="flex items-center gap-6 lg:gap-3 xl:gap-15 md:gap-10">
@@ -118,12 +131,14 @@ export default function HomeNavbarFreelance() {
               </nav>
             </div>
 
+            {/* Profile */}
             <ProfileDropdown />
 
+            {/* Mobile Menu Button */}
             <div
               role="button"
               tabIndex={0}
-              className="text-black lg:hidden hover:bg-brand-strong font-medium leading-5 rounded-base text-sm  cursor-pointer"
+              className="text-black lg:hidden hover:bg-brand-strong font-medium leading-5 rounded-base text-sm cursor-pointer"
               aria-controls="drawer-navigation"
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
@@ -132,6 +147,7 @@ export default function HomeNavbarFreelance() {
               <SvgIcon name="ToggleMenu" />
             </div>
 
+            {/* Mobile Sidebar */}
             <HomeNavbarMobileFreelance
               isOpen={menuOpen}
               setIsOpen={setMenuOpen}

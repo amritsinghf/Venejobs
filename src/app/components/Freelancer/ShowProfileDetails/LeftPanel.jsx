@@ -92,7 +92,7 @@ const LeftPanel = () => {
           <div className="flex items-center gap-3">
             <SvgIcon name="Language" size={20} />
 
-            <h2 className="text-[15px] sm:text-[16px] md:text-[17px] 
+            <h2 className="text-sm sm:text-base md:text-lg
                      font-medium text-gray-900">
               Language
             </h2>
@@ -166,7 +166,7 @@ const LeftPanel = () => {
       <div className="flex flex-col gap-5">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-[15px] sm:text-[16px] md:text-[17px] font-medium text-gray-900">
+          <h2 className="text-sm sm:text-base md:text-lg font-medium text-gray-900">
             Education History
           </h2>
 

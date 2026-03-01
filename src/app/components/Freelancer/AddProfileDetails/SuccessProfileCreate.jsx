@@ -12,11 +12,11 @@ export default function SuccessProfileCreate() {
   const handleClick = (e) => {
     e.preventDefault();
     setLoading(true);
-
     setTimeout(() => {
-      window.location.href = Routes.freelancer.home;
-    }, 800);
+      window.location.href = Routes.freelancer.page;
+    }, 100);
   };
+
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
